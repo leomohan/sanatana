@@ -761,7 +761,6 @@
     toggleLabel.textContent = isLight ? 'Dark' : 'Light';
     themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
   }
-  applyTheme(root.getAttribute('data-theme') || 'dark');
   themeBtn.addEventListener('click', function(){
     applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   });
@@ -779,7 +778,6 @@
     localStorage.setItem('vedic-size-idx', sizeIdx);
     sizeVal.textContent = Math.round(scale * 100) + '%';
   }
-  applySize(sizeIdx);
   document.getElementById('sizeUp').addEventListener('click', function(){ applySize(sizeIdx + 1); });
   document.getElementById('sizeDown').addEventListener('click', function(){ applySize(sizeIdx - 1); });
 
@@ -794,7 +792,6 @@
     langSa.setAttribute('aria-pressed', String(showSanskrit));
     localStorage.setItem('vedic-lang', showSanskrit ? 'sa' : 'en');
   }
-  setLang(localStorage.getItem('vedic-lang') === 'sa');
   langEn.addEventListener('click', function(){ setLang(false); });
   langSa.addEventListener('click', function(){ setLang(true); });
 
@@ -813,7 +810,6 @@
   }
   viewMapBtn.addEventListener('click', function(){ setView('map'); });
   viewTlBtn.addEventListener('click', function(){ setView('timeline'); });
- 
 
   /* ---------- BUILD TIMELINE ---------- */
   var timelineBuilt = false;
@@ -822,9 +818,7 @@
     var tl = document.getElementById('timelineView');
     var cards = Array.prototype.slice.call(document.querySelectorAll('.category-view .card'));
 
-    // Parse an era string into an approximate start year for sorting
     function startYear(era){
-      // Match 4-digit years, optionally with BCE
       var m = era.match(/(\d{3,4})/);
       if(!m) return 0;
       var y = parseInt(m[1], 10);
@@ -862,7 +856,6 @@
           '<p>' + it.text + '</p>' +
           '<div class="chips">' + (it.el.querySelector('.chips') ? it.el.querySelector('.chips').innerHTML : '') + '</div>' +
         '</div>';
-      // Sync selection when clicking a timeline box
       div.addEventListener('click', function(){
         var c = document.querySelector('.category-view .card[data-id="' + it.id + '"]');
         if(c) selectCard(c, true);
@@ -892,9 +885,7 @@
     var tags = (el.getAttribute('data-tags') || '').toLowerCase();
     var text = el.textContent.toLowerCase();
 
-    // Filter
     if(activeFilter !== 'all' && tags.indexOf(activeFilter) === -1) return false;
-    // Search
     if(q && text.indexOf(q) === -1) return false;
     return true;
   }
@@ -902,21 +893,18 @@
   function applyFilters(){
     var anyVisible = false;
 
-    // Category cards
     document.querySelectorAll('.category-view .card').forEach(function(card){
       var ok = matches(card);
       card.classList.toggle('hidden', !ok);
       if(ok) anyVisible = true;
     });
 
-    // Timeline items
     document.querySelectorAll('.tl-item').forEach(function(item){
       var ok = matches(item);
       item.classList.toggle('hidden', !ok);
       if(ok) anyVisible = true;
     });
 
-    // Section visibility: hide a section if all its cards are hidden
     document.querySelectorAll('.category-view section').forEach(function(sec){
       if(sec.classList.contains('tree-wrap')) return;
       var cards = sec.querySelectorAll('.card');
@@ -964,7 +952,6 @@
       var tx = r.left + r.width / 2;
       var ty = r.top + r.height / 2;
 
-      // Curved connector
       var path = document.createElementNS(svgNS, 'path');
       var mx = (sx + tx) / 2;
       var my = (sy + ty) / 2 - 40;
@@ -997,10 +984,8 @@
     selectedEl = card;
     selectedId = card.getAttribute('data-id');
 
-    // Highlight the source and its linked targets
     var links = (card.getAttribute('data-links') || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
 
-    // Dim everything, then re-highlight
     document.querySelectorAll('.category-view .card').forEach(function(c){ c.classList.add('dimmed'); });
     card.classList.remove('dimmed');
     card.classList.add('selected');
@@ -1010,25 +995,17 @@
       if(t){ t.classList.remove('dimmed'); t.classList.add('selected'); }
     });
 
-    // Draw SVG connectors
     if(links.length) drawConnections(card, links);
 
     if(scrollTo){
       card.scrollIntoView({behavior:'smooth', block:'center'});
     }
   }
- setView(localStorage.getItem('vedic-view') || 'map');
-  applyFilters();
-  
+
   // Attach click + keyboard handlers to every card
   document.querySelectorAll('.category-view .card').forEach(function(card){
     card.addEventListener('click', function(e){
-      // Click a linked card → try to select its own connections too
-      if(selectedEl && selectedEl !== card){
-        selectCard(card);
-      } else {
-        selectCard(card);
-      }
+      selectCard(card);
     });
     card.addEventListener('keydown', function(e){
       if(e.key === 'Enter' || e.key === ' '){
@@ -1059,14 +1036,29 @@
   }, {passive:true});
   window.addEventListener('resize', redraw);
 
-  // Clear selection when view changes (to keep the SVG tidy)
   viewMapBtn.addEventListener('click', clearSelection);
   viewTlBtn.addEventListener('click', clearSelection);
 
-  // Initial filter apply
-  applyFilters();
-})();
+  /* ============================================================
+     BOOT SEQUENCE — runs LAST, after every var + function exists.
+     Each init is isolated so one failure can't blank the page.
+     ============================================================ */
+  try { applyTheme(root.getAttribute('data-theme') || 'dark'); }
+  catch(e){ console.error('theme init failed:', e); }
 
+  try { applySize(sizeIdx); }
+  catch(e){ console.error('size init failed:', e); }
+
+  try { setLang(localStorage.getItem('vedic-lang') === 'sa'); }
+  catch(e){ console.error('lang init failed:', e); }
+
+  try { setView(localStorage.getItem('vedic-view') || 'map'); }
+  catch(e){ console.error('view init failed:', e); }
+
+  try { applyFilters(); }
+  catch(e){ console.error('filters init failed:', e); }
+
+})();
 </script>
 
 </body>
