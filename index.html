@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Map of Vedic Literature — Vedas, Puranas & Upanishads</title>
+<script>
+  // Apply saved/system theme before paint to avoid flash
+  (function(){
+    var saved = localStorage.getItem('vedic-theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<style>
+  /* ---------- THEME VARIABLES ---------- */
+  :root,
+  [data-theme="dark"]{
+    --bg:#0e0b1a;
+    --bg-grad:#1b1435;
+    --card:#241d40;
+    --card-2:#161129;
+    --border:rgba(255,255,255,.06);
+    --border-strong:rgba(255,255,255,.14);
+    --chip-bg:rgba(255,255,255,.06);
+    --chip-border:rgba(255,255,255,.08);
+    --text:#eae6f7;
+    --muted:#a29ac2;
+    --shadow:0 14px 34px rgba(0,0,0,.5);
+    --veda:#ff9f43;
+    --purana:#a55eea;
+    --upanishad:#26de81;
+    --brahmana:#45aaf2;
+    --aranyaka:#fc5c65;
+    --root-text:#1a0f24;
+  }
+  [data-theme="light"]{
+    --bg:#fdf9f3;
+    --bg-grad:#fff4e6;
+    --card:#ffffff;
+    --card-2:#fffaf2;
+    --border:rgba(60,40,20,.10);
+    --border-strong:rgba(60,40,20,.22);
+    --chip-bg:rgba(120,80,30,.07);
+    --chip-border:rgba(120,80,30,.14);
+    --text:#2a1f14;
+    --muted:#6b5c4a;
+    --shadow:0 14px 34px rgba(90,60,20,.15);
+    --veda:#e07b1a;
+    --purana:#8b45d6;
+    --upanishad:#12995a;
+    --brahmana:#1f7fc4;
+    --aranyaka:#d63c46;
+    --root-text:#3a1a08;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    background:radial-gradient(circle at top,var(--bg-grad) 0%,var(--bg) 60%);
+    color:var(--text);
+    min-height:100vh;
+    padding:40px 20px 80px;
+    line-height:1.6;
+    font-size:17px;
+    transition:background .35s ease,color .35s ease;
+  }
+
+  /* ---------- THEME TOGGLE ---------- */
+  .theme-toggle{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--card);
+    border:1px solid var(--border-strong);
+    border-radius:50px;
+    padding:8px 14px 8px 10px;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+    font-family:inherit;
+    font-size:.9rem;
+    font-weight:600;
+    color:var(--text);
+    transition:background .3s,border-color .3s,transform .2s;
+  }
+  .theme-toggle:hover{transform:translateY(-2px);}
+  .theme-toggle:focus-visible{outline:3px solid var(--upanishad);outline-offset:3px;}
+  .toggle-track{
+    position:relative;
+    width:52px;height:28px;
+    border-radius:20px;
+    background:var(--chip-bg);
+    border:1px solid var(--border-strong);
+    flex-shrink:0;
+    transition:background .3s;
+  }
+  .toggle-knob{
+    position:absolute;
+    top:2px;left:2px;
+    width:22px;height:22px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#ffcf6b,#ff9f43);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.8rem;
+    transition:transform .3s cubic-bezier(.4,1.6,.5,1),background .3s;
+    box-shadow:0 2px 6px rgba(0,0,0,.3);
+  }
+  [data-theme="light"] .toggle-knob{
+    transform:translateX(24px);
+    background:linear-gradient(135deg,#ffe9a8,#ffb84d);
+  }
+  .toggle-label{white-space:nowrap;}
+
+  /* ---------- LAYOUT ---------- */
+  header{text-align:center;max-width:900px;margin:0 auto 40px;}
+  header h1{
+    font-size:clamp(1.6rem,4vw,2.6rem);
+    background:linear-gradient(90deg,var(--veda),var(--purana),var(--upanishad),var(--brahmana));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    font-weight:800;letter-spacing:.5px;margin-bottom:12px;
+  }
+  header p{color:var(--muted);font-size:1.08rem;max-width:640px;margin:0 auto;}
+
+  .legend{display:flex;flex-wrap:wrap;gap:14px 18px;justify-content:center;margin-top:24px;}
+  .legend span{
+    display:flex;align-items:center;gap:8px;
+    font-size:.95rem;color:var(--muted);
+  }
+  .dot{width:15px;height:15px;border-radius:50%;display:inline-block;flex-shrink:0;}
+
+  section{margin:54px auto;max-width:1200px;}
+  .section-title{
+    font-size:1.45rem;font-weight:700;margin-bottom:24px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .section-title::after{
+    content:"";flex:1;height:1px;
+    background:linear-gradient(90deg,currentColor,transparent);
+    opacity:.4;
+  }
+
+  .grid{display:grid;gap:22px;}
+  .grid.v4{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+  .grid.v3{grid-template-columns:repeat(auto-fit,minmax(270px,1fr));}
+  .grid.v2{grid-template-columns:repeat(auto-fit,minmax(310px,1fr));}
+
+  .card{
+    position:relative;
+    background:linear-gradient(160deg,var(--card),var(--card-2));
+    border-radius:18px;
+    padding:24px 22px 22px;
+    border:1px solid var(--border);
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s,background .35s;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:4px;
+    background:var(--accent,#888);
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--shadow);
+    border-color:var(--accent,#888);
+  }
+  .card h3{
+    font-size:1.18rem;margin-bottom:6px;color:var(--accent,#fff);
+    display:flex;align-items:center;gap:8px;
+  }
+  .card .tag{
+    font-size:.75rem;font-weight:600;text-transform:uppercase;
+    letter-spacing:.6px;color:var(--muted);margin-bottom:10px;display:block;
+  }
+  .card p{font-size:.96rem;color:var(--text);opacity:.9;}
+  .card .icon{font-size:1.3rem;}
+
+  .veda-card{--accent:var(--veda);}
+  .purana-card{--accent:var(--purana);}
+  .upan-card{--accent:var(--upanishad);}
+  .brahmana-card{--accent:var(--brahmana);}
+  .aranyaka-card{--accent:var(--aranyaka);}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .chip{
+    font-size:.78rem;padding:4px 11px;border-radius:20px;
+    background:var(--chip-bg);color:var(--muted);
+    border:1px solid var(--chip-border);
+  }
+
+  /* Knowledge tree */
+  .tree{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:20px;}
+  .root-node{
+    background:linear-gradient(135deg,var(--veda),var(--aranyaka));
+    color:var(--root-text);font-weight:800;padding:15px 36px;border-radius:50px;
+    font-size:1.02rem;box-shadow:0 8px 24px rgba(255,159,67,.35);
+    text-align:center;
+  }
+  .connector{width:2px;height:34px;background:linear-gradient(var(--veda),transparent);}
+  .branch-row{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;position:relative;}
+  .branch{
+    background:var(--card);border-radius:14px;padding:15px 19px;
+    border:1px solid var(--border);min-width:170px;text-align:center;
+    transition:border-color .2s,transform .2s,background .35s;
+  }
+  .branch:hover{transform:translateY(-4px);border-color:var(--bc,#888);}
+  .branch .b-title{font-weight:700;color:var(--bc,#fff);font-size:.98rem;}
+  .branch .b-sub{font-size:.8rem;color:var(--muted);margin-top:4px;}
+
+  footer{text-align:center;color:var(--muted);font-size:.88rem;margin-top:60px;}
+
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important;}}
+
+  @media (max-width:600px){
+    .theme-toggle{top:12px;right:12px;padding:6px 12px 6px 8px;font-size:.82rem;}
+    body{padding-top:70px;}
+    .toggle-label{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- THEME TOGGLE -->
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" aria-pressed="false">
+  <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+  <span class="toggle-label" id="toggleLabel">Light mode</span>
+</button>
+
+<header>
+  <h1>Map of Vedic Literature</h1>
+  <p>An interactive overview of the Vedas, Puranas, Upanishads and the broader Vedic corpus — the foundations of Hindu philosophy, ritual and knowledge.</p>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--veda)"></i>Vedas</span>
+    <span><i class="dot" style="background:var(--brahmana)"></i>Brahmanas</span>
+    <span><i class="dot" style="background:var(--aranyaka)"></i>Aranyakas</span>
+    <span><i class="dot" style="background:var(--upanishad)"></i>Upanishads</span>
+    <span><i class="dot" style="background:var(--purana)"></i>Puranas</span>
+  </div>
+</header>
+
+<!-- KNOWLEDGE TREE -->
+<section>
+  <h2 class="section-title" style="color:var(--veda)">🌳 The Vedic Knowledge Tree</h2>
+  <div class="tree">
+    <div class="root-node">ŚRUTI &nbsp;•&nbsp; “That which is heard”</div>
+    <div class="connector"></div>
+    <div class="branch-row">
+      <div class="branch" style="--bc:var(--veda)">
+        <div class="b-title">4 Vedas</div>
+        <div class="b-sub">Samhitas — hymns &amp; mantras</div>
+      </div>
+      <div class="branch" style="--bc:var(--brahmana)">
+        <div class="b-title">Brahmanas</div>
+        <div class="b-sub">Ritual &amp; sacrifice manuals</div>
+      </div>
+      <div class="branch" style="--bc:var(--aranyaka)">
+        <div class="b-title">Aranyakas</div>
+        <div class="b-sub">“Forest texts” — inner meaning</div>
+      </div>
+      <div class="branch" style="--bc:var(--upanishad)">
+        <div class="b-title">Upanishads</div>
+        <div class="b-sub">Vedanta — philosophy of Self</div>
+      </div>
+    </div>
+    <div class="connector" style="background:linear-gradient(var(--upanishad),transparent)"></div>
+    <div class="branch-row">
+      <div class="branch" style="--bc:var(--purana)">
+        <div class="b-title">Puranas</div>
+        <div class="b-sub">Smriti — mythology &amp; cosmology</div>
+      </div>
+      <div class="branch" style="--bc:#f7b731">
+        <div class="b-title">Itihasas</div>
+        <div class="b-sub">Ramayana &amp; Mahabharata</div>
+      </div>
+      <div class="branch" style="--bc:#20bf6b">
+        <div class="b-title">Upavedas</div>
+        <div class="b-sub">Ayurveda, Dhanurveda, etc.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUR VEDAS -->
+<section>
+  <h2 class="section-title" style="color:var(--veda)">🕉️ The Four Vedas</h2>
+  <div class="grid v4">
+    <div class="card veda-card">
+      <span class="tag">Veda 1</span>
+      <h3><span class="icon">📖</span> Rigveda</h3>
+      <p>The oldest of the four Vedas, a collection of 1,028 hymns (suktas) in 10 mandalas. It praises deities like Agni, Indra and Varuna, and contains the famous Gayatri Mantra and Nasadiya Sukta on creation.</p>
+      <div class="chips"><span class="chip">Samhita</span><span class="chip">~1500 BCE</span><span class="chip">10 Mandalas</span></div>
+    </div>
+    <div class="card veda-card">
+      <span class="tag">Veda 2</span>
+      <h3><span class="icon">🎵</span> Samaveda</h3>
+      <p>The Veda of melodies and chants. It takes verses from the Rigveda and sets them to musical notation (saman), forming the root of Indian classical music and Vedic ritual singing.</p>
+      <div class="chips"><span class="chip">Samhita</span><span class="chip">Chants</span><span class="chip">Music</span></div>
+    </div>
+    <div class="card veda-card">
+      <span class="tag">Veda 3</span>
+      <h3><span class="icon">🔥</span> Yajurveda</h3>
+      <p>The Veda of sacrifice (yajna). It contains prose formulas and procedures for performing rituals, guiding the adhvaryu priest. Divided into Shukla (white) and Krishna (black) Yajurveda.</p>
+      <div class="chips"><span class="chip">Ritual</span><span class="chip">Yajna</span><span class="chip">Shukla/Krishna</span></div>
+    </div>
+    <div class="card veda-card">
+      <span class="tag">Veda 4</span>
+      <h3><span class="icon">🌿</span> Atharvaveda</h3>
+      <p>The Veda of everyday life — medicine, spells, charms, kingship and cosmology. It deals with healing, protection and the practical concerns of ancient society, later linked to Ayurveda.</p>
+      <div class="chips"><span class="chip">Healing</span><span class="chip">Magic</span><span class="chip">Ayurveda roots</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- UPANISHADS -->
+<section>
+  <h2 class="section-title" style="color:var(--upanishad)">✨ Principal Upanishads (Mukhya Upanishads)</h2>
+  <div class="grid v3">
+    <div class="card upan-card">
+      <h3>Ishavasya</h3><span class="tag">Shukla Yajurveda</span>
+      <p>A short text of 18 verses teaching that the Divine pervades all — one should enjoy through renunciation. A bridge between ritual and philosophy.</p>
+    </div>
+    <div class="card upan-card">
+      <h3>Kena</h3><span class="tag">Samaveda</span>
+      <p>Asks “By whom is the mind directed?” — explores Brahman as the unseen seer, the unheard hearer, beyond all description.</p>
+    </div>
+    <div class="card upan-card">
+      <h3>Katha</h3><span class="tag">Krishna Yajurveda</span>
+      <p>The dialogue of Nachiketa and Yama (death) on the nature of the Self and immortality — famous for the chariot metaphor of body and soul.</p>
+    </div>
+    <div class="card upan-card">
+      <h3>Prashna</h3><span class="tag">Atharvaveda</span>
+      <p>Six seekers ask sage Pippalada six questions about creation, prana, dream states and the Self — structured as a Q&amp;A.</p>
+    </div>
+    <div class="card upan-card">
+      <h3>Mundaka</h3><span class="tag">Atharvaveda</span>
+      <p>Distinguishes “lower knowledge” (ritual texts) from “higher knowledge” (knowledge of Brahman). Uses the arrow-and-bow metaphor for concentration.</p>
+    </div>
+    <div class="card upan-card">
+      <h3>Mandukya</h3><span class="tag">Atharvaveda</span>
+      <p>The shortest Upanishad (12 verses) on the sacred syllable <em>Om</em> and the four states of consciousness, including turiya, the fourth.</p>
+    </div>
+    <div class="card upan-card">
+      <h3>Taittiriya</h3><span class="tag">Krishna Yajurveda</span>
+      <p>Lays out the five sheaths (koshas) of the self and the famous “satyam jnanam anantam brahma” — truth, knowledge, infinity.</p>
+    </div>
+    <div class="card upan-card">
+      <h3>Aitareya</h3><span class="tag">Rigveda</span>
+      <p>Explores creation and the entry of the Self into the body, with the celebrated teaching “Consciousness is Brahman” (Prajnanam Brahma).</p>
+    </div>
+    <div class="card upan-card">
+      <h3>Chandogya</h3><span class="tag">Samaveda</span>
+      <p>One of the oldest and largest Upanishads, home of “Tat Tvam Asi” (Thou art That) and the story of Satyakama and the syllable Om.</p>
+    </div>
+    <div class="card upan-card">
+      <h3>Brihadaranyaka</h3><span class="tag">Shukla Yajurveda</span>
+      <p>The largest Upanishad, containing the “neti neti” (not this, not this) method and the great saying “Aham Brahmasmi” (I am Brahman).</p>
+    </div>
+    <div class="card upan-card">
+      <h3>Shvetashvatara</h3><span class="tag">Krishna Yajurveda</span>
+      <p>Presents a personal God (Ishvara) and devotion (bhakti) alongside Vedanta philosophy — a synthesis of theism and monism.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PURANAS -->
+<section>
+  <h2 class="section-title" style="color:var(--purana)">📜 The Mahapuranas</h2>
+  <div class="grid v3">
+    <div class="card purana-card">
+      <h3>Brahma Purana</h3>
+      <p>Describes creation by Brahma, genealogies, the sacred sites of Puri and Konark, and the glory of the Sun god. One of the eighteen Mahapuranas.</p>
+    </div>
+    <div class="card purana-card">
+      <h3>Vishnu Purana</h3>
+      <p>Focuses on Vishnu and his avatars, cosmology, the Manvantaras and the genealogy of kings. Famous for the story of Prahlada and Dhruva.</p>
+    </div>
+    <div class="card purana-card">
+      <h3>Shiva Purana</h3>
+      <p>Devoted to Shiva — his forms, the twelve Jyotirlingas, the marriage to Parvati, and the destruction of the demon Tripura.</p>
+    </div>
+    <div class="card purana-card">
+      <h3>Bhagavata Purana</h3>
+      <p>The most celebrated Purana, narrating Krishna’s life, the Dashavatara, and the child-devotee Prahlada. It is the supreme text of Vaishnava bhakti.</p>
+    </div>
+    <div class="card purana-card">
+      <h3>Markandeya Purana</h3>
+      <p>Contains the Devi Mahatmya (Durga Saptashati), the great hymn to the Goddess, celebrating her victory over Mahishasura.</p>
+    </div>
+    <div class="card purana-card">
+      <h3>Matsya Purana</h3>
+      <p>Narrates the fish avatar (Matsya) of Vishnu who saves the Vedas and Manu from the great deluge, plus temple architecture and king lists.</p>
+    </div>
+    <div class="card purana-card">
+      <h3>Agni Purana</h3>
+      <p>A vast encyclopedia-like text covering ritual, iconography, medicine, astronomy, grammar and the art of war — a compendium of knowledge.</p>
+    </div>
+    <div class="card purana-card">
+      <h3>Linga Purana</h3>
+      <p>Centers on the Shiva Linga as the cosmic principle and the source of creation, with detailed ritual and the significance of pilgrimage.</p>
+    </div>
+    <div class="card purana-card">
+      <h3>Skanda Purana</h3>
+      <p>The largest Purana, dedicated to Skanda (Kartikeya). It extols the sacred geography of India, especially the Kashi and Pandharpur regions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BRAHMANAS & ARANYAKAS -->
+<section>
+  <h2 class="section-title" style="color:var(--brahmana)">🔵 Brahmanas & Aranyakas</h2>
+  <div class="grid v2">
+    <div class="card brahmana-card">
+      <h3>Aitareya Brahmana</h3>
+      <p>Belongs to the Rigveda. Explains the procedure of Soma sacrifices and the famous legend of Shunahshepa, and the ideal of the king as protector.</p>
+    </div>
+    <div class="card brahmana-card">
+      <h3>Shatapatha Brahmana</h3>
+      <p>The largest and most important Brahmana (Yajurveda). Details the agnicayana fire altar, creation myths, and contains the earliest Upanishadic thought.</p>
+    </div>
+    <div class="card brahmana-card">
+      <h3>Jaiminiya Brahmana</h3>
+      <p>Belongs to the Samaveda. Deals with Soma rituals, chants and stories of sages, reflecting the musical and sacrificial tradition.</p>
+    </div>
+    <div class="card brahmana-card">
+      <h3>Gopatha Brahmana</h3>
+      <p>The only surviving Brahmana of the Atharvaveda, describing ritual applications of Atharvan mantras and the duties of the priests.</p>
+    </div>
+    <div class="card aranyaka-card">
+      <h3>Aitareya Aranyaka</h3>
+      <p>A “forest text” of the Rigveda, exploring the mystic meaning of sacrifice and the cosmic person — it leads directly into the Aitareya Upanishad.</p>
+    </div>
+    <div class="card aranyaka-card">
+      <h3>Brihadaranyaka</h3>
+      <p>Technically both an Aranyaka and Upanishad. A profound dialogue text on the Self, creation, and the “neti neti” path to Brahman.</p>
+    </div>
+    <div class="card aranyaka-card">
+      <h3>Taittiriya Aranyaka</h3>
+      <p>Part of the Krishna Yajurveda. Contains the famous Narayana Sukta and leads into the Taittiriya Upanishad's teachings on the sheaths.</p>
+    </div>
+    <div class="card aranyaka-card">
+      <h3>Chandogya Aranyaka</h3>
+      <p>Belongs to the Samaveda. Focuses on the esoteric meaning of the Sama chants and meditation (upasana) on the syllables of the Sama.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>🗺️ A study map of Śruti &amp; Smṛti literature · Colors indicate category · Hover cards to explore</p>
+  <p style="margin-top:8px">Built as an educational overview. Dates and divisions vary across traditions.</p>
+</footer>
+
+<script>
+  (function(){
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var knob = document.getElementById('knob');
+    var label = document.getElementById('toggleLabel');
+
+    function applyTheme(theme){
+      root.setAttribute('data-theme', theme);
+      localStorage.setItem('vedic-theme', theme);
+      var isLight = theme === 'light';
+      knob.textContent = isLight ? '☀️' : '🌙';
+      label.textContent = isLight ? 'Dark mode' : 'Light mode';
+      btn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+    }
+
+    // Sync button UI with the theme set before paint
+    applyTheme(root.getAttribute('data-theme') || 'dark');
+
+    btn.addEventListener('click', function(){
+      var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(next);
+    });
+
+    // Follow system changes if the user hasn't manually chosen a theme
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e){
+      if(!localStorage.getItem('vedic-theme')){
+        applyTheme(e.matches ? 'light' : 'dark');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
