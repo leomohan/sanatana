@@ -1017,7 +1017,9 @@
       card.scrollIntoView({behavior:'smooth', block:'center'});
     }
   }
-
+ setView(localStorage.getItem('vedic-view') || 'map');
+  applyFilters();
+  
   // Attach click + keyboard handlers to every card
   document.querySelectorAll('.category-view .card').forEach(function(card){
     card.addEventListener('click', function(e){
@@ -1064,8 +1066,7 @@
   // Initial filter apply
   applyFilters();
 })();
- setView(localStorage.getItem('vedic-view') || 'map');
-  applyFilters();
+
 </script>
 
 </body>
