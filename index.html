@@ -813,8 +813,7 @@
   }
   viewMapBtn.addEventListener('click', function(){ setView('map'); });
   viewTlBtn.addEventListener('click', function(){ setView('timeline'); });
-  setView(localStorage.getItem('vedic-view') || 'map');
-  applyFilters();
+ 
 
   /* ---------- BUILD TIMELINE ---------- */
   var timelineBuilt = false;
@@ -1065,6 +1064,8 @@
   // Initial filter apply
   applyFilters();
 })();
+ setView(localStorage.getItem('vedic-view') || 'map');
+  applyFilters();
 </script>
 
 </body>
