@@ -20,6 +20,8 @@
     --text:#eae6f7; --muted:#a29ac2;
     --shadow:0 18px 44px rgba(0,0,0,.55);
     --veda:#ff9f43; --vaishnava:#4a9eff; --saiva:#ff6b6b; --both:#c084fc;
+    --darshana:#f7b731; --divya:#4a9eff; --jyotir:#ff6b6b;
+    --gita:#a55eea; --vedanta:#f7b731;
   }
   [data-theme="light"]{
     --bg:#fdf9f3; --bg-grad:#fff4e6;
@@ -28,6 +30,8 @@
     --text:#2a1f14; --muted:#6b5c4a;
     --shadow:0 18px 44px rgba(90,60,20,.18);
     --veda:#e07b1a; --vaishnava:#1a6fc4; --saiva:#c43a3a; --both:#8b45d6;
+    --darshana:#c98a00; --divya:#1a6fc4; --jyotir:#d63c46;
+    --gita:#8b45d6; --vedanta:#c98a00;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -113,10 +117,13 @@
   .map-card .cta .arrow{transition:transform .25s;}
   .map-card:hover .cta .arrow{transform:translateX(5px);}
 
+  /* Each card gets its accent from a dedicated class — no inline styles */
   .card-veda{--accent:var(--veda);}
   .card-bhakti{--accent:var(--both);}
-
-  
+  .card-darshana{--accent:var(--darshana);}
+  .card-geo{--accent:var(--divya);}
+  .card-gita{--accent:var(--gita);}
+  .card-vedanta{--accent:var(--vedanta);}
 
   .coming-soon{
     margin-top:36px; text-align:center;
@@ -189,40 +196,67 @@
       <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
     </a>
 
- <a class="map-card" style="--accent:var(--vedanta)" href="darshanas.html">
-  <span class="emoji" aria-hidden="true">⚖️</span>
-  <h2>The Six Darshanas</h2>
-  <p>Nyaya, Vaisheshika, Samkhya, Yoga, Mimamsa, Vedanta — a side-by-side comparison of India's six classical schools of philosophy.</p>
+    <a class="map-card card-darshana" href="darshanas.html">
+      <span class="emoji" aria-hidden="true">⚖️</span>
+      <h2>The Six Darshanas</h2>
+      <p>Nyaya, Vaisheshika, Samkhya, Yoga, Mimamsa, Vedanta — a side-by-side comparison of India's six classical schools of philosophy.</p>
+      <div class="meta">
+        <span>6 schools</span>
+        <span>13 criteria</span>
+        <span>Comparison table</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card card-geo" href="geography.html">
+      <span class="emoji" aria-hidden="true">🗺️</span>
+      <h2>Sacred Geography</h2>
+      <p>The 108 Divya Desams of Vishnu and the 12 Jyotirlingas of Shiva — an interactive map of India's most sacred pilgrimage circuits.</p>
+      <div class="meta">
+        <span>108 + 12 sites</span>
+        <span>Interactive map</span>
+        <span>Two circuits</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card card-gita" href="gita.html">
+      <span class="emoji" aria-hidden="true">🪷</span>
+      <h2>The Bhagavad Gita</h2>
+      <p>All 18 chapters visualized — from Arjuna's despair to Krishna's final call to surrender. Each chapter as a yoga, a step on the path.</p>
+      <div class="meta">
+        <span>18 chapters</span>
+        <span>700 verses</span>
+        <span>5 yoga paths</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card card-vedanta" href="vedanta.html">
+      <span class="emoji" aria-hidden="true">🪷</span>
+      <h2>The Three Vedantas</h2>
+      <p>Advaita, Vishishtadvaita, Dvaita — three great commentators on the Upanishads, three visions of the soul's relationship to God.</p>
+      <div class="meta">
+        <span>3 schools</span>
+        <span>12 criteria</span>
+        <span>Comparison table</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card" style="--accent:var(--muruga)" href="muruga.html">
+  <span class="emoji" aria-hidden="true">🦚</span>
+  <h2>Arupadai Veedu</h2>
+  <p>The six sacred abodes of Lord Muruga — from his wedding at Thiruparankundram to his victory at Thiruchendur, his renunciation at Palani, and his wisdom at Swamimalai.</p>
   <div class="meta">
-    <span>6 schools</span>
-    <span>13 criteria</span>
-    <span>Comparison table</span>
-  </div>
-  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
-</a>
-<a class="map-card" style="--accent:var(--divya)" href="geography.html">
-  <span class="emoji" aria-hidden="true">🗺️</span>
-  <h2>Sacred Geography</h2>
-  <p>The 108 Divya Desams of Vishnu and the 12 Jyotirlingas of Shiva — an interactive map of India's most sacred pilgrimage circuits.</p>
-  <div class="meta">
-    <span>108 + 12 sites</span>
+    <span>6 abodes</span>
     <span>Interactive map</span>
-    <span>Two circuits</span>
+    <span>Sangam tradition</span>
   </div>
   <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
 </a>
-<a class="map-card" style="--accent:var(--bhakti)" href="gita.html">
-  <span class="emoji" aria-hidden="true">🪷</span>
-  <h2>The Bhagavad Gita</h2>
-  <p>All 18 chapters visualized — from Arjuna's despair to Krishna's final call to surrender. Each chapter as a yoga, a step on the path.</p>
-  <div class="meta">
-    <span>18 chapters</span>
-    <span>700 verses</span>
-    <span>5 yoga paths</span>
+
   </div>
-  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
-</a>
-</div>
 </main>
 
 <footer>
