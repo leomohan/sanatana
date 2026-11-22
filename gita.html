@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Bhagavad Gita — 18 Chapters Visualized</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪷</text></svg>">
+<script>
+  (function(){
+    var savedTheme = localStorage.getItem('gita-theme');
+    var theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+    var savedSize = localStorage.getItem('gita-size') || '1';
+    document.documentElement.style.setProperty('--scale', savedSize);
+  })();
+</script>
+<style>
+  :root,[data-theme="dark"]{
+    --bg:#0e0b1a; --bg-grad:#1b1435;
+    --card:#241d40; --card-2:#161129;
+    --border:rgba(255,255,255,.06); --border-strong:rgba(255,255,255,.14);
+    --chip-bg:rgba(255,255,255,.06); --chip-border:rgba(255,255,255,.08);
+    --text:#eae6f7; --muted:#a29ac2;
+    --shadow:0 14px 34px rgba(0,0,0,.5);
+    --karma:#ff9f43; --jnana:#45aaf2; --bhakti:#a55eea;
+    --dhyana:#26de81; --vishada:#fc5c65;
+    --root-text:#1a0f24;
+  }
+  [data-theme="light"]{
+    --bg:#fdf9f3; --bg-grad:#fff4e6;
+    --card:#ffffff; --card-2:#fffaf2;
+    --border:rgba(60,40,20,.10); --border-strong:rgba(60,40,20,.22);
+    --chip-bg:rgba(120,80,30,.07); --chip-border:rgba(120,80,30,.14);
+    --text:#2a1f14; --muted:#6b5c4a;
+    --shadow:0 14px 34px rgba(90,60,20,.15);
+    --karma:#e07b1a; --jnana:#1f7fc4; --bhakti:#8b45d6;
+    --dhyana:#12995a; --vishada:#d63c46;
+    --root-text:#3a1a08;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  :root{ --scale:1; }
+
+  body{
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    background:radial-gradient(circle at top,var(--bg-grad) 0%,var(--bg) 60%);
+    color:var(--text);
+    min-height:100vh;
+    padding:90px 20px 80px;
+    line-height:1.6;
+    font-size:calc(17px * var(--scale));
+    transition:background .35s ease,color .35s ease;
+  }
+
+  /* CONTROL BAR */
+  .controls{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
+    padding:12px 16px;
+    background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border-strong);
+  }
+  .ctrl-group{
+    display:flex; align-items:center; gap:6px;
+    background:var(--card); border:1px solid var(--border-strong);
+    border-radius:50px; padding:5px;
+  }
+  .ctrl-btn{
+    font-family:inherit; font-size:.85rem; font-weight:600;
+    color:var(--text); background:transparent; border:none; border-radius:40px;
+    padding:7px 13px; cursor:pointer; display:flex; align-items:center; gap:6px;
+    transition:background .2s,color .2s; white-space:nowrap;
+  }
+  .ctrl-btn:hover{background:var(--chip-bg);}
+  .ctrl-btn:focus-visible{outline:2px solid var(--bhakti);outline-offset:2px;}
+  .ctrl-btn.active{background:var(--chip-bg);box-shadow:inset 0 0 0 1px var(--border-strong);}
+
+  .theme-toggle{padding:5px 12px 5px 6px;}
+  .toggle-track{position:relative;width:44px;height:24px;border-radius:20px;background:var(--chip-bg);border:1px solid var(--border-strong);flex-shrink:0;transition:background .3s;}
+  .toggle-knob{position:absolute;top:1px;left:1px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#ffcf6b,#ff9f43);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .3s cubic-bezier(.4,1.6,.5,1);box-shadow:0 2px 6px rgba(0,0,0,.3);}
+  [data-theme="light"] .toggle-knob{transform:translateX(20px);}
+
+  .size-btn{width:34px;height:34px;justify-content:center;padding:0;font-size:.9rem;font-weight:800;border-radius:50%;}
+  .size-val{min-width:40px;text-align:center;font-size:.8rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;}
+
+  .search-wrap{
+    display:flex;align-items:center;gap:8px;
+    background:var(--card);border:1px solid var(--border-strong);
+    border-radius:50px;padding:6px 14px;flex:1 1 180px;max-width:340px;
+  }
+  .search-wrap:focus-within{border-color:var(--bhakti);}
+  .search-wrap input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:inherit;font-size:.9rem;min-width:0;}
+  .search-wrap input::placeholder{color:var(--muted);}
+
+  /* FILTERS */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:1100px;margin:0 auto 30px;}
+  .filter-chip{
+    font-family:inherit;font-size:.82rem;font-weight:600;
+    padding:7px 15px;border-radius:30px;cursor:pointer;
+    background:var(--card);color:var(--muted);
+    border:1px solid var(--border-strong);transition:all .2s;
+  }
+  .filter-chip:hover{border-color:var(--muted);transform:translateY(-1px);}
+  .filter-chip:focus-visible{outline:2px solid var(--bhakti);outline-offset:2px;}
+  .filter-chip.active{background:var(--fc,var(--karma));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--fc,var(--karma)) 40%,transparent);}
+
+  /* LAYOUT */
+  header{text-align:center;max-width:900px;margin:0 auto 34px;}
+  header h1{
+    font-size:clamp(1.6rem,4vw,2.6rem);
+    background:linear-gradient(90deg,var(--vishada),var(--karma),var(--jnana),var(--bhakti),var(--dhyana));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    font-weight:800;letter-spacing:.5px;margin-bottom:12px;
+  }
+  header p{color:var(--muted);font-size:1.05rem;max-width:700px;margin:0 auto;}
+
+  .legend{display:flex;flex-wrap:wrap;gap:12px 18px;justify-content:center;margin-top:22px;}
+  .legend span{display:flex;align-items:center;gap:7px;font-size:.85rem;color:var(--muted);}
+  .dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex-shrink:0;}
+
+  section{margin:50px auto;max-width:1200px;}
+
+  /* ---------- CHAPTER TIMELINE STRIP ---------- */
+  .journey{
+    display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+    max-width:1000px; margin:0 auto 40px; padding:16px;
+    background:var(--card); border:1px solid var(--border); border-radius:16px;
+  }
+  .journey a{
+    display:flex; align-items:center; justify-content:center;
+    width:38px; height:38px; border-radius:10px;
+    font-size:.78rem; font-weight:800;
+    text-decoration:none; color:#fff;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .journey a:hover{transform:translateY(-3px) scale(1.1); box-shadow:0 4px 12px rgba(0,0,0,.3);}
+
+  /* ---------- CHAPTER CARDS ---------- */
+  .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+
+  .card{
+    position:relative;
+    background:linear-gradient(160deg,var(--card),var(--card-2));
+    border-radius:18px;padding:24px 22px 22px;
+    border:1px solid var(--border);
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s,opacity .3s;
+    overflow:hidden;
+  }
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent,#888);}
+  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--accent,#888);}
+  .card.hidden{display:none;}
+
+  .card .ch-num{
+    position:absolute; top:14px; right:18px;
+    font-size:2.4rem; font-weight:900; line-height:1;
+    color:var(--accent); opacity:.18;
+    user-select:none; pointer-events:none;
+  }
+  .card h3{
+    font-size:1.15rem;margin-bottom:4px;color:var(--accent,#fff);
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    padding-right:50px;
+  }
+  .card h3 .sanskrit{font-size:.82rem;font-weight:500;opacity:.8;display:none;}
+  body.show-sanskrit .card h3 .sanskrit{display:inline;}
+  .card .tag{
+    font-size:.72rem;font-weight:600;text-transform:uppercase;
+    letter-spacing:.6px;color:var(--muted);margin-bottom:10px;display:block;
+  }
+  .card p{font-size:.92rem;color:var(--text);opacity:.9;}
+
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+  .chip{font-size:.75rem;padding:4px 10px;border-radius:20px;background:var(--chip-bg);color:var(--muted);border:1px solid var(--chip-border);}
+  .chip.yoga{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,transparent);font-weight:700;}
+
+  .karma-card{--accent:var(--karma);}
+  .jnana-card{--accent:var(--jnana);}
+  .bhakti-card{--accent:var(--bhakti);}
+  .dhyana-card{--accent:var(--dhyana);}
+  .vishada-card{--accent:var(--vishada);}
+
+  /* Three-section grouping header */
+  .group-header{
+    text-align:center; margin:50px auto 24px; max-width:700px;
+  }
+  .group-header .kicker{
+    font-size:.75rem; font-weight:800; text-transform:uppercase;
+    letter-spacing:1.2px; color:var(--muted); margin-bottom:6px; display:block;
+  }
+  .group-header h2{font-size:1.3rem; color:var(--text); margin-bottom:6px;}
+  .group-header p{font-size:.9rem; color:var(--muted);}
+
+  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:60px;}
+
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important;}}
+  @media (max-width:680px){
+    body{padding-top:130px;}
+    .controls{gap:8px;}
+    .search-wrap{max-width:none;flex:1 1 100%;order:5;}
+    .ctrl-btn{padding:6px 10px;font-size:.8rem;}
+    .size-btn{width:30px;height:30px;}
+    .journey a{width:32px;height:32px;font-size:.7rem;}
+    .card .ch-num{font-size:1.8rem;top:10px;right:14px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="controls" role="toolbar" aria-label="Map controls">
+  <div class="search-wrap">
+    <span aria-hidden="true">🔍</span>
+    <input type="search" id="searchInput" placeholder="Search chapters, yoga, keywords…" aria-label="Search">
+  </div>
+  <div class="ctrl-group" role="group" aria-label="Language display">
+    <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
+    <button class="ctrl-btn" id="langSa" aria-pressed="false">संस्कृतम्</button>
+  </div>
+  <div class="ctrl-group" role="group" aria-label="Text size">
+    <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
+    <span class="size-val" id="sizeVal">100%</span>
+    <button class="ctrl-btn size-btn" id="sizeUp" aria-label="Increase text size">A+</button>
+  </div>
+  <button class="ctrl-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+    <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+    <span id="toggleLabel">Light</span>
+  </button>
+</div>
+
+<header>
+  <h1>The Bhagavad Gita</h1>
+  <p>Eighteen chapters, one conversation on the battlefield of Kurukshetra. Each chapter is a yoga — a path — unfolding from Arjuna's despair to Krishna's final call to surrender.</p>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--vishada)"></i>Despair</span>
+    <span><i class="dot" style="background:var(--karma)"></i>Karma Yoga (Action)</span>
+    <span><i class="dot" style="background:var(--jnana)"></i>Jnana Yoga (Knowledge)</span>
+    <span><i class="dot" style="background:var(--bhakti)"></i>Bhakti Yoga (Devotion)</span>
+    <span><i class="dot" style="background:var(--dhyana)"></i>Dhyana Yoga (Meditation)</span>
+  </div>
+</header>
+
+<!-- Quick-jump journey strip -->
+<div class="journey" id="journeyStrip" aria-label="Jump to chapter"></div>
+
+<div class="filters" role="group" aria-label="Filter by yoga path">
+  <button class="filter-chip active" data-filter="all" style="--fc:var(--karma)">All 18 Chapters</button>
+  <button class="filter-chip" data-filter="karma" style="--fc:var(--karma)">🔥 Karma</button>
+  <button class="filter-chip" data-filter="jnana" style="--fc:var(--jnana)">🧠 Jnana</button>
+  <button class="filter-chip" data-filter="bhakti" style="--fc:var(--bhakti)">🙏 Bhakti</button>
+  <button class="filter-chip" data-filter="dhyana" style="--fc:var(--dhyana)">🧘 Dhyana</button>
+  <button class="filter-chip" data-filter="vishada" style="--fc:var(--vishada)">😔 Despair</button>
+</div>
+
+<!-- ========== THE 18 CHAPTERS ========== -->
+<section>
+  <div class="grid" id="chapterGrid">
+
+    <article class="card vishada-card" id="ch1" data-tags="vishada" data-id="1">
+      <span class="ch-num">1</span>
+      <h3>Arjuna Viṣāda Yoga <span class="sanskrit">अर्जुनविषादयोग</span></h3>
+      <span class="tag">The Yoga of Arjuna's Despair</span>
+      <p>On the battlefield, Arjuna sees his teachers, cousins and friends arrayed against him. His bow slips from his hand, his mind reels, and he collapses in grief — refusing to fight.</p>
+      <div class="chips"><span class="chip yoga">😔 Viṣāda (Despair)</span><span class="chip">47 verses</span></div>
+    </article>
+
+    <article class="card jnana-card" id="ch2" data-tags="jnana" data-id="2">
+      <span class="ch-num">2</span>
+      <h3>Sāṃkhya Yoga <span class="sanskrit">सांख्ययोग</span></h3>
+      <span class="tag">The Yoga of Knowledge (Summary of the Gita)</span>
+      <p>Krishna begins his teaching: the soul is eternal, the body is temporary. Arjuna must do his duty without attachment to results. This chapter is often called the summary of the entire Gita.</p>
+      <div class="chips"><span class="chip yoga">🧠 Jnana</span><span class="chip">72 verses</span><span class="chip">Karma Yoga introduced</span></div>
+    </article>
+
+    <article class="card karma-card" id="ch3" data-tags="karma" data-id="3">
+      <span class="ch-num">3</span>
+      <h3>Karma Yoga <span class="sanskrit">कर्मयोग</span></h3>
+      <span class="tag">The Yoga of Action</span>
+      <p>No one can remain truly inactive. The path is not to abandon action but to act without selfish attachment — as service, as sacrifice. Krishna explains the duties of one's station in life.</p>
+      <div class="chips"><span class="chip yoga">🔥 Karma</span><span class="chip">43 verses</span></div>
+    </article>
+
+    <article class="card jnana-card" id="ch4" data-tags="jnana" data-id="4">
+      <span class="ch-num">4</span>
+      <h3>Jñāna Karma Sanyāsa Yoga <span class="sanskrit">ज्ञानकर्मसंन्यासयोग</span></h3>
+      <span class="tag">The Yoga of Knowledge, Action &amp; Renunciation</span>
+      <p>Krishna reveals his divine descent: he takes birth whenever dharma declines. He teaches that knowledge of the Self burns away all karma, and that the wise see action in inaction.</p>
+      <div class="chips"><span class="chip yoga">🧠 Jnana</span><span class="chip">42 verses</span><span class="chip">Avatāra teaching</span></div>
+    </article>
+
+    <article class="card karma-card" id="ch5" data-tags="karma" data-id="5">
+      <span class="ch-num">5</span>
+      <h3>Karma Sanyāsa Yoga <span class="sanskrit">कर्मसंन्यासयोग</span></h3>
+      <span class="tag">The Yoga of Renunciation of Action</span>
+      <p>Arjuna asks: is it better to renounce action or to act? Krishna answers that both lead to the same goal — the key is inner detachment. The sage acts without being the doer.</p>
+      <div class="chips"><span class="chip yoga">🔥 Karma</span><span class="chip">29 verses</span></div>
+    </article>
+
+    <article class="card dhyana-card" id="ch6" data-tags="dhyana" data-id="6">
+      <span class="ch-num">6</span>
+      <h3>Dhyāna Yoga <span class="sanskrit">ध्यानयोग</span></h3>
+      <span class="tag">The Yoga of Meditation</span>
+      <p>Krishna describes the practice of meditation — posture, breath, withdrawal of the senses — and the difficulty of controlling the restless mind. The mind can be trained through practice and detachment.</p>
+      <div class="chips"><span class="chip yoga">🧘 Dhyana</span><span class="chip">47 verses</span><span class="chip">Aṣṭāṅga Yoga</span></div>
+    </article>
+
+    <article class="card jnana-card" id="ch7" data-tags="jnana" data-id="7">
+      <span class="ch-num">7</span>
+      <h3>Jñāna Vijñāna Yoga <span class="sanskrit">ज्ञानविज्ञानयोग</span></h3>
+      <span class="tag">The Yoga of Knowledge &amp; Realization</span>
+      <p>Krishna describes his lower and higher natures, and the power of Māyā that veils him from the world. Four kinds of people turn to God; the wise, seeking the Self, are dearest.</p>
+      <div class="chips"><span class="chip yoga">🧠 Jnana</span><span class="chip">30 verses</span><span class="chip">Māyā</span></div>
+    </article>
+
+    <article class="card bhakti-card" id="ch8" data-tags="bhakti" data-id="8">
+      <span class="ch-num">8</span>
+      <h3>Aksara Brahma Yoga <span class="sanskrit">अक्षरब्रह्मयोग</span></h3>
+      <span class="tag">The Yoga of the Imperishable Brahman</span>
+      <p>What happens at the moment of death? Krishna explains that the last thought determines the next birth — and that remembering him leads to liberation. The bright and dark paths of the soul are described.</p>
+      <div class="chips"><span class="chip yoga">🙏 Bhakti</span><span class="chip">28 verses</span></div>
+    </article>
+
+    <article class="card bhakti-card" id="ch9" data-tags="bhakti" data-id="9">
+      <span class="ch-num">9</span>
+      <h3>Rāja Vidyā Yoga <span class="sanskrit">राजविद्यायोग</span></h3>
+      <span class="tag">The Yoga of Royal Knowledge</span>
+      <p>Krishna reveals the "royal secret": he pervades all things, yet remains untouched. Even a leaf, a flower, or water offered with love is accepted. Devotion is the easiest and highest path.</p>
+      <div class="chips"><span class="chip yoga">🙏 Bhakti</span><span class="chip">34 verses</span><span class="chip">"Royal secret"</span></div>
+    </article>
+
+    <article class="card bhakti-card" id="ch10" data-tags="bhakti" data-id="10">
+      <span class="ch-num">10</span>
+      <h3>Vibhūti Yoga <span class="sanskrit">विभूतियोग</span></h3>
+      <span class="tag">The Yoga of Divine Glories</span>
+      <p>Krishna describes his manifestations: he is the sun among lights, the Himalayas among mountains, the Ganges among rivers. Arjuna is overwhelmed and asks to see the full divine form.</p>
+      <div class="chips"><span class="chip yoga">🙏 Bhakti</span><span class="chip">42 verses</span><span class="chip">Vibhūtis</span></div>
+    </article>
+
+    <article class="card bhakti-card" id="ch11" data-tags="bhakti" data-id="11">
+      <span class="ch-num">11</span>
+      <h3>Viśvarūpa Darśana Yoga <span class="sanskrit">विश्वरूपदर्शनयोग</span></h3>
+      <span class="tag">The Yoga of the Vision of the Universal Form</span>
+      <p>Krishna grants Arjuna divine sight and reveals his cosmic form — all worlds, all beings, all time blazing in one infinite body. Arjuna trembles, terrified and awestruck, and begs Krishna to return to his gentle human form.</p>
+      <div class="chips"><span class="chip yoga">🙏 Bhakti</span><span class="chip">55 verses</span><span class="chip">Cosmic vision</span></div>
+    </article>
+
+    <article class="card bhakti-card" id="ch12" data-tags="bhakti" data-id="12">
+      <span class="ch-num">12</span>
+      <h3>Bhakti Yoga <span class="sanskrit">भक्तियोग</span></h3>
+      <span class="tag">The Yoga of Devotion</span>
+      <p>Arjuna asks: is it better to worship God with form or without form? Krishna describes the qualities of a true devotee — free from ego, equal in praise and blame, content, and devoted with unwavering love.</p>
+      <div class="chips"><span class="chip yoga">🙏 Bhakti</span><span class="chip">20 verses</span><span class="chip">Qualities of a devotee</span></div>
+    </article>
+
+    <article class="card jnana-card" id="ch13" data-tags="jnana" data-id="13">
+      <span class="ch-num">13</span>
+      <h3>Kṣetra Kṣetrajña Vibhāga Yoga <span class="sanskrit">क्षेत्रक्षेत्रज्ञविभागयोग</span></h3>
+      <span class="tag">The Yoga of the Field &amp; Its Knower</span>
+      <p>The body is the "field" (kṣetra); the consciousness that knows it is the "knower" (kṣetrajña). Krishna distinguishes matter from spirit, and teaches that the Self within all beings is the same.</p>
+      <div class="chips"><span class="chip yoga">🧠 Jnana</span><span class="chip">35 verses</span></div>
+    </article>
+
+    <article class="card jnana-card" id="ch14" data-tags="jnana" data-id="14">
+      <span class="ch-num">14</span>
+      <h3>Guṇatraya Vibhāga Yoga <span class="sanskrit">गुणत्रयविभागयोग</span></h3>
+      <span class="tag">The Yoga of the Three Guṇas</span>
+      <p>All of nature is woven from three qualities: sattva (clarity), rajas (passion), and tamas (inertia). These bind the soul to the body. One who transcends all three attains liberation.</p>
+      <div class="chips"><span class="chip yoga">🧠 Jnana</span><span class="chip">27 verses</span><span class="chip">Three guṇas</span></div>
+    </article>
+
+    <article class="card jnana-card" id="ch15" data-tags="jnana" data-id="15">
+      <span class="ch-num">15</span>
+      <h3>Puruṣottama Yoga <span class="sanskrit">पुरुषोत्तमयोग</span></h3>
+      <span class="tag">The Yoga of the Supreme Person</span>
+      <p>The world is described as an inverted tree with roots above. Beyond the perishable and the imperishable stands the Supreme Person (Puruṣottama) — the source and support of all.</p>
+      <div class="chips"><span class="chip yoga">🧠 Jnana</span><span class="chip">20 verses</span><span class="chip">Puruṣottama</span></div>
+    </article>
+
+    <article class="card jnana-card" id="ch16" data-tags="jnana" data-id="16">
+      <span class="ch-num">16</span>
+      <h3>Daivāsura Sampad Vibhāga Yoga <span class="sanskrit">दैवासुरसम्पद्विभागयोग</span></h3>
+      <span class="tag">The Yoga of Divine &amp; Demoniac Natures</span>
+      <p>Krishna contrasts the divine qualities — fearlessness, purity, generosity — with the demoniac: arrogance, cruelty, greed. The demoniac are bound by desire and end in lower births.</p>
+      <div class="chips"><span class="chip yoga">🧠 Jnana</span><span class="chip">24 verses</span></div>
+    </article>
+
+    <article class="card jnana-card" id="ch17" data-tags="jnana" data-id="17">
+      <span class="ch-num">17</span>
+      <h3>Śraddhātraya Vibhāga Yoga <span class="sanskrit">श्रद्धात्रयविभागयोग</span></h3>
+      <span class="tag">The Yoga of the Threefold Faith</span>
+      <p>Faith, food, sacrifice and austerity are each of three kinds, corresponding to the three guṇas. Krishna explains that actions done without faith are worthless, and that "Om Tat Sat" sanctifies all offering.</p>
+      <div class="chips"><span class="chip yoga">🧠 Jnana</span><span class="chip">28 verses</span></div>
+    </article>
+
+    <article class="card bhakti-card" id="ch18" data-tags="bhakti" data-id="18">
+      <span class="ch-num">18</span>
+      <h3>Mokṣa Sanyāsa Yoga <span class="sanskrit">मोक्षसंन्यासयोग</span></h3>
+      <span class="tag">The Yoga of Liberation through Renunciation</span>
+      <p>Krishna summarizes all paths and gives his final teaching: abandon all dharma and take refuge in him alone. Arjuna rises, his delusion gone, and chooses to fight. Sanjaya rejoices.</p>
+      <div class="chips"><span class="chip yoga">🙏 Bhakti</span><span class="chip">78 verses</span><span class="chip">"Sarva-dharmān parityajya"</span></div>
+    </article>
+
+  </div>
+</section>
+
+<footer>
+  <p>🪷 A chapter-by-chapter map of the Bhagavad Gita · 18 chapters, ~700 verses · Yoga paths and groupings follow traditional classifications</p>
+  <p style="margin-top:6px">The Gita is set in the Mahabharata, Book 6 (Bhīṣma Parva), chapters 25–42.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  var body = document.body;
+
+  /* ---------- THEME ---------- */
+  var themeBtn = document.getElementById('themeToggle');
+  var knob = document.getElementById('knob');
+  var toggleLabel = document.getElementById('toggleLabel');
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    localStorage.setItem('gita-theme', t);
+    var isLight = t === 'light';
+    knob.textContent = isLight ? '☀️' : '🌙';
+    toggleLabel.textContent = isLight ? 'Dark' : 'Light';
+    themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+  }
+  themeBtn.addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+  });
+
+  /* ---------- TEXT SIZE ---------- */
+  var sizes = [0.85, 1, 1.15, 1.3, 1.5];
+  var sizeIdx = parseInt(localStorage.getItem('gita-size-idx') || '1', 10);
+  var sizeVal = document.getElementById('sizeVal');
+  function applySize(i){
+    sizeIdx = Math.max(0, Math.min(sizes.length - 1, i));
+    var scale = sizes[sizeIdx];
+    root.style.setProperty('--scale', scale);
+    localStorage.setItem('gita-size', scale);
+    localStorage.setItem('gita-size-idx', sizeIdx);
+    sizeVal.textContent = Math.round(scale * 100) + '%';
+  }
+  document.getElementById('sizeUp').addEventListener('click', function(){ applySize(sizeIdx + 1); });
+  document.getElementById('sizeDown').addEventListener('click', function(){ applySize(sizeIdx - 1); });
+
+  /* ---------- LANGUAGE ---------- */
+  var langEn = document.getElementById('langEn');
+  var langSa = document.getElementById('langSa');
+  function setLang(showSanskrit){
+    body.classList.toggle('show-sanskrit', showSanskrit);
+    langEn.classList.toggle('active', !showSanskrit);
+    langSa.classList.toggle('active', showSanskrit);
+    langEn.setAttribute('aria-pressed', String(!showSanskrit));
+    langSa.setAttribute('aria-pressed', String(showSanskrit));
+    localStorage.setItem('gita-lang', showSanskrit ? 'sa' : 'en');
+  }
+  langEn.addEventListener('click', function(){ setLang(false); });
+  langSa.addEventListener('click', function(){ setLang(true); });
+
+  /* ---------- JOURNEY STRIP ---------- */
+  var journey = document.getElementById('journeyStrip');
+  var accentFor = {
+    1:'var(--vishada)', 2:'var(--jnana)', 3:'var(--karma)', 4:'var(--jnana)',
+    5:'var(--karma)', 6:'var(--dhyana)', 7:'var(--jnana)', 8:'var(--bhakti)',
+    9:'var(--bhakti)', 10:'var(--bhakti)', 11:'var(--bhakti)', 12:'var(--bhakti)',
+    13:'var(--jnana)', 14:'var(--jnana)', 15:'var(--jnana)', 16:'var(--jnana)',
+    17:'var(--jnana)', 18:'var(--bhakti)'
+  };
+  for(var n = 1; n <= 18; n++){
+    var a = document.createElement('a');
+    a.href = '#ch' + n;
+    a.textContent = n;
+    a.style.background = accentFor[n];
+    a.setAttribute('aria-label', 'Jump to Chapter ' + n);
+    journey.appendChild(a);
+  }
+
+  /* ---------- SEARCH + FILTER ---------- */
+  var searchInput = document.getElementById('searchInput');
+  var activeFilter = 'all';
+  var filterChips = document.querySelectorAll('.filter-chip');
+
+  filterChips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      activeFilter = chip.getAttribute('data-filter');
+      filterChips.forEach(function(c){ c.classList.toggle('active', c === chip); });
+      applyFilters();
+    });
+  });
+  searchInput.addEventListener('input', function(){ applyFilters(); });
+
+  function matches(el){
+    var q = searchInput.value.trim().toLowerCase();
+    var tags = (el.getAttribute('data-tags') || '').toLowerCase();
+    var text = el.textContent.toLowerCase();
+    if(activeFilter !== 'all' && tags.indexOf(activeFilter) === -1) return false;
+    if(q && text.indexOf(q) === -1) return false;
+    return true;
+  }
+
+  function applyFilters(){
+    document.querySelectorAll('.card[data-tags]').forEach(function(card){
+      card.classList.toggle('hidden', !matches(card));
+    });
+  }
+
+  /* ---------- BOOT SEQUENCE ---------- */
+  try { applyTheme(root.getAttribute('data-theme') || 'dark'); }
+  catch(e){ console.error('theme init failed:', e); }
+
+  try { applySize(sizeIdx); }
+  catch(e){ console.error('size init failed:', e); }
+
+  try { setLang(localStorage.getItem('gita-lang') === 'sa'); }
+  catch(e){ console.error('lang init failed:', e); }
+
+  try { applyFilters(); }
+  catch(e){ console.error('filters init failed:', e); }
+
+})();
+</script>
+
+</body>
+</html>
