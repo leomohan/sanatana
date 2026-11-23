@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanatana — Visual Maps of Hindu Literature & Saints</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕉️</text></svg>">
+<script>
+  (function(){
+    var savedTheme = localStorage.getItem('sanatana-theme');
+    var theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<style>
+  :root,[data-theme="dark"]{
+    --bg:#0e0b1a; --bg-grad:#1b1435;
+    --card:#241d40; --card-2:#161129;
+    --border:rgba(255,255,255,.08); --border-strong:rgba(255,255,255,.16);
+    --text:#eae6f7; --muted:#a29ac2;
+    --shadow:0 18px 44px rgba(0,0,0,.55);
+    --veda:#ff9f43; --vaishnava:#4a9eff; --saiva:#ff6b6b; --both:#c084fc;
+    --darshana:#f7b731; --divya:#4a9eff; --jyotir:#ff6b6b;
+    --gita:#a55eea; --vedanta:#f7b731;
+  }
+  [data-theme="light"]{
+    --bg:#fdf9f3; --bg-grad:#fff4e6;
+    --card:#ffffff; --card-2:#fffaf2;
+    --border:rgba(60,40,20,.12); --border-strong:rgba(60,40,20,.24);
+    --text:#2a1f14; --muted:#6b5c4a;
+    --shadow:0 18px 44px rgba(90,60,20,.18);
+    --veda:#e07b1a; --vaishnava:#1a6fc4; --saiva:#c43a3a; --both:#8b45d6;
+    --darshana:#c98a00; --divya:#1a6fc4; --jyotir:#d63c46;
+    --gita:#8b45d6; --vedanta:#c98a00;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    background:radial-gradient(circle at top,var(--bg-grad) 0%,var(--bg) 65%);
+    color:var(--text);
+    min-height:100vh;
+    padding:60px 20px 80px;
+    line-height:1.6;
+    font-size:17px;
+    transition:background .35s ease,color .35s ease;
+    display:flex; flex-direction:column;
+  }
+
+  .theme-toggle{
+    position:fixed; top:20px; right:20px; z-index:100;
+    display:flex; align-items:center; gap:10px;
+    background:var(--card); border:1px solid var(--border-strong);
+    border-radius:50px; padding:6px 14px 6px 6px;
+    cursor:pointer; box-shadow:var(--shadow);
+    font-family:inherit; font-size:.85rem; font-weight:600; color:var(--text);
+    transition:transform .2s;
+  }
+  .theme-toggle:hover{transform:translateY(-2px);}
+  .theme-toggle:focus-visible{outline:3px solid var(--both);outline-offset:3px;}
+  .toggle-track{position:relative;width:44px;height:24px;border-radius:20px;background:rgba(128,128,128,.18);border:1px solid var(--border-strong);flex-shrink:0;transition:background .3s;}
+  .toggle-knob{position:absolute;top:1px;left:1px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#ffcf6b,#ff9f43);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .3s cubic-bezier(.4,1.6,.5,1);box-shadow:0 2px 6px rgba(0,0,0,.3);}
+  [data-theme="light"] .toggle-knob{transform:translateX(20px);}
+
+  header{text-align:center;max-width:760px;margin:20px auto 56px;}
+  header .om{
+    font-size:3rem; line-height:1; margin-bottom:18px;
+    background:linear-gradient(135deg,var(--veda),var(--both),var(--vaishnava));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    display:inline-block;
+  }
+  header h1{
+    font-size:clamp(2rem,5vw,3rem);
+    font-weight:800; letter-spacing:.5px; margin-bottom:16px;
+    background:linear-gradient(90deg,var(--veda),var(--both),var(--vaishnava),var(--saiva));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  header p{color:var(--muted);font-size:1.1rem;max-width:600px;margin:0 auto;}
+
+  main{max-width:960px;margin:0 auto;width:100%;flex:1;}
+  .cards{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+
+  .map-card{
+    position:relative; display:block; text-decoration:none; color:inherit;
+    background:linear-gradient(160deg,var(--card),var(--card-2));
+    border:1px solid var(--border); border-radius:24px;
+    padding:32px 28px 28px;
+    overflow:hidden;
+    transition:transform .28s ease,box-shadow .28s ease,border-color .28s;
+  }
+  .map-card::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:5px;
+    background:var(--accent);
+  }
+  .map-card:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--shadow);
+    border-color:var(--accent);
+  }
+  .map-card:focus-visible{outline:3px solid var(--accent); outline-offset:4px;}
+  .map-card .emoji{font-size:2.6rem;display:block;margin-bottom:16px;}
+  .map-card h2{
+    font-size:1.5rem; font-weight:800; margin-bottom:10px; color:var(--accent);
+  }
+  .map-card p{color:var(--text);opacity:.88;font-size:1rem;margin-bottom:20px;}
+  .map-card .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+  .meta span{
+    font-size:.75rem;font-weight:600;padding:4px 12px;border-radius:20px;
+    background:rgba(128,128,128,.12);
+    border:1px solid var(--border);
+    color:var(--muted);
+  }
+  .map-card .cta{
+    display:inline-flex;align-items:center;gap:8px;
+    font-weight:700; font-size:.95rem; color:var(--accent);
+  }
+  .map-card .cta .arrow{transition:transform .25s;}
+  .map-card:hover .cta .arrow{transform:translateX(5px);}
+
+  /* Each card gets its accent from a dedicated class — no inline styles */
+  .card-veda{--accent:var(--veda);}
+  .card-bhakti{--accent:var(--both);}
+  .card-darshana{--accent:var(--darshana);}
+  .card-geo{--accent:var(--divya);}
+  .card-gita{--accent:var(--gita);}
+  .card-vedanta{--accent:var(--vedanta);}
+
+  .coming-soon{
+    margin-top:36px; text-align:center;
+    border:1px dashed var(--border-strong); border-radius:20px;
+    padding:28px 20px; color:var(--muted); font-size:.95rem;
+  }
+  .coming-soon strong{color:var(--text);}
+  .coming-soon .dots{
+    display:inline-flex; gap:6px; margin-top:14px;
+  }
+  .coming-soon .dots span{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--muted);opacity:.35;
+  }
+  .coming-soon .dots span:first-child{opacity:.8;background:var(--veda);}
+
+  footer{
+    text-align:center; color:var(--muted); font-size:.85rem;
+    margin-top:60px; padding-top:24px;
+    border-top:1px solid var(--border);
+    max-width:960px; margin-left:auto; margin-right:auto; width:100%;
+  }
+  footer p + p{margin-top:6px;}
+
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important;}}
+  @media (max-width:600px){
+    body{padding-top:80px;}
+    .theme-toggle{top:14px;right:14px;}
+    .map-card{padding:26px 22px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" aria-pressed="false">
+  <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+  <span id="toggleLabel">Light</span>
+</button>
+
+<header>
+  <span class="om" aria-hidden="true">🕉️</span>
+  <h1>Sanatana</h1>
+  <p>Visual maps of Hindu literature, philosophy and saints — built to be explored, not just read.</p>
+</header>
+
+<main>
+  <div class="cards">
+
+    <a class="map-card card-veda" href="veda.html">
+      <span class="emoji" aria-hidden="true">📜</span>
+      <h2>Map of Vedic Literature</h2>
+      <p>The Vedas, Brahmanas, Aranyakas, Upanishads, Puranas, Itihasas and Upavedas — with interactive connections, a chronological timeline, and search across the whole corpus.</p>
+      <div class="meta">
+        <span>7 categories</span>
+        <span>34 texts</span>
+        <span>Map + Timeline</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card card-bhakti" href="an.html">
+      <span class="emoji" aria-hidden="true">🪔</span>
+      <h2>Azhwars &amp; Nayanmars</h2>
+      <p>The twin streams of Tamil Bhakti — the twelve Vaishnava Azhwars and the Saiva Nayanmars — with their timelines, key works and the two great canons they gave us.</p>
+      <div class="meta">
+        <span>2 traditions</span>
+        <span>20 saints &amp; canons</span>
+        <span>Women saints</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card card-darshana" href="darshanas.html">
+      <span class="emoji" aria-hidden="true">⚖️</span>
+      <h2>The Six Darshanas</h2>
+      <p>Nyaya, Vaisheshika, Samkhya, Yoga, Mimamsa, Vedanta — a side-by-side comparison of India's six classical schools of philosophy.</p>
+      <div class="meta">
+        <span>6 schools</span>
+        <span>13 criteria</span>
+        <span>Comparison table</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card card-geo" href="geography.html">
+      <span class="emoji" aria-hidden="true">🗺️</span>
+      <h2>Sacred Geography</h2>
+      <p>The 108 Divya Desams of Vishnu and the 12 Jyotirlingas of Shiva — an interactive map of India's most sacred pilgrimage circuits.</p>
+      <div class="meta">
+        <span>108 + 12 sites</span>
+        <span>Interactive map</span>
+        <span>Two circuits</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card card-gita" href="gita.html">
+      <span class="emoji" aria-hidden="true">🪷</span>
+      <h2>The Bhagavad Gita</h2>
+      <p>All 18 chapters visualized — from Arjuna's despair to Krishna's final call to surrender. Each chapter as a yoga, a step on the path.</p>
+      <div class="meta">
+        <span>18 chapters</span>
+        <span>700 verses</span>
+        <span>5 yoga paths</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card card-vedanta" href="vedanta.html">
+      <span class="emoji" aria-hidden="true">🪷</span>
+      <h2>The Three Vedantas</h2>
+      <p>Advaita, Vishishtadvaita, Dvaita — three great commentators on the Upanishads, three visions of the soul's relationship to God.</p>
+      <div class="meta">
+        <span>3 schools</span>
+        <span>12 criteria</span>
+        <span>Comparison table</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card" style="--accent:var(--muruga)" href="muruga.html">
+  <span class="emoji" aria-hidden="true">🦚</span>
+  <h2>Arupadai Veedu</h2>
+  <p>The six sacred abodes of Lord Muruga — from his wedding at Thiruparankundram to his victory at Thiruchendur, his renunciation at Palani, and his wisdom at Swamimalai.</p>
+  <div class="meta">
+    <span>6 abodes</span>
+    <span>Interactive map</span>
+    <span>Sangam tradition</span>
+  </div>
+  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+</a>
+<a class="map-card" style="--accent:var(--shakta)" href="shanmata.html">
+  <span class="emoji" aria-hidden="true">🕉️</span>
+  <h2>The Shanmata</h2>
+  <p>Shaiva, Vaishnava, Shakta, Ganapatya, Saura, Kaumara — the six major sectarian traditions of Hinduism, each centred on a primary deity and a body of scripture.</p>
+  <div class="meta">
+    <span>6 traditions</span>
+    <span>9 criteria</span>
+    <span>Comparison table</span>
+  </div>
+  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+</a>
+<a class="map-card" style="--accent:var(--madhva)" href="mathas.html">
+  <span class="emoji" aria-hidden="true">🛕</span>
+  <h2>The Mathas</h2>
+  <p>The four Amnaya Peethams of Adi Shankara and the eight Ashta Mathas of Madhvacharya — their locations, founders, and the lineages that carry their traditions forward.</p>
+  <div class="meta">
+    <span>12 mathas</span>
+    <span>2 lineages</span>
+    <span>Lineage tree</span>
+  </div>
+  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+</a>
+<a class="map-card" style="--accent:var(--graha)" href="jyotisha.html">
+  <span class="emoji" aria-hidden="true">🌌</span>
+  <h2>Jyotisha</h2>
+  <p>The nine Grahas, twelve Rashis, twenty-seven Nakshatras, five limbs of the Panchanga, and the sixty-year Samvatsara cycle — the architecture of Vedic time and sky.</p>
+  <div class="meta">
+    <span>9 Grahas</span>
+    <span>27 Nakshatras</span>
+    <span>60 Samvatsaras</span>
+  </div>
+  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+</a>
+<a class="map-card" style="--accent:var(--birth)" href="samskaras.html">
+  <span class="emoji" aria-hidden="true">🕯️</span>
+  <h2>From Cradle to Pyre</h2>
+  <p>The 16 Samskaras and life-stage rituals of a South Indian Brahmin — from Punyajanam to Shraadha — visualised as a flowing timeline.</p>
+  <div class="meta">
+    <span>16 rituals</span>
+    <span>5 life stages</span>
+    <span>Visual timeline</span>
+  </div>
+  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+</a>
+<a class="map-card" style="--accent:var(--shiva)" href="shiva-muruga.html">
+  <span class="emoji" aria-hidden="true">🔱</span>
+  <h2>Shiva & Muruga</h2>
+  <p>The forms, sacred sites, scriptures, and festivals of Lord Shiva and his son Lord Muruga — the twin streams of Tamil Saiva devotion.</p>
+  <div class="meta">
+    <span>2 deities</span>
+    <span>10 forms</span>
+    <span>Texts & Festivals</span>
+  </div>
+  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+</a>
+  </div>
+</main>
+
+<footer>
+  <p>🕉️ Sanatana — a growing collection of visual maps of Hindu literature, philosophy and saints.</p>
+  <p>Built as an educational overview. Dates and classifications vary across traditions.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var knob = document.getElementById('knob');
+  var label = document.getElementById('toggleLabel');
+
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    localStorage.setItem('sanatana-theme', t);
+    var isLight = t === 'light';
+    knob.textContent = isLight ? '☀️' : '🌙';
+    label.textContent = isLight ? 'Dark' : 'Light';
+    btn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+  }
+
+  btn.addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+  });
+
+  // Boot — runs last, isolated so it can't blank the page
+  try { applyTheme(root.getAttribute('data-theme') || 'dark'); }
+  catch(e){ console.error('theme init failed:', e); }
+})();
+</script>
+
+</body>
+</html>

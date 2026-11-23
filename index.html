@@ -22,6 +22,8 @@
     --veda:#ff9f43; --vaishnava:#4a9eff; --saiva:#ff6b6b; --both:#c084fc;
     --darshana:#f7b731; --divya:#4a9eff; --jyotir:#ff6b6b;
     --gita:#a55eea; --vedanta:#f7b731;
+    --muruga:#ff6b6b; --shakta:#c084fc; --madhva:#4a9eff;
+    --graha:#f7b731; --birth:#ff9f43; --shiva:#a55eea;
   }
   [data-theme="light"]{
     --bg:#fdf9f3; --bg-grad:#fff4e6;
@@ -32,6 +34,8 @@
     --veda:#e07b1a; --vaishnava:#1a6fc4; --saiva:#c43a3a; --both:#8b45d6;
     --darshana:#c98a00; --divya:#1a6fc4; --jyotir:#d63c46;
     --gita:#8b45d6; --vedanta:#c98a00;
+    --muruga:#c43a3a; --shakta:#8b45d6; --madhva:#1a6fc4;
+    --graha:#c98a00; --birth:#e07b1a; --shiva:#8b45d6;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -124,6 +128,12 @@
   .card-geo{--accent:var(--divya);}
   .card-gita{--accent:var(--gita);}
   .card-vedanta{--accent:var(--vedanta);}
+  .card-muruga{--accent:var(--muruga);}
+  .card-shakta{--accent:var(--shakta);}
+  .card-madhva{--accent:var(--madhva);}
+  .card-graha{--accent:var(--graha);}
+  .card-birth{--accent:var(--birth);}
+  .card-shiva{--accent:var(--shiva);}
 
   .coming-soon{
     margin-top:36px; text-align:center;
@@ -244,72 +254,77 @@
       <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
     </a>
 
-    <a class="map-card" style="--accent:var(--muruga)" href="muruga.html">
-  <span class="emoji" aria-hidden="true">🦚</span>
-  <h2>Arupadai Veedu</h2>
-  <p>The six sacred abodes of Lord Muruga — from his wedding at Thiruparankundram to his victory at Thiruchendur, his renunciation at Palani, and his wisdom at Swamimalai.</p>
-  <div class="meta">
-    <span>6 abodes</span>
-    <span>Interactive map</span>
-    <span>Sangam tradition</span>
-  </div>
-  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
-</a>
-<a class="map-card" style="--accent:var(--shakta)" href="shanmata.html">
-  <span class="emoji" aria-hidden="true">🕉️</span>
-  <h2>The Shanmata</h2>
-  <p>Shaiva, Vaishnava, Shakta, Ganapatya, Saura, Kaumara — the six major sectarian traditions of Hinduism, each centred on a primary deity and a body of scripture.</p>
-  <div class="meta">
-    <span>6 traditions</span>
-    <span>9 criteria</span>
-    <span>Comparison table</span>
-  </div>
-  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
-</a>
-<a class="map-card" style="--accent:var(--madhva)" href="mathas.html">
-  <span class="emoji" aria-hidden="true">🛕</span>
-  <h2>The Mathas</h2>
-  <p>The four Amnaya Peethams of Adi Shankara and the eight Ashta Mathas of Madhvacharya — their locations, founders, and the lineages that carry their traditions forward.</p>
-  <div class="meta">
-    <span>12 mathas</span>
-    <span>2 lineages</span>
-    <span>Lineage tree</span>
-  </div>
-  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
-</a>
-<a class="map-card" style="--accent:var(--graha)" href="jyotisha.html">
-  <span class="emoji" aria-hidden="true">🌌</span>
-  <h2>Jyotisha</h2>
-  <p>The nine Grahas, twelve Rashis, twenty-seven Nakshatras, five limbs of the Panchanga, and the sixty-year Samvatsara cycle — the architecture of Vedic time and sky.</p>
-  <div class="meta">
-    <span>9 Grahas</span>
-    <span>27 Nakshatras</span>
-    <span>60 Samvatsaras</span>
-  </div>
-  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
-</a>
-<a class="map-card" style="--accent:var(--birth)" href="samskaras.html">
-  <span class="emoji" aria-hidden="true">🕯️</span>
-  <h2>From Cradle to Pyre</h2>
-  <p>The 16 Samskaras and life-stage rituals of a South Indian Brahmin — from Punyajanam to Shraadha — visualised as a flowing timeline.</p>
-  <div class="meta">
-    <span>16 rituals</span>
-    <span>5 life stages</span>
-    <span>Visual timeline</span>
-  </div>
-  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
-</a>
-<a class="map-card" style="--accent:var(--shiva)" href="shiva-muruga.html">
-  <span class="emoji" aria-hidden="true">🔱</span>
-  <h2>Shiva & Muruga</h2>
-  <p>The forms, sacred sites, scriptures, and festivals of Lord Shiva and his son Lord Muruga — the twin streams of Tamil Saiva devotion.</p>
-  <div class="meta">
-    <span>2 deities</span>
-    <span>10 forms</span>
-    <span>Texts & Festivals</span>
-  </div>
-  <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
-</a>
+    <a class="map-card card-muruga" href="muruga.html">
+      <span class="emoji" aria-hidden="true">🦚</span>
+      <h2>Arupadai Veedu</h2>
+      <p>The six sacred abodes of Lord Muruga — from his wedding at Thiruparankundram to his victory at Thiruchendur, his renunciation at Palani, and his wisdom at Swamimalai.</p>
+      <div class="meta">
+        <span>6 abodes</span>
+        <span>Interactive map</span>
+        <span>Sangam tradition</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card card-shakta" href="shanmata.html">
+      <span class="emoji" aria-hidden="true">🕉️</span>
+      <h2>The Shanmata</h2>
+      <p>Shaiva, Vaishnava, Shakta, Ganapatya, Saura, Kaumara — the six major sectarian traditions of Hinduism, each centred on a primary deity and a body of scripture.</p>
+      <div class="meta">
+        <span>6 traditions</span>
+        <span>9 criteria</span>
+        <span>Comparison table</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card card-madhva" href="mathas.html">
+      <span class="emoji" aria-hidden="true">🛕</span>
+      <h2>The Mathas</h2>
+      <p>The four Amnaya Peethams of Adi Shankara and the eight Ashta Mathas of Madhvacharya — their locations, founders, and the lineages that carry their traditions forward.</p>
+      <div class="meta">
+        <span>12 mathas</span>
+        <span>2 lineages</span>
+        <span>Lineage tree</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card card-graha" href="jyotisha.html">
+      <span class="emoji" aria-hidden="true">🌌</span>
+      <h2>Jyotisha</h2>
+      <p>The nine Grahas, twelve Rashis, twenty-seven Nakshatras, five limbs of the Panchanga, and the sixty-year Samvatsara cycle — the architecture of Vedic time and sky.</p>
+      <div class="meta">
+        <span>9 Grahas</span>
+        <span>27 Nakshatras</span>
+        <span>60 Samvatsaras</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card card-birth" href="samskaras.html">
+      <span class="emoji" aria-hidden="true">🕯️</span>
+      <h2>From Cradle to Pyre</h2>
+      <p>The 16 Samskaras and life-stage rituals of a South Indian Brahmin — from Punyajanam to Shraadha — visualised as a flowing timeline.</p>
+      <div class="meta">
+        <span>16 rituals</span>
+        <span>5 life stages</span>
+        <span>Visual timeline</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="map-card card-shiva" href="shiva-muruga.html">
+      <span class="emoji" aria-hidden="true">🔱</span>
+      <h2>Shiva & Muruga</h2>
+      <p>The forms, sacred sites, scriptures, and festivals of Lord Shiva and his son Lord Muruga — the twin streams of Tamil Saiva devotion.</p>
+      <div class="meta">
+        <span>2 deities</span>
+        <span>10 forms</span>
+        <span>Texts & Festivals</span>
+      </div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
   </div>
 </main>
 
