@@ -252,11 +252,41 @@
     .fact{grid-template-columns:1fr;}
     .fact dt{margin-top:2px;}
   }
+
+  /* ---------- SITE NAV (home button + footer links) ---------- */
+  .home-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:7px 14px;border-radius:999px;
+    background:var(--card);color:var(--text);
+    border:1px solid var(--border-strong,var(--border));
+    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
+    white-space:nowrap;transition:transform .2s,border-color .2s;
+  }
+  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
+  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
+  .site-nav{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
+    max-width:980px;margin:26px auto 4px;padding-top:20px;
+    border-top:1px solid var(--border);
+  }
+  .site-nav a{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:6px 12px;border-radius:999px;
+    font-size:.8rem;font-weight:600;text-decoration:none;
+    color:var(--muted);background:var(--card);
+    border:1px solid var(--border);
+    transition:color .2s,border-color .2s,transform .2s;
+  }
+  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
+  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
+  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
+  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
 </style>
 </head>
 <body>
 
 <div class="controls" role="toolbar" aria-label="Map controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
     <input type="search" id="searchInput" placeholder="Search schools, concepts, sutras…" aria-label="Search">
@@ -278,7 +308,7 @@
 
 <header>
   <h1>The Six Darshanas</h1>
-  <p>Six classical schools of Indian philosophy — three paired systems and two ritual/philosophical traditions. Each approaches reality, knowledge and liberation differently. Compare them side by side.</p>
+  <p>Six classical schools of Indian philosophy, traditionally grouped into three complementary pairs. Each approaches reality, knowledge and liberation differently. Compare them side by side.</p>
   <div class="legend">
     <span><i class="dot" style="background:var(--nyaya)"></i>Nyaya</span>
     <span><i class="dot" style="background:var(--vaisheshika)"></i>Vaisheshika</span>
@@ -379,7 +409,7 @@
           <td data-col="samkhya">Puruṣa is pure witness; liberation = aloneness (kaivalya)</td>
           <td data-col="yoga">Puruṣa is pure consciousness; liberation = kaivalya via practice</td>
           <td data-col="mimamsa">Self is real and acts; liberation = heaven through ritual, not dissolution</td>
-          <td data-col="vedanta">Ātman = Brahman; liberation = knowledge of non-duality</td>
+          <td data-col="vedanta">Varies by school: Ātman = Brahman (Advaita); an inseparable mode of Brahman (Viśiṣṭādvaita); eternally distinct (Dvaita)</td>
         </tr>
         <tr>
           <th scope="row">God / Īśvara</th>
@@ -393,11 +423,11 @@
         <tr>
           <th scope="row">Means of Knowledge (Pramāṇa)</th>
           <td data-col="nyaya">Perception, inference, comparison, testimony</td>
-          <td data-col="vaisheshika">Perception, inference, testimony</td>
+          <td data-col="vaisheshika">Perception and inference only (testimony is treated as a form of inference)</td>
           <td data-col="samkhya">Perception, inference, testimony</td>
           <td data-col="yoga">Perception, inference, testimony, plus meditative insight</td>
           <td data-col="mimamsa">Testimony (Veda) primary; perception/inference secondary</td>
-          <td data-col="vedanta">Scripture + reasoning + experience (śabda, anumāna, anubhava)</td>
+          <td data-col="vedanta">Scripture (śabda) is decisive; Advaita accepts six pramāṇas, Viśiṣṭādvaita and Dvaita three (perception, inference, testimony)</td>
         </tr>
         <tr>
           <th scope="row">Pair / Allied School</th>
@@ -415,7 +445,7 @@
           <td data-col="samkhya">Kaivalya: Puruṣa stands alone, free of Prakṛti</td>
           <td data-col="yoga">Kaivalya through aṣṭāṅga; citta-vṛtti-nirodha</td>
           <td data-col="mimamsa">Attainment of heaven (svarga) via proper ritual</td>
-          <td data-col="vedanta">Mokṣa as realization of Ātman-Brahman identity</td>
+          <td data-col="vedanta">Mokṣa through knowledge of Brahman: realized identity (Advaita), or eternal communion and service (Viśiṣṭādvaita, Dvaita)</td>
         </tr>
         <tr>
           <th scope="row">Legacy</th>
@@ -454,12 +484,12 @@
       <div class="era-badge">c. 200 BCE – 100 CE</div>
       <h3>Vaisheshika <span class="sanskrit">वैशेषिक</span></h3>
       <span class="tag">The School of Categories &amp; Atomism</span>
-      <p>Vaiśeṣika (“particularity”) is an early ontology — a systematic catalogue of everything that exists. Kaṇāda’s sūtras divide reality into seven categories (padārtha) and propose an atomistic physics in which material things arise from combinations of eternal atoms. It became the natural companion to Nyāya: ontology + logic.</p>
+      <p>Vaiśeṣika (“particularity”) is an early ontology — a systematic catalogue of everything that exists. Kaṇāda’s sūtras divide reality into six categories (padārtha), to which later writers added a seventh, non-existence (abhāva), and propose an atomistic physics in which material things arise from combinations of eternal atoms. It became the natural companion to Nyāya: ontology + logic.</p>
       <dl class="facts">
         <div class="fact"><dt>Founder</dt><dd>Kaṇāda (Kaśyapa)</dd></div>
         <div class="fact"><dt>Core text</dt><dd>Vaiśeṣika Sūtra</dd></div>
         <div class="fact"><dt>Focus</dt><dd>Padārtha (categories of being), atomism</dd></div>
-        <div class="fact"><dt>Key idea</dt><dd>Reality is analysable into seven categories</dd></div>
+        <div class="fact"><dt>Key idea</dt><dd>Reality is analysable into six (later seven) categories</dd></div>
       </dl>
       <div class="chips"><span class="chip theme-tag">🌿 Ontology</span><span class="chip">Atomism</span></div>
     </article>
@@ -510,14 +540,14 @@
       <div class="era-badge">c. 200 BCE – 800 CE</div>
       <h3>Vedanta <span class="sanskrit">वेदान्त</span></h3>
       <span class="tag">The School of the Upanishads</span>
-      <p>Vedānta (“end of the Vedas”) is the philosophical culmination of the Upanishads. Bādarāyaṇa’s Brahma Sūtra systematized its teachings, and later commentators — Śaṅkara (Advaita), Rāmānuja (Viśiṣṭādvaita) and Madhva (Dvaita) — produced the schools that dominate Hindu thought today. Its central claim: the Self (Ātman) is not separate from ultimate reality (Brahman).</p>
+      <p>Vedānta (“end of the Vedas”) is the philosophical culmination of the Upanishads. Bādarāyaṇa’s Brahma Sūtra systematized its teachings, and later commentators — Śaṅkara (Advaita), Rāmānuja (Viśiṣṭādvaita) and Madhva (Dvaita) — produced the schools that dominate Hindu thought today. Its central question is how the Self (Ātman) relates to ultimate reality (Brahman): identity for Advaita, inseparable relation for Viśiṣṭādvaita, eternal difference for Dvaita.</p>
       <dl class="facts">
         <div class="fact"><dt>Founder</dt><dd>Bādarāyaṇa (Vyāsa)</dd></div>
         <div class="fact"><dt>Core text</dt><dd>Brahma Sūtra</dd></div>
         <div class="fact"><dt>Focus</dt><dd>Ātman, Brahman, mokṣa</dd></div>
         <div class="fact"><dt>Key idea</dt><dd>Knowledge of Brahman → liberation</dd></div>
       </dl>
-      <div class="chips"><span class="chip theme-tag">🧠 Non-dualism</span><span class="chip">Upanishads</span></div>
+      <div class="chips"><span class="chip theme-tag">🧠 Brahman</span><span class="chip">Upanishads</span></div>
     </article>
 
   </div>
@@ -550,6 +580,23 @@
 <footer>
   <p>⚖️ A comparison map of the Six Darshanas · Dates are approximate · Schools evolved over centuries with many sub-schools</p>
   <p style="margin-top:6px">All six are <em>āstika</em> schools — they accept the authority of the Vedas.</p>
+
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html" aria-current="page"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
 
 <script>
@@ -664,5 +711,21 @@
 })();
 </script>
 
+<script>
+/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
+(function(){
+  function fit(){
+    var bar = document.querySelector('.controls');
+    if(!bar) return;
+    document.body.style.paddingTop = '';
+    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
+    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
+    if(need > base) document.body.style.paddingTop = need + 'px';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+})();
+</script>
 </body>
 </html>

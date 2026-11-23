@@ -166,11 +166,41 @@
     .ctrl-btn{padding:6px 10px;font-size:.8rem;}
     .size-btn{width:30px;height:30px;}
   }
+
+  /* ---------- SITE NAV (home button + footer links) ---------- */
+  .home-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:7px 14px;border-radius:999px;
+    background:var(--card);color:var(--text);
+    border:1px solid var(--border-strong,var(--border));
+    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
+    white-space:nowrap;transition:transform .2s,border-color .2s;
+  }
+  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
+  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
+  .site-nav{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
+    max-width:980px;margin:26px auto 4px;padding-top:20px;
+    border-top:1px solid var(--border);
+  }
+  .site-nav a{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:6px 12px;border-radius:999px;
+    font-size:.8rem;font-weight:600;text-decoration:none;
+    color:var(--muted);background:var(--card);
+    border:1px solid var(--border);
+    transition:color .2s,border-color .2s,transform .2s;
+  }
+  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
+  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
+  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
+  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
 </style>
 </head>
 <body>
 
 <div class="controls" role="toolbar" aria-label="Map controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
     <input type="search" id="searchInput" placeholder="Search saints or works…" aria-label="Search">
@@ -314,7 +344,7 @@
 <!-- ========== KEY NAYANMARS ========== -->
 <section>
   <h2 class="section-title" style="color:var(--saiva)">🔴 Key Nayanmars (Saiva)</h2>
-  <p style="color:var(--muted);margin-bottom:22px;max-width:720px">The Nayanmars ("servants of Shiva") numbered 63 in the canonical list compiled by Nambiyandar Nambi and later expanded by Sekkizhar's <em>Periya Puranam</em>. The four most prominent — Appar, Sambandar, Sundarar and Manikkavacakar — are called the <em>Nalvar</em>, and their hymns form the core of the <em>Tirumurai</em>.</p>
+  <p style="color:var(--muted);margin-bottom:22px;max-width:720px">The Nayanmars ("servants of Shiva") number 63. The list begins with Sundarar's <em>Tiruthondar Thogai</em>, was elaborated by Nambiyandar Nambi, and was told in full in Sekkizhar's <em>Periya Puranam</em>. The four most prominent — Appar, Sambandar, Sundarar and Manikkavacakar — are called the <em>Nalvar</em>, and their hymns form the core of the <em>Tirumurai</em>.</p>
   <div class="grid v2">
 
     <article class="card saiva-card" data-tags="saiva" data-id="appar">
@@ -345,7 +375,7 @@
       <div class="era-badge">c. 9th century CE</div>
       <h3>Manikkavacakar <span class="tamil">மாணிக்கவாசகர்</span></h3>
       <span class="tag">The fourth of the Nalvar</span>
-      <p>A minister who became a saint. His <em>Tiruvachakam</em> is considered the most emotionally profound Saiva text, exploring the soul's longing and surrender to Shiva.</p>
+      <p>A minister who became a saint. His <em>Tiruvachakam</em> is considered the most emotionally profound Saiva text, exploring the soul's longing and surrender to Shiva. He is not counted among the 63 Nayanmars, but is revered as one of the Nalvar.</p>
       <div class="chips"><span class="chip work">Tiruvachakam (Book 8)</span></div>
     </article>
 
@@ -353,7 +383,7 @@
       <div class="era-badge">c. 6th century CE</div>
       <h3>Karaikkal Ammaiyar <span class="tamil">காரைக்கால் அம்மையார்</span> <span style="font-size:.8rem;color:var(--muted)">♀</span></h3>
       <span class="tag">The earliest woman Nayanmar</span>
-      <p>One of the earliest Saiva saints and the only woman among the 63 Nayanmars. She prayed to become a ghost so she could serve Shiva without worldly attachments, and her hymns are fierce and otherworldly.</p>
+      <p>One of the earliest Saiva saints and one of the three women among the 63 Nayanmars (with Mangayarkkarasiyar and Isaignaniyar). She prayed to become a ghost so she could serve Shiva without worldly attachments, and her hymns are fierce and otherworldly.</p>
       <div class="chips"><span class="chip work">Tirumurai (Book 11)</span></div>
     </article>
 
@@ -383,7 +413,7 @@
     <article class="card" style="--accent:var(--saiva)">
       <h3>Tirumurai</h3>
       <span class="tag">The Saiva Canon</span>
-      <p>Twelve volumes of Tamil Saiva hymns, compiled by Nambiyandar Nambi under Raja Raja Chola I. The first seven books contain the Tevaram hymns of Appar, Sambandar and Sundarar.</p>
+      <p>Twelve books of Tamil Saiva hymns. Nambiyandar Nambi compiled the first eleven, traditionally under Raja Raja Chola I; Sekkizhar's <em>Periya Puranam</em> was added later as the twelfth. The first seven books contain the Tevaram hymns of Appar, Sambandar and Sundarar.</p>
       <div class="chips"><span class="chip work">12 volumes</span><span class="chip work">Tevaram core</span></div>
     </article>
 
@@ -392,6 +422,23 @@
 
 <footer>
   <p>🪔 A visual map of Tamil Bhakti · Dates are approximate · Azhwars and Nayanmars, c. 6th–9th century CE</p>
+
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html" aria-current="page"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
 
 <script>
@@ -501,5 +548,21 @@
 })();
 </script>
 
+<script>
+/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
+(function(){
+  function fit(){
+    var bar = document.querySelector('.controls');
+    if(!bar) return;
+    document.body.style.paddingTop = '';
+    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
+    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
+    if(need > base) document.body.style.paddingTop = need + 'px';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+})();
+</script>
 </body>
 </html>

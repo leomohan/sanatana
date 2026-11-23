@@ -220,11 +220,41 @@
     .journey a{min-width:90px; font-size:.72rem;}
     #map{height:45vh; min-height:280px;}
   }
+
+  /* ---------- SITE NAV (home button + footer links) ---------- */
+  .home-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:7px 14px;border-radius:999px;
+    background:var(--card);color:var(--text);
+    border:1px solid var(--border-strong,var(--border));
+    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
+    white-space:nowrap;transition:transform .2s,border-color .2s;
+  }
+  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
+  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
+  .site-nav{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
+    max-width:980px;margin:26px auto 4px;padding-top:20px;
+    border-top:1px solid var(--border);
+  }
+  .site-nav a{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:6px 12px;border-radius:999px;
+    font-size:.8rem;font-weight:600;text-decoration:none;
+    color:var(--muted);background:var(--card);
+    border:1px solid var(--border);
+    transition:color .2s,border-color .2s,transform .2s;
+  }
+  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
+  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
+  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
+  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
 </style>
 </head>
 <body>
 
 <div class="controls" role="toolbar" aria-label="Map controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
     <input type="search" id="searchInput" placeholder="Search abodes, legends, cities…" aria-label="Search">
@@ -283,7 +313,7 @@
       <span class="ch-num">2</span>
       <h3>Thiruchendur <span class="tamil">திருச்செந்தூர்</span></h3>
       <span class="tag">The Victory Abode</span>
-      <p>The only abode on the seashore. Here Muruga defeated the demon Surapadma after a fierce battle, and worshipped Shiva in gratitude. The temple stands just 200 metres from the Bay of Bengal, yet is said never to flood.</p>
+      <p>The only abode on the seashore. Here Muruga defeated the demon Surapadma after a fierce battle, and worshipped Shiva in gratitude. The temple stands just 200 metres from the Gulf of Mannar, yet is said never to flood.</p>
       <div class="chips"><span class="chip event">⚔️ Victory</span><span class="chip">Coastal</span><span class="chip">Skanda Sashti</span></div>
     </article>
 
@@ -291,7 +321,7 @@
       <span class="ch-num">3</span>
       <h3>Palani <span class="tamil">பழனி</span></h3>
       <span class="tag">The Abode of Renunciation</span>
-      <p>After losing the contest for the sacred fruit to his brother Ganesha, Muruga left his family in anger and settled on these hills as a ascetic. Here he is worshipped as Dhandayuthapani — the Lord with a staff, wearing only a loincloth.</p>
+      <p>After losing the contest for the sacred fruit to his brother Ganesha, Muruga left his family in anger and settled on these hills as an ascetic. Here he is worshipped as Dhandayuthapani — the Lord with a staff, wearing only a loincloth.</p>
       <div class="chips"><span class="chip event">🧘 Renunciation</span><span class="chip">Hilltop</span><span class="chip">Navapashanam idol</span></div>
     </article>
 
@@ -307,8 +337,8 @@
       <span class="ch-num">5</span>
       <h3>Thiruthani <span class="tamil">திருத்தணி</span></h3>
       <span class="tag">The Abode of Union</span>
-      <p>On this hill near Chennai, Muruga married Valli, the daughter of a tribal chieftain — a union celebrated as the blending of divine grace with the devotion of the humble. It is a major pilgrimage site during Thaipusam.</p>
-      <div class="chips"><span class="chip event">💞 Union</span><span class="chip">Valli</span><span class="chip">Thaipusam</span></div>
+      <p>On this hill near Chennai, Muruga married Valli, the daughter of a tribal chieftain — a union celebrated as the blending of divine grace with the devotion of the humble. Its great festival is Aadi Krithigai, and pilgrims climb its 365 steps on New Year's Eve.</p>
+      <div class="chips"><span class="chip event">💞 Union</span><span class="chip">Valli</span><span class="chip">Aadi Krithigai</span></div>
     </article>
 
     <article class="card muruga-card" id="pazhamudircholai" data-tags="wisdom" data-id="pazhamudircholai">
@@ -325,6 +355,23 @@
 <footer>
   <p>🦚 A visual map of the Arupadai Veedu · The six abodes are sung in the Sangam poem <em>Thirumurugatruppadai</em> by Nakkirar</p>
   <p style="margin-top:6px">Map data © OpenStreetMap contributors · Coordinates are approximate</p>
+
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html" aria-current="page"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -488,5 +535,21 @@
 })();
 </script>
 
+<script>
+/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
+(function(){
+  function fit(){
+    var bar = document.querySelector('.controls');
+    if(!bar) return;
+    document.body.style.paddingTop = '';
+    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
+    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
+    if(need > base) document.body.style.paddingTop = need + 'px';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+})();
+</script>
 </body>
 </html>

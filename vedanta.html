@@ -294,11 +294,41 @@
     .spectrum{flex-direction:column;gap:16px;}
     .spectrum-point::before{display:none;}
   }
+
+  /* ---------- SITE NAV (home button + footer links) ---------- */
+  .home-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:7px 14px;border-radius:999px;
+    background:var(--card);color:var(--text);
+    border:1px solid var(--border-strong,var(--border));
+    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
+    white-space:nowrap;transition:transform .2s,border-color .2s;
+  }
+  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
+  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
+  .site-nav{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
+    max-width:980px;margin:26px auto 4px;padding-top:20px;
+    border-top:1px solid var(--border);
+  }
+  .site-nav a{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:6px 12px;border-radius:999px;
+    font-size:.8rem;font-weight:600;text-decoration:none;
+    color:var(--muted);background:var(--card);
+    border:1px solid var(--border);
+    transition:color .2s,border-color .2s,transform .2s;
+  }
+  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
+  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
+  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
+  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
 </style>
 </head>
 <body>
 
 <div class="controls" role="toolbar" aria-label="Map controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
     <input type="search" id="searchInput" placeholder="Search concepts, acharyas, texts…" aria-label="Search">
@@ -448,7 +478,7 @@
         <tr>
           <th scope="row">Famous Saying</th>
           <td data-col="advaita">"Brahma satyam jagan mithya" — Brahman is real, the world is appearance.</td>
-          <td data-col="vishishtadvaita">"Sarvam ca viṣṇumayam" — All is pervaded by Vishnu.</td>
+          <td data-col="vishishtadvaita">"Sarvaṃ khalv idaṃ brahma" — All this is Brahman (read as: the world is His body).</td>
           <td data-col="dvaita">"Harih sarvottamah" — Hari (Vishnu) is supreme.</td>
         </tr>
       </tbody>
@@ -474,7 +504,7 @@
       <dl class="facts">
         <div class="fact"><dt>Acharya</dt><dd>Adi Shankara (788–820 CE)</dd></div>
         <div class="fact"><dt>Core text</dt><dd>Brahma Sutra Bhashya + commentaries on 10 Upanishads and the Gita</dd></div>
-        <div class="fact"><dt>Key work</dt><dd>Vivekachudamani ("Crest-Jewel of Wisdom")</dd></div>
+        <div class="fact"><dt>Key work</dt><dd>Upadeśasāhasrī (the Vivekachudamani is traditionally attributed to him)</dd></div>
         <div class="fact"><dt>God</dt><dd>Nirguna Brahman — ultimately without form or attributes</dd></div>
         <div class="fact"><dt>Liberation</dt><dd>Merger — realization of identity</dd></div>
       </dl>
@@ -527,6 +557,23 @@
 <footer>
   <p>🪷 A comparison map of the three great Vedanta schools · All three accept the Upanishads, Brahma Sutra, and Bhagavad Gita as authoritative</p>
   <p style="margin-top:6px">Dates are approximate. Each school has developed rich sub-traditions and internal debates.</p>
+
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html" aria-current="page"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
 
 <script>
@@ -633,5 +680,21 @@
 })();
 </script>
 
+<script>
+/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
+(function(){
+  function fit(){
+    var bar = document.querySelector('.controls');
+    if(!bar) return;
+    document.body.style.paddingTop = '';
+    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
+    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
+    if(need > base) document.body.style.paddingTop = need + 'px';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+})();
+</script>
 </body>
 </html>

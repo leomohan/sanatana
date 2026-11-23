@@ -204,11 +204,41 @@
     .journey a{width:32px;height:32px;font-size:.7rem;}
     .card .ch-num{font-size:1.8rem;top:10px;right:14px;}
   }
+
+  /* ---------- SITE NAV (home button + footer links) ---------- */
+  .home-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:7px 14px;border-radius:999px;
+    background:var(--card);color:var(--text);
+    border:1px solid var(--border-strong,var(--border));
+    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
+    white-space:nowrap;transition:transform .2s,border-color .2s;
+  }
+  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
+  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
+  .site-nav{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
+    max-width:980px;margin:26px auto 4px;padding-top:20px;
+    border-top:1px solid var(--border);
+  }
+  .site-nav a{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:6px 12px;border-radius:999px;
+    font-size:.8rem;font-weight:600;text-decoration:none;
+    color:var(--muted);background:var(--card);
+    border:1px solid var(--border);
+    transition:color .2s,border-color .2s,transform .2s;
+  }
+  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
+  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
+  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
+  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
 </style>
 </head>
 <body>
 
 <div class="controls" role="toolbar" aria-label="Map controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
     <input type="search" id="searchInput" placeholder="Search chapters, yoga, keywords…" aria-label="Search">
@@ -300,8 +330,8 @@
       <span class="ch-num">6</span>
       <h3>Dhyāna Yoga <span class="sanskrit">ध्यानयोग</span></h3>
       <span class="tag">The Yoga of Meditation</span>
-      <p>Krishna describes the practice of meditation — posture, breath, withdrawal of the senses — and the difficulty of controlling the restless mind. The mind can be trained through practice and detachment.</p>
-      <div class="chips"><span class="chip yoga">🧘 Dhyana</span><span class="chip">47 verses</span><span class="chip">Aṣṭāṅga Yoga</span></div>
+      <p>Krishna describes the practice of meditation — posture, a steady gaze, withdrawal of the senses — and the difficulty of controlling the restless mind. The mind can be trained through practice and detachment.</p>
+      <div class="chips"><span class="chip yoga">🧘 Dhyana</span><span class="chip">47 verses</span><span class="chip">Ātma-saṃyama</span></div>
     </article>
 
     <article class="card jnana-card" id="ch7" data-tags="jnana" data-id="7">
@@ -332,7 +362,7 @@
       <span class="ch-num">10</span>
       <h3>Vibhūti Yoga <span class="sanskrit">विभूतियोग</span></h3>
       <span class="tag">The Yoga of Divine Glories</span>
-      <p>Krishna describes his manifestations: he is the sun among lights, the Himalayas among mountains, the Ganges among rivers. Arjuna is overwhelmed and asks to see the full divine form.</p>
+      <p>Krishna describes his manifestations: he is the sun among lights, Meru among peaks, the Himalayas among immovable things, the Ganges among rivers. Arjuna is overwhelmed and asks to see the full divine form.</p>
       <div class="chips"><span class="chip yoga">🙏 Bhakti</span><span class="chip">42 verses</span><span class="chip">Vibhūtis</span></div>
     </article>
 
@@ -357,7 +387,7 @@
       <h3>Kṣetra Kṣetrajña Vibhāga Yoga <span class="sanskrit">क्षेत्रक्षेत्रज्ञविभागयोग</span></h3>
       <span class="tag">The Yoga of the Field &amp; Its Knower</span>
       <p>The body is the "field" (kṣetra); the consciousness that knows it is the "knower" (kṣetrajña). Krishna distinguishes matter from spirit, and teaches that the Self within all beings is the same.</p>
-      <div class="chips"><span class="chip yoga">🧠 Jnana</span><span class="chip">35 verses</span></div>
+      <div class="chips"><span class="chip yoga">🧠 Jnana</span><span class="chip">34 verses</span></div>
     </article>
 
     <article class="card jnana-card" id="ch14" data-tags="jnana" data-id="14">
@@ -406,6 +436,23 @@
 <footer>
   <p>🪷 A chapter-by-chapter map of the Bhagavad Gita · 18 chapters, ~700 verses · Yoga paths and groupings follow traditional classifications</p>
   <p style="margin-top:6px">The Gita is set in the Mahabharata, Book 6 (Bhīṣma Parva), chapters 25–42.</p>
+
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html" aria-current="page"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
 
 <script>
@@ -522,5 +569,21 @@
 })();
 </script>
 
+<script>
+/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
+(function(){
+  function fit(){
+    var bar = document.querySelector('.controls');
+    if(!bar) return;
+    document.body.style.paddingTop = '';
+    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
+    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
+    if(need > base) document.body.style.paddingTop = need + 'px';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+})();
+</script>
 </body>
 </html>

@@ -304,11 +304,41 @@
     .fact dt{margin-top:2px;}
     .hex{grid-template-columns:repeat(2, 1fr);}
   }
+
+  /* ---------- SITE NAV (home button + footer links) ---------- */
+  .home-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:7px 14px;border-radius:999px;
+    background:var(--card);color:var(--text);
+    border:1px solid var(--border-strong,var(--border));
+    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
+    white-space:nowrap;transition:transform .2s,border-color .2s;
+  }
+  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
+  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
+  .site-nav{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
+    max-width:980px;margin:26px auto 4px;padding-top:20px;
+    border-top:1px solid var(--border);
+  }
+  .site-nav a{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:6px 12px;border-radius:999px;
+    font-size:.8rem;font-weight:600;text-decoration:none;
+    color:var(--muted);background:var(--card);
+    border:1px solid var(--border);
+    transition:color .2s,border-color .2s,transform .2s;
+  }
+  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
+  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
+  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
+  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
 </style>
 </head>
 <body>
 
 <div class="controls" role="toolbar" aria-label="Map controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
     <input type="search" id="searchInput" placeholder="Search deities, texts, acharyas…" aria-label="Search">
@@ -330,7 +360,7 @@
 
 <header>
   <h1>The Shanmata</h1>
-  <p>Six major sectarian traditions of Hinduism, each centered on a primary deity and a body of scripture. Codified by Adi Shankara as a framework of worship — six paths, one ultimate reality. Not to be confused with the six <em>darshanas</em> (philosophical schools).</p>
+  <p>Six major sectarian traditions of Hinduism, each centered on a primary deity and a body of scripture. Traditionally attributed to Adi Shankara as a framework of worship — six paths, one ultimate reality. Not to be confused with the six <em>darshanas</em> (philosophical schools).</p>
   <div class="legend">
     <span><i class="dot" style="background:var(--shaiva)"></i>Shaiva</span>
     <span><i class="dot" style="background:var(--vaishnava)"></i>Vaishnava</span>
@@ -442,7 +472,7 @@
           <td data-col="vaishnava">Viṣṇu Purāṇa, Bhāgavata Purāṇa, Nālāyira Divya Prabandham</td>
           <td data-col="shakta">Devī Māhātmya, Devī Bhāgavata Purāṇa, Tantras, Lalitā Sahasranāma</td>
           <td data-col="ganapatya">Gaṇeśa Purāṇa, Mudgala Purāṇa, Gaṇeśa Gītā</td>
-          <td data-col="saura">Sūrya Upaniṣad, Āditya Hṛdayam, Sūrya Siddhānta</td>
+          <td data-col="saura">Sūrya Upaniṣad, Āditya Hṛdayam, Sāmba Purāṇa, Sūrya Śataka</td>
           <td data-col="kaumara">Skanda Purāṇa, Kanda Shashti Kavasam, Tiruppugal, Thirumurugatruppadai</td>
         </tr>
         <tr>
@@ -450,7 +480,7 @@
           <td data-col="shaiva">Nayanmars, Abhinavagupta, Basava, Appayya Dikshita</td>
           <td data-col="vaishnava">Azhwars, Ramanuja, Madhvacharya, Vallabha, Chaitanya</td>
           <td data-col="shakta">Ramakrishna, Bhaskararaya, Abhinavagupta, Krishnananda</td>
-          <td data-col="ganapatya">Morya Gosavi, Narayan Maharaj, the Mudgala lineage</td>
+          <td data-col="ganapatya">Morya Gosavi, Chintamani Dev, the Mudgala lineage</td>
           <td data-col="saura">Samba, Mayūra, the Maga Brahmin tradition</td>
           <td data-col="kaumara">Arunagirinathar, Nakkirar, the Sangam poets</td>
         </tr>
@@ -582,7 +612,7 @@
       <dl class="facts">
         <div class="fact"><dt>Deity</dt><dd>Ganesha (with Buddhi and Siddhi)</dd></div>
         <div class="fact"><dt>Texts</dt><dd>Gaṇeśa Purāṇa, Mudgala Purāṇa, Gaṇeśa Gītā</dd></div>
-        <div class="fact"><dt>Acharyas</dt><dd>Morya Gosavi, Narayan Maharaj, the Mudgala lineage</dd></div>
+        <div class="fact"><dt>Acharyas</dt><dd>Morya Gosavi, Chintamani Dev, the Mudgala lineage</dd></div>
         <div class="fact"><dt>Festival</dt><dd>Ganesha Chaturthi, Sankashti Chaturthi</dd></div>
         <div class="fact"><dt>Mantra</dt><dd>Om Gaṃ Gaṇapataye Namaḥ</dd></div>
       </dl>
@@ -601,7 +631,7 @@
       </div>
       <dl class="facts">
         <div class="fact"><dt>Deity</dt><dd>Surya (with Sanjñā and Chāyā)</dd></div>
-        <div class="fact"><dt>Texts</dt><dd>Sūrya Upaniṣad, Āditya Hṛdayam, Sūrya Siddhānta</dd></div>
+        <div class="fact"><dt>Texts</dt><dd>Sūrya Upaniṣad, Āditya Hṛdayam, Sāmba Purāṇa, Sūrya Śataka</dd></div>
         <div class="fact"><dt>Acharyas</dt><dd>Samba, Mayūra, the Maga Brahmin tradition</dd></div>
         <div class="fact"><dt>Festival</dt><dd>Makara Sankranti, Ratha Saptami, Chhath Puja</dd></div>
         <div class="fact"><dt>Mantra</dt><dd>Om Sūryāya Namaḥ / Gāyatrī Mantra</dd></div>
@@ -614,7 +644,7 @@
       <h3>Kaumara <span class="sanskrit">कौमार</span></h3>
       <span class="tag">The Tradition of Muruga</span>
       <div class="deity-line"><span class="big-emoji">🦚</span> Primary deity: <strong>Muruga</strong> (Skanda/Kartikeya)</div>
-      <p>Kaumara worship is devoted to Muruga (also called Skanda, Kartikeya, Subrahmanya), the youthful son of Shiva and Parvati who commands the divine army and destroys evil. Its heartland is Tamil Nadu and Sri Lanka, where the six Arupadai Veedu temples trace his life, and where the Tamil hymn traditions — Tiruppugal, Kanda Shashti Kavasam — sing his praises with extraordinary devotion.</p>
+      <p>Kaumara worship is devoted to Muruga (also called Skanda, Kartikeya, Subrahmanya), the youthful son of Shiva and Parvati who commands the divine army and destroys evil. Its heartland is Tamil Nadu, where the six Arupadai Veedu temples trace his life, along with Sri Lanka and the Tamil diaspora, where the Tamil hymn traditions — Tiruppugal, Kanda Shashti Kavasam — sing his praises with extraordinary devotion.</p>
       <div class="key-teaching">
         <span class="label">Key Teaching</span>
         <p><strong>The divine commander.</strong> Muruga wields the vel (spear) of divine wisdom, which pierces ignorance and vanquishes darkness. He is both warrior and guru — the child who teaches the meaning of Om.</p>
@@ -634,7 +664,24 @@
 
 <footer>
   <p>🕉️ A comparison map of the Shanmata — the six major sectarian traditions of Hinduism · Not to be confused with the six <em>darshanas</em> (philosophical schools)</p>
-  <p style="margin-top:6px">Dates are approximate. Each tradition has vast internal diversity, sub-sects, and regional variations.</p>
+  <p style="margin-top:6px">Each tradition has vast internal diversity, sub-sects, and regional variations.</p>
+
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html" aria-current="page"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
 
 <script>
@@ -741,5 +788,21 @@
 })();
 </script>
 
+<script>
+/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
+(function(){
+  function fit(){
+    var bar = document.querySelector('.controls');
+    if(!bar) return;
+    document.body.style.paddingTop = '';
+    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
+    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
+    if(need > base) document.body.style.paddingTop = need + 'px';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+})();
+</script>
 </body>
 </html>

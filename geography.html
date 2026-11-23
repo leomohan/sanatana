@@ -151,11 +151,41 @@
     .legend-bar{font-size:.78rem;gap:10px;padding:8px 12px;}
     #map{height:62vh;min-height:360px;border-radius:14px;}
   }
+
+  /* ---------- SITE NAV (home button + footer links) ---------- */
+  .home-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:7px 14px;border-radius:999px;
+    background:var(--card);color:var(--text);
+    border:1px solid var(--border-strong,var(--border));
+    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
+    white-space:nowrap;transition:transform .2s,border-color .2s;
+  }
+  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
+  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
+  .site-nav{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
+    max-width:980px;margin:26px auto 4px;padding-top:20px;
+    border-top:1px solid var(--border);
+  }
+  .site-nav a{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:6px 12px;border-radius:999px;
+    font-size:.8rem;font-weight:600;text-decoration:none;
+    color:var(--muted);background:var(--card);
+    border:1px solid var(--border);
+    transition:color .2s,border-color .2s,transform .2s;
+  }
+  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
+  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
+  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
+  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
 </style>
 </head>
 <body>
 
 <div class="controls" role="toolbar" aria-label="Map controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="ctrl-group" role="group" aria-label="Circuit filter">
     <button class="ctrl-btn active" data-filter="all">All Sites</button>
     <button class="ctrl-btn" data-filter="divya">🔵 Divya Desams</button>
@@ -178,11 +208,28 @@
 <p class="counter" id="counter">Loading sites…</p>
 
 <div class="note">
-  <strong>About this map:</strong> The 108 Divya Desams are the Vishnu abodes sung by the twelve Azhwars in the <em>Nalayira Divya Prabandham</em> [citation:1]. Of these, 106 are earthly temples concentrated in Tamil Nadu, Kerala, and northern India, with two (Thiruparkadal and Sri Vaikuntham) considered celestial and not mapped here . The 12 Jyotirlingas are the self-manifested shrines of Shiva scattered across India, from Somnath on the Arabian Sea to Kedarnath in the Himalayas [citation:2][citation:8]. Coordinates are approximate temple locations; some Divya Desams share the same town and may overlap at this zoom level.
+  <strong>About this map:</strong> The 108 Divya Desams are the Vishnu abodes sung by the twelve Azhwars in the <em>Nalayira Divya Prabandham</em>. Of these, 106 are earthly temples concentrated in Tamil Nadu, Kerala, and northern India, with two (Thiruparkadal and Sri Vaikuntham) considered celestial and not mapped here. This map shows a representative set of 20 Divya Desams alongside all 12 Jyotirlingas. The 12 Jyotirlingas are the self-manifested shrines of Shiva scattered across India, from Somnath on the Arabian Sea to Kedarnath in the Himalayas. Coordinates are approximate temple locations; some Divya Desams share the same town and may overlap at this zoom level.
 </div>
 
 <footer>
   <p>🗺️ A sacred geography map · Markers are approximate · Map data © OpenStreetMap contributors</p>
+
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html" aria-current="page"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -210,27 +257,27 @@
 
   /* ---------- DATA ---------- */
   // Key Divya Desams (representative set — coordinates approximate)
-  // Full 106 earthly Divya Desams span TN (84), Kerala (11), UP (4), Uttarakhand (3), AP (2), Gujarat (1), Nepal (1).
+  // Full 106 earthly Divya Desams span TN (84), Kerala (11), UP (4), Uttarakhand (3), AP (2), Gujarat (1), Nepal (1). Pushkar and Guruvayur are NOT Divya Desams.
   var divyaDesams = [
     { name: "Srirangam (Ranganathaswamy)", loc: "Tamil Nadu", lat: 10.8625, lng: 78.6897, note: "Largest functioning Hindu temple; supreme Divya Desam." },
     { name: "Thirukoḻi (Uraiyur)", loc: "Tamil Nadu", lat: 10.82, lng: 78.67, note: "Birthplace of Thiruppaan Azhwar." },
-    { name: "Thirukkarambanoor", loc: "Tamil Nadu", lat: 10.49, lng: 78.81, note: "Rare temple dedicated to the Trimurti." },
+    { name: "Thirukkarambanoor", loc: "Tamil Nadu", lat: 10.8772, lng: 78.7031, note: "Uthamar Koil, Tiruchirappalli; rare temple dedicated to the Trimurti." },
     { name: "Pundarikakshan (Thiruvellarai)", loc: "Tamil Nadu", lat: 10.96, lng: 78.67, note: "Pallava-era temple with a swastika-shaped tank." },
     { name: "Thiruvengadam (Tirumala)", loc: "Andhra Pradesh", lat: 13.6833, lng: 79.3472, note: "The seven hills of Venkateswara; one of the eight self-manifested shrines." },
     { name: "Kanchipuram (Tirukkacchi)", loc: "Tamil Nadu", lat: 12.8342, lng: 79.7036, note: "City of a thousand temples; multiple Divya Desams here." },
     { name: "Thiruvallikeni (Triplicane)", loc: "Tamil Nadu", lat: 13.0545, lng: 80.2756, note: "Parthasarathy temple, Chennai." },
-    { name: "Thirumala (Tirupati)", loc: "Andhra Pradesh", lat: 13.6833, lng: 79.3472, note: "Venkateswara temple." },
     { name: "Srivilliputhur", loc: "Tamil Nadu", lat: 9.5117, lng: 77.6333, note: "Birthplace of Periyalvar and Andal." },
     { name: "Thirukkurungudi", loc: "Tamil Nadu", lat: 8.4333, lng: 77.5333, note: "Near Tirunelveli." },
     { name: "Thiruvattar", loc: "Tamil Nadu", lat: 8.3167, lng: 77.2667, note: "Adikesava Perumal temple, Kanyakumari district." },
-    { name: "Thiruvananthapuram (Padmanabhaswamy)", loc: "Kerala", lat: 8.4833, lng: 76.95, note: "The richest temple in the world." },
-    { name: "Guruvayur", loc: "Kerala", lat: 10.5947, lng: 76.0417, note: "Krishna temple in Thrissur district." },
+    { name: "Thiruvananthapuram (Padmanabhaswamy)", loc: "Kerala", lat: 8.4833, lng: 76.95, note: "Often described as the richest temple in the world." },
     { name: "Thirunavaya", loc: "Kerala", lat: 10.8833, lng: 75.9833, note: "Navamukunda temple on the Bharathapuzha." },
     { name: "Badrinath", loc: "Uttarakhand", lat: 30.7433, lng: 79.4938, note: "One of the Char Dhams; self-manifested shrine." },
-    { name: "Muktinath", loc: "Nepal", lat: 28.8167, lng: 83.8667, note: "The only Divya Desam outside India." },
-    { name: "Salagramam", loc: "Nepal", lat: 28.4, lng: 83.7, note: "Sacred ammonite fossil site in the Kali Gandaki." },
+    { name: "Muktinath (Thiru Saligramam)", loc: "Nepal", lat: 28.8167, lng: 83.8667, note: "The only Divya Desam outside India; the Kali Gandaki nearby yields the sacred saligrama stones." },
     { name: "Naimisaranyam", loc: "Uttar Pradesh", lat: 27.2, lng: 80.6, note: "Ancient forest of sages; self-manifested shrine." },
-    { name: "Pushkaram", loc: "Rajasthan", lat: 26.4872, lng: 74.5511, note: "Pushkar Lake; self-manifested shrine." },
+    { name: "Ayodhya", loc: "Uttar Pradesh", lat: 26.7956, lng: 82.1944, note: "Rama's birthplace; sung by the Azhwars as Thiru Ayodhi." },
+    { name: "Vadamathura (Mathura)", loc: "Uttar Pradesh", lat: 27.5047, lng: 77.6697, note: "Krishna's birthplace." },
+    { name: "Devaprayag (Thirukkandam)", loc: "Uttarakhand", lat: 30.1458, lng: 78.5987, note: "Raghunathji temple at the confluence that forms the Ganga." },
+    { name: "Thirukkovalur", loc: "Tamil Nadu", lat: 11.9675, lng: 79.2056, note: "Where the three earliest Azhwars met and sang the first Thiruvandhadhis." },
     { name: "Dwaraka", loc: "Gujarat", lat: 22.2378, lng: 68.9686, note: "Krishna's kingdom; Dwarkadhish temple." }
   ];
 
@@ -244,10 +291,10 @@
     { name: "Bhimashankar", loc: "Sahyadri Hills, Maharashtra", lat: 19.0720, lng: 73.5350, note: "Source of the Bhima River; in a wildlife sanctuary." },
     { name: "Kashi Vishwanath", loc: "Varanasi, Uttar Pradesh", lat: 25.3109, lng: 83.0107, note: "Shiva's eternal abode on the Ganges; one of the oldest living cities." },
     { name: "Trimbakeshwar", loc: "Nashik, Maharashtra", lat: 19.9322, lng: 73.5308, note: "Three-faced linga (Brahma, Vishnu, Shiva); origin of the Godavari." },
-    { name: "Nageshvara", loc: "Dwarka, Gujarat", lat: 22.3360, lng: 69.0860, note: "Near Dwarka; associated with the demon Daruka." },
-    { name: "Baidyanath", loc: "Deoghar, Jharkhand", lat: 24.4925, lng: 86.6997, note: "Also a Shakti Peetha; major pilgrimage in Shravan." },
+    { name: "Nageshvara", loc: "Dwarka, Gujarat", lat: 22.3360, lng: 69.0860, note: "Near Dwarka; associated with the demon Daruka. Aundha Nagnath (Maharashtra) also claims this Jyotirlinga." },
+    { name: "Baidyanath", loc: "Deoghar, Jharkhand", lat: 24.4925, lng: 86.6997, note: "Also a Shakti Peetha; major pilgrimage in Shravan. Some traditions place this Jyotirlinga at Parli Vaijnath (Maharashtra)." },
     { name: "Rameshwaram", loc: "Rameswaram Island, Tamil Nadu", lat: 9.2881, lng: 79.3174, note: "Built by Rama; one of the Char Dhams." },
-    { name: "Grishneshwar", loc: "Ellora, Maharashtra", lat: 20.0230, lng: 75.1660, note: "Near the Ajanta and Ellora caves." }
+    { name: "Grishneshwar", loc: "Ellora, Maharashtra", lat: 20.0230, lng: 75.1660, note: "Beside the Ellora caves." }
   ];
 
   /* ---------- MAP ---------- */
@@ -276,7 +323,7 @@
   function jyotirIcon(){
     return L.divIcon({
       className: 'custom-marker',
-      html: '<div style="width:14px;height:14px;border-radius:50%;background:var(--jyotir);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4;"></div>',
+      html: '<div style="width:14px;height:14px;border-radius:50%;background:var(--jyotir);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);"></div>',
       iconSize: [14, 14],
       iconAnchor: [7, 7],
       popupAnchor: [0, -8]
@@ -349,5 +396,21 @@
 })();
 </script>
 
+<script>
+/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
+(function(){
+  function fit(){
+    var bar = document.querySelector('.controls');
+    if(!bar) return;
+    document.body.style.paddingTop = '';
+    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
+    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
+    if(need > base) document.body.style.paddingTop = need + 'px';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+})();
+</script>
 </body>
 </html>

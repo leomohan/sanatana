@@ -164,6 +164,35 @@
     .theme-toggle{top:14px;right:14px;}
     .map-card{padding:26px 22px 24px;}
   }
+
+  /* ---------- SITE NAV (home button + footer links) ---------- */
+  .home-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:7px 14px;border-radius:999px;
+    background:var(--card);color:var(--text);
+    border:1px solid var(--border-strong,var(--border));
+    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
+    white-space:nowrap;transition:transform .2s,border-color .2s;
+  }
+  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
+  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
+  .site-nav{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
+    max-width:980px;margin:26px auto 4px;padding-top:20px;
+    border-top:1px solid var(--border);
+  }
+  .site-nav a{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:6px 12px;border-radius:999px;
+    font-size:.8rem;font-weight:600;text-decoration:none;
+    color:var(--muted);background:var(--card);
+    border:1px solid var(--border);
+    transition:color .2s,border-color .2s,transform .2s;
+  }
+  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
+  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
+  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
+  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
 </style>
 </head>
 <body>
@@ -188,7 +217,7 @@
       <p>The Vedas, Brahmanas, Aranyakas, Upanishads, Puranas, Itihasas and Upavedas — with interactive connections, a chronological timeline, and search across the whole corpus.</p>
       <div class="meta">
         <span>7 categories</span>
-        <span>34 texts</span>
+        <span>40 texts</span>
         <span>Map + Timeline</span>
       </div>
       <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
@@ -212,7 +241,7 @@
       <p>Nyaya, Vaisheshika, Samkhya, Yoga, Mimamsa, Vedanta — a side-by-side comparison of India's six classical schools of philosophy.</p>
       <div class="meta">
         <span>6 schools</span>
-        <span>13 criteria</span>
+        <span>11 criteria</span>
         <span>Comparison table</span>
       </div>
       <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
@@ -223,7 +252,7 @@
       <h2>Sacred Geography</h2>
       <p>The 108 Divya Desams of Vishnu and the 12 Jyotirlingas of Shiva — an interactive map of India's most sacred pilgrimage circuits.</p>
       <div class="meta">
-        <span>108 + 12 sites</span>
+        <span>32 key sites</span>
         <span>Interactive map</span>
         <span>Two circuits</span>
       </div>
@@ -305,7 +334,7 @@
     <a class="map-card card-birth" href="samskaras.html">
       <span class="emoji" aria-hidden="true">🕯️</span>
       <h2>From Cradle to Pyre</h2>
-      <p>The 16 Samskaras and life-stage rituals of a South Indian Brahmin — from Punyajanam to Shraadha — visualised as a flowing timeline.</p>
+      <p>The 16 Samskaras and life-stage rituals of a South Indian Brahmin — from Punyahavachanam to Shraadha — visualised as a flowing timeline.</p>
       <div class="meta">
         <span>16 rituals</span>
         <span>5 life stages</span>
@@ -331,6 +360,22 @@
 <footer>
   <p>🕉️ Sanatana — a growing collection of visual maps of Hindu literature, philosophy and saints.</p>
   <p>Built as an educational overview. Dates and classifications vary across traditions.</p>
+
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html" aria-current="page"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+  </nav>
 </footer>
 
 <script>

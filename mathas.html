@@ -196,11 +196,41 @@
     .fact{grid-template-columns:1fr;}
     .fact dt{margin-top:2px;}
   }
+
+  /* ---------- SITE NAV (home button + footer links) ---------- */
+  .home-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:7px 14px;border-radius:999px;
+    background:var(--card);color:var(--text);
+    border:1px solid var(--border-strong,var(--border));
+    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
+    white-space:nowrap;transition:transform .2s,border-color .2s;
+  }
+  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
+  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
+  .site-nav{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
+    max-width:980px;margin:26px auto 4px;padding-top:20px;
+    border-top:1px solid var(--border);
+  }
+  .site-nav a{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:6px 12px;border-radius:999px;
+    font-size:.8rem;font-weight:600;text-decoration:none;
+    color:var(--muted);background:var(--card);
+    border:1px solid var(--border);
+    transition:color .2s,border-color .2s,transform .2s;
+  }
+  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
+  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
+  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
+  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
 </style>
 </head>
 <body>
 
 <div class="controls" role="toolbar" aria-label="Map controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
     <input type="search" id="searchInput" placeholder="Search mathas, founders, locations…" aria-label="Search">
@@ -236,7 +266,7 @@
 </div>
 
 <!-- ========== ADI SHANKARA LINEAGE TREE ========== -->
-<section class="tree-section">
+<section class="tree-section" data-section="shankara">
   <h2 class="section-title" style="color:var(--shankara)">🔵 The Four Amnaya Peethams</h2>
   <div class="tree-root">
     <h3>Adi Shankara</h3>
@@ -252,12 +282,12 @@
     <div class="tree-branch" style="--bc:var(--shankara)">
       <div class="b-dir">West</div>
       <div class="b-name">Dwaraka Sharada Peetham</div>
-      <div class="b-founder">First Acharya: Padmapadacharya</div>
+      <div class="b-founder">First Acharya: Hastamalakacharya</div>
     </div>
     <div class="tree-branch" style="--bc:var(--shankara)">
       <div class="b-dir">East</div>
       <div class="b-name">Puri Govardhana Peetham</div>
-      <div class="b-founder">First Acharya: Hastamalakacharya</div>
+      <div class="b-founder">First Acharya: Padmapadacharya</div>
     </div>
     <div class="tree-branch" style="--bc:var(--shankara)">
       <div class="b-dir">North</div>
@@ -268,13 +298,13 @@
 </section>
 
 <!-- ========== SHANKARA MATHAS DETAIL ========== -->
-<section>
+<section data-section="shankara">
   <div class="grid two">
 
     <article class="card shankara-card" data-tags="shankara" data-id="sringeri">
       <h3>Sringeri Sharada Peetham <span class="sanskrit">शृंगेरी शारदा पीठम्</span></h3>
       <span class="tag">Dakshinamnaya · South</span>
-      <p>The southern seat, located on the banks of the Tunga River in Karnataka. Dedicated to Goddess Sharadamba, it is the most prominent of the four Peethams and has an unbroken lineage from Sureshwaracharya to the present day [citation:4][citation:5].</p>
+      <p>The southern seat, located on the banks of the Tunga River in Karnataka. Dedicated to Goddess Sharadamba, it is the most prominent of the four Peethams and has an unbroken lineage from Sureshwaracharya to the present day.</p>
       <dl class="facts">
         <div class="fact"><dt>Location</dt><dd>Sringeri, Karnataka</dd></div>
         <div class="fact"><dt>First Acharya</dt><dd>Sureshwaracharya</dd></div>
@@ -287,11 +317,11 @@
     <article class="card shankara-card" data-tags="shankara" data-id="dwaraka">
       <h3>Dwaraka Sharada Peetham <span class="sanskrit">द्वारका शारदा पीठम्</span></h3>
       <span class="tag">Paschimamnaya · West</span>
-      <p>The western seat, located in the sacred city of Dwarka in Gujarat. Dedicated to Goddess Sharada and associated with Krishna's kingdom, it continues the lineage from Padmapadacharya [citation:1][citation:5].</p>
+      <p>The western seat, located in the sacred city of Dwarka in Gujarat. Also known as the Kalika Matha, it stands in Krishna's city. The matha's own lineage begins with Hastamalakacharya (Sringeri's account names Padmapadacharya instead).</p>
       <dl class="facts">
         <div class="fact"><dt>Location</dt><dd>Dwarka, Gujarat</dd></div>
-        <div class="fact"><dt>First Acharya</dt><dd>Padmapadacharya</dd></div>
-        <div class="fact"><dt>Presiding Deity</dt><dd>Dwarakadhisha (Krishna)</dd></div>
+        <div class="fact"><dt>First Acharya</dt><dd>Hastamalakacharya</dd></div>
+        <div class="fact"><dt>Presiding Deity</dt><dd>Siddheshwara &amp; Bhadrakali (per the Mathamnaya)</dd></div>
         <div class="fact"><dt>Mahāvākya</dt><dd>"Tat Tvam Asi" — Thou art That</dd></div>
       </dl>
       <div class="chips"><span class="chip theme-tag">🔵 Advaita</span><span class="chip">Gujarat</span></div>
@@ -300,10 +330,10 @@
     <article class="card shankara-card" data-tags="shankara" data-id="puri">
       <h3>Puri Govardhana Peetham <span class="sanskrit">पुरी गोवर्धन पीठम्</span></h3>
       <span class="tag">Poorvamnaya · East</span>
-      <p>The eastern seat, located in the coastal temple town of Puri in Odisha, home of the Jagannatha temple. The lineage descends from Hastamalakacharya [citation:1][citation:5].</p>
+      <p>The eastern seat, located in the coastal temple town of Puri in Odisha, home of the Jagannatha temple. The matha's own lineage begins with Padmapadacharya (Sringeri's account names Hastamalakacharya instead).</p>
       <dl class="facts">
         <div class="fact"><dt>Location</dt><dd>Puri, Odisha</dd></div>
-        <div class="fact"><dt>First Acharya</dt><dd>Hastamalakacharya</dd></div>
+        <div class="fact"><dt>First Acharya</dt><dd>Padmapadacharya</dd></div>
         <div class="fact"><dt>Presiding Deity</dt><dd>Jagannatha</dd></div>
         <div class="fact"><dt>Mahāvākya</dt><dd>"Prajñānam Brahma" — Consciousness is Brahman</dd></div>
       </dl>
@@ -313,7 +343,7 @@
     <article class="card shankara-card" data-tags="shankara" data-id="jyotir">
       <h3>Jyotir Math <span class="sanskrit">ज्योतिर् मठ</span></h3>
       <span class="tag">Uttaramnaya · North</span>
-      <p>The northern seat, located in Joshimath (near Badrinath) in Uttarakhand. The lineage descends from Totakacharya. The current headship has been the subject of some dispute in recent years .</p>
+      <p>The northern seat, located in Joshimath (near Badrinath) in Uttarakhand. The lineage descends from Totakacharya. The current headship has been the subject of some dispute in recent years.</p>
       <dl class="facts">
         <div class="fact"><dt>Location</dt><dd>Joshimath, Uttarakhand</dd></div>
         <div class="fact"><dt>First Acharya</dt><dd>Totakacharya</dd></div>
@@ -327,16 +357,16 @@
 </section>
 
 <!-- ========== MADHVA ASHTA MATHAS ========== -->
-<section>
+<section data-section="madhva">
   <h2 class="section-title" style="color:var(--madhva)">🟡 The Ashta Mathas of Udupi</h2>
-  <p style="color:var(--muted);margin-bottom:22px;max-width:760px;font-size:.95rem">Eight mathas established by Madhvacharya and his direct disciples to administer the Udupi Krishna Temple and propagate Dvaita philosophy. They rotate the privilege of presiding over the temple through the Paryaya system — each matha takes its turn for two years .</p>
+  <p style="color:var(--muted);margin-bottom:22px;max-width:760px;font-size:.95rem">Eight mathas established by Madhvacharya and his direct disciples to administer the Udupi Krishna Temple and propagate Dvaita philosophy. They rotate the privilege of presiding over the temple through the Paryaya system — each matha takes its turn for two years.</p>
 
   <div class="grid">
 
     <article class="card madhva-card" data-tags="madhva" data-id="pejavara">
       <h3>Pejavara Matha <span class="sanskrit">ಪೇಜಾವರ ಮಠ</span></h3>
       <span class="tag">First Pontiff: Adhokshaja Teertha</span>
-      <p>Presiding deity: Vitthala with consorts Sri and Bhudevi. Paired with Kaniyooru Matha as a Dwandva (dual pair) .</p>
+      <p>Presiding deity: Vitthala with consorts Sri and Bhudevi. Paired with Kaniyooru Matha as a Dwandva (dual pair).</p>
       <dl class="facts">
         <div class="fact"><dt>Presiding</dt><dd>Vitthala with Sri and Bhudevi</dd></div>
         <div class="fact"><dt>Dwandva</dt><dd>Kaniyooru</dd></div>
@@ -347,7 +377,7 @@
     <article class="card madhva-card" data-tags="madhva" data-id="palimaru">
       <h3>Palimaru Matha <span class="sanskrit">ಪಲಿಮಾರು ಮಠ</span></h3>
       <span class="tag">First Pontiff: Hrishikesha Teertha</span>
-      <p>Presiding deity: Kodanda Rama with consort Sita and brother Lakshmana. Paired with Adamaru Matha .</p>
+      <p>Presiding deity: Kodanda Rama with consort Sita and brother Lakshmana. Paired with Adamaru Matha.</p>
       <dl class="facts">
         <div class="fact"><dt>Presiding</dt><dd>Kodanda Rama</dd></div>
         <div class="fact"><dt>Dwandva</dt><dd>Adamaru</dd></div>
@@ -358,7 +388,7 @@
     <article class="card madhva-card" data-tags="madhva" data-id="adamaru">
       <h3>Adamaru Matha <span class="sanskrit">ಅಡಮಾರು ಮಠ</span></h3>
       <span class="tag">First Pontiff: Narasimha Teertha</span>
-      <p>Presiding deity: Kaliyamardana Krishna with four arms, and Katyayani Devi. Paired with Palimaru Matha .</p>
+      <p>Presiding deity: Kaliyamardana Krishna with four arms, and Katyayani Devi. Paired with Palimaru Matha.</p>
       <dl class="facts">
         <div class="fact"><dt>Presiding</dt><dd>Kaliyamardana Krishna</dd></div>
         <div class="fact"><dt>Dwandva</dt><dd>Palimaru</dd></div>
@@ -369,7 +399,7 @@
     <article class="card madhva-card" data-tags="madhva" data-id="puttige">
       <h3>Puttige Matha <span class="sanskrit">ಪುತ್ತಿಗೆ ಮಠ</span></h3>
       <span class="tag">First Pontiff: Upendra Teertha</span>
-      <p>Presiding deity: Vitthala with consorts Rukmini and Satyabhama. Paired with Krishnapura Matha. The current pontiff is Sri Sugunendra Teertha [citation:3].</p>
+      <p>Presiding deity: Vitthala with consorts Rukmini and Satyabhama. Paired with Krishnapura Matha. The current pontiff is Sri Sugunendra Teertha.</p>
       <dl class="facts">
         <div class="fact"><dt>Presiding</dt><dd>Vitthala with Rukmini &amp; Satyabhama</dd></div>
         <div class="fact"><dt>Dwandva</dt><dd>Krishnapura</dd></div>
@@ -380,7 +410,7 @@
     <article class="card madhva-card" data-tags="madhva" data-id="sodhe">
       <h3>Sodhe Matha <span class="sanskrit">ಸೋದೆ ಮಠ</span></h3>
       <span class="tag">First Pontiff: Vishnu Teertha</span>
-      <p>Presiding deity: Bhuvaraha (the boar avatar of Vishnu). Paired with Shirur Matha .</p>
+      <p>Presiding deity: Bhuvaraha (the boar avatar of Vishnu). Paired with Shirur Matha.</p>
       <dl class="facts">
         <div class="fact"><dt>Presiding</dt><dd>Bhuvaraha</dd></div>
         <div class="fact"><dt>Dwandva</dt><dd>Shirur</dd></div>
@@ -391,7 +421,7 @@
     <article class="card madhva-card" data-tags="madhva" data-id="kaniyooru">
       <h3>Kaniyooru Matha <span class="sanskrit">ಕನಿಯೂರು ಮಠ</span></h3>
       <span class="tag">First Pontiff: Rama Teertha</span>
-      <p>Presiding deity: Yoga-Narasimha. Paired with Pejavara Matha .</p>
+      <p>Presiding deity: Yoga-Narasimha. Paired with Pejavara Matha.</p>
       <dl class="facts">
         <div class="fact"><dt>Presiding</dt><dd>Yoga-Narasimha</dd></div>
         <div class="fact"><dt>Dwandva</dt><dd>Pejavara</dd></div>
@@ -402,7 +432,7 @@
     <article class="card madhva-card" data-tags="madhva" data-id="shirur">
       <h3>Shirur Matha <span class="sanskrit">ಶಿರೂರು ಮಠ</span></h3>
       <span class="tag">First Pontiff: Vamana Teertha</span>
-      <p>Presiding deity: Vitthala (called "Vamana Vitthala" to distinguish from Pejavara's icon) with consorts Sri and Bhudevi. Paired with Sodhe Matha .</p>
+      <p>Presiding deity: Vitthala (called "Vamana Vitthala" to distinguish from Pejavara's icon) with consorts Sri and Bhudevi. Paired with Sodhe Matha.</p>
       <dl class="facts">
         <div class="fact"><dt>Presiding</dt><dd>Vamana Vitthala</dd></div>
         <div class="fact"><dt>Dwandva</dt><dd>Sodhe</dd></div>
@@ -413,7 +443,7 @@
     <article class="card madhva-card" data-tags="madhva" data-id="krishnapura">
       <h3>Krishnapura Matha <span class="sanskrit">ಕೃಷ್ಣಾಪುರ ಮಠ</span></h3>
       <span class="tag">First Pontiff: Janardhana Teertha</span>
-      <p>Presiding deity: Kaliyamardana Krishna. Paired with Puttige Matha .</p>
+      <p>Presiding deity: Kaliyamardana Krishna. Paired with Puttige Matha.</p>
       <dl class="facts">
         <div class="fact"><dt>Presiding</dt><dd>Kaliyamardana Krishna</dd></div>
         <div class="fact"><dt>Dwandva</dt><dd>Puttige</dd></div>
@@ -425,10 +455,10 @@
 </section>
 
 <!-- ========== THE PARYAYA SYSTEM ========== -->
-<section>
+<section data-section="madhva">
   <h2 class="section-title" style="color:var(--madhva)">🔄 The Paryaya System</h2>
   <div class="card" style="--accent:var(--madhva);max-width:800px;margin:0 auto;">
-    <p style="font-size:1rem;">The eight Ashta Mathas do not each run the Udupi Krishna Temple independently. Instead, they rotate the responsibility through a system called <strong>Paryaya</strong> — each matha takes its turn as the temple's administrator for a period of two years. The handover ceremony takes place on 18 January of even-numbered years and is a major festival in Udupi .</p>
+    <p style="font-size:1rem;">The eight Ashta Mathas do not each run the Udupi Krishna Temple independently. Instead, they rotate the responsibility through a system called <strong>Paryaya</strong> — each matha takes its turn as the temple's administrator for a period of two years. The handover ceremony takes place on 18 January of even-numbered years and is a major festival in Udupi.</p>
     <div class="chips" style="margin-top:16px;">
       <span class="chip theme-tag">2-year rotation</span>
       <span class="chip">Udupi Krishna Temple</span>
@@ -440,6 +470,23 @@
 <footer>
   <p>🛕 A lineage map of the Amnaya Peethams and Ashta Mathas · Lineages are approximate and have developed sub-traditions over centuries</p>
   <p style="margin-top:6px">The four Amnaya Peethams are attributed to Adi Shankara; the Ashta Mathas to Madhvacharya and his direct disciples.</p>
+
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html" aria-current="page"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
 
 <script>
@@ -517,8 +564,22 @@
   }
 
   function applyFilters(){
+    var q = searchInput.value.trim().toLowerCase();
     document.querySelectorAll('.card[data-tags]').forEach(function(card){
       card.classList.toggle('hidden', !matches(card));
+    });
+    // Show a whole section only if it belongs to the active lineage
+    // and (when searching) still has something that matches.
+    document.querySelectorAll('section[data-section]').forEach(function(sec){
+      var inFilter = activeFilter === 'all' || sec.getAttribute('data-section') === activeFilter;
+      var cards = sec.querySelectorAll('.card[data-tags]');
+      var hasMatch;
+      if(cards.length){
+        hasMatch = Array.prototype.some.call(cards, function(c){ return !c.classList.contains('hidden'); });
+      } else {
+        hasMatch = !q || sec.textContent.toLowerCase().indexOf(q) !== -1;
+      }
+      sec.style.display = (inFilter && hasMatch) ? '' : 'none';
     });
   }
 
@@ -538,5 +599,21 @@
 })();
 </script>
 
+<script>
+/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
+(function(){
+  function fit(){
+    var bar = document.querySelector('.controls');
+    if(!bar) return;
+    document.body.style.paddingTop = '';
+    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
+    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
+    if(need > base) document.body.style.paddingTop = need + 'px';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+})();
+</script>
 </body>
 </html>

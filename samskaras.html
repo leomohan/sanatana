@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Sixteen Samskaras — A Life in Rituals</title>
+<title>From Cradle to Pyre — Samskaras &amp; Life-Cycle Rituals</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕯️</text></svg>">
 <script>
   (function(){
@@ -248,11 +248,41 @@
     .timeline-dot{ left: 12px; width: 16px; height: 16px; top: 22px; }
     .card { padding: 18px 16px; }
   }
+
+  /* ---------- SITE NAV (home button + footer links) ---------- */
+  .home-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:7px 14px;border-radius:999px;
+    background:var(--card);color:var(--text);
+    border:1px solid var(--border-strong,var(--border));
+    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
+    white-space:nowrap;transition:transform .2s,border-color .2s;
+  }
+  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
+  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
+  .site-nav{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
+    max-width:980px;margin:26px auto 4px;padding-top:20px;
+    border-top:1px solid var(--border);
+  }
+  .site-nav a{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:6px 12px;border-radius:999px;
+    font-size:.8rem;font-weight:600;text-decoration:none;
+    color:var(--muted);background:var(--card);
+    border:1px solid var(--border);
+    transition:color .2s,border-color .2s,transform .2s;
+  }
+  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
+  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
+  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
+  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
 </style>
 </head>
 <body>
 
 <div class="controls" role="toolbar" aria-label="Map controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
     <input type="search" id="searchInput" placeholder="Search rituals, life stages…" aria-label="Search">
@@ -273,8 +303,8 @@
 </div>
 
 <header>
-  <h1>The Sixteen Samskaras</h1>
-  <p>A life in rituals — the sacred ceremonies that mark each stage of a Brahmin's journey, from the first blessing at birth to the final rites of passage. The Samskaras are the thread that binds the individual to family, tradition, and the cosmic order.</p>
+  <h1>From Cradle to Pyre</h1>
+  <p>Sixteen samskaras and life-cycle rituals as observed in South Indian Brahmin homes — the sacred ceremonies that mark each stage of life, from the first blessing at birth to the final rites of passage. The Samskaras are the thread that binds the individual to family, tradition, and the cosmic order.</p>
   <div class="legend">
     <span><i class="dot" style="background:var(--birth)"></i>Birth & Childhood</span>
     <span><i class="dot" style="background:var(--education)"></i>Education & Youth</span>
@@ -303,8 +333,8 @@
   <div class="timeline-item" data-tags="birth" style="--accent:var(--birth)">
     <div class="timeline-dot"></div>
     <div class="card">
-      <h3>Punyajanam <span class="sanskrit">पुण्यजनम्</span></h3>
-      <span class="tag">The First Blessing (Naming Ceremony)</span>
+      <h3>Punyahavachanam <span class="sanskrit">पुण्याहवाचनम्</span></h3>
+      <span class="tag">The First Blessing (Purification &amp; Naming)</span>
       <p>Conducted on the eleventh day after birth. The baby is bathed in medicinal holy water, a sacred fire is lit, and the father whispers the chosen name into the baby's right ear — a blessing that resonates across generations. The name reflects both spiritual aspiration and family heritage.</p>
       <div class="highlight">The father's whisper connects the child to ancestral wisdom.</div>
     </div>
@@ -313,7 +343,17 @@
   <div class="timeline-item" data-tags="birth" style="--accent:var(--birth)">
     <div class="timeline-dot"></div>
     <div class="card">
-      <h3>Mundan <span class="sanskrit">मुण्डन</span></h3>
+      <h3>Annaprashanam <span class="sanskrit">अन्नप्राशनम्</span></h3>
+      <span class="tag">The First Solid Food</span>
+      <p>Performed around the sixth month. After prayers, the child is fed a first taste of cooked rice — often sweetened with ghee, honey or payasam — usually by the father or grandfather, in the presence of the family deity.</p>
+      <div class="highlight">The first grain received as a blessing, not merely as food.</div>
+    </div>
+  </div>
+
+  <div class="timeline-item" data-tags="birth" style="--accent:var(--birth)">
+    <div class="timeline-dot"></div>
+    <div class="card">
+      <h3>Chaulam (Mundan) <span class="sanskrit">चौलम्</span></h3>
       <span class="tag">The First Shear (Head-Shaving)</span>
       <p>Traditionally performed between the first and third year. Represents purification, detachment, and the beginning of spiritual consciousness. The hair is symbolically removed to clear karmic impurities and offered to sacred waters, marking a transition into spiritual cleanliness.</p>
       <div class="highlight">A ritual of renewal, removing attachment to external beauty.</div>
@@ -350,7 +390,7 @@
     <div class="card">
       <h3>Upanayanam <span class="sanskrit">उपनयनम्</span></h3>
       <span class="tag">The Sacred Thread</span>
-      <p>Typically performed between ages seven and sixteen. The boy receives three strands of the Yajnopavita, each symbolizing commitment to spiritual wisdom, family duty, and self-discipline. He is taught the Gayatri Mantra and seeks alms from elders in the Bhiksha ritual.</p>
+      <p>Typically performed between ages seven and sixteen. The boy receives three strands of the Yajnopavita, traditionally read as the three debts (rinas) owed to the sages, the gods and the ancestors. He is taught the Gayatri Mantra and seeks alms from elders in the Bhiksha ritual.</p>
       <div class="highlight">A spiritual awakening, aligning one's journey with higher wisdom.</div>
     </div>
   </div>
@@ -360,7 +400,7 @@
     <div class="card">
       <h3>Ritu Kala Samskara <span class="sanskrit">ऋतुकाल संस्कार</span></h3>
       <span class="tag">A Young Girl's Transition</span>
-      <p>Held at the onset of puberty. An affirmation of womanhood, responsibility, and auspicious beginnings. The girl is dressed in a saree for the first time, receives a holy bath, and is blessed with gifts and prayers by elders.</p>
+      <p>Held at the onset of puberty. An affirmation of womanhood, responsibility, and auspicious beginnings. The girl is dressed in her first half-saree (pavadai-davani in Tamil homes), receives a holy bath, and is blessed with gifts and prayers by elders.</p>
       <div class="highlight">A moment of communal celebration, binding generations through customs.</div>
     </div>
   </div>
@@ -368,16 +408,6 @@
   <!-- STAGE 3: MARRIAGE & HOUSEHOLDER -->
   <div class="stage-header" data-tags="householder" style="--accent:var(--householder)">
     <span>🏡 Marriage & Householder</span>
-  </div>
-
-  <div class="timeline-item" data-tags="householder" style="--accent:var(--householder)">
-    <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Seemantham <span class="sanskrit">सीमन्तम्</span></h3>
-      <span class="tag">Blessings for the Unborn</span>
-      <p>Performed during the seventh or ninth month of pregnancy. A prenatal ritual honoring the expectant mother and the life she carries. Vedic chanting, an oil bath, and floral adornment bring emotional, physical, and spiritual well-being.</p>
-      <div class="highlight">Recognizing the mother's role as the vessel of creation.</div>
-    </div>
   </div>
 
   <div class="timeline-item" data-tags="householder" style="--accent:var(--householder)">
@@ -395,8 +425,18 @@
     <div class="card">
       <h3>Vivaham <span class="sanskrit">विवाहम्</span></h3>
       <span class="tag">The Sacred Fire of Commitment</span>
-      <p>The main wedding ceremony. Kanyadaanam (giving the bride), Mangalasutram (tying the thread), Agni Sakshi (fire as witness), and Sapta Padi (seven steps, each representing a vow: prosperity, harmony, trust, strength, children, health, companionship).</p>
+      <p>The main wedding ceremony. Kanyadaanam (giving the bride), Mangalasutram (tying the thread), Agni Sakshi (fire as witness), and Sapta Padi (seven steps, each with a blessing: for food, strength, wealth, happiness, progeny, the seasons, and lifelong friendship).</p>
       <div class="highlight">A sacred bond witnessed by fire, strengthened by vows, and upheld by dharma.</div>
+    </div>
+  </div>
+
+  <div class="timeline-item" data-tags="householder" style="--accent:var(--householder)">
+    <div class="timeline-dot"></div>
+    <div class="card">
+      <h3>Seemantham <span class="sanskrit">सीमन्तम्</span></h3>
+      <span class="tag">Blessings for the Unborn</span>
+      <p>Performed during the seventh or ninth month of pregnancy. A prenatal ritual honoring the expectant mother and the life she carries. Vedic chanting, an oil bath, and floral adornment bring emotional, physical, and spiritual well-being.</p>
+      <div class="highlight">Recognizing the mother's role as the vessel of creation.</div>
     </div>
   </div>
 
@@ -438,9 +478,9 @@
   <div class="timeline-item" data-tags="elder" style="--accent:var(--elder)">
     <div class="timeline-dot"></div>
     <div class="card">
-      <h3>Sadabhishekam <span class="sanskrit">सदाभिषेकम्</span></h3>
+      <h3>Sathabhishekam <span class="sanskrit">शताभिषेकम्</span></h3>
       <span class="tag">Eight Decades of Legacy (80th Birthday)</span>
-      <p>A grand celebration for the eightieth birthday. The individual is honored for their legacy, having seen eight decades of life. It involves elaborate rituals and blessings from family and community.</p>
+      <p>A grand celebration for the eightieth birthday, traditionally linked to having seen a thousand full moons. The individual is honored for their legacy, having seen eight decades of life. It involves elaborate rituals and blessings from family and community.</p>
       <div class="highlight">Honoring a life well-lived and the wisdom accumulated.</div>
     </div>
   </div>
@@ -453,7 +493,7 @@
   <div class="timeline-item" data-tags="final" style="--accent:var(--final)">
     <div class="timeline-dot"></div>
     <div class="card">
-      <h3>Anyeshti <span class="sanskrit">अन्त्येष्टि</span></h3>
+      <h3>Antyeshti <span class="sanskrit">अन्त्येष्टि</span></h3>
       <span class="tag">Embracing the Eternal Cycle (Funeral Rites)</span>
       <p>The final samskara. The body is cremated, and the soul is released into the cosmic cycle. The rites are performed by the eldest son or a male relative, guiding the departed soul to the ancestral realm.</p>
       <div class="highlight">The last rite of passage, returning the elements to their source.</div>
@@ -465,7 +505,7 @@
     <div class="card">
       <h3>Shraadha <span class="sanskrit">श्राद्ध</span></h3>
       <span class="tag">Ancestral Offerings</span>
-      <p>Performed after the cremation to ensure the departed soul reaches the ancestral realm. The family offers rice balls (pinda) and water, expressing gratitude to ancestors.</p>
+      <p>Performed after the cremation, and then every year on the death anniversary, to sustain the departed soul in the ancestral realm. The family offers rice balls (pinda) and water, expressing gratitude to ancestors.</p>
       <div class="highlight">An unbroken link between the living and the departed.</div>
     </div>
   </div>
@@ -473,8 +513,25 @@
 </div>
 
 <footer>
-  <p>🕯️ A visual map of the sixteen Samskaras — the Hindu rites of passage that sanctify each stage of life.</p>
-  <p style="margin-top:6px">The Samskaras are the traditional rites of passage; regional and family variations exist.</p>
+  <p>🕯️ A visual map of sixteen samskaras and life-cycle rituals that sanctify each stage of life.</p>
+  <p style="margin-top:6px">The classical list of sixteen (Shodasha) samskaras differs from this practical sequence; regional and family variations exist.</p>
+
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html" aria-current="page"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
 
 <script>
@@ -552,8 +609,15 @@
   }
 
   function applyFilters(){
-    document.querySelectorAll('.timeline-item, .stage-header').forEach(function(el){
+    document.querySelectorAll('.timeline-item').forEach(function(el){
       el.classList.toggle('hidden', !matches(el));
+    });
+    // A stage header stays visible while any ritual in its stage is visible
+    document.querySelectorAll('.stage-header').forEach(function(hd){
+      var stage = hd.getAttribute('data-tags');
+      var items = document.querySelectorAll('.timeline-item[data-tags="' + stage + '"]');
+      var anyVisible = Array.prototype.some.call(items, function(it){ return !it.classList.contains('hidden'); });
+      hd.classList.toggle('hidden', !anyVisible);
     });
   }
 
@@ -573,5 +637,21 @@
 })();
 </script>
 
+<script>
+/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
+(function(){
+  function fit(){
+    var bar = document.querySelector('.controls');
+    if(!bar) return;
+    document.body.style.paddingTop = '';
+    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
+    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
+    if(need > base) document.body.style.paddingTop = need + 'px';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+})();
+</script>
 </body>
 </html>
