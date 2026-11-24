@@ -29,7 +29,9 @@ First time only: `pip install -r requirements.txt` (PyYAML and Jinja2).
 1. Copy `content/_template.yaml` to `content/<name>.yaml` and fill it in.
 2. Add the page to the `nav` list in `content/site.yaml` (it then appears in every footer).
 3. Add a card for it to `content/index.yaml` so it shows on the home page.
-4. Run `python3 build.py`.
+4. Give it a `description:` of about 150 characters. Search results and link previews show it.
+5. Run `python3 build.py`. The new page goes into `sitemap.xml` and `llms.txt` automatically.
+6. Optional: `python3 tools/og_images.py <name>` draws its link-preview image. Without one, the page uses the site image.
 
 The build stops with a plain message if something is off — a colour that isn't in the page's palette, two cards with the same `id`, or a Vedic connection pointing at a card that doesn't exist.
 
@@ -60,6 +62,21 @@ Each entry under `blocks:` has a `type`:
 ## Shared settings
 
 Theme (light/dark), text size and the Sanskrit/Tamil toggle are saved once for the whole site, so a choice made on one page carries to every other page.
+
+## Search engines, link previews and AI assistants
+
+`build.py` writes all of this. Don't edit the generated files by hand.
+
+| File or tag | What it does |
+|---|---|
+| `sitemap.xml` | Every public page at its canonical address (`/veda`, not `/veda.html`; Cloudflare redirects the `.html` form). `lastmod` is the date of the last commit touching the page's YAML, or today if the YAML has uncommitted edits |
+| `robots.txt` | Lets every crawler in, names the AI search crawlers (ChatGPT, Claude, Perplexity) explicitly, and points to the sitemap. Set `block_ai_training: true` in `site.yaml` to shut out model-training crawlers (GPTBot, ClaudeBot, Google-Extended, CCBot and others) while keeping search |
+| `llms.txt` | A plain list of the pages with their descriptions, for AI assistants |
+| `404.html` | Cloudflare Pages serves it, with a real 404 status, for any address that doesn't exist. Without it, every wrong address returned the home page |
+| `<head>` of each page | description, canonical link, Open Graph and Twitter cards, and schema.org JSON-LD: the site, the page, a breadcrumb, and an `ItemList` of the page's anchored cards |
+| `assets/og/*.jpg` | 1200×630 link-preview images, drawn by `tools/og_images.py` (needs `pip install playwright` and `python -m playwright install chromium`) |
+
+`site.yaml` holds the live `url` (change it if the site moves to its own domain) and two empty fields, `verify_google` and `verify_bing`. Paste the verification codes from Google Search Console and Bing Webmaster Tools there.
 
 ## Card fields
 

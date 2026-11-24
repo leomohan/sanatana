@@ -1,9 +1,8 @@
 page:
   file: parampara.html
   layout: page
-  title: Guru Parampara — Teacher–Disciple Lineages of Sringeri, Sri Vaishnavism and Madhva
-  description: Teacher–disciple lineages drawn as timelines. The 36 Jagadgurus of Sringeri, the Sri Vaishnava acharyas
-    before and after Ramanuja, and the pontiffs of Madhva's line and the mathas that branched from it.
+  title: Guru Parampara — Sringeri, Sri Vaishnava and Madhva Lineages
+  description: 'Teacher–disciple lineages as timelines: the 36 Jagadgurus of Sringeri, the Sri Vaishnava acharyas around Ramanuja, and Madhva''s pontiffs and mathas.'
   favicon: 🪔
   search: Search a teacher — Vidyaranya, Desika, Jayatirtha…
   palette:

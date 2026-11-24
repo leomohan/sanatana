@@ -1,9 +1,8 @@
 page:
   file: tamil-literature.html
   layout: page
-  title: Tamil Literature — Sangam Anthologies, Thirukkural and the 18 Siddhars
-  description: Classical Tamil poetry mapped. The Eight Anthologies and Ten Idylls of the Sangam age, the five landscapes
-    of love poetry, the eighteen shorter works including the Thirukkural, and the 18 Siddhars.
+  title: Tamil Literature — Sangam, Thirukkural and the 18 Siddhars
+  description: 'Classical Tamil poetry mapped: the Sangam Eight Anthologies and Ten Idylls, the five landscapes, the Thirukkural and Kilkanakku works, and the 18 Siddhars.'
   favicon: 📜
   search: Search works, poets, landscapes…
   native: ta

@@ -11,7 +11,8 @@ Writes  <page>.html              in this folder, ready to publish as-is
 
 Requires PyYAML and Jinja2:  pip install -r requirements.txt
 """
-import hashlib, json, re, sys
+import hashlib, json, re, subprocess, sys
+from datetime import date
 from pathlib import Path
 
 import yaml
@@ -171,6 +172,113 @@ def check(name, page, blocks):
         raise SystemExit(f'\n{name}: please fix\n  - ' + '\n  - '.join(problems))
 
 
+# ---------- Search engines, sharing and AI assistants ----------
+AI_SEARCH_BOTS = ['OAI-SearchBot', 'ChatGPT-User', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot']
+AI_TRAINING_BOTS = ['GPTBot', 'ClaudeBot', 'Google-Extended', 'Applebot-Extended', 'CCBot', 'meta-externalagent']
+
+
+def page_url(site, file):
+    """Canonical address. Cloudflare Pages serves /veda for veda.html (and redirects the .html form)."""
+    base = site['url'].rstrip('/')
+    return base + '/' if file == 'index.html' else f'{base}/{file[:-5]}'
+
+
+def plain(text):
+    return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', str(text or ''))).strip()
+
+
+def og_image(site, page):
+    stem = page['file'][:-5]
+    rel = f'assets/og/{stem}.jpg' if (ASSETS / 'og' / f'{stem}.jpg').exists() else site.get('og_image')
+    return site['url'].rstrip('/') + '/' + rel if rel else None
+
+
+def nav_label(site, file):
+    return next((n['label'] for n in site.get('nav', []) if n['file'] == file), None)
+
+
+def structured_data(site, page, cards, pages):
+    """schema.org JSON-LD: the site, this page, its breadcrumb and the items on it."""
+    base = site['url'].rstrip('/') + '/'
+    url, desc = page_url(site, page['file']), plain(page.get('description') or site.get('description'))
+    website = {'@type': 'WebSite', '@id': base + '#website', 'url': base, 'name': site['name'],
+               'description': site.get('description'), 'inLanguage': 'en'}
+    pg = {'@type': 'CollectionPage' if page.get('layout') == 'home' else 'WebPage', '@id': url + '#webpage', 'url': url,
+          'name': plain(page['title']), 'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'}}
+    img = og_image(site, page)
+    if img:
+        pg['primaryImageOfPage'] = {'@type': 'ImageObject', 'url': img, 'width': 1200, 'height': 630}
+    graph = [website, pg]
+    if page.get('layout') == 'home':
+        items = [{'@type': 'ListItem', 'position': i + 1, 'url': m['url'], 'name': m['title']}
+                 for i, m in enumerate(m for m in pages if m['file'] != 'index.html')]
+        pg['mainEntity'] = {'@type': 'ItemList', 'numberOfItems': len(items), 'itemListElement': items}
+    else:
+        pg['headline'] = plain(page.get('h1') or page['title'])
+        pg['breadcrumb'] = {'@id': url + '#breadcrumb'}
+        graph.append({'@type': 'BreadcrumbList', '@id': url + '#breadcrumb', 'itemListElement': [
+            {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': base},
+            {'@type': 'ListItem', 'position': 2, 'name': nav_label(site, page['file']) or plain(page['title']), 'item': url}]})
+        anchored = [((c['anchor'] if isinstance(c['anchor'], str) else c['id']), plain(c.get('title')))
+                    for c in cards if c.get('anchor') and c.get('title')]
+        if len(anchored) >= 3:
+            pg['mainEntity'] = {'@type': 'ItemList', 'numberOfItems': len(anchored), 'itemListElement': [
+                {'@type': 'ListItem', 'position': i + 1, 'name': t, 'url': f'{url}#{a}'} for i, (a, t) in enumerate(anchored)]}
+    out = json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False, separators=(',', ':'))
+    return out.replace('</', '<\\/')
+
+
+def last_changed(path):
+    """Date of the last commit touching a content file; today if it has uncommitted edits or git is unavailable."""
+    try:
+        run = lambda *a: subprocess.run(['git', *a], cwd=ROOT, capture_output=True, text=True, timeout=20)
+        st = run('status', '--porcelain', '--', str(path))
+        if st.returncode == 0 and not st.stdout.strip():
+            day = run('log', '-1', '--format=%cs', '--', str(path)).stdout.strip()
+            if day:
+                return day
+    except (OSError, subprocess.SubprocessError):
+        pass
+    return date.today().isoformat()
+
+
+def page_index(site):
+    """Every public page in footer order, with what the sitemap and llms.txt need."""
+    order = {n['file']: i for i, n in enumerate(site.get('nav', []))}
+    pages = []
+    for path in sorted(p for p in CONTENT.glob('*.yaml') if p.name != 'site.yaml' and not p.name.startswith('_')):
+        page = yaml.safe_load(path.read_text(encoding='utf-8'))['page']
+        if page.get('noindex'):
+            continue
+        pages.append({'file': page['file'], 'url': page_url(site, page['file']), 'title': plain(page['title']),
+                      'label': nav_label(site, page['file']) or plain(page['title']),
+                      'description': plain(page.get('description')), 'lastmod': last_changed(path)})
+    return sorted(pages, key=lambda m: (order.get(m['file'], 999), m['file']))
+
+
+def write_search_files(site, pages):
+    base = site['url'].rstrip('/')
+    urls = ''.join(f'  <url>\n    <loc>{m["url"]}</loc>\n    <lastmod>{m["lastmod"]}</lastmod>\n  </url>\n' for m in pages)
+    (ROOT / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
+                                      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '</urlset>\n', encoding='utf-8')
+    robots = ['# Generated by build.py. Everything is public; crawlers are welcome.', 'User-agent: *', 'Allow: /', '',
+              '# AI search and assistant crawlers: these cite and link to the pages they use.']
+    robots += [f'User-agent: {b}' for b in AI_SEARCH_BOTS] + ['Allow: /', '']
+    if site.get('block_ai_training'):
+        robots += ['# Model-training crawlers are blocked (block_ai_training in content/site.yaml).']
+        robots += [f'User-agent: {b}' for b in AI_TRAINING_BOTS] + ['Disallow: /', '']
+    robots += [f'Sitemap: {base}/sitemap.xml', '']
+    (ROOT / 'robots.txt').write_text('\n'.join(robots), encoding='utf-8')
+    llms = [f'# {site["name"]}', '', f'> {site.get("description", "")}', '',
+            'Each page is one static HTML page; all of its text, tables and timelines are in the HTML. '
+            'Pages list their sources at the bottom. Names of texts, places and people are given in English '
+            'transliteration, with Sanskrit, Tamil or Hindi script where a page offers it.', '', '## Pages', '']
+    llms += [f'- [{m["title"]}]({m["url"]}): {m["description"]}' for m in pages]
+    llms += ['', '## Optional', '', f'- [Sitemap]({base}/sitemap.xml): every page with its last-changed date', '']
+    (ROOT / 'llms.txt').write_text('\n'.join(llms), encoding='utf-8')
+    print(f'wrote sitemap.xml ({len(pages)} pages), robots.txt, llms.txt')
+
+
 def build(names=None):
     site = yaml.safe_load((CONTENT / 'site.yaml').read_text(encoding='utf-8'))
     env = Environment(loader=FileSystemLoader(TEMPLATES), undefined=ChainableUndefined,
@@ -181,6 +289,7 @@ def build(names=None):
     tpl = env.get_template('base.html')
     version = hashlib.sha1(b''.join(f.read_bytes() for f in sorted(ASSETS.glob('*.*')))).hexdigest()[:8]
 
+    pages = page_index(site)
     files = sorted(p for p in CONTENT.glob('*.yaml') if p.name != 'site.yaml' and not p.name.startswith('_'))
     if names:
         files = [CONTENT / (n if n.endswith('.yaml') else n + '.yaml') for n in names]
@@ -207,10 +316,14 @@ def build(names=None):
         html = tpl.render(site=site, page=page, blocks=group_blocks(blocks), all_cards=cards, palette_css=palette_css(page),
                           uses_map=bool(sites or groups), sites_json=to_js(sites) if sites else None, groups_json=to_js(groups) if groups else None, asset_version=version,
                           route_json=to_js(route) if route else None, data_json=to_js(data) if data else None,
-                          has_empty=any(b.get('type') == 'empty' or b.get('empty') for b in blocks))
+                          has_empty=any(b.get('type') == 'empty' or b.get('empty') for b in blocks),
+                          canonical=page_url(site, page['file']), og_image=og_image(site, page),
+                          meta_description=plain(page.get('description') or site.get('description')),
+                          jsonld=None if page.get('noindex') else structured_data(site, page, cards, pages))
         html = '\n'.join(line.rstrip() for line in html.splitlines() if line.strip()) + '\n'
         (ROOT / page['file']).write_text(html, encoding='utf-8')
         print(f'built {page["file"]}')
+    write_search_files(site, pages)
 
 
 if __name__ == '__main__':

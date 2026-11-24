@@ -2,6 +2,7 @@ page:
   file: veda.html
   layout: veda
   title: Map of Vedic Literature — Vedas, Puranas & Upanishads
+  description: 'An interactive map of Vedic literature: the Vedas with their Brahmanas, Aranyakas and Upanishads, the Puranas and Itihasas, and how they connect.'
   favicon: 🕉️
   search: Search texts…
   native: sa

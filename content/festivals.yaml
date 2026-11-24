@@ -2,8 +2,7 @@ page:
   file: festivals.html
   layout: page
   title: The Festival Wheel — Hindu Festivals Through the Lunar Year
-  description: A year-round wheel of Hindu festivals set on the Panchanga. Twelve lunar months, their bright and dark
-    halves and six seasons, with each festival placed on its tithi.
+  description: 'A year-round wheel of Hindu festivals set on the Panchanga: twelve lunar months, bright and dark halves and six seasons, each festival placed on its tithi.'
   favicon: 🎆
   search: Search festivals, months, regions…
   native: sa

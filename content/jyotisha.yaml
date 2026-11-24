@@ -2,6 +2,7 @@ page:
   file: jyotisha.html
   layout: page
   title: Jyotisha — Grahas, Rashis, Nakshatras, Panchanga & Samvatsaras
+  description: 'Vedic astrology mapped: the nine Grahas, 12 Rashis and 27 Nakshatras, the five limbs of the Panchanga, and the 60-year Samvatsara cycle.'
   favicon: 🌌
   search: Search grahas, rashis, nakshatras…
   native: sa

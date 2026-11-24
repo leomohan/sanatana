@@ -659,3 +659,11 @@ body.show-native .fig figcaption .native{display:block;}
 .fw-key .dot.full{background:#fff6d5;border:1px solid #c9a227;}
 .fw-key .dot.new{background:#1a1530;border:1px solid var(--muted);}
 .fw-key .dot.sol{background:transparent;border:3px solid var(--primary);}
+
+/* ---------- Sacred Geography: every site as text below the map ---------- */
+.geo-list{max-width:1100px;margin:28px auto 0;display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));}
+.geo-list>div{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:16px;padding:18px 20px;}
+.geo-list h2{font-size:1.05rem;color:var(--accent);margin:0 0 10px;}
+.geo-list ol{margin:0;padding-left:22px;display:grid;gap:8px;font-size:.9rem;}
+.geo-list .loc{color:var(--muted);}
+.geo-list .gl-note{color:var(--muted);font-size:.84rem;}

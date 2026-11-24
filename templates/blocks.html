@@ -220,6 +220,14 @@
 <div id="map" class="tall" role="application" aria-label="Map of sacred sites"></div>
 <p class="counter" id="counter">{{ b.loading }}</p>
 <div class="note">{{ b.note|safe }}</div>
+<section class="geo-list" aria-label="Every site on this map">
+  {%- for g in b.groups %}
+  <div style="--accent:{{ g.color|color }}">
+    <h2>{{ g.plural or g.label }}</h2>
+    <ol>{% for s in g.sites %}<li><strong>{{ s.name }}</strong> <span class="loc">· {{ s.loc }}</span>{% if s.note %}<br><span class="gl-note">{{ s.note }}</span>{% endif %}</li>{% endfor %}</ol>
+  </div>
+  {%- endfor %}
+</section>
 
 {%- elif b.type == 'home-cards' %}
 <main>

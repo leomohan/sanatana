@@ -2,11 +2,15 @@ page:
   file: geography.html
   layout: page
   title: Sacred Geography — Divya Desams & Jyotirlingas
+  description: 'Twenty representative Divya Desams, the Vishnu temples sung by the Azhwars, and all twelve Jyotirlingas of Shiva on one map of India.'
   palette:
     divya: ['#4a9eff', '#1a6fc4']
     jyotir: ['#ff6b6b', '#c43a3a']
     both: ['#c084fc', '#8b45d6']
   favicon: 🗺️
+  h1: Sacred Geography
+  intro: 'Twenty representative Divya Desams, the Vishnu temples sung by the Azhwars, and all twelve Jyotirlingas of
+    Shiva. Tap a marker for its note; every site is also listed below the map.'
   footer: [🗺️ A sacred geography map · Markers are approximate · Map data © OpenStreetMap contributors]
   toggles:
   - {value: all, label: All Sites}

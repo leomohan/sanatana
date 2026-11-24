@@ -1,0 +1,13 @@
+# Served by Cloudflare Pages (with a real 404 status) for any address that does not exist.
+page:
+  file: 404.html
+  layout: page
+  noindex: true
+  title: Page not found — Sanatana
+  description: This page does not exist. Every map on the site is linked below.
+  favicon: 🕉️
+  h1: Page not found
+  intro: 'There is no page at this address. It may have moved. <a href="/">Go to the home page</a>, or pick a map
+    from the list at the bottom of this page.'
+  palette: {}
+blocks: []

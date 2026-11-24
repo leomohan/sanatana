@@ -2,6 +2,7 @@ page:
   file: index.html
   layout: home
   title: Sanatana — Visual Maps of Hindu Literature & Saints
+  description: 'Interactive visual maps of Hindu literature, philosophy, saints, temples and festivals: the Vedas, Gita, Vedanta, Ramayana, Mahabharata and Carnatic music.'
   favicon: 🕉️
   palette:
     veda: ['#ff9f43', '#e07b1a']

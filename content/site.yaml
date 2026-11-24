@@ -2,6 +2,16 @@
 name: Sanatana
 tagline: visual maps of Hindu literature, philosophy and saints
 leaflet_version: 1.9.4
+# --- Search and sharing ---
+# The live address. Canonical links, the sitemap, robots.txt and llms.txt are built from it;
+# change it here if the site moves to its own domain.
+url: https://sanatanadharma.pages.dev
+description: Interactive visual maps of Hindu literature, philosophy, saints, temples and festivals.
+# Shown when a page is shared (WhatsApp, LinkedIn, X...). A page uses assets/og/<page>.jpg if it exists.
+og_image: assets/og/index.jpg
+# Paste the codes from Google Search Console and Bing Webmaster Tools (the content="..." part of their meta tag).
+verify_google: ''
+verify_bing: ''
 nav:
   - {file: index.html, emoji: 🏠, label: Home}
   - {file: veda.html, emoji: 📜, label: Vedic Literature}

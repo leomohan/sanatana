@@ -1,0 +1,39 @@
+# Sanatana
+
+> Interactive visual maps of Hindu literature, philosophy, saints, temples and festivals.
+
+Each page is one static HTML page; all of its text, tables and timelines are in the HTML. Pages list their sources at the bottom. Names of texts, places and people are given in English transliteration, with Sanskrit, Tamil or Hindi script where a page offers it.
+
+## Pages
+
+- [Sanatana — Visual Maps of Hindu Literature & Saints](https://sanatanadharma.pages.dev/): Interactive visual maps of Hindu literature, philosophy, saints, temples and festivals: the Vedas, Gita, Vedanta, Ramayana, Mahabharata and Carnatic music.
+- [Map of Vedic Literature — Vedas, Puranas & Upanishads](https://sanatanadharma.pages.dev/veda): An interactive map of Vedic literature: the Vedas with their Brahmanas, Aranyakas and Upanishads, the Puranas and Itihasas, and how they connect.
+- [Azhwars & Nayanmars — Twin Streams of Tamil Bhakti](https://sanatanadharma.pages.dev/an): The Vaishnava Azhwars and the Shaiva Nayanmars side by side: the poet-saints of Tamil Bhakti, their songs and their dates, from the 6th to 9th centuries CE.
+- [The Six Darshanas — A Comparison Map](https://sanatanadharma.pages.dev/darshanas): Compare the six classical schools of Indian philosophy, Nyaya, Vaisheshika, Samkhya, Yoga, Mimamsa and Vedanta, on reality, knowledge and liberation.
+- [Sacred Geography — Divya Desams & Jyotirlingas](https://sanatanadharma.pages.dev/geography): Twenty representative Divya Desams, the Vishnu temples sung by the Azhwars, and all twelve Jyotirlingas of Shiva on one map of India.
+- [The Bhagavad Gita — 18 Chapters Visualized](https://sanatanadharma.pages.dev/gita): All 18 chapters of the Bhagavad Gita visualized: each chapter's yoga, verses and key teaching, from Arjuna's despair to Krishna's call to surrender.
+- [The Three Vedantas — Advaita, Vishishtadvaita, Dvaita](https://sanatanadharma.pages.dev/vedanta): Advaita, Vishishtadvaita and Dvaita compared: Shankara, Ramanuja and Madhva on Brahman, the self, the world and liberation.
+- [Arupadai Veedu — The Six Abodes of Lord Muruga](https://sanatanadharma.pages.dev/muruga): Lord Muruga's six abodes from Nakkirar's Thirumurugatruppadai: Thiruparankundram, Thiruchendur, Palani, Swamimalai, Thiruthani and Pazhamudircholai.
+- [The Shanmata — Six Major Traditions of Hinduism](https://sanatanadharma.pages.dev/shanmata): The Shanmata, six traditions of Hindu worship: Shaiva, Vaishnava, Shakta, Ganapatya, Saura and Kaumara, with their deities, scriptures and centres.
+- [The Mathas — Lineages of Adi Shankara & Madhvacharya](https://sanatanadharma.pages.dev/mathas): The four Amnaya Peethams founded by Adi Shankara at Sringeri, Dwarka, Puri and Joshimath, and the eight Ashta Mathas of Madhvacharya at Udupi.
+- [Jyotisha — Grahas, Rashis, Nakshatras, Panchanga & Samvatsaras](https://sanatanadharma.pages.dev/jyotisha): Vedic astrology mapped: the nine Grahas, 12 Rashis and 27 Nakshatras, the five limbs of the Panchanga, and the 60-year Samvatsara cycle.
+- [From Cradle to Pyre — Samskaras & Life-Cycle Rituals](https://sanatanadharma.pages.dev/samskaras): The sixteen samskaras and life-cycle rituals of South Indian Brahmin homes, from the first blessing at birth to the final rites, explained stage by stage.
+- [Shiva & Muruga — Forms, Sites, Texts & Festivals](https://sanatanadharma.pages.dev/shiva-muruga): Shiva and Muruga in Tamil Saiva devotion, father and son: their forms, sacred sites, scriptures and festivals, mapped side by side.
+- [Navagraha Temples — The Nine Planet Shrines of the Kaveri Delta](https://sanatanadharma.pages.dev/navagraha): Interactive map of the nine Navagraha temples around Kumbakonam, Tamil Nadu, with their deities, legends and links to the Jyotisha grahas.
+- [Pancha Bhoota Sthalams — Shiva as the Five Elements](https://sanatanadharma.pages.dev/pancha-bhoota): Shiva's five element temples on a map: earth at Kanchipuram, water at Thiruvanaikaval, fire at Tiruvannamalai, air at Srikalahasti, space at Chidambaram.
+- [Shakti Peethas — Where Sati Fell](https://sanatanadharma.pages.dev/shakti-peethas): Interactive map of the 18 Maha Shakti Peethas and the four Adi Shakti Peethas, with the legend of Sati and Daksha's sacrifice.
+- [The Ramayana Journey — Rama's Route in Valmiki, Kamban and Tulsidas](https://sanatanadharma.pages.dev/ramayana): Interactive map of Rama's route from Ayodhya to Lanka and back, with notes on how Valmiki, Kamban and Tulsidas tell the key episodes.
+- [The Mahabharata Family Tree — Kurus, Pandavas, Kauravas and Yadavas](https://sanatanadharma.pages.dev/mahabharata): Interactive family tree of the Mahabharata, from Shantanu to Janamejaya, with the Yadava, Panchala and Gandhara houses and the people who shaped the war.
+- [Dashavatara — The Ten Avatars of Vishnu](https://sanatanadharma.pages.dev/dashavatara): The ten avatars of Vishnu, from Matsya to Kalki, across the four yugas, with how the lists differ between traditions.
+- [Carnatic Music — The Trinity, the Composers and the 72 Melakartas](https://sanatanadharma.pages.dev/carnatic): Carnatic music's composers on one timeline, the Trinity of Tiruvarur, and all 72 melakarta ragas laid out by their swaras.
+- [Raga Geometry — Carnatic Raga and Tala, Drawn to Scale](https://sanatanadharma.pages.dev/raga-geometry): An interactive raga wheel and Adi Talam wheel. Pick a raga, hear its ascent and descent over a drone, and watch both wheels move.
+- [Sanskrit Poets & Dramatists — Kalidasa, Bhasa, Bhavabhuti, Banabhatta](https://sanatanadharma.pages.dev/sanskrit-poets): Four great writers of classical Sanskrit, Bhasa, Kalidasa, Bhavabhuti and Banabhatta, with their major plays, poems and prose works.
+- [When India Says “Ram” — Twelve Everyday Expressions](https://sanatanadharma.pages.dev/ram): The name Ram in everyday Indian speech, from Ram Ram to Ram Naam Satya Hai. Twelve expressions and what each one says about the person speaking.
+- [Guru Parampara — Sringeri, Sri Vaishnava and Madhva Lineages](https://sanatanadharma.pages.dev/parampara): Teacher–disciple lineages as timelines: the 36 Jagadgurus of Sringeri, the Sri Vaishnava acharyas around Ramanuja, and Madhva's pontiffs and mathas.
+- [Tamil Literature — Sangam, Thirukkural and the 18 Siddhars](https://sanatanadharma.pages.dev/tamil-literature): Classical Tamil poetry mapped: the Sangam Eight Anthologies and Ten Idylls, the five landscapes, the Thirukkural and Kilkanakku works, and the 18 Siddhars.
+- [Temple Architecture — Nagara, Dravida and Vesara](https://sanatanadharma.pages.dev/temples): The three classical styles of the Hindu temple, drawn as labelled diagrams, compared part by part and mapped through fourteen landmark temples.
+- [The Festival Wheel — Hindu Festivals Through the Lunar Year](https://sanatanadharma.pages.dev/festivals): A year-round wheel of Hindu festivals set on the Panchanga: twelve lunar months, bright and dark halves and six seasons, each festival placed on its tithi.
+
+## Optional
+
+- [Sitemap](https://sanatanadharma.pages.dev/sitemap.xml): every page with its last-changed date
