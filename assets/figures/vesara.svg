@@ -1,0 +1,25 @@
+<svg viewBox="0 0 405 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elevation of a Vesara (Hoysala) temple: star-shaped platform, banded friezes, a stepped tower with strong vertical projections and a rounded crown">
+  <path class="f-base" d="M30 348 L40 332 L52 344 L64 332 L76 344 L88 332 L100 344 L112 332 L124 344 L136 332 L148 344 L160 332 L172 344 L184 332 L196 344 L208 332 L220 344 L232 332 L244 344 L256 332 L262 348 Z"/>
+  <rect class="f-base" x="62" y="288" width="166" height="44"/>
+  <g class="f-frieze"><path d="M62 297 H228 M62 306 H228 M62 315 H228 M62 324 H228"/></g>
+  <path class="f-line" d="M70 297 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0"/>
+  <rect class="f-wall" x="82" y="232" width="126" height="56"/>
+  <path class="f-line" d="M92 232 V288 M104 232 V288 M186 232 V288 M198 232 V288"/>
+  <rect class="f-door" x="131" y="250" width="28" height="38" rx="3"/>
+  <path class="f-mass" d="M80 232 V210 H92 V190 H104 V170 H116 V152 H174 V170 H186 V190 H198 V210 H210 V232 Z"/>
+  <path class="f-line" d="M100 232 V196 M114 232 V176 M128 232 V156 M145 232 V152 M162 232 V156 M176 232 V176 M190 232 V196"/>
+  <path class="f-line" d="M84 220 H206 M96 200 H194 M108 180 H182 M120 162 H170"/>
+  <path class="f-acc" d="M112 152 Q114 112 145 106 Q176 112 178 152 Z"/>
+  <path class="f-line" d="M124 150 Q128 120 145 114 Q162 120 166 150"/>
+  <path class="f-acc" d="M137 106 Q137 92 145 90 Q153 92 153 106 Z"/>
+  <line class="f-acc" x1="145" y1="90" x2="145" y2="78"/>
+  <g class="f-lead"><path d="M156 90 H250"/><path d="M174 126 H250"/><path d="M192 196 H250"/><path d="M228 306 H250"/><path d="M262 342 H272"/></g>
+  <text class="f-lbl" x="254" y="94">Kalasha</text>
+  <text class="f-lbl" x="254" y="122">Shikhara — rounded</text><text class="f-lbl" x="254" y="137">crown</text>
+  <text class="f-lbl" x="254" y="188">Stepped tiers cut by</text><text class="f-lbl" x="254" y="203">vertical projections</text>
+  <text class="f-lbl" x="254" y="302">Friezes — bands of</text><text class="f-lbl" x="254" y="317">carving (Hoysala)</text>
+  <text class="f-lbl" x="276" y="346">Star-shaped jagati</text>
+  <text class="f-cap" x="30" y="378">PLAN · stellate (star-shaped), often on a raised platform</text>
+  <path class="f-plan" d="M100 386 L106 400 L120 394 L114 408 L130 412 L114 416 L120 430 L106 424 L100 438 L94 424 L80 430 L86 416 L70 412 L86 408 L80 394 L94 400 Z"/>
+  <circle class="f-door" cx="100" cy="412" r="6"/>
+</svg>

@@ -1,0 +1,568 @@
+page:
+  file: festivals.html
+  layout: page
+  title: The Festival Wheel — Hindu Festivals Through the Lunar Year
+  description: A year-round wheel of Hindu festivals set on the Panchanga. Twelve lunar months, their bright and dark
+    halves and six seasons, with each festival placed on its tithi.
+  favicon: 🎆
+  search: Search festivals, months, regions…
+  native: sa
+  palette:
+    vasanta: ['#26de81', '#1e9e5c']
+    grishma: ['#ff9f43', '#d9771a']
+    varsha: ['#4a9eff', '#1a6fc4']
+    sharad: ['#a55eea', '#7b3fc4']
+    hemanta: ['#2bcbba', '#1a9488']
+    shishira: ['#ff6b81', '#d63c5a']
+    gold: ['#f7b731', '#b7861b']
+  gradient: [vasanta, grishma, varsha, sharad, hemanta, shishira]
+  primary: gold
+  h1: The Festival Wheel
+  intro: 'Hindu festivals are fixed by the Moon, not the Gregorian calendar, so they move from year to year. Tied to
+    the <a href="jyotisha.html">Panchanga</a>, they keep their place in the lunar year. The wheel below lays out that
+    year: twelve months, each with a bright half and a dark half, six seasons, and each festival on its tithi.'
+  legend:
+  - {label: Vasanta · spring, color: vasanta}
+  - {label: Grishma · summer, color: grishma}
+  - {label: Varsha · rains, color: varsha}
+  - {label: Sharad · autumn, color: sharad}
+  - {label: Hemanta · early winter, color: hemanta}
+  - {label: Shishira · late winter, color: shishira}
+  filters:
+  - {value: all, label: Whole year, color: gold}
+  - {value: vasanta, label: Vasanta, color: vasanta}
+  - {value: grishma, label: Grishma, color: grishma}
+  - {value: varsha, label: Varsha, color: varsha}
+  - {value: sharad, label: Sharad, color: sharad}
+  - {value: hemanta, label: Hemanta, color: hemanta}
+  - {value: shishira, label: Shishira, color: shishira}
+  footer: ['🪔 A visual map of the Hindu festival year · Months are amanta (new moon to new moon); Gregorian months are
+      approximate', 'Regional calendars differ; check a local Panchanga for exact dates in a given year']
+blocks:
+- {type: filters}
+- type: festival-wheel
+  label: Festival wheel of the lunar year
+  hub: [CHANDRAMANA, Lunar year, 12 MONTHS · 360 TITHIS]
+  months:
+  - {name: Chaitra, greg: Mar–Apr}
+  - {name: Vaishakha, greg: Apr–May}
+  - {name: Jyeshtha, greg: May–Jun}
+  - {name: Ashadha, greg: Jun–Jul}
+  - {name: Shravana, greg: Jul–Aug}
+  - {name: Bhadrapada, greg: Aug–Sep}
+  - {name: Ashvina, greg: Sep–Oct}
+  - {name: Kartika, greg: Oct–Nov}
+  - {name: Margashirsha, greg: Nov–Dec}
+  - {name: Pausha, greg: Dec–Jan}
+  - {name: Magha, greg: Jan–Feb}
+  - {name: Phalguna, greg: Feb–Mar}
+  ritus:
+  - {name: Vasanta, sub: spring, color: vasanta}
+  - {name: Grishma, sub: summer, color: grishma}
+  - {name: Varsha, sub: rains, color: varsha}
+  - {name: Sharad, sub: autumn, color: sharad}
+  - {name: Hemanta, sub: early winter, color: hemanta}
+  - {name: Shishira, sub: late winter, color: shishira}
+  key:
+  - {label: 'Shukla paksha · bright half', cls: sh}
+  - {label: 'Krishna paksha · dark half', cls: kr}
+  - {label: Purnima · full moon, cls: full}
+  - {label: Amavasya · new moon, cls: new}
+  - {label: Solar festival (dashed = position varies), cls: sol}
+- type: pairs
+  title: How to read the wheel
+  items:
+  - {title: A tithi is a lunar day, color: gold, text: 'Each tithi is the time the Moon takes to gain 12° on the Sun.
+      Thirty tithis make a lunar month, so the wheel has 360 of them, one degree each. Tithi is one of the five limbs
+      of the <a href="jyotisha.html">Panchanga</a>.'}
+  - {title: Bright half and dark half, color: gold, text: 'Shukla paksha runs from new moon to full moon, the waxing half.
+      Krishna paksha runs from full moon back to new moon. Most festivals are named by month, paksha and tithi, for example
+      Chaitra Shukla Navami for Rama Navami.'}
+  - {title: Where the month ends, color: gold, text: 'This wheel uses <strong>amanta</strong> months, ending at the new
+      moon, as in South India, Maharashtra and Gujarat. Most of North India uses <strong>purnimanta</strong> months that
+      end at the full moon. There, a dark-half festival takes the next month''s name: Janmashtami becomes Bhadrapada Krishna
+      Ashtami, but the day itself is the same.'}
+  - {title: Keeping pace with the Sun, color: gold, text: 'Twelve lunar months fall about eleven days short of a solar
+      year. Roughly every thirty-two and a half months an extra month (adhika masa) is added. Solar festivals such as
+      Makara Sankranti follow the Sun''s entry into a sign instead, so they land on a different tithi each year.'}
+- type: cards
+  title: The festivals, month by month
+  grid: v3
+  empty: Nothing matches your search. Try another word or clear the filter.
+  cards:
+  - id: ugadi
+    anchor: true
+    num: '1'
+    title: Ugadi · Gudi Padwa
+    native: युगादि
+    subtitle: Chaitra · Shukla Pratipada
+    wheel:
+      month: 0
+      paksha: shukla
+      tithi: 1
+    accent: vasanta
+    tags: vasanta
+    body: 'The lunar New Year in the Deccan: Ugadi in Karnataka, Andhra and Telangana, Gudi Padwa in Maharashtra.
+      A new Samvatsara of the <a href="jyotisha.html">sixty-year cycle</a> begins, and families taste neem with jaggery,
+      bitter with sweet.'
+    chips:
+    - Karnataka
+    - Andhra
+    - Maharashtra
+  - id: ramanavami
+    anchor: true
+    num: '2'
+    title: Rama Navami
+    native: राम नवमी
+    subtitle: Chaitra · Shukla Navami
+    wheel:
+      month: 0
+      paksha: shukla
+      tithi: 9
+    accent: vasanta
+    tags: vasanta
+    body: The birth of Rama at noon in Ayodhya. Many keep the nine days before it as Vasanta Navaratri. See the <a
+      href="ramayana.html">Ramayana journey</a>.
+    chips:
+    - Pan-Indian
+  - id: hanuman
+    anchor: true
+    num: '3'
+    title: Hanuman Jayanti
+    native: हनुमान जयन्ती
+    subtitle: Chaitra · Shukla Purnima
+    wheel:
+      month: 0
+      paksha: shukla
+      tithi: 15
+    accent: vasanta
+    tags: vasanta
+    body: 'Kept on Chaitra Purnima across much of North India. Regional calendars differ: Tamil Nadu keeps it on the
+      new moon of Margazhi, and Andhra in Vaishakha.'
+    chips:
+    - North India
+  - id: mesha
+    anchor: true
+    num: '4'
+    title: Mesha Sankranti
+    native: मेष संक्रान्ति
+    subtitle: Solar · the Sun enters Mesha (Aries)
+    wheel:
+      angle: 22
+      solar: true
+      approx: true
+    accent: vasanta
+    tags: vasanta
+    body: 'The Sun enters Aries, usually about 14 April. It is the solar New Year in many regions: Puthandu in Tamil
+      Nadu, Vishu in Kerala, Baisakhi in Punjab, Bohag Bihu in Assam and Pohela Boishakh in Bengal.'
+    chips:
+    - Tamil Nadu
+    - Kerala
+    - Punjab
+    - Assam
+    - Bengal
+  - id: akshaya
+    anchor: true
+    num: '5'
+    title: Akshaya Tritiya
+    native: अक्षय तृतीया
+    subtitle: Vaishakha · Shukla Tritiya
+    wheel:
+      month: 1
+      paksha: shukla
+      tithi: 3
+    accent: vasanta
+    tags: vasanta
+    body: The "imperishable" third. Whatever is begun or given on this day is believed to grow without end, so it
+      is a favourite day for weddings, new ventures and buying gold.
+    chips:
+    - Pan-Indian
+  - id: narasimha
+    anchor: true
+    num: '6'
+    title: Narasimha Jayanti
+    native: नृसिंह जयन्ती
+    subtitle: Vaishakha · Shukla Chaturdashi
+    wheel:
+      month: 1
+      paksha: shukla
+      tithi: 14
+    accent: vasanta
+    tags: vasanta
+    body: The day the man-lion burst from the pillar to save Prahlada. See the <a href="dashavatara.html">Dashavatara</a>.
+    chips:
+    - Ahobilam
+    - Simhachalam
+  - id: ganga
+    anchor: true
+    num: '7'
+    title: Ganga Dussehra
+    native: गङ्गा दशहरा
+    subtitle: Jyeshtha · Shukla Dashami
+    wheel:
+      month: 2
+      paksha: shukla
+      tithi: 10
+    accent: grishma
+    tags: grishma
+    body: The descent of the Ganga to earth through Bhagirathas penance, marked with bathing at Haridwar and Varanasi.
+    chips:
+    - North India
+  - id: vat
+    anchor: true
+    num: '8'
+    title: Vat Purnima
+    native: वट पूर्णिमा
+    subtitle: Jyeshtha · Shukla Purnima
+    wheel:
+      month: 2
+      paksha: shukla
+      tithi: 15
+    accent: grishma
+    tags: grishma
+    body: Married women tie threads around a banyan tree in memory of Savitri, who won back her husband Satyavan from
+      Yama. North India keeps the same vow, Vat Savitri, on the new moon of Jyeshtha instead.
+    chips:
+    - Maharashtra
+    - Gujarat
+    - Karnataka
+  - id: rathyatra
+    anchor: true
+    num: '9'
+    title: Rath Yatra
+    native: रथ यात्रा
+    subtitle: Ashadha · Shukla Dvitiya
+    wheel:
+      month: 3
+      paksha: shukla
+      tithi: 2
+    accent: grishma
+    tags: grishma
+    body: Jagannath, Balabhadra and Subhadra ride out of the Puri temple on three giant wooden chariots, rebuilt every
+      year.
+    chips:
+    - Puri
+    - Odisha
+  - id: ashadhi
+    anchor: true
+    num: '10'
+    title: Ashadhi Ekadashi
+    native: आषाढी एकादशी
+    subtitle: Ashadha · Shukla Ekadashi
+    wheel:
+      month: 3
+      paksha: shukla
+      tithi: 11
+    accent: grishma
+    tags: grishma
+    body: Vishnu lies down to sleep on the serpent Shesha (Devshayani Ekadashi), and the four months of Chaturmasya
+      begin. The great Wari pilgrimage on foot reaches Vithoba at Pandharpur on this day.
+    chips:
+    - Pandharpur
+    - Maharashtra
+  - id: gurupurnima
+    anchor: true
+    num: '11'
+    title: Guru Purnima
+    native: गुरु पूर्णिमा
+    subtitle: Ashadha · Shukla Purnima
+    wheel:
+      month: 3
+      paksha: shukla
+      tithi: 15
+    accent: grishma
+    tags: grishma
+    body: Vyasa Purnima, the day to honour ones teachers. Sannyasis begin their rainy-season retreat. See the <a href="parampara.html">guru
+      paramparas</a>.
+    chips:
+    - Pan-Indian
+  - id: nagapanchami
+    anchor: true
+    num: '12'
+    title: Naga Panchami
+    native: नाग पञ्चमी
+    subtitle: Shravana · Shukla Panchami
+    wheel:
+      month: 4
+      paksha: shukla
+      tithi: 5
+    accent: varsha
+    tags: varsha
+    body: Serpent deities are worshipped with milk at anthills and nagakal stones as the monsoon brings snakes out
+      of the earth.
+    chips:
+    - Pan-Indian
+  - id: upakarma
+    anchor: true
+    num: '13'
+    title: Raksha Bandhan · Upakarma
+    native: रक्षाबन्धन · उपाकर्म
+    subtitle: Shravana · Shukla Purnima
+    wheel:
+      month: 4
+      paksha: shukla
+      tithi: 15
+    accent: varsha
+    tags: varsha
+    body: Sisters tie the protective rakhi on their brothers wrists. On the same full moon, Yajurvedi Brahmins renew
+      the sacred thread (Avani Avittam in Tamil Nadu).
+    chips:
+    - Pan-Indian
+  - id: janmashtami
+    anchor: true
+    num: '14'
+    title: Krishna Janmashtami
+    native: कृष्ण जन्माष्टमी
+    subtitle: Shravana · Krishna Ashtami
+    wheel:
+      month: 4
+      paksha: krishna
+      tithi: 8
+    accent: varsha
+    tags: varsha
+    body: Krishnas birth at midnight. Here it falls in Shravana; calendars that end the month at the full moon call
+      the same day Bhadrapada Krishna Ashtami. Dahi Handi follows in Maharashtra.
+    chips:
+    - Pan-Indian
+    - Mathura
+    - Gokulashtami in the South
+  - id: ganesh
+    anchor: true
+    num: '15'
+    title: Ganesh Chaturthi
+    native: गणेश चतुर्थी
+    subtitle: Bhadrapada · Shukla Chaturthi
+    wheel:
+      month: 5
+      paksha: shukla
+      tithi: 4
+    accent: varsha
+    tags: varsha
+    body: Clay images of Ganesha are installed at home and in public pandals, worshipped for one to ten days and then
+      immersed in water.
+    chips:
+    - Maharashtra
+    - Karnataka
+    - Telangana
+    - Pan-Indian
+  - id: mahalaya
+    anchor: true
+    num: '16'
+    title: Mahalaya Amavasya
+    native: महालय अमावास्या
+    subtitle: Bhadrapada · Amavasya (new moon)
+    wheel:
+      month: 5
+      tithi: amavasya
+    accent: varsha
+    tags: varsha
+    body: The last day of Pitru Paksha, the fortnight for offerings to ancestors. In Bengal it also heralds Durga
+      Puja.
+    chips:
+    - Pan-Indian
+    - Bengal
+  - id: navaratri
+    anchor: true
+    num: '17'
+    title: Navaratri
+    native: नवरात्रि
+    subtitle: Ashvina · Shukla Pratipada
+    wheel:
+      month: 6
+      paksha: shukla
+      tithi: 1
+    accent: sharad
+    tags: sharad
+    body: Nine nights of the Goddess. Bengal keeps them as Durga Puja, Gujarat dances garba, Tamil Nadu and Karnataka
+      set up golu displays of dolls, and Mysuru holds its Dasara.
+    chips:
+    - Pan-Indian
+  - id: vijayadashami
+    anchor: true
+    num: '18'
+    title: Vijayadashami · Dussehra
+    native: विजयादशमी
+    subtitle: Ashvina · Shukla Dashami
+    wheel:
+      month: 6
+      paksha: shukla
+      tithi: 10
+    accent: sharad
+    tags: sharad
+    body: 'Victory day: Rama over Ravana in the North, Durga over Mahishasura in the East. It is an auspicious day
+      to begin learning (Vidyarambham).'
+    chips:
+    - Pan-Indian
+  - id: deepavali
+    anchor: true
+    num: '19'
+    title: Deepavali
+    native: दीपावली
+    subtitle: Ashvina · Amavasya (new moon)
+    wheel:
+      month: 6
+      tithi: amavasya
+    accent: sharad
+    tags: sharad
+    body: The festival of lamps. Lakshmi Puja falls on the new moon, and the South celebrates Naraka Chaturdashi,
+      Krishnas victory over Narakasura, at dawn the day before. Northern calendars call the month Kartika.
+    chips:
+    - Pan-Indian
+  - id: prabodhini
+    anchor: true
+    num: '20'
+    title: Prabodhini Ekadashi
+    native: प्रबोधिनी एकादशी
+    subtitle: Kartika · Shukla Ekadashi
+    wheel:
+      month: 7
+      paksha: shukla
+      tithi: 11
+    accent: sharad
+    tags: sharad
+    body: Vishnu wakes from his four-month sleep and Chaturmasya ends. Tulasi Vivah, the marriage of the tulasi plant
+      to Vishnu, follows.
+    chips:
+    - Pan-Indian
+  - id: kartika
+    anchor: true
+    num: '21'
+    title: Kartika Purnima · Karthigai Deepam
+    native: कार्तिक पूर्णिमा
+    subtitle: Kartika · Shukla Purnima
+    wheel:
+      month: 7
+      paksha: shukla
+      tithi: 15
+    accent: sharad
+    tags: sharad
+    body: The Ganga ghats of Varanasi glow for Dev Deepavali. In Tamil Nadu the great beacon is lit on Arunachala
+      at <a href="pancha-bhoota.html">Tiruvannamalai</a>, timed by the Krittika star in the month of Karthigai.
+    chips:
+    - Varanasi
+    - Tiruvannamalai
+  - id: gitajayanti
+    anchor: true
+    num: '22'
+    title: Gita Jayanti
+    native: गीता जयन्ती
+    subtitle: Margashirsha · Shukla Ekadashi
+    wheel:
+      month: 8
+      paksha: shukla
+      tithi: 11
+    accent: hemanta
+    tags: hemanta
+    body: The day Krishna spoke the <a href="gita.html">Bhagavad Gita</a> to Arjuna at Kurukshetra, kept on Mokshada
+      Ekadashi.
+    chips:
+    - Kurukshetra
+    - Pan-Indian
+  - id: vaikuntha
+    anchor: true
+    num: '23'
+    title: Vaikuntha Ekadashi
+    native: वैकुण्ठ एकादशी
+    subtitle: Pausha · Shukla Ekadashi
+    wheel:
+      month: 9
+      paksha: shukla
+      tithi: 11
+      approx: true
+    accent: hemanta
+    tags: hemanta
+    body: The "gate to Vaikuntha" (Paramapada Vasal) opens in Vishnu temples such as Srirangam and Tirumala. It falls
+      in the solar month of Margazhi (Dhanu), so its lunar month varies, and it is shown here at its usual place.
+    chips:
+    - Srirangam
+    - Tirumala
+  - id: sankranti
+    anchor: true
+    num: '24'
+    title: Makara Sankranti · Pongal
+    native: मकर सङ्क्रान्ति
+    subtitle: Solar · the Sun enters Makara (Capricorn)
+    wheel:
+      angle: 295
+      solar: true
+      approx: true
+    accent: hemanta
+    tags: hemanta
+    body: The Sun enters Capricorn and begins its northward course (Uttarayana), usually about 14 January. It is Pongal
+      in Tamil Nadu, Lohri the evening before in Punjab, Magh Bihu in Assam, and the kite festival Uttarayan in Gujarat.
+    chips:
+    - Tamil Nadu
+    - Gujarat
+    - Punjab
+    - Assam
+  - id: vasantpanchami
+    anchor: true
+    num: '25'
+    title: Vasant Panchami
+    native: वसन्त पञ्चमी
+    subtitle: Magha · Shukla Panchami
+    wheel:
+      month: 10
+      paksha: shukla
+      tithi: 5
+    accent: shishira
+    tags: shishira
+    body: The first breath of spring and the day of Saraswati. Children write their first letters, and books and instruments
+      are worshipped.
+    chips:
+    - Pan-Indian
+    - Bengal
+  - id: rathasaptami
+    anchor: true
+    num: '26'
+    title: Ratha Saptami
+    native: रथ सप्तमी
+    subtitle: Magha · Shukla Saptami
+    wheel:
+      month: 10
+      paksha: shukla
+      tithi: 7
+    accent: shishira
+    tags: shishira
+    body: Surya turns his chariot northward. It is a bathing festival for the Sun god, with arka leaves placed on
+      the head.
+    chips:
+    - South India
+  - id: shivaratri
+    anchor: true
+    num: '27'
+    title: Maha Shivaratri
+    native: महाशिवरात्रि
+    subtitle: Magha · Krishna Chaturdashi
+    wheel:
+      month: 10
+      paksha: krishna
+      tithi: 14
+    accent: shishira
+    tags: shishira
+    body: The great night of Shiva, kept with fasting and a vigil of four night-long worships. Here it falls in Magha;
+      calendars that end the month at the full moon call it Phalguna. See <a href="shiva-muruga.html">Shiva & Muruga</a>.
+    chips:
+    - Pan-Indian
+  - id: holi
+    anchor: true
+    num: '28'
+    title: Holi · Panguni Uttiram
+    native: होली
+    subtitle: Phalguna · Shukla Purnima
+    wheel:
+      month: 11
+      paksha: shukla
+      tithi: 15
+    accent: shishira
+    tags: shishira
+    body: Bonfires for Holika on the full-moon night, then a day of colours. In Tamil Nadu the same full moon is Panguni
+      Uttiram, when the divine weddings of Shiva and Parvati and of Murugan and Deivanai are celebrated.
+    chips:
+    - North India
+    - Tamil Nadu
+- type: sources
+  items:
+  - {label: List of Hindu festivals — Wikipedia (month and tithi for each festival), url: 'https://en.wikipedia.org/wiki/List_of_Hindu_festivals'}
+  - {label: Drik Panchang — festival dates by year, amanta and purnimanta, url: 'https://www.drikpanchang.com/'}
+  - {label: Hindu calendar — Wikipedia, url: 'https://en.wikipedia.org/wiki/Hindu_calendar'}

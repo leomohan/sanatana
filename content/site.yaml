@@ -26,3 +26,7 @@ nav:
   - {file: raga-geometry.html, emoji: 🎡, label: Raga Geometry}
   - {file: sanskrit-poets.html, emoji: ✒️, label: Sanskrit Poets}
   - {file: ram.html, emoji: 🙏, label: When India Says Ram}
+  - {file: parampara.html, emoji: 🪔, label: Guru Parampara}
+  - {file: tamil-literature.html, emoji: 📜, label: Tamil Literature}
+  - {file: temples.html, emoji: 🛕, label: Temple Architecture}
+  - {file: festivals.html, emoji: 🎆, label: Festival Wheel}

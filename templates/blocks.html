@@ -256,7 +256,7 @@
     {%- for r in b.rows %}
     <div class="ls-row" data-item{% if r.tags %} data-tags="{{ r.tags }}"{% endif %} style="--accent:{{ r.color|color }}">
       <span class="ls-name">{% if r.href %}<a href="{{ r.href }}">{{ r.name }}</a>{% else %}{{ r.name }}{% endif %}</span>
-      <span class="ls-track"><span class="ls-bar{{ ' circa' if r.circa }}" style="left:{{ ((r.born - b['from']) / span * 100)|round(2) }}%;width:{{ ((r.died - r.born) / span * 100)|round(2) }}%" title="{{ r.name }} · {{ 'c. ' if r.circa }}{{ r.born }}–{{ r.died }}"></span><span class="ls-years" style="left:{{ ((r.died - b['from']) / span * 100)|round(2) }}%">{{ 'c. ' if r.circa }}{{ r.born }}–{{ r.died }}</span></span>
+      <span class="ls-track"><span class="ls-bar{{ ' circa' if r.circa }}" style="left:{{ ((r.born - b['from']) / span * 100)|round(2) }}%;width:{{ ((r.died - r.born) / span * 100)|round(2) }}%" title="{{ r.name }} · {{ r.label or (('c. ' if r.circa else '') ~ r.born ~ '–' ~ r.died) }}"></span><span class="ls-years" style="left:{{ ((r.died - b['from']) / span * 100)|round(2) }}%">{{ r.label or (('c. ' if r.circa else '') ~ r.born ~ '–' ~ r.died) }}</span></span>
     </div>
     {%- endfor %}
   </div>
@@ -340,6 +340,67 @@
   </div>
   {%- if b.note %}<p class="rg-foot">{{ b.note|safe }}</p>{% endif %}
 </div>
+
+{%- elif b.type == 'figures' %}
+<section class="figures" data-block{{ sect(b) }}>
+  {{ title(b) }}
+  {{ intro(b) }}
+  <div class="fig-grid">
+  {%- for f in b['items'] %}
+    <figure class="fig" data-item{% if f.tags %} data-tags="{{ f.tags }}"{% endif %} style="--accent:{{ f.color|color }}">
+      <figcaption><b>{{ f.title }}</b>{% if f.native %} <span class="native">{{ f.native }}</span>{% endif %}{% if f.sub %}<span>{{ f.sub }}</span>{% endif %}</figcaption>
+      {{ inline_svg(f.svg) }}
+      {%- if f.note %}<p>{{ f.note|safe }}</p>{% endif %}
+    </figure>
+  {%- endfor %}
+  </div>
+</section>
+
+{%- elif b.type == 'festival-wheel' %}
+{%- set C = 320 %}
+<section class="fwheel" data-block>
+  {{ title(b) }}
+  {{ intro(b) }}
+  <div class="fwheel-wrap">
+  <svg viewBox="0 0 640 640" role="img" aria-label="{{ b.label or 'Festival wheel' }}">
+    {%- for r in b.ritus %}
+    {%- set a0 = loop.index0 * 60 %}
+    <path class="fw-ritu" style="--rc:{{ r.color|color }}" d="{{ sector(C, C, 128, 168, a0 + 0.6, a0 + 59.4) }}"/>
+    {%- set tp = polar(C, C, 148, a0 + 30) %}
+    <text class="fw-ritu-l" x="{{ tp[0] }}" y="{{ tp[1] - 5 }}" style="fill:{{ r.color|color }}">{{ r.name }}</text>
+    <text class="fw-ritu-s" x="{{ tp[0] }}" y="{{ tp[1] + 9 }}">{{ r.sub }}</text>
+    {%- endfor %}
+    {%- for m in b.months %}
+    {%- set a0 = loop.index0 * 30 %}
+    <path class="fw-shukla" d="{{ sector(C, C, 236, 276, a0 + 0.4, a0 + 15) }}"><title>{{ m.name }} · Shukla paksha (bright half)</title></path>
+    <path class="fw-krishna" d="{{ sector(C, C, 236, 276, a0 + 15, a0 + 29.6) }}"><title>{{ m.name }} · Krishna paksha (dark half)</title></path>
+    {%- set mid = a0 + 15 %}{%- set rot = mid if (mid <= 90 or mid >= 270) else mid - 180 %}
+    {%- set top = mid <= 90 or mid >= 270 %}
+    {%- set lp = polar(C, C, 262 if top else 249, mid) %}{%- set gp = polar(C, C, 248 if top else 263, mid) %}
+    <text class="fw-month" x="{{ lp[0] }}" y="{{ lp[1] }}" transform="rotate({{ rot }} {{ lp[0] }} {{ lp[1] }})">{{ m.name }}</text>
+    <text class="fw-greg" x="{{ gp[0] }}" y="{{ gp[1] }}" transform="rotate({{ rot }} {{ gp[0] }} {{ gp[1] }})">{{ m.greg }}</text>
+    {%- set pp = polar(C, C, 282, a0 + 14.5) %}
+    <circle class="fw-moon full" cx="{{ pp[0] }}" cy="{{ pp[1] }}" r="3.2"><title>Purnima · full moon</title></circle>
+    {%- set np = polar(C, C, 282, a0 + 29.5) %}
+    <circle class="fw-moon new" cx="{{ np[0] }}" cy="{{ np[1] }}" r="3.2"><title>Amavasya · new moon</title></circle>
+    {%- endfor %}
+    <circle class="fw-hub" cx="{{ C }}" cy="{{ C }}" r="118"/>
+    <text class="fw-hub-k" x="{{ C }}" y="{{ C - 30 }}">{{ b.hub[0] }}</text>
+    <text class="fw-hub-b" x="{{ C }}" y="{{ C + 4 }}">{{ b.hub[1] }}</text>
+    <text class="fw-hub-k" x="{{ C }}" y="{{ C + 32 }}">{{ b.hub[2] }}</text>
+    {%- set lanes = wheel_lanes(all_cards) %}
+    {%- for c in all_cards if c.wheel %}
+    {%- set ang = wheel_angle(c.wheel) %}
+    {%- set dp = polar(C, C, lanes[c.id] if not c.wheel.solar else 312, ang) %}
+    {%- set target = c.anchor if c.anchor is string else c.id %}
+    <a href="#{{ target }}" aria-label="{{ c.title }}"><g class="fw-dot{{ ' solar' if c.wheel.solar }}{{ ' approx' if c.wheel.approx }}" data-fade data-tags="{{ c.tags }}" style="--dc:{{ c.accent|color }}">
+      <circle cx="{{ dp[0] }}" cy="{{ dp[1] }}" r="{{ 11 if not c.wheel.solar else 10 }}"/>
+      <text x="{{ dp[0] }}" y="{{ dp[1] }}">{{ c.num }}</text><title>{{ c.num }} · {{ c.title }} — {{ c.subtitle }}</title></g></a>
+    {%- endfor %}
+  </svg>
+  </div>
+  {%- if b.key %}<div class="legend fw-key">{% for k in b.key %}<span><i class="dot {{ k.cls }}"></i>{{ k.label }}</span>{% endfor %}</div>{% endif %}
+</section>
 
 {%- endif %}
 {% endmacro %}

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temple Architecture — Nagara, Dravida and Vesara</title>
+<meta name="description" content="The three classical styles of the Hindu temple, drawn as labelled diagrams, compared part by part and mapped through fourteen landmark temples.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛕</text></svg>">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="assets/site.css?v=7d8eeccc">
+<style>:root,[data-theme="dark"]{--nagara:#ff9f43; --dravida:#4a9eff; --vesara:#a55eea; --stone:#f7b731;} [data-theme="light"]{--nagara:#d9771a; --dravida:#1a6fc4; --vesara:#7b3fc4; --stone:#b7861b;} :root{--primary:var(--stone); --grad-h:linear-gradient(90deg,var(--nagara),var(--stone),var(--dravida),var(--vesara)); --grad-v:linear-gradient(var(--nagara),var(--stone),var(--dravida),var(--vesara));}</style>
+<script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
+  (function(){
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
+  })();
+</script>
+</head>
+<body>
+<div class="controls" role="toolbar" aria-label="Page controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
+  <div class="search-wrap">
+    <span aria-hidden="true">🔍</span>
+    <input type="search" id="searchInput" placeholder="Search temples, styles, parts…" aria-label="Search">
+  </div>
+  <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
+    <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">संस्कृतम्</button>
+  </div>
+  <div class="ctrl-group" role="group" aria-label="Text size">
+    <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
+    <span class="size-val" id="sizeVal">100%</span>
+    <button class="ctrl-btn size-btn" id="sizeUp" aria-label="Increase text size">A+</button>
+  </div>
+  <button class="ctrl-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+    <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+    <span id="toggleLabel">Light</span>
+  </button>
+</div>
+<header>
+  <h1>Temple Architecture</h1>
+  <p>A Hindu temple is a house for a deity and a model of the cosmos, rising from a dark sanctum to a crowning finial. Texts on architecture (<em>shilpa</em> and <em>vastu</em>) name three great styles. Nagara is the style of the north, Dravida of the south, and Vesara is the hybrid of the Deccan between them.</p>
+  <div class="legend"><span><i class="dot" style="background:var(--nagara)"></i>Nagara · north</span><span><i class="dot" style="background:var(--dravida)"></i>Dravida · south</span><span><i class="dot" style="background:var(--vesara)"></i>Vesara · Deccan</span></div>
+</header>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--stone)">All three</button>
+  <button class="filter-chip" data-filter="nagara" aria-pressed="false" style="--fc:var(--nagara)">Nagara</button>
+  <button class="filter-chip" data-filter="dravida" aria-pressed="false" style="--fc:var(--dravida)">Dravida</button>
+  <button class="filter-chip" data-filter="vesara" aria-pressed="false" style="--fc:var(--vesara)">Vesara</button>
+</div>
+<section class="figures" data-block>
+  <h2 class="section-title">Three ways to raise a tower</h2>
+  <p class="section-intro">The styles differ most in the tower over the sanctum. The shape of the plan and the crown at the top follow from it.</p>
+  <div class="fig-grid">
+    <figure class="fig" data-item data-tags="nagara" style="--accent:var(--nagara)">
+      <figcaption><b>Nagara</b> <span class="native">नागर</span><span>North India · curving shikhara</span></figcaption>
+      <svg viewBox="0 0 405 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elevation of a Nagara temple: curvilinear shikhara crowned by an amalaka and kalasha">
+  <rect class="f-base" x="30" y="332" width="230" height="16" rx="2"/>
+  <rect class="f-base" x="62" y="306" width="166" height="26"/>
+  <line class="f-line" x1="62" y1="316" x2="228" y2="316"/><line class="f-line" x1="62" y1="324" x2="228" y2="324"/>
+  <rect class="f-wall" x="82" y="236" width="126" height="70"/>
+  <rect class="f-door" x="129" y="256" width="32" height="50" rx="14"/>
+  <path class="f-mass" d="M82 236 C82 170 104 120 124 92 L166 92 C186 120 208 170 208 236 Z"/>
+  <path class="f-line" d="M108 236 C108 180 120 132 132 100 M182 236 C182 180 170 132 158 100"/>
+  <path class="f-line" d="M90 214 H200 M94 192 H196 M99 170 H191 M105 148 H185 M112 126 H178 M119 108 H171"/>
+  <ellipse class="f-acc" cx="145" cy="84" rx="30" ry="9"/>
+  <path class="f-line" d="M121 84 H169 M127 78 V90 M137 76 V92 M145 75 V93 M153 76 V92 M163 78 V90"/>
+  <path class="f-acc" d="M135 74 Q135 60 145 58 Q155 60 155 74 Z"/>
+  <line class="f-acc" x1="145" y1="58" x2="145" y2="44"/>
+  <g class="f-lead"><path d="M156 52 H250"/><path d="M176 84 H250"/><path d="M196 160 H250"/><path d="M161 280 H250"/><path d="M228 320 H250"/><path d="M260 340 H272"/></g>
+  <text class="f-lbl" x="254" y="56">Kalasha</text>
+  <text class="f-lbl" x="254" y="88">Amalaka</text>
+  <text class="f-lbl" x="254" y="156">Shikhara —</text><text class="f-lbl" x="254" y="171">curvilinear tower</text>
+  <text class="f-lbl" x="254" y="276">Garbhagriha —</text><text class="f-lbl" x="254" y="291">the sanctum</text>
+  <text class="f-lbl" x="254" y="324">Adhishthana</text>
+  <text class="f-lbl" x="276" y="344">Jagati</text>
+  <text class="f-cap" x="30" y="378">PLAN · square, stepped with projections (rathas)</text>
+  <path class="f-plan" d="M70 392 H90 V386 H110 V392 H130 V400 H136 V420 H130 V428 H110 V434 H90 V428 H70 V420 H64 V400 H70 Z"/>
+  <rect class="f-door" x="92" y="404" width="16" height="12"/>
+</svg>
+<p>A single curved tower whose courses step inward as it rises. It is capped by a ribbed stone disc (amalaka) and a pot-shaped finial (kalasha).</p>
+    </figure>
+    <figure class="fig" data-item data-tags="dravida" style="--accent:var(--dravida)">
+      <figcaption><b>Dravida</b> <span class="native">द्राविड</span><span>South India · pyramidal vimana</span></figcaption>
+      <svg viewBox="0 0 405 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elevation of a Dravida temple: pyramidal vimana of stepped tiers with miniature shrines, a domed shikhara and a stupi">
+  <rect class="f-base" x="30" y="332" width="230" height="16" rx="2"/>
+  <rect class="f-base" x="62" y="306" width="166" height="26"/>
+  <line class="f-line" x1="62" y1="316" x2="228" y2="316"/><line class="f-line" x1="62" y1="324" x2="228" y2="324"/>
+  <rect class="f-wall" x="82" y="236" width="126" height="70"/>
+  <path class="f-line" d="M96 236 V306 M194 236 V306 M120 236 V306 M170 236 V306"/>
+  <rect class="f-door" x="131" y="258" width="28" height="48"/>
+  <rect class="f-mass" x="76" y="212" width="138" height="24"/>
+  <rect class="f-mass" x="88" y="188" width="114" height="24"/>
+  <rect class="f-mass" x="100" y="164" width="90" height="24"/>
+  <rect class="f-mass" x="112" y="140" width="66" height="24"/>
+  <g class="f-kuta">
+    <path d="M76 212 v-8 q8 -10 16 0 v8 z"/><path d="M198 212 v-8 q8 -10 16 0 v8 z"/><path d="M131 212 v-6 h28 v6 z M131 206 q14 -12 28 0"/>
+    <path d="M88 188 v-8 q7 -9 14 0 v8 z"/><path d="M188 188 v-8 q7 -9 14 0 v8 z"/><path d="M133 188 v-5 h24 v5 z M133 183 q12 -10 24 0"/>
+    <path d="M100 164 v-7 q6 -8 12 0 v7 z"/><path d="M178 164 v-7 q6 -8 12 0 v7 z"/>
+  </g>
+  <rect class="f-wall" x="128" y="124" width="34" height="16"/>
+  <path class="f-acc" d="M118 124 Q120 92 145 88 Q170 92 172 124 Z"/>
+  <path class="f-acc" d="M138 88 Q138 74 145 72 Q152 74 152 88 Z"/>
+  <line class="f-acc" x1="145" y1="72" x2="145" y2="60"/>
+  <g class="f-lead"><path d="M156 72 H250"/><path d="M168 104 H250"/><path d="M162 132 H250"/><path d="M214 176 H250"/><path d="M214 206 H250"/><path d="M159 282 H250"/><path d="M228 320 H250"/></g>
+  <text class="f-lbl" x="254" y="76">Stupi (kalasha)</text>
+  <text class="f-lbl" x="254" y="108">Shikhara — dome cap</text>
+  <text class="f-lbl" x="254" y="136">Griva — the neck</text>
+  <text class="f-lbl" x="254" y="172">Talas — stepped</text><text class="f-lbl" x="254" y="187">storeys of the vimana</text>
+  <text class="f-lbl" x="254" y="210">Kuta &amp; shala —</text><text class="f-lbl" x="254" y="225">miniature shrines</text>
+  <text class="f-lbl" x="254" y="278">Garbhagriha —</text><text class="f-lbl" x="254" y="293">the sanctum</text>
+  <text class="f-lbl" x="254" y="324">Adhishthana</text>
+  <text class="f-cap" x="30" y="378">PLAN · square sanctum within walled courtyards</text>
+  <rect class="f-plan" x="64" y="388" width="72" height="50"/>
+  <rect class="f-plan" x="84" y="398" width="32" height="30"/>
+  <rect class="f-door" x="94" y="408" width="12" height="10"/>
+  <rect class="f-plan" x="92" y="436" width="16" height="10"/>
+</svg>
+<p>Storeys (talas) diminish like a stepped pyramid, each lined with miniature shrines. The top is a dome-shaped shikhara. Later Dravida temples are known even more for their towering gateways (gopurams).</p>
+    </figure>
+    <figure class="fig" data-item data-tags="vesara" style="--accent:var(--vesara)">
+      <figcaption><b>Vesara</b> <span class="native">वेसर</span><span>The Deccan · the hybrid</span></figcaption>
+      <svg viewBox="0 0 405 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elevation of a Vesara (Hoysala) temple: star-shaped platform, banded friezes, a stepped tower with strong vertical projections and a rounded crown">
+  <path class="f-base" d="M30 348 L40 332 L52 344 L64 332 L76 344 L88 332 L100 344 L112 332 L124 344 L136 332 L148 344 L160 332 L172 344 L184 332 L196 344 L208 332 L220 344 L232 332 L244 344 L256 332 L262 348 Z"/>
+  <rect class="f-base" x="62" y="288" width="166" height="44"/>
+  <g class="f-frieze"><path d="M62 297 H228 M62 306 H228 M62 315 H228 M62 324 H228"/></g>
+  <path class="f-line" d="M70 297 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0 q4 -6 8 0"/>
+  <rect class="f-wall" x="82" y="232" width="126" height="56"/>
+  <path class="f-line" d="M92 232 V288 M104 232 V288 M186 232 V288 M198 232 V288"/>
+  <rect class="f-door" x="131" y="250" width="28" height="38" rx="3"/>
+  <path class="f-mass" d="M80 232 V210 H92 V190 H104 V170 H116 V152 H174 V170 H186 V190 H198 V210 H210 V232 Z"/>
+  <path class="f-line" d="M100 232 V196 M114 232 V176 M128 232 V156 M145 232 V152 M162 232 V156 M176 232 V176 M190 232 V196"/>
+  <path class="f-line" d="M84 220 H206 M96 200 H194 M108 180 H182 M120 162 H170"/>
+  <path class="f-acc" d="M112 152 Q114 112 145 106 Q176 112 178 152 Z"/>
+  <path class="f-line" d="M124 150 Q128 120 145 114 Q162 120 166 150"/>
+  <path class="f-acc" d="M137 106 Q137 92 145 90 Q153 92 153 106 Z"/>
+  <line class="f-acc" x1="145" y1="90" x2="145" y2="78"/>
+  <g class="f-lead"><path d="M156 90 H250"/><path d="M174 126 H250"/><path d="M192 196 H250"/><path d="M228 306 H250"/><path d="M262 342 H272"/></g>
+  <text class="f-lbl" x="254" y="94">Kalasha</text>
+  <text class="f-lbl" x="254" y="122">Shikhara — rounded</text><text class="f-lbl" x="254" y="137">crown</text>
+  <text class="f-lbl" x="254" y="188">Stepped tiers cut by</text><text class="f-lbl" x="254" y="203">vertical projections</text>
+  <text class="f-lbl" x="254" y="302">Friezes — bands of</text><text class="f-lbl" x="254" y="317">carving (Hoysala)</text>
+  <text class="f-lbl" x="276" y="346">Star-shaped jagati</text>
+  <text class="f-cap" x="30" y="378">PLAN · stellate (star-shaped), often on a raised platform</text>
+  <path class="f-plan" d="M100 386 L106 400 L120 394 L114 408 L130 412 L114 416 L120 430 L106 424 L100 438 L94 424 L80 430 L86 416 L70 412 L86 408 L80 394 L94 400 Z"/>
+  <circle class="f-door" cx="100" cy="412" r="6"/>
+</svg>
+<p>"Vesara" means mule, a mixed breed. One text explains it as a Dravida plan with Nagara detail. Hoysala temples add star-shaped plans, high platforms and dense friezes.</p>
+    </figure>
+  </div>
+</section>
+<section>
+  <h2 class="section-title">Part by part</h2>
+  <div class="compare-scroll">
+    <table class="compare" style="min-width:860px">
+      <thead><tr><th scope="col">Feature</th><th scope="col" data-col="nagara" style="--accent:var(--nagara)">Nagara</th><th scope="col" data-col="dravida" style="--accent:var(--dravida)">Dravida</th><th scope="col" data-col="vesara" style="--accent:var(--vesara)">Vesara</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Region</th><td data-col="nagara">North and central India, Odisha, Gujarat, Rajasthan</td><td data-col="dravida">Tamil Nadu, Kerala, south Karnataka, Andhra</td><td data-col="vesara">The Deccan: north Karnataka and its neighbours</td></tr>
+        <tr><th scope="row">Tower</th><td data-col="nagara"><strong>Shikhara</strong>, a curvilinear spire</td><td data-col="dravida"><strong>Vimana</strong>, a stepped pyramid of storeys</td><td data-col="vesara">Stepped like a vimana but with Nagara-like vertical bands</td></tr>
+        <tr><th scope="row">Crown</th><td data-col="nagara">Amalaka and kalasha</td><td data-col="dravida">Domed shikhara and stupi (kalasha)</td><td data-col="vesara">Rounded crown and kalasha</td></tr>
+        <tr><th scope="row">Shape in the Manasara</th><td data-col="nagara">Square (chaturasra)</td><td data-col="dravida">Octagonal (ashtasra) or hexagonal</td><td data-col="vesara">Circular (vritta); other texts allow apsidal</td></tr>
+        <tr><th scope="row">Gateway &amp; enclosure</th><td data-col="nagara">Often no great enclosure; temples may stand on a high platform</td><td data-col="dravida">High-walled courtyards; gopurams that later dwarf the sanctum</td><td data-col="vesara">Compact, often on a raised star-shaped platform</td></tr>
+        <tr><th scope="row">Regional schools</th><td data-col="nagara">Odisha (Kalinga) · Khajuraho (Chandela) · Solanki (Maru-Gurjara)</td><td data-col="dravida">Pallava · Chola · Pandya · Vijayanagara · Nayaka</td><td data-col="vesara">Badami Chalukya · Kalyani Chalukya · Hoysala</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<div class="callout">📐 <strong>The texts disagree.</strong> The Manasara defines the three styles by the shape of the tower's crown: square for Nagara, octagonal for Dravida, round for Vesara. It also places them north, south and in between. The Kamikagama calls Vesara a Dravida plan with Nagara detail. Real temples mix freely. At Pattadakal the Chalukyas built northern and southern towers side by side.</div>
+<section>
+  <h2 class="section-title">The parts every temple shares</h2>
+  <div class="pairs"><div class="pair" style="--a:var(--stone)"><h4>Garbhagriha</h4><p>The "womb chamber", a small dark sanctum that holds the deity. Everything else is arranged around it.</p></div><div class="pair" style="--a:var(--stone)"><h4>Antarala &amp; mandapa</h4><p>A vestibule leads to one or more pillared halls, where devotees gather, dance and wait for darshan.</p></div><div class="pair" style="--a:var(--stone)"><h4>Pradakshina patha</h4><p>The path for walking clockwise around the sanctum. It may be inside the walls or open to the sky.</p></div><div class="pair" style="--a:var(--stone)"><h4>Vastu-purusha mandala</h4><p>Temple plans are laid out on a sacred grid, commonly of 8 × 8 = 64 squares, with Brahma at the centre over the sanctum.</p></div></div>
+</section>
+<div id="map" role="application" aria-label="Map of landmark temples by style"></div>
+<section data-block>
+  <h2 class="section-title">Fourteen landmark temples</h2>
+  <div class="grid">
+  <article class="card" id="deogarh" data-item data-id="deogarh" data-tags="nagara" style="--accent:var(--nagara)">
+  <h3>Dashavatara Temple, Deogarh</h3><span class="tag">Nagara · Gupta, c. 500 CE</span><p>One of the earliest surviving stone temples of the north, with superb Vishnu panels. Its tower is mostly lost, but it shows the Nagara form beginning.</p><button class="map-link" data-id="deogarh" type="button">📍 Show on map</button>
+</article>
+  <article class="card" id="kandariya" data-item data-id="kandariya" data-tags="nagara" style="--accent:var(--nagara)">
+  <h3>Kandariya Mahadeva, Khajuraho</h3><span class="tag">Nagara · Chandela, c. 1030</span><p>The summit of the Khajuraho style. Its main spire is clustered with dozens of smaller spires (urushringas), so the whole temple rises like a mountain range.</p><button class="map-link" data-id="kandariya" type="button">📍 Show on map</button>
+</article>
+  <article class="card" id="lingaraja" data-item data-id="lingaraja" data-tags="nagara" style="--accent:var(--nagara)">
+  <h3>Lingaraja, Bhubaneswar</h3><span class="tag">Nagara (Kalinga) · 11th century</span><p>The Odisha school at its height. Its tall rekha deul (curved tower) stands over the sanctum, with a lower pyramidal pidha deul over the hall.</p><button class="map-link" data-id="lingaraja" type="button">📍 Show on map</button>
+</article>
+  <article class="card" id="konark" data-item data-id="konark" data-tags="nagara" style="--accent:var(--nagara)">
+  <h3>Sun Temple, Konark</h3><span class="tag">Nagara (Kalinga) · c. 1250</span><p>Built by Narasimhadeva I of the Eastern Gangas as the Sun god's chariot, with twenty-four carved wheels and seven horses. The main tower has fallen; the great hall still stands.</p><button class="map-link" data-id="konark" type="button">📍 Show on map</button>
+</article>
+  <article class="card" id="modhera" data-item data-id="modhera" data-tags="nagara" style="--accent:var(--nagara)">
+  <h3>Sun Temple, Modhera</h3><span class="tag">Nagara (Solanki) · 1026–27</span><p>A Chaulukya (Solanki) temple to Surya, fronted by a stepped tank whose flights of steps frame dozens of tiny shrines.</p><button class="map-link" data-id="modhera" type="button">📍 Show on map</button>
+</article>
+  <article class="card" id="shore" data-item data-id="shore" data-tags="dravida" style="--accent:var(--dravida)">
+  <h3>Shore Temple, Mamallapuram</h3><span class="tag">Dravida · Pallava, early 8th century</span><p>Built under the Pallava king Rajasimha on the edge of the sea. It is one of the earliest structural (built, not rock-cut) stone temples in the south.</p><button class="map-link" data-id="shore" type="button">📍 Show on map</button>
+</article>
+  <article class="card" id="kailasanatha" data-item data-id="kailasanatha" data-tags="dravida" style="--accent:var(--dravida)">
+  <h3>Kailasanatha, Kanchipuram</h3><span class="tag">Dravida · Pallava, c. 700</span><p>Rajasimha's royal temple to Shiva. Its sandstone courtyard is lined with small cell-shrines, and it already has the stepped vimana and enclosure of the mature style.</p><button class="map-link" data-id="kailasanatha" type="button">📍 Show on map</button>
+</article>
+  <article class="card" id="ellora" data-item data-id="ellora" data-tags="dravida" style="--accent:var(--dravida)">
+  <h3>Kailasa Temple, Ellora</h3><span class="tag">Dravida · Rashtrakuta, 8th century</span><p>An entire Dravida temple carved downward out of a single hillside, with its courtyard, halls and vimana all cut from the living rock. It stands in Maharashtra, far north of the style's home.</p><button class="map-link" data-id="ellora" type="button">📍 Show on map</button>
+</article>
+  <article class="card" id="thanjavur" data-item data-id="thanjavur" data-tags="dravida" style="--accent:var(--dravida)">
+  <h3>Brihadeeswara, Thanjavur</h3><span class="tag">Dravida · Chola, completed 1010</span><p>Rajaraja Chola's "great temple". Its vimana of about 66 m was the tallest of its day and is crowned by a single massive capstone. It is a World Heritage Site with Gangaikonda Cholapuram and Darasuram.</p><button class="map-link" data-id="thanjavur" type="button">📍 Show on map</button>
+</article>
+  <article class="card" id="madurai" data-item data-id="madurai" data-tags="dravida" style="--accent:var(--dravida)">
+  <h3>Meenakshi Amman, Madurai</h3><span class="tag">Dravida · Nayaka, mostly 16th–17th century</span><p>The late Dravida city-temple, ringed by fourteen gopurams covered in painted stucco figures. The gateways now tower over the sanctum shrines.</p><button class="map-link" data-id="madurai" type="button">📍 Show on map</button>
+</article>
+  <article class="card" id="pattadakal" data-item data-id="pattadakal" data-tags="vesara nagara dravida" style="--accent:var(--vesara)">
+  <h3>Pattadakal</h3><span class="tag">Vesara setting · Badami Chalukya, 7th–8th century</span><p>A royal temple group where the Chalukyas built in both styles side by side. The Virupaksha temple, raised by Queen Lokamahadevi, is Dravida; the Papanatha has a Nagara tower.</p><button class="map-link" data-id="pattadakal" type="button">📍 Show on map</button>
+</article>
+  <article class="card" id="belur" data-item data-id="belur" data-tags="vesara" style="--accent:var(--vesara)">
+  <h3>Chennakeshava, Belur</h3><span class="tag">Vesara · Hoysala, 1117</span><p>Built by the Hoysala king Vishnuvardhana. It is famed for its bracket figures of dancers (madanikas) and its lathe-turned pillars, all carved in soft soapstone.</p><button class="map-link" data-id="belur" type="button">📍 Show on map</button>
+</article>
+  <article class="card" id="halebidu" data-item data-id="halebidu" data-tags="vesara" style="--accent:var(--vesara)">
+  <h3>Hoysaleswara, Halebidu</h3><span class="tag">Vesara · Hoysala, begun 1121</span><p>A twin temple whose outer walls carry continuous friezes of elephants, lions, horsemen and epic scenes, one above another.</p><button class="map-link" data-id="halebidu" type="button">📍 Show on map</button>
+</article>
+  <article class="card" id="somanathapura" data-item data-id="somanathapura" data-tags="vesara" style="--accent:var(--vesara)">
+  <h3>Keshava, Somanathapura</h3><span class="tag">Vesara · Hoysala, 1268</span><p>A small triple-shrine temple whose three star-shaped towers survive complete. It is the clearest picture of the finished Hoysala form.</p><button class="map-link" data-id="somanathapura" type="button">📍 Show on map</button>
+</article>
+  </div>
+</section>
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
+<div class="callout">🔗 Many of these temples appear elsewhere on the site. See the <a href="geography.html">Divya Desams and Jyotirlingas</a>, the <a href="pancha-bhoota.html">Pancha Bhoota Sthalams</a> and the <a href="navagraha.html">Navagraha temples</a>.</div>
+<section class="sources"><h2>Sources</h2><ul><li><a href="https://en.wikipedia.org/wiki/Vesara" target="_blank" rel="noopener">Vesara — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Shikhara" target="_blank" rel="noopener">Shikhara — Wikipedia</a></li><li><a href="https://orca.cardiff.ac.uk/37341/1/Adam%20Hardy%2C%20Typologies%20.pdf" target="_blank" rel="noopener">Adam Hardy, &#34;Indian Temple Typologies&#34; (Cardiff University)</a></li><li><a href="https://whc.unesco.org/en/list/239/" target="_blank" rel="noopener">Group of Monuments at Pattadakal — UNESCO</a></li><li><a href="https://whc.unesco.org/en/list/250/" target="_blank" rel="noopener">Great Living Chola Temples — UNESCO</a></li></ul></section>
+<footer>
+  <p>🛕 A visual map of Hindu temple architecture · Diagrams are simplified elevations, not to scale</p>
+  <p>Map data © OpenStreetMap contributors · Locations are approximate</p>
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
+    <a href="ramayana.html"><span aria-hidden="true">🏹</span>Ramayana Journey</a>
+    <a href="mahabharata.html"><span aria-hidden="true">⚔️</span>Mahabharata Family Tree</a>
+    <a href="dashavatara.html"><span aria-hidden="true">🐚</span>Dashavatara</a>
+    <a href="carnatic.html"><span aria-hidden="true">🎶</span>Carnatic Music</a>
+    <a href="raga-geometry.html"><span aria-hidden="true">🎡</span>Raga Geometry</a>
+    <a href="sanskrit-poets.html"><span aria-hidden="true">✒️</span>Sanskrit Poets</a>
+    <a href="ram.html"><span aria-hidden="true">🙏</span>When India Says Ram</a>
+    <a href="parampara.html"><span aria-hidden="true">🪔</span>Guru Parampara</a>
+    <a href="tamil-literature.html"><span aria-hidden="true">📜</span>Tamil Literature</a>
+    <a href="temples.html" aria-current="page"><span aria-hidden="true">🛕</span>Temple Architecture</a>
+    <a href="festivals.html"><span aria-hidden="true">🎆</span>Festival Wheel</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
+</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>window.SANATANA_SITES = [{"id": "deogarh", "n": 1, "name": "Dashavatara Temple, Deogarh", "sub": "Nagara · Uttar Pradesh", "lat": 24.5266, "lng": 78.2418, "color": "var(--nagara)"}, {"id": "kandariya", "n": 2, "name": "Kandariya Mahadeva, Khajuraho", "sub": "Nagara · Madhya Pradesh", "lat": 24.8522, "lng": 79.9204, "color": "var(--nagara)"}, {"id": "lingaraja", "n": 3, "name": "Lingaraja, Bhubaneswar", "sub": "Nagara (Kalinga) · Odisha", "lat": 20.2382, "lng": 85.8338, "color": "var(--nagara)"}, {"id": "konark", "n": 4, "name": "Sun Temple, Konark", "sub": "Nagara (Kalinga) · Odisha", "lat": 19.8876, "lng": 86.0945, "color": "var(--nagara)"}, {"id": "modhera", "n": 5, "name": "Sun Temple, Modhera", "sub": "Nagara · Gujarat", "lat": 23.5835, "lng": 72.133, "color": "var(--nagara)"}, {"id": "shore", "n": 6, "name": "Shore Temple, Mamallapuram", "sub": "Dravida · Tamil Nadu", "lat": 12.6165, "lng": 80.1993, "color": "var(--dravida)"}, {"id": "kailasanatha", "n": 7, "name": "Kailasanatha, Kanchipuram", "sub": "Dravida · Tamil Nadu", "lat": 12.8432, "lng": 79.6898, "color": "var(--dravida)"}, {"id": "ellora", "n": 8, "name": "Kailasa Temple, Ellora", "sub": "Dravida (rock-cut) · Maharashtra", "lat": 20.024, "lng": 75.179, "color": "var(--dravida)"}, {"id": "thanjavur", "n": 9, "name": "Brihadeeswara, Thanjavur", "sub": "Dravida · Tamil Nadu", "lat": 10.7828, "lng": 79.1318, "color": "var(--dravida)"}, {"id": "madurai", "n": 10, "name": "Meenakshi Amman, Madurai", "sub": "Dravida · Tamil Nadu", "lat": 9.9195, "lng": 78.1193, "color": "var(--dravida)"}, {"id": "pattadakal", "n": 11, "name": "Pattadakal", "sub": "Both styles · Karnataka", "lat": 15.9486, "lng": 75.8166, "color": "var(--vesara)"}, {"id": "belur", "n": 12, "name": "Chennakeshava, Belur", "sub": "Vesara (Hoysala) · Karnataka", "lat": 13.1626, "lng": 75.8606, "color": "var(--vesara)"}, {"id": "halebidu", "n": 13, "name": "Hoysaleswara, Halebidu", "sub": "Vesara (Hoysala) · Karnataka", "lat": 13.2131, "lng": 75.9946, "color": "var(--vesara)"}, {"id": "somanathapura", "n": 14, "name": "Keshava, Somanathapura", "sub": "Vesara (Hoysala) · Karnataka", "lat": 12.2758, "lng": 76.8815, "color": "var(--vesara)"}];</script>
+<script src="assets/site.js?v=7d8eeccc"></script>
+</body>
+</html>

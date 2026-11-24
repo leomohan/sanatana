@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guru Parampara — Teacher–Disciple Lineages of Sringeri, Sri Vaishnavism and Madhva</title>
+<meta name="description" content="Teacher–disciple lineages drawn as timelines. The 36 Jagadgurus of Sringeri, the Sri Vaishnava acharyas before and after Ramanuja, and the pontiffs of Madhva&#39;s line and the mathas that branched from it.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪔</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=7d8eeccc">
+<style>:root,[data-theme="dark"]{--shankara:#ff9f43; --srivaishnava:#4a9eff; --tenkalai:#26de81; --vadakalai:#a55eea; --madhva:#f7b731; --udupi:#ff6b81; --other:#a29ac2;} [data-theme="light"]{--shankara:#d9771a; --srivaishnava:#1a6fc4; --tenkalai:#1e9e5c; --vadakalai:#7b3fc4; --madhva:#b7861b; --udupi:#d63c5a; --other:#6b5c4a;} :root{--primary:var(--shankara); --grad-h:linear-gradient(90deg,var(--shankara),var(--srivaishnava),var(--madhva)); --grad-v:linear-gradient(var(--shankara),var(--srivaishnava),var(--madhva));}</style>
+<script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
+  (function(){
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
+  })();
+</script>
+</head>
+<body>
+<div class="controls" role="toolbar" aria-label="Page controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
+  <div class="search-wrap">
+    <span aria-hidden="true">🔍</span>
+    <input type="search" id="searchInput" placeholder="Search a teacher — Vidyaranya, Desika, Jayatirtha…" aria-label="Search">
+  </div>
+  <div class="ctrl-group" role="group" aria-label="Text size">
+    <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
+    <span class="size-val" id="sizeVal">100%</span>
+    <button class="ctrl-btn size-btn" id="sizeUp" aria-label="Increase text size">A+</button>
+  </div>
+  <button class="ctrl-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+    <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+    <span id="toggleLabel">Light</span>
+  </button>
+</div>
+<header>
+  <h1>Guru Parampara</h1>
+  <p>A tradition survives only as long as someone teaches it to someone else. Each line below is a <em>parampara</em>, a chain of teachers that its followers count unbroken from its founder to the present. The three lines shown are Shankara's Sringeri seat, the Sri Vaishnava teachers around Ramanuja, and Madhva's pontiffs.</p>
+  <div class="legend"><span><i class="dot" style="background:var(--shankara)"></i>Sringeri (Advaita)</span><span><i class="dot" style="background:var(--srivaishnava)"></i>Sri Vaishnava (Vishishtadvaita)</span><span><i class="dot" style="background:var(--madhva)"></i>Madhva (Dvaita)</span></div>
+</header>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--shankara)">All three lines</button>
+  <button class="filter-chip" data-filter="sringeri" aria-pressed="false" style="--fc:var(--shankara)">Sringeri</button>
+  <button class="filter-chip" data-filter="srivaishnava" aria-pressed="false" style="--fc:var(--srivaishnava)">Sri Vaishnava</button>
+  <button class="filter-chip" data-filter="madhva" aria-pressed="false" style="--fc:var(--madhva)">Madhva</button>
+</div>
+<div class="callout">🕉️ <strong>Before the first Jagadguru.</strong> Sringeri counts its succession through three earlier lineages. The divine one runs from Sadashiva to Narayana to Brahma. The sages follow: Vasishtha, Shakti, Parashara, Vyasa and Shuka. Then come the teachers Gaudapada and Govinda Bhagavatpada, Shankara's own guru.</div>
+<section class="lifespans-block" data-block data-section="sringeri">
+  <h2 class="section-title">The 36 Jagadgurus of Sringeri</h2>
+  <p class="section-intro">Each bar is a pontificate, as listed by the Sringeri Matha. Bars for the first ten are dotted because their long reigns are traditional. Vidhushekhara Bharati has been the successor-designate since 2015.</p>
+  <div class="lifespans">
+    <div class="ls-axis" aria-hidden="true"><span style="left:0.0%">700</span><span style="left:7.46%">800</span><span style="left:14.93%">900</span><span style="left:22.39%">1000</span><span style="left:29.85%">1100</span><span style="left:37.31%">1200</span><span style="left:44.78%">1300</span><span style="left:52.24%">1400</span><span style="left:59.7%">1500</span><span style="left:67.16%">1600</span><span style="left:74.63%">1700</span><span style="left:82.09%">1800</span><span style="left:89.55%">1900</span><span style="left:97.01%">2000</span></div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">1 · Shankara Bhagavatpada</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:6.57%;width:2.39%" title="1 · Shankara Bhagavatpada · c. 788–820"></span><span class="ls-years" style="left:8.96%">c. 788–820</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">2 · Sureshwaracharya</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:8.96%;width:1.04%" title="2 · Sureshwaracharya · c. 820–834"></span><span class="ls-years" style="left:10.0%">c. 820–834</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">3 · Nityabodhaghana</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:10.0%;width:1.04%" title="3 · Nityabodhaghana · c. 834–848"></span><span class="ls-years" style="left:11.04%">c. 834–848</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">4 · Jnanaghana</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:11.04%;width:4.63%" title="4 · Jnanaghana · c. 848–910"></span><span class="ls-years" style="left:15.67%">c. 848–910</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">5 · Jnanottama</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:15.67%;width:3.28%" title="5 · Jnanottama · c. 910–954"></span><span class="ls-years" style="left:18.96%">c. 910–954</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">6 · Jnanagiri</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:18.96%;width:6.27%" title="6 · Jnanagiri · c. 954–1038"></span><span class="ls-years" style="left:25.22%">c. 954–1038</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">7 · Simhagiri</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:25.22%;width:4.48%" title="7 · Simhagiri · c. 1038–1098"></span><span class="ls-years" style="left:29.7%">c. 1038–1098</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">8 · Ishwara Tirtha</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:29.7%;width:3.58%" title="8 · Ishwara Tirtha · c. 1098–1146"></span><span class="ls-years" style="left:33.28%">c. 1098–1146</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">9 · Nrisimha Tirtha</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:33.28%;width:6.19%" title="9 · Nrisimha Tirtha · c. 1146–1229"></span><span class="ls-years" style="left:39.48%">c. 1146–1229</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">10 · Vidya Tirtha</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:39.48%;width:7.76%" title="10 · Vidya Tirtha · c. 1229–1333"></span><span class="ls-years" style="left:47.24%">c. 1229–1333</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">11 · Bharati Tirtha</span>
+      <span class="ls-track"><span class="ls-bar" style="left:47.24%;width:3.51%" title="11 · Bharati Tirtha · 1333–1380"></span><span class="ls-years" style="left:50.75%">1333–1380</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">12 · Vidyaranya</span>
+      <span class="ls-track"><span class="ls-bar" style="left:50.75%;width:0.45%" title="12 · Vidyaranya · 1380–1386"></span><span class="ls-years" style="left:51.19%">1380–1386</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">13 · Chandrasekhara Bharati I</span>
+      <span class="ls-track"><span class="ls-bar" style="left:51.19%;width:0.22%" title="13 · Chandrasekhara Bharati I · 1386–1389"></span><span class="ls-years" style="left:51.42%">1386–1389</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">14 · Nrisimha Bharati I</span>
+      <span class="ls-track"><span class="ls-bar" style="left:51.42%;width:1.42%" title="14 · Nrisimha Bharati I · 1389–1408"></span><span class="ls-years" style="left:52.84%">1389–1408</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">15 · Purushottama Bharati I</span>
+      <span class="ls-track"><span class="ls-bar" style="left:52.84%;width:2.99%" title="15 · Purushottama Bharati I · 1408–1448"></span><span class="ls-years" style="left:55.82%">1408–1448</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">16 · Shankara Bharati</span>
+      <span class="ls-track"><span class="ls-bar" style="left:55.82%;width:0.52%" title="16 · Shankara Bharati · 1448–1455"></span><span class="ls-years" style="left:56.34%">1448–1455</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">17 · Chandrasekhara Bharati II</span>
+      <span class="ls-track"><span class="ls-bar" style="left:56.34%;width:0.67%" title="17 · Chandrasekhara Bharati II · 1455–1464"></span><span class="ls-years" style="left:57.01%">1455–1464</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">18 · Nrisimha Bharati II</span>
+      <span class="ls-track"><span class="ls-bar" style="left:57.01%;width:1.12%" title="18 · Nrisimha Bharati II · 1464–1479"></span><span class="ls-years" style="left:58.13%">1464–1479</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">19 · Purushottama Bharati II</span>
+      <span class="ls-track"><span class="ls-bar" style="left:58.13%;width:2.84%" title="19 · Purushottama Bharati II · 1479–1517"></span><span class="ls-years" style="left:60.97%">1479–1517</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">20 · Ramachandra Bharati</span>
+      <span class="ls-track"><span class="ls-bar" style="left:60.97%;width:3.21%" title="20 · Ramachandra Bharati · 1517–1560"></span><span class="ls-years" style="left:64.18%">1517–1560</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">21 · Nrisimha Bharati III</span>
+      <span class="ls-track"><span class="ls-bar" style="left:64.18%;width:0.97%" title="21 · Nrisimha Bharati III · 1560–1573"></span><span class="ls-years" style="left:65.15%">1560–1573</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">22 · Nrisimha Bharati IV</span>
+      <span class="ls-track"><span class="ls-bar" style="left:65.15%;width:0.22%" title="22 · Nrisimha Bharati IV · 1573–1576"></span><span class="ls-years" style="left:65.37%">1573–1576</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">23 · Nrisimha Bharati V</span>
+      <span class="ls-track"><span class="ls-bar" style="left:65.37%;width:1.79%" title="23 · Nrisimha Bharati V · 1576–1600"></span><span class="ls-years" style="left:67.16%">1576–1600</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">24 · Abhinava Nrisimha Bharati</span>
+      <span class="ls-track"><span class="ls-bar" style="left:67.16%;width:1.72%" title="24 · Abhinava Nrisimha Bharati · 1600–1623"></span><span class="ls-years" style="left:68.88%">1600–1623</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">25 · Sacchidananda Bharati I</span>
+      <span class="ls-track"><span class="ls-bar" style="left:68.88%;width:2.99%" title="25 · Sacchidananda Bharati I · 1623–1663"></span><span class="ls-years" style="left:71.87%">1623–1663</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">26 · Nrisimha Bharati VI</span>
+      <span class="ls-track"><span class="ls-bar" style="left:71.87%;width:3.21%" title="26 · Nrisimha Bharati VI · 1663–1706"></span><span class="ls-years" style="left:75.07%">1663–1706</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">27 · Sacchidananda Bharati II</span>
+      <span class="ls-track"><span class="ls-bar" style="left:75.07%;width:2.61%" title="27 · Sacchidananda Bharati II · 1706–1741"></span><span class="ls-years" style="left:77.69%">1706–1741</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">28 · Abhinava Sacchidananda Bharati I</span>
+      <span class="ls-track"><span class="ls-bar" style="left:77.69%;width:1.94%" title="28 · Abhinava Sacchidananda Bharati I · 1741–1767"></span><span class="ls-years" style="left:79.63%">1741–1767</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">29 · Nrisimha Bharati VII</span>
+      <span class="ls-track"><span class="ls-bar" style="left:79.63%;width:0.22%" title="29 · Nrisimha Bharati VII · 1767–1770"></span><span class="ls-years" style="left:79.85%">1767–1770</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">30 · Sacchidananda Bharati III</span>
+      <span class="ls-track"><span class="ls-bar" style="left:79.85%;width:3.28%" title="30 · Sacchidananda Bharati III · 1770–1814"></span><span class="ls-years" style="left:83.13%">1770–1814</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">31 · Abhinava Sacchidananda Bharati II</span>
+      <span class="ls-track"><span class="ls-bar" style="left:83.13%;width:0.22%" title="31 · Abhinava Sacchidananda Bharati II · 1814–1817"></span><span class="ls-years" style="left:83.36%">1814–1817</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">32 · Nrisimha Bharati VIII</span>
+      <span class="ls-track"><span class="ls-bar" style="left:83.36%;width:4.63%" title="32 · Nrisimha Bharati VIII · 1817–1879"></span><span class="ls-years" style="left:87.99%">1817–1879</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">33 · Sacchidananda Shivabhinava Nrisimha Bharati</span>
+      <span class="ls-track"><span class="ls-bar" style="left:87.99%;width:2.46%" title="33 · Sacchidananda Shivabhinava Nrisimha Bharati · 1879–1912"></span><span class="ls-years" style="left:90.45%">1879–1912</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">34 · Chandrasekhara Bharati III</span>
+      <span class="ls-track"><span class="ls-bar" style="left:90.45%;width:3.13%" title="34 · Chandrasekhara Bharati III · 1912–1954"></span><span class="ls-years" style="left:93.58%">1912–1954</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">35 · Abhinava Vidyatirtha</span>
+      <span class="ls-track"><span class="ls-bar" style="left:93.58%;width:2.61%" title="35 · Abhinava Vidyatirtha · 1954–1989"></span><span class="ls-years" style="left:96.19%">1954–1989</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="sringeri" style="--accent:var(--shankara)">
+      <span class="ls-name">36 · Bharati Tirtha</span>
+      <span class="ls-track"><span class="ls-bar" style="left:96.19%;width:2.76%" title="36 · Bharati Tirtha · 1989–present"></span><span class="ls-years" style="left:98.96%">1989–present</span></span>
+    </div>
+  </div>
+</section>
+<div class="callout">📜 <strong>Sri Vaishnava line, as told in the Tenkalai account:</strong> Nammalvar → Nathamuni → Uyyakkondar → Manakkal Nambi → Alavandar (Yamunacharya) → Periya Nambi → <strong>Ramanuja</strong> → Embar → Parasara Bhattar → Nanjeeyar → Nampillai → Vadakku Thiruveedhi Pillai → Pillai Lokacharya → Thiruvaimozhi Pillai → Manavala Mamunigal. The Vadakalai line runs from Ramanuja through Kidambi Achan and his descendants to Kidambi Appullar, the teacher of <strong>Vedanta Desika</strong>.</div>
+<section class="lifespans-block" data-block data-section="srivaishnava">
+  <h2 class="section-title">Sri Vaishnava acharyas</h2>
+  <p class="section-intro">Lifetimes as tradition gives them, many over a century long; dotted bars are traditional dates. Modern scholars suggest 1077–1157 for Ramanuja. Blue marks the shared line, green the Tenkalai teachers and violet the Vadakalai.</p>
+  <div class="lifespans">
+    <div class="ls-axis" aria-hidden="true"><span style="left:0.0%">800</span><span style="left:14.29%">900</span><span style="left:28.57%">1000</span><span style="left:42.86%">1100</span><span style="left:57.14%">1200</span><span style="left:71.43%">1300</span><span style="left:85.71%">1400</span><span style="left:100.0%">1500</span></div>
+    <div class="ls-row" data-item data-tags="srivaishnava" style="--accent:var(--srivaishnava)">
+      <span class="ls-name">Nathamuni</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:3.29%;width:18.29%" title="Nathamuni · c. 823–951"></span><span class="ls-years" style="left:21.57%">c. 823–951</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="srivaishnava" style="--accent:var(--srivaishnava)">
+      <span class="ls-name">Manakkal Nambi</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:4.57%;width:15.0%" title="Manakkal Nambi · c. 832–937"></span><span class="ls-years" style="left:19.57%">c. 832–937</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="srivaishnava" style="--accent:var(--srivaishnava)">
+      <span class="ls-name">Alavandar (Yamunacharya)</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:16.57%;width:17.86%" title="Alavandar (Yamunacharya) · c. 916–1041"></span><span class="ls-years" style="left:34.43%">c. 916–1041</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="srivaishnava" style="--accent:var(--srivaishnava)">
+      <span class="ls-name">Ramanuja</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:31.0%;width:17.14%" title="Ramanuja · 1017–1137 (traditional)"></span><span class="ls-years" style="left:48.14%">1017–1137 (traditional)</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="srivaishnava" style="--accent:var(--srivaishnava)">
+      <span class="ls-name">Parasara Bhattar</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:37.43%;width:16.0%" title="Parasara Bhattar · c. 1062–1174"></span><span class="ls-years" style="left:53.43%">c. 1062–1174</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="srivaishnava" style="--accent:var(--tenkalai)">
+      <span class="ls-name">Periyavachan Pillai</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:52.43%;width:13.57%" title="Periyavachan Pillai · c. 1167–1262"></span><span class="ls-years" style="left:66.0%">c. 1167–1262</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="srivaishnava" style="--accent:var(--tenkalai)">
+      <span class="ls-name">Vadakku Thiruveedhi Pillai</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:52.43%;width:13.86%" title="Vadakku Thiruveedhi Pillai · c. 1167–1264"></span><span class="ls-years" style="left:66.29%">c. 1167–1264</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="srivaishnava" style="--accent:var(--tenkalai)">
+      <span class="ls-name">Pillai Lokacharya</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:57.86%;width:15.14%" title="Pillai Lokacharya · c. 1205–1311"></span><span class="ls-years" style="left:73.0%">c. 1205–1311</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="srivaishnava" style="--accent:var(--vadakalai)">
+      <span class="ls-name">Vedanta Desika</span>
+      <span class="ls-track"><span class="ls-bar" style="left:66.86%;width:14.43%" title="Vedanta Desika · 1268–1369"></span><span class="ls-years" style="left:81.29%">1268–1369</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="srivaishnava" style="--accent:var(--tenkalai)">
+      <span class="ls-name">Manavala Mamunigal</span>
+      <span class="ls-track"><span class="ls-bar" style="left:81.43%;width:10.43%" title="Manavala Mamunigal · 1370–1443"></span><span class="ls-years" style="left:91.86%">1370–1443</span></span>
+    </div>
+  </div>
+</section>
+<section class="lifespans-block" data-block data-section="madhva">
+  <h2 class="section-title">Madhva's pontiffs</h2>
+  <p class="section-intro">Bars show the years as pontiff, except where a name is marked "life". The first six are the single line from Madhva to Jayatirtha. After Vidyadhiraja the seat divided, as the tree below shows.</p>
+  <div class="lifespans">
+    <div class="ls-axis" aria-hidden="true"><span style="left:0.0%">1200</span><span style="left:20.0%">1300</span><span style="left:40.0%">1400</span><span style="left:60.0%">1500</span><span style="left:80.0%">1600</span><span style="left:100.0%">1700</span></div>
+    <div class="ls-row" data-item data-tags="madhva" style="--accent:var(--madhva)">
+      <span class="ls-name">Madhvacharya (life)</span>
+      <span class="ls-track"><span class="ls-bar" style="left:7.6%;width:15.8%" title="Madhvacharya (life) · 1238–1317"></span><span class="ls-years" style="left:23.4%">1238–1317</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="madhva" style="--accent:var(--madhva)">
+      <span class="ls-name">Padmanabha Tirtha</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:23.4%;width:1.4%" title="Padmanabha Tirtha · c. 1317–1324"></span><span class="ls-years" style="left:24.8%">c. 1317–1324</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="madhva" style="--accent:var(--madhva)">
+      <span class="ls-name">Narahari Tirtha</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:24.8%;width:1.8%" title="Narahari Tirtha · c. 1324–1333"></span><span class="ls-years" style="left:26.6%">c. 1324–1333</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="madhva" style="--accent:var(--madhva)">
+      <span class="ls-name">Madhava Tirtha</span>
+      <span class="ls-track"><span class="ls-bar" style="left:26.6%;width:3.4%" title="Madhava Tirtha · 1333–1350"></span><span class="ls-years" style="left:30.0%">1333–1350</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="madhva" style="--accent:var(--madhva)">
+      <span class="ls-name">Akshobhya Tirtha</span>
+      <span class="ls-track"><span class="ls-bar" style="left:30.0%;width:3.0%" title="Akshobhya Tirtha · 1350–1365"></span><span class="ls-years" style="left:33.0%">1350–1365</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="madhva" style="--accent:var(--madhva)">
+      <span class="ls-name">Jayatirtha</span>
+      <span class="ls-track"><span class="ls-bar" style="left:33.0%;width:4.6%" title="Jayatirtha · 1365–1388"></span><span class="ls-years" style="left:37.6%">1365–1388</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="madhva" style="--accent:var(--other)">
+      <span class="ls-name">Vyasatirtha (life)</span>
+      <span class="ls-track"><span class="ls-bar" style="left:49.4%;width:18.4%" title="Vyasatirtha (life) · 1447–1539"></span><span class="ls-years" style="left:67.8%">1447–1539</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="madhva" style="--accent:var(--udupi)">
+      <span class="ls-name">Vadiraja Tirtha (life)</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:56.0%;width:24.0%" title="Vadiraja Tirtha (life) · c. 1480–1600"></span><span class="ls-years" style="left:80.0%">c. 1480–1600</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="madhva" style="--accent:var(--other)">
+      <span class="ls-name">Raghavendra Tirtha</span>
+      <span class="ls-track"><span class="ls-bar" style="left:84.2%;width:10.0%" title="Raghavendra Tirtha · 1621–1671"></span><span class="ls-years" style="left:94.2%">1621–1671</span></span>
+    </div>
+  </div>
+</section>
+<section class="family" data-block data-section="madhva">
+  <h2 class="section-title">How Madhva's seat branched</h2>
+  <p class="section-intro">Dashed boxes are institutions rather than single teachers.</p>
+  <div class="ftree-wrap"><ul class="ftree"><li><div class="ft-node" data-tags="madhva" style="--accent:var(--madhva)">
+<b>Madhvacharya</b> <span class="native">मध्वाचार्य</span><span class="ft-note">Founder of Dvaita (Tattvavada) · Udupi</span></div><ul><li><div class="ft-node" data-tags="madhva" style="--accent:var(--madhva)">
+<b>Padmanabha → Narahari → Madhava → Akshobhya</b><span class="ft-note">The first four pontiffs after Madhva</span></div><ul><li><div class="ft-node" data-tags="madhva" style="--accent:var(--madhva)">
+<b>Jayatirtha</b><span class="ft-note">The great commentator (Tikacharya)</span></div><ul><li><div class="ft-node" data-tags="madhva" style="--accent:var(--madhva)">
+<b>Vidyadhiraja Tirtha</b><span class="ft-note">First division after him</span></div><ul><li><div class="ft-node" data-tags="other" style="--accent:var(--other)">
+<b>Kavindra Tirtha</b><span class="ft-note">Continues the main line as the Uttaradi Math</span></div><ul><li><div class="ft-node" data-tags="other" style="--accent:var(--other)">
+<b>Ramachandra Tirtha</b><span class="ft-note">Second division after him</span></div><ul><li class="side"><div class="ft-node ft-side" data-tags="other" style="--accent:var(--other)">
+<b>Uttaradi Math</b><span class="ft-note">Through Vidyanidhi Tirtha</span></div></li><li class="side"><div class="ft-node ft-side" data-tags="other" style="--accent:var(--other)">
+<b>Raghavendra Math</b><span class="ft-note">Through Vibhudendra Tirtha, Kumbakonam; Raghavendra Tirtha, pontiff 1621–1671, rests at Mantralayam</span></div></li></ul></li></ul></li><li class="side"><div class="ft-node ft-side" data-tags="other" style="--accent:var(--other)">
+<b>Vyasaraja Math</b><span class="ft-note">Through Rajendra Tirtha; Vyasatirtha's seat (Sosale)</span></div></li></ul></li></ul></li></ul></li><li class="side"><div class="ft-node ft-side" data-tags="udupi" style="--accent:var(--udupi)">
+<b>The eight Ashta Mathas of Udupi</b><span class="ft-note">Founded with eight direct disciples to serve the Krishna temple; Vadiraja Tirtha of Sodhe Matha is among their best-known later heads</span></div></li></ul></li></ul></div>
+</section>
+<section class="sources"><h2>Sources</h2><ul><li><a href="https://www.sringeri.net/jagadgurus" target="_blank" rel="noopener">Guru Parampara — Sri Sringeri Sharada Peetham (official list)</a></li><li><a href="https://en.wikipedia.org/wiki/Sringeri_Sharada_Peetham" target="_blank" rel="noopener">Sringeri Sharada Peetham — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Ramanuja" target="_blank" rel="noopener">Ramanuja — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Nathamuni" target="_blank" rel="noopener">Nathamuni — Wikipedia</a></li><li><a href="https://ramanuja.org/sri/BhaktiListArchives/Article?p=nov97%2F0138.html" target="_blank" rel="noopener">Guru Parampara — Ramanuja.org Bhakti List archives</a></li><li><a href="https://en.wikipedia.org/wiki/Uttaradi_Math" target="_blank" rel="noopener">Uttaradi Math — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Raghavendra_Math_(Mantralayam)" target="_blank" rel="noopener">Raghavendra Math (Mantralayam) — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Jayatirtha" target="_blank" rel="noopener">Jayatirtha — Wikipedia</a></li></ul></section>
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
+<footer>
+  <p>🪔 A visual map of three guru paramparas · Sringeri dates are those published by the Sringeri Matha; early dates in every line are traditional</p>
+  <p>The four Shankara mathas and the eight Udupi mathas are on the <a href="mathas.html">Mathas</a> page</p>
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
+    <a href="ramayana.html"><span aria-hidden="true">🏹</span>Ramayana Journey</a>
+    <a href="mahabharata.html"><span aria-hidden="true">⚔️</span>Mahabharata Family Tree</a>
+    <a href="dashavatara.html"><span aria-hidden="true">🐚</span>Dashavatara</a>
+    <a href="carnatic.html"><span aria-hidden="true">🎶</span>Carnatic Music</a>
+    <a href="raga-geometry.html"><span aria-hidden="true">🎡</span>Raga Geometry</a>
+    <a href="sanskrit-poets.html"><span aria-hidden="true">✒️</span>Sanskrit Poets</a>
+    <a href="ram.html"><span aria-hidden="true">🙏</span>When India Says Ram</a>
+    <a href="parampara.html" aria-current="page"><span aria-hidden="true">🪔</span>Guru Parampara</a>
+    <a href="tamil-literature.html"><span aria-hidden="true">📜</span>Tamil Literature</a>
+    <a href="temples.html"><span aria-hidden="true">🛕</span>Temple Architecture</a>
+    <a href="festivals.html"><span aria-hidden="true">🎆</span>Festival Wheel</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
+</footer>
+<script src="assets/site.js?v=7d8eeccc"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<svg viewBox="0 0 405 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elevation of a Nagara temple: curvilinear shikhara crowned by an amalaka and kalasha">
+  <rect class="f-base" x="30" y="332" width="230" height="16" rx="2"/>
+  <rect class="f-base" x="62" y="306" width="166" height="26"/>
+  <line class="f-line" x1="62" y1="316" x2="228" y2="316"/><line class="f-line" x1="62" y1="324" x2="228" y2="324"/>
+  <rect class="f-wall" x="82" y="236" width="126" height="70"/>
+  <rect class="f-door" x="129" y="256" width="32" height="50" rx="14"/>
+  <path class="f-mass" d="M82 236 C82 170 104 120 124 92 L166 92 C186 120 208 170 208 236 Z"/>
+  <path class="f-line" d="M108 236 C108 180 120 132 132 100 M182 236 C182 180 170 132 158 100"/>
+  <path class="f-line" d="M90 214 H200 M94 192 H196 M99 170 H191 M105 148 H185 M112 126 H178 M119 108 H171"/>
+  <ellipse class="f-acc" cx="145" cy="84" rx="30" ry="9"/>
+  <path class="f-line" d="M121 84 H169 M127 78 V90 M137 76 V92 M145 75 V93 M153 76 V92 M163 78 V90"/>
+  <path class="f-acc" d="M135 74 Q135 60 145 58 Q155 60 155 74 Z"/>
+  <line class="f-acc" x1="145" y1="58" x2="145" y2="44"/>
+  <g class="f-lead"><path d="M156 52 H250"/><path d="M176 84 H250"/><path d="M196 160 H250"/><path d="M161 280 H250"/><path d="M228 320 H250"/><path d="M260 340 H272"/></g>
+  <text class="f-lbl" x="254" y="56">Kalasha</text>
+  <text class="f-lbl" x="254" y="88">Amalaka</text>
+  <text class="f-lbl" x="254" y="156">Shikhara —</text><text class="f-lbl" x="254" y="171">curvilinear tower</text>
+  <text class="f-lbl" x="254" y="276">Garbhagriha —</text><text class="f-lbl" x="254" y="291">the sanctum</text>
+  <text class="f-lbl" x="254" y="324">Adhishthana</text>
+  <text class="f-lbl" x="276" y="344">Jagati</text>
+  <text class="f-cap" x="30" y="378">PLAN · square, stepped with projections (rathas)</text>
+  <path class="f-plan" d="M70 392 H90 V386 H110 V392 H130 V400 H136 V420 H130 V428 H110 V434 H90 V428 H70 V420 H64 V400 H70 Z"/>
+  <rect class="f-door" x="92" y="404" width="16" height="12"/>
+</svg>

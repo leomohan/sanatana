@@ -11,7 +11,7 @@ Writes  <page>.html              in this folder, ready to publish as-is
 
 Requires PyYAML and Jinja2:  pip install -r requirements.txt
 """
-import hashlib, json, sys
+import hashlib, json, re, sys
 from pathlib import Path
 
 import yaml
@@ -43,6 +43,57 @@ def mela(n):
     r, g = MELA_PAIRS[(i % 36) // 6]
     d, nn = MELA_PAIRS[i % 6]
     return {'r': r, 'g': g, 'm': 1 if i < 36 else 2, 'd': d, 'n': nn, 'pairs': MELA_PAIRS}
+
+
+def polar(cx, cy, r, deg):
+    """Point on a circle; 0 degrees is straight up, angles run clockwise."""
+    import math
+    a = math.radians(deg - 90)
+    return round(cx + r * math.cos(a), 2), round(cy + r * math.sin(a), 2)
+
+
+def sector(cx, cy, r1, r2, a0, a1):
+    """SVG path for a ring segment between radii r1 < r2 and angles a0 < a1 (degrees, clockwise from top)."""
+    large = 1 if a1 - a0 > 180 else 0
+    p1, p2 = polar(cx, cy, r2, a0), polar(cx, cy, r2, a1)
+    p3, p4 = polar(cx, cy, r1, a1), polar(cx, cy, r1, a0)
+    return (f'M{p1[0]} {p1[1]} A{r2} {r2} 0 {large} 1 {p2[0]} {p2[1]} '
+            f'L{p3[0]} {p3[1]} A{r1} {r1} 0 {large} 0 {p4[0]} {p4[1]} Z')
+
+
+def inline_svg(name):
+    """Inline an SVG from assets/figures so the page theme (CSS variables) can colour it."""
+    from markupsafe import Markup
+    svg = (ASSETS / 'figures' / name).read_text(encoding='utf-8')
+    # drop embedded metadata (e.g. provenance manifests some tools add) so it is not inlined into pages
+    svg = re.sub(r'<metadata>.*?</metadata>\s*', '', svg, flags=re.S).replace(' xmlns:c2pa="http://c2pa.org/manifest"', '')
+    return Markup(svg)
+
+
+TITHI = {'shukla': 0, 'krishna': 15}
+
+
+def wheel_angle(w):
+    """Angle on the festival wheel: 30 degrees per amanta month, 1 degree per tithi.
+    tithi: 1-15 shukla (15 = purnima), 1-14 krishna, 'amavasya' = 30th."""
+    if w.get('angle') is not None:
+        return w['angle']
+    t = 29 if w.get('tithi') == 'amavasya' else TITHI[w.get('paksha', 'shukla')] + int(w['tithi']) - 1
+    return w['month'] * 30 + t + 0.5
+
+
+def wheel_lanes(cards, lanes=(214, 184), gap=8.0):
+    """Radius for each lunar festival dot so neighbours closer than `gap` degrees
+    move to the inner lane instead of overlapping. Returns {card id: radius}."""
+    dots = sorted(((wheel_angle(c['wheel']), c['id']) for c in cards
+                   if c.get('wheel') and not c['wheel'].get('solar')))
+    last, out = {}, {}
+    for ang, cid in dots:
+        r = next((r for r in lanes if ang - last.get(r, -99) >= gap), None)
+        if r is None:  # all lanes busy: take the lane whose last dot is furthest back
+            r = min(lanes, key=lambda r: last.get(r, -99))
+        last[r] = ang; out[cid] = r
+    return out
 
 
 def combine(a, b):
@@ -126,7 +177,7 @@ def build(names=None):
                       trim_blocks=False, lstrip_blocks=False, autoescape=True)
     env.filters['color'] = color
     env.filters['combine'] = combine
-    env.globals['mela'] = mela
+    env.globals.update(mela=mela, polar=polar, sector=sector, inline_svg=inline_svg, wheel_angle=wheel_angle, wheel_lanes=wheel_lanes)
     tpl = env.get_template('base.html')
     version = hashlib.sha1(b''.join(f.read_bytes() for f in sorted(ASSETS.glob('*.*')))).hexdigest()[:8]
 

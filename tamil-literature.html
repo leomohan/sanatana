@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamil Literature — Sangam Anthologies, Thirukkural and the 18 Siddhars</title>
+<meta name="description" content="Classical Tamil poetry mapped. The Eight Anthologies and Ten Idylls of the Sangam age, the five landscapes of love poetry, the eighteen shorter works including the Thirukkural, and the 18 Siddhars.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📜</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=7d8eeccc">
+<style>:root,[data-theme="dark"]{--tamil:#ff9f43; --akam:#ff6b81; --puram:#4a9eff; --ethics:#26de81; --siddha:#a55eea; --kurinji:#a55eea; --mullai:#26de81; --marutham:#f7b731; --neythal:#2bcbba; --palai:#ff6b6b;} [data-theme="light"]{--tamil:#d9771a; --akam:#d63c5a; --puram:#1a6fc4; --ethics:#1e9e5c; --siddha:#7b3fc4; --kurinji:#7b3fc4; --mullai:#1e9e5c; --marutham:#b7861b; --neythal:#1a9488; --palai:#c43a3a;} :root{--primary:var(--tamil); --grad-h:linear-gradient(90deg,var(--akam),var(--tamil),var(--puram),var(--ethics)); --grad-v:linear-gradient(var(--akam),var(--tamil),var(--puram),var(--ethics));}</style>
+<script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
+  (function(){
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
+  })();
+</script>
+</head>
+<body>
+<div class="controls" role="toolbar" aria-label="Page controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
+  <div class="search-wrap">
+    <span aria-hidden="true">🔍</span>
+    <input type="search" id="searchInput" placeholder="Search works, poets, landscapes…" aria-label="Search">
+  </div>
+  <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
+    <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">தமிழ்</button>
+  </div>
+  <div class="ctrl-group" role="group" aria-label="Text size">
+    <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
+    <span class="size-val" id="sizeVal">100%</span>
+    <button class="ctrl-btn size-btn" id="sizeUp" aria-label="Increase text size">A+</button>
+  </div>
+  <button class="ctrl-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+    <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+    <span id="toggleLabel">Light</span>
+  </button>
+</div>
+<header>
+  <h1>Tamil Literature</h1>
+  <p>Two thousand years of Tamil poetry, from love lyrics coded by landscape to a book of 1,330 couplets on how to live. The oldest layer is the Sangam corpus: eight anthologies and ten long poems, eighteen works in all. Eighteen shorter works follow it, the Thirukkural among them. Running beside both are the songs of the Siddhars, the rebel mystics.</p>
+  <div class="legend"><span><i class="dot" style="background:var(--akam)"></i>Akam — love</span><span><i class="dot" style="background:var(--puram)"></i>Puram — war</span><span><i class="dot" style="background:var(--ethics)"></i>Aram — ethics</span><span><i class="dot" style="background:var(--siddha)"></i>Siddhars</span></div>
+</header>
+<div class="counts"><div><b>8</b><span>Anthologies (Ettuthokai)</span></div><div><b>10</b><span>Idylls (Pattuppattu)</span></div><div><b>18</b><span>Shorter works (Kilkanakku)</span></div><div><b>1,330</b><span>Couplets in the Thirukkural</span></div></div>
+<div class="callout">🏛️ <strong>Why "Sangam"?</strong> Later tradition tells of three academies of poets (<em>sangams</em>) that met in Pandya capitals over thousands of years. Scholars treat that chronology as legend, and most date the surviving poems to roughly 300 BCE–300 CE; Kamil Zvelebil favoured 100 BCE–250 CE. The grammar <em>Tolkappiyam</em> sets out the rules the poems follow.</div>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--tamil)">Everything</button>
+  <button class="filter-chip" data-filter="akam" aria-pressed="false" style="--fc:var(--akam)">❤️ Akam</button>
+  <button class="filter-chip" data-filter="puram" aria-pressed="false" style="--fc:var(--puram)">⚔️ Puram</button>
+  <button class="filter-chip" data-filter="ethics" aria-pressed="false" style="--fc:var(--ethics)">⚖️ Ethics</button>
+  <button class="filter-chip" data-filter="siddha" aria-pressed="false" style="--fc:var(--siddha)">🌿 Siddhars</button>
+</div>
+<section data-block data-section="akam">
+  <h2 class="section-title">The five landscapes of love</h2>
+  <p class="section-intro">Akam poetry never names its lovers. Instead each poem is set in a landscape (<em>tinai</em>), and the landscape tells the reader which mood of love is meant. Each tinai is named after a flower.</p>
+  <div class="grid v4">
+  <article class="card has-corner" data-item data-tags="akam" style="--accent:var(--kurinji)"><span class="corner-icon" aria-hidden="true">⛰️</span>
+  <h3>Kurinji <span class="native">குறிஞ்சி</span></h3><span class="tag">Mountains</span><dl class="facts"><div class="fact"><dt>Mood</dt><dd>Lovers' union</dd></div><div class="fact"><dt>Deity</dt><dd>Murugan (Ceyon)</dd></div></dl>
+</article>
+  <article class="card has-corner" data-item data-tags="akam" style="--accent:var(--mullai)"><span class="corner-icon" aria-hidden="true">🌳</span>
+  <h3>Mullai <span class="native">முல்லை</span></h3><span class="tag">Forests and pasture</span><dl class="facts"><div class="fact"><dt>Mood</dt><dd>Patient waiting</dd></div><div class="fact"><dt>Deity</dt><dd>Thirumal (Mayon)</dd></div></dl>
+</article>
+  <article class="card has-corner" data-item data-tags="akam" style="--accent:var(--marutham)"><span class="corner-icon" aria-hidden="true">🌾</span>
+  <h3>Marutham <span class="native">மருதம்</span></h3><span class="tag">Farmland by rivers</span><dl class="facts"><div class="fact"><dt>Mood</dt><dd>Sulking and lovers' quarrels</dd></div><div class="fact"><dt>Deity</dt><dd>Indra (Ventan)</dd></div></dl>
+</article>
+  <article class="card has-corner" data-item data-tags="akam" style="--accent:var(--neythal)"><span class="corner-icon" aria-hidden="true">🌊</span>
+  <h3>Neythal <span class="native">நெய்தல்</span></h3><span class="tag">The seashore</span><dl class="facts"><div class="fact"><dt>Mood</dt><dd>Anxious longing</dd></div><div class="fact"><dt>Deity</dt><dd>Varuna</dd></div></dl>
+</article>
+  <article class="card has-corner" data-item data-tags="akam" style="--accent:var(--palai)"><span class="corner-icon" aria-hidden="true">🏜️</span>
+  <h3>Palai <span class="native">பாலை</span></h3><span class="tag">Parched wasteland</span><dl class="facts"><div class="fact"><dt>Mood</dt><dd>Separation</dd></div><div class="fact"><dt>Deity</dt><dd>Korravai</dd></div></dl>
+</article>
+  </div>
+</section>
+<section data-block>
+  <h2 class="section-title">The Eight Anthologies · Ettuthokai</h2>
+  <p class="section-intro">Collections of short and medium poems by hundreds of poets, gathered and arranged by later editors. Counts are the poems that survive.</p>
+  <div class="grid v4">
+  <article class="card" data-item data-tags="akam" style="--accent:var(--akam)">
+  <h3>Natrinai <span class="native">நற்றிணை</span></h3><span class="tag">400 poems · 9–12 lines</span><p>"The good tinai." Love poems across all five landscapes.</p>
+</article>
+  <article class="card" data-item data-tags="akam" style="--accent:var(--akam)">
+  <h3>Kurunthokai <span class="native">குறுந்தொகை</span></h3><span class="tag">About 400 poems · 4–8 lines</span><p>The short collection. Its compressed love lyrics are among the most translated Tamil poems.</p>
+</article>
+  <article class="card" data-item data-tags="akam" style="--accent:var(--akam)">
+  <h3>Ainkurunuru <span class="native">ஐங்குறுநூறு</span></h3><span class="tag">About 500 poems · 3–6 lines</span><p>Five poets, one landscape each, with a hundred very short poems apiece.</p>
+</article>
+  <article class="card" data-item data-tags="akam" style="--accent:var(--akam)">
+  <h3>Kalithokai <span class="native">கலித்தொகை</span></h3><span class="tag">150 poems</span><p>Love poems in the dramatic kali metre</p>
+</article>
+  <article class="card" data-item data-tags="akam" style="--accent:var(--akam)">
+  <h3>Akananuru <span class="native">அகநானூறு</span></h3><span class="tag">About 400 poems · 13–31 lines</span><p>"The four hundred on the inner world." The longest akam poems.</p>
+</article>
+  <article class="card" data-item data-tags="puram" style="--accent:var(--puram)">
+  <h3>Purananuru <span class="native">புறநானூறு</span></h3><span class="tag">About 400 poems</span><p>Kings, battles, generosity, death and ethics. It holds the line "Every town is our town, everyone our kin."</p>
+</article>
+  <article class="card" data-item data-tags="puram" style="--accent:var(--puram)">
+  <h3>Pathitrupathu <span class="native">பதிற்றுப்பத்து</span></h3><span class="tag">10 decades · 8 survive</span><p>Ten poems each in praise of ten Chera kings. The first and last decades are lost.</p>
+</article>
+  <article class="card" data-item data-tags="puram akam" style="--accent:var(--puram)">
+  <h3>Paripadal <span class="native">பரிபாடல்</span></h3><span class="tag">70 composed · 24 survive whole</span><p>Songs to Thirumal and Murugan and on the river Vaigai. Hymns and love poetry meet here, early signs of later bhakti.</p>
+</article>
+  </div>
+</section>
+<section data-block data-section="puram" style="--tc:var(--puram)">
+  <h2 class="section-title" style="color:var(--puram)">The Ten Idylls · Pattuppattu</h2>
+  <p class="section-intro">Ten long poems, from about a hundred to almost eight hundred lines. Five are "guide poems" (<em>arruppadai</em>), in which one bard directs another to a generous patron.</p>
+  <div class="table-wrap"><table class="data-table">
+    <thead><tr><th>Idyll</th><th>Poet</th><th>Lines</th><th>Kind</th></tr></thead>
+    <tbody><tr data-item><td>Thirumurugarruppadai · திருமுருகாற்றுப்படை</td><td>Nakkirar</td><td>317</td><td>Guide poem to <a href="muruga.html">Murugan's six abodes</a></td></tr><tr data-item><td>Porunararruppadai · பொருநராற்றுப்படை</td><td>Mudathama Kanniyar</td><td>234</td><td>Guide poem · puram</td></tr><tr data-item><td>Sirupanarruppadai · சிறுபாணாற்றுப்படை</td><td>Nattattanar</td><td>296</td><td>Guide poem · puram</td></tr><tr data-item><td>Perumpanarruppadai · பெரும்பாணாற்றுப்படை</td><td>Uruthirankannanar</td><td>500</td><td>Guide poem · puram</td></tr><tr data-item><td>Malaipadukadam · மலைபடுகடாம்</td><td>Perunkausikanar</td><td>583</td><td>Guide poem · puram</td></tr><tr data-item><td>Mullaippattu · முல்லைப்பாட்டு</td><td>Napputhanar</td><td>103</td><td>Akam · waiting</td></tr><tr data-item><td>Maduraikkanchi · மதுரைக்காஞ்சி</td><td>Mangudi Marudanar</td><td>782</td><td>Puram · Madurai and impermanence</td></tr><tr data-item><td>Nedunalvadai · நெடுநல்வாடை</td><td>Nakkirar</td><td>188</td><td>Puram · the long north wind</td></tr><tr data-item><td>Kurinjippattu · குறிஞ்சிப்பாட்டு</td><td>Kapilar</td><td>261</td><td>Akam · union in the hills</td></tr><tr data-item><td>Pattinappalai · பட்டினப்பாலை</td><td>Uruthirankannanar</td><td>301</td><td>Akam · the port of Puhar</td></tr></tbody>
+  </table></div>
+</section>
+<section data-block data-section="ethics">
+  <h2 class="section-title">Thirukkural</h2>
+  <div class="grid two">
+  <article class="card has-corner" data-item data-tags="ethics" style="--accent:var(--ethics)"><span class="corner-icon" aria-hidden="true">⚖️</span>
+  <h3>Thirukkural <span class="native">திருக்குறள்</span></h3><span class="tag">Thiruvalluvar · probably the early centuries CE</span><p>The best-known of the eighteen shorter works, and the most translated work in Tamil. It has 1,330 couplets in 133 chapters of ten. Each couplet, a <em>kural</em>, is just seven metrical feet long. It speaks to no sect and names no king, which is one reason every age has claimed it.</p><dl class="facts"><div class="fact"><dt>Aram · virtue</dt><dd>38 chapters</dd></div><div class="fact"><dt>Porul · wealth and statecraft</dt><dd>70 chapters</dd></div><div class="fact"><dt>Inbam · love</dt><dd>25 chapters</dd></div><div class="fact"><dt>First couplet</dt><dd>"As A begins all letters, so God is first of the world" (அகர முதல எழுத்தெல்லாம் ஆதி பகவன் முதற்றே உலகு)</dd></div></dl>
+</article>
+  </div>
+</section>
+<section data-block style="--tc:var(--ethics)">
+  <h2 class="section-title" style="color:var(--ethics)">The Eighteen Shorter Works · Pathinenkilkanakku</h2>
+  <p class="section-intro">Short poems in the venpa metre, mostly c. 100–500 CE. Eleven teach ethics, six are love poetry and one is about war. Naladiyar is the only one by many poets; each of the others has a single author.</p>
+  <div class="table-wrap"><table class="data-table">
+    <thead><tr><th>Work</th><th>Kind</th></tr></thead>
+    <tbody><tr data-item><td>Naladiyar</td><td>Ethics · 400 quatrains by many poets</td></tr><tr data-item><td>Nanmanikkadigai</td><td>Ethics</td></tr><tr data-item><td>Inna Narpathu</td><td>Ethics · forty things that bring sorrow</td></tr><tr data-item><td>Iniyavai Narpathu</td><td>Ethics · forty things that bring joy</td></tr><tr data-item><td>Thirukkural</td><td>Ethics · 1,330 couplets</td></tr><tr data-item><td>Thirikadukam</td><td>Ethics</td></tr><tr data-item><td>Acharakkovai</td><td>Ethics · conduct</td></tr><tr data-item><td>Pazhamozhi Nanuru</td><td>Ethics · built on proverbs</td></tr><tr data-item><td>Sirupanchamulam</td><td>Ethics</td></tr><tr data-item><td>Mudumozhikkanchi</td><td>Ethics</td></tr><tr data-item><td>Elathi</td><td>Ethics</td></tr><tr data-item><td>Kar Narpathu</td><td>Akam · the rainy season</td></tr><tr data-item><td>Ainthinai Aimpathu</td><td>Akam · ten poems for each landscape</td></tr><tr data-item><td>Ainthinai Ezhupathu</td><td>Akam</td></tr><tr data-item><td>Thinaimozhi Aimpathu</td><td>Akam</td></tr><tr data-item><td>Thinaimalai Nutraimpathu</td><td>Akam</td></tr><tr data-item><td>Kainnilai</td><td>Akam · some lists name Innilai instead</td></tr><tr data-item><td>Kalavazhi Narpathu</td><td>Puram · a battle</td></tr></tbody>
+  </table></div>
+</section>
+<section data-block data-section="siddha" style="--tc:var(--siddha)">
+  <h2 class="section-title" style="color:var(--siddha)">The 18 Siddhars</h2>
+  <p class="section-intro">Mystics, alchemists and physicians of the Siddha tradition. They mocked ritual and caste, and they sang of the divine within the body. The names in the list vary between sources; this is the list in the Abithana Chintamani. Siddha medicine still bears their name.</p>
+  <div class="numgrid"><div class="num-cell" data-item><span class="num">1</span><span class="name">Nandi</span></div><div class="num-cell" data-item><span class="num">2</span><span class="name">Thirumoolar</span></div><div class="num-cell" data-item><span class="num">3</span><span class="name">Agastyar</span></div><div class="num-cell" data-item><span class="num">4</span><span class="name">Kalangi Nathar</span></div><div class="num-cell" data-item><span class="num">5</span><span class="name">Patanjali</span></div><div class="num-cell" data-item><span class="num">6</span><span class="name">Korakkar</span></div><div class="num-cell" data-item><span class="num">7</span><span class="name">Sundaranandar</span></div><div class="num-cell" data-item><span class="num">8</span><span class="name">Konganar</span></div><div class="num-cell" data-item><span class="num">9</span><span class="name">Sattaimuni</span></div><div class="num-cell" data-item><span class="num">10</span><span class="name">Valmiki (Vanmikar)</span></div><div class="num-cell" data-item><span class="num">11</span><span class="name">Ramadevar</span></div><div class="num-cell" data-item><span class="num">12</span><span class="name">Dhanvantari</span></div><div class="num-cell" data-item><span class="num">13</span><span class="name">Idaikadar</span></div><div class="num-cell" data-item><span class="num">14</span><span class="name">Machamuni</span></div><div class="num-cell" data-item><span class="num">15</span><span class="name">Karuvoorar</span></div><div class="num-cell" data-item><span class="num">16</span><span class="name">Bogar</span></div><div class="num-cell" data-item><span class="num">17</span><span class="name">Pambatti</span></div><div class="num-cell" data-item><span class="num">18</span><span class="name">Kudhambai</span></div></div>
+</section>
+<section data-block data-section="siddha">
+  <h2 class="section-title">Four Siddhars to know</h2>
+  <div class="grid v4">
+  <article class="card" data-item style="--accent:var(--siddha)">
+  <h3>Thirumoolar <span class="native">திருமூலர்</span></h3><p>His <em>Thirumantiram</em> of about 3,000 verses is the tenth book of the Saiva canon (Tirumurai). It holds the famous line "Love is God" (அன்பே சிவம்).</p>
+</article>
+  <article class="card" data-item style="--accent:var(--siddha)">
+  <h3>Bogar <span class="native">போகர்</span></h3><p>Tradition credits him with the image of Murugan at <a href="muruga.html">Palani</a>, made of nine minerals (navapashanam).</p>
+</article>
+  <article class="card" data-item style="--accent:var(--siddha)">
+  <h3>Karuvoorar <span class="native">கருவூரார்</span></h3><p>Linked by tradition with the building of the Brihadeeswara temple at Thanjavur, which keeps a shrine to him.</p>
+</article>
+  <article class="card" data-item style="--accent:var(--siddha)">
+  <h3>Pambatti <span class="native">பாம்பாட்டி</span></h3><p>The "snake-charmer" Siddhar. His songs urge the dancing snake, the soul, to rise.</p>
+</article>
+  </div>
+</section>
+<section class="sources"><h2>Sources</h2><ul><li><a href="https://en.wikipedia.org/wiki/Sangam_literature" target="_blank" rel="noopener">Sangam literature — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Eighteen_Lesser_Texts" target="_blank" rel="noopener">Eighteen Lesser Texts — Wikipedia</a></li><li><a href="https://tamilnation.netlify.app/literature/pathinen" target="_blank" rel="noopener">Pathinen Kilkanakku — Tamil Nation (texts and authors)</a></li><li><a href="https://en.wikipedia.org/wiki/Siddhar" target="_blank" rel="noopener">Siddhar — Wikipedia</a></li><li><a href="https://www.projectmadurai.org/" target="_blank" rel="noopener">Project Madurai — Tamil texts online</a></li></ul></section>
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
+<footer>
+  <p>📜 A visual map of classical Tamil literature · Poem counts are those that survive; several anthologies have lost poems</p>
+  <p>Dates for the Sangam corpus are debated; most scholars place it within c. 300 BCE–300 CE</p>
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
+    <a href="ramayana.html"><span aria-hidden="true">🏹</span>Ramayana Journey</a>
+    <a href="mahabharata.html"><span aria-hidden="true">⚔️</span>Mahabharata Family Tree</a>
+    <a href="dashavatara.html"><span aria-hidden="true">🐚</span>Dashavatara</a>
+    <a href="carnatic.html"><span aria-hidden="true">🎶</span>Carnatic Music</a>
+    <a href="raga-geometry.html"><span aria-hidden="true">🎡</span>Raga Geometry</a>
+    <a href="sanskrit-poets.html"><span aria-hidden="true">✒️</span>Sanskrit Poets</a>
+    <a href="ram.html"><span aria-hidden="true">🙏</span>When India Says Ram</a>
+    <a href="parampara.html"><span aria-hidden="true">🪔</span>Guru Parampara</a>
+    <a href="tamil-literature.html" aria-current="page"><span aria-hidden="true">📜</span>Tamil Literature</a>
+    <a href="temples.html"><span aria-hidden="true">🛕</span>Temple Architecture</a>
+    <a href="festivals.html"><span aria-hidden="true">🎆</span>Festival Wheel</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
+</footer>
+<script src="assets/site.js?v=7d8eeccc"></script>
+</body>
+</html>

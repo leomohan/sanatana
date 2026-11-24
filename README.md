@@ -48,8 +48,10 @@ Each entry under `blocks:` has a `type`:
 | `spectrum`, `glance`, `pairs` | Vedanta spectrum, Shanmata at-a-glance, Darshana pairs |
 | `table`, `numgrid` | Nakshatra table, Samvatsara grid |
 | `family` | left-to-right family tree; each person may have `with` (spouses), `note`, `tags` (house) and `children`; `side: true` draws a dashed box |
-| `lifespans` | horizontal lifetime bars on a year axis (`from`, `to`, `step`); `circa: true` gives a dotted bar |
+| `lifespans` | horizontal lifetime bars on a year axis (`from`, `to`, `step`); `circa: true` gives a dotted bar; `label:` replaces the printed years (e.g. `1989–present`) |
 | `melakarta` | the 72-melakarta chart; swaras are computed by `build.py`, so only the names are listed; `play: {29: shankarabharanam}` adds a ▶ link to Raga Geometry |
+| `figures` | side-by-side labelled diagrams; each item names an SVG in `assets/figures/` (`svg: nagara.svg`) and is drawn inline so it follows the theme colours |
+| `festival-wheel` | the year as a lunar wheel: `ritus`, 12 amanta `months` (with `greg`), a `hub` and a `key`. Every card on the page with `wheel: {month, paksha, tithi}` becomes a numbered dot linking to it; `{angle, solar: true}` puts it on the outer solar ring, `approx: true` draws it dashed. Close dots move to an inner lane automatically |
 | `raga-geometry` | the interactive raga and Adi Talam wheels; the ragas are listed in the YAML (`avaro: reverse` = descent is the ascent reversed) and the page sets `scripts: [raga.js]` |
 | `life-timeline` | Samskaras timeline, grouped by life stage |
 | `story`, `callout`, `counts`, `panel` | text boxes |

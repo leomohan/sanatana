@@ -183,3 +183,31 @@ blocks:
     text: One name in twelve everyday expressions, from the greeting Ram Ram to Ram Naam Satya Hai, and what each says
       about grief, conscience, faith, justice and mortality.
     meta: [12 expressions, 4 themes, Hindi & English]
+  - title: Guru Parampara
+    accent: '#ff9f43'
+    href: parampara.html
+    emoji: 🪔
+    text: Teacher–disciple lineages as timelines. All 36 Jagadgurus of Sringeri, the Sri Vaishnava acharyas around Ramanuja,
+      and Madhva's pontiffs with the mathas that branched from them.
+    meta: [3 lineages, 36 Jagadgurus, Timelines]
+  - title: Tamil Literature
+    accent: '#ff6b81'
+    href: tamil-literature.html
+    emoji: 📜
+    text: The Eight Anthologies and Ten Idylls of the Sangam age, the five landscapes of love poetry, the Thirukkural
+      and the eighteen shorter works, and the 18 Siddhars.
+    meta: [36 works, 5 landscapes, 18 Siddhars]
+  - title: Temple Architecture
+    accent: '#f7b731'
+    href: temples.html
+    emoji: 🛕
+    text: Nagara, Dravida and Vesara drawn as labelled diagrams, compared part by part, and mapped through fourteen landmark
+      temples from Khajuraho to Thanjavur.
+    meta: [3 styles, Diagrams, 14 temples mapped]
+  - title: The Festival Wheel
+    accent: '#26de81'
+    href: festivals.html
+    emoji: 🎆
+    text: The lunar year as a wheel. Twelve months, their bright and dark halves and six seasons, with 28 festivals placed
+      on their tithis as the Panchanga reckons them.
+    meta: [28 festivals, 6 ritus, Tied to the Panchanga]

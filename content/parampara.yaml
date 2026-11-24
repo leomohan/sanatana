@@ -1,0 +1,332 @@
+page:
+  file: parampara.html
+  layout: page
+  title: Guru Parampara — Teacher–Disciple Lineages of Sringeri, Sri Vaishnavism and Madhva
+  description: Teacher–disciple lineages drawn as timelines. The 36 Jagadgurus of Sringeri, the Sri Vaishnava acharyas
+    before and after Ramanuja, and the pontiffs of Madhva's line and the mathas that branched from it.
+  favicon: 🪔
+  search: Search a teacher — Vidyaranya, Desika, Jayatirtha…
+  palette:
+    shankara: ['#ff9f43', '#d9771a']
+    srivaishnava: ['#4a9eff', '#1a6fc4']
+    tenkalai: ['#26de81', '#1e9e5c']
+    vadakalai: ['#a55eea', '#7b3fc4']
+    madhva: ['#f7b731', '#b7861b']
+    udupi: ['#ff6b81', '#d63c5a']
+    other: ['#a29ac2', '#6b5c4a']
+  gradient: [shankara, srivaishnava, madhva]
+  primary: shankara
+  h1: Guru Parampara
+  intro: 'A tradition survives only as long as someone teaches it to someone else. Each line below is a
+    <em>parampara</em>, a chain of teachers that its followers count unbroken from its founder to the present. The
+    three lines shown are Shankara''s Sringeri seat, the Sri Vaishnava teachers around Ramanuja, and Madhva''s pontiffs.'
+  legend:
+  - {label: Sringeri (Advaita), color: shankara}
+  - {label: Sri Vaishnava (Vishishtadvaita), color: srivaishnava}
+  - {label: Madhva (Dvaita), color: madhva}
+  filters:
+  - {value: all, label: All three lines, color: shankara}
+  - {value: sringeri, label: Sringeri, color: shankara}
+  - {value: srivaishnava, label: Sri Vaishnava, color: srivaishnava}
+  - {value: madhva, label: Madhva, color: madhva}
+  footer: ['🪔 A visual map of three guru paramparas · Sringeri dates are those published by the Sringeri Matha;
+      early dates in every line are traditional', 'The four Shankara mathas and the eight Udupi mathas are on the <a
+      href="mathas.html">Mathas</a> page']
+blocks:
+- {type: filters}
+- type: callout
+  text: '🕉️ <strong>Before the first Jagadguru.</strong> Sringeri counts its succession through three earlier lineages.
+    The divine one runs from Sadashiva to Narayana to Brahma. The sages follow: Vasishtha, Shakti, Parashara, Vyasa and
+    Shuka. Then come the teachers Gaudapada and Govinda Bhagavatpada, Shankara''s own guru.'
+- type: lifespans
+  section: sringeri
+  title: The 36 Jagadgurus of Sringeri
+  intro: Each bar is a pontificate, as listed by the Sringeri Matha. Bars for the first ten are dotted because their
+    long reigns are traditional. Vidhushekhara Bharati has been the successor-designate since 2015.
+  from: 700
+  to: 2040
+  step: 100
+  rows:
+  - name: 1 · Shankara Bhagavatpada
+    born: 788
+    died: 820
+    tags: sringeri
+    color: shankara
+    label: c. 788–820
+    circa: true
+  - name: 2 · Sureshwaracharya
+    born: 820
+    died: 834
+    tags: sringeri
+    color: shankara
+    circa: true
+  - name: 3 · Nityabodhaghana
+    born: 834
+    died: 848
+    tags: sringeri
+    color: shankara
+    circa: true
+  - name: 4 · Jnanaghana
+    born: 848
+    died: 910
+    tags: sringeri
+    color: shankara
+    circa: true
+  - name: 5 · Jnanottama
+    born: 910
+    died: 954
+    tags: sringeri
+    color: shankara
+    circa: true
+  - name: 6 · Jnanagiri
+    born: 954
+    died: 1038
+    tags: sringeri
+    color: shankara
+    circa: true
+  - name: 7 · Simhagiri
+    born: 1038
+    died: 1098
+    tags: sringeri
+    color: shankara
+    circa: true
+  - name: 8 · Ishwara Tirtha
+    born: 1098
+    died: 1146
+    tags: sringeri
+    color: shankara
+    circa: true
+  - name: 9 · Nrisimha Tirtha
+    born: 1146
+    died: 1229
+    tags: sringeri
+    color: shankara
+    circa: true
+  - name: 10 · Vidya Tirtha
+    born: 1229
+    died: 1333
+    tags: sringeri
+    color: shankara
+    circa: true
+  - name: 11 · Bharati Tirtha
+    born: 1333
+    died: 1380
+    tags: sringeri
+    color: shankara
+  - name: 12 · Vidyaranya
+    born: 1380
+    died: 1386
+    tags: sringeri
+    color: shankara
+  - name: 13 · Chandrasekhara Bharati I
+    born: 1386
+    died: 1389
+    tags: sringeri
+    color: shankara
+  - name: 14 · Nrisimha Bharati I
+    born: 1389
+    died: 1408
+    tags: sringeri
+    color: shankara
+  - name: 15 · Purushottama Bharati I
+    born: 1408
+    died: 1448
+    tags: sringeri
+    color: shankara
+  - name: 16 · Shankara Bharati
+    born: 1448
+    died: 1455
+    tags: sringeri
+    color: shankara
+  - name: 17 · Chandrasekhara Bharati II
+    born: 1455
+    died: 1464
+    tags: sringeri
+    color: shankara
+  - name: 18 · Nrisimha Bharati II
+    born: 1464
+    died: 1479
+    tags: sringeri
+    color: shankara
+  - name: 19 · Purushottama Bharati II
+    born: 1479
+    died: 1517
+    tags: sringeri
+    color: shankara
+  - name: 20 · Ramachandra Bharati
+    born: 1517
+    died: 1560
+    tags: sringeri
+    color: shankara
+  - name: 21 · Nrisimha Bharati III
+    born: 1560
+    died: 1573
+    tags: sringeri
+    color: shankara
+  - name: 22 · Nrisimha Bharati IV
+    born: 1573
+    died: 1576
+    tags: sringeri
+    color: shankara
+  - name: 23 · Nrisimha Bharati V
+    born: 1576
+    died: 1600
+    tags: sringeri
+    color: shankara
+  - name: 24 · Abhinava Nrisimha Bharati
+    born: 1600
+    died: 1623
+    tags: sringeri
+    color: shankara
+  - name: 25 · Sacchidananda Bharati I
+    born: 1623
+    died: 1663
+    tags: sringeri
+    color: shankara
+  - name: 26 · Nrisimha Bharati VI
+    born: 1663
+    died: 1706
+    tags: sringeri
+    color: shankara
+  - name: 27 · Sacchidananda Bharati II
+    born: 1706
+    died: 1741
+    tags: sringeri
+    color: shankara
+  - name: 28 · Abhinava Sacchidananda Bharati I
+    born: 1741
+    died: 1767
+    tags: sringeri
+    color: shankara
+  - name: 29 · Nrisimha Bharati VII
+    born: 1767
+    died: 1770
+    tags: sringeri
+    color: shankara
+  - name: 30 · Sacchidananda Bharati III
+    born: 1770
+    died: 1814
+    tags: sringeri
+    color: shankara
+  - name: 31 · Abhinava Sacchidananda Bharati II
+    born: 1814
+    died: 1817
+    tags: sringeri
+    color: shankara
+  - name: 32 · Nrisimha Bharati VIII
+    born: 1817
+    died: 1879
+    tags: sringeri
+    color: shankara
+  - name: 33 · Sacchidananda Shivabhinava Nrisimha Bharati
+    born: 1879
+    died: 1912
+    tags: sringeri
+    color: shankara
+  - name: 34 · Chandrasekhara Bharati III
+    born: 1912
+    died: 1954
+    tags: sringeri
+    color: shankara
+  - name: 35 · Abhinava Vidyatirtha
+    born: 1954
+    died: 1989
+    tags: sringeri
+    color: shankara
+  - name: 36 · Bharati Tirtha
+    born: 1989
+    died: 2026
+    tags: sringeri
+    color: shankara
+    label: 1989–present
+- type: callout
+  text: '📜 <strong>Sri Vaishnava line, as told in the Tenkalai account:</strong> Nammalvar → Nathamuni → Uyyakkondar →
+    Manakkal Nambi → Alavandar (Yamunacharya) → Periya Nambi → <strong>Ramanuja</strong> → Embar → Parasara Bhattar →
+    Nanjeeyar → Nampillai → Vadakku Thiruveedhi Pillai → Pillai Lokacharya → Thiruvaimozhi Pillai → Manavala Mamunigal.
+    The Vadakalai line runs from Ramanuja through Kidambi Achan and his descendants to Kidambi Appullar, the teacher of
+    <strong>Vedanta Desika</strong>.'
+- type: lifespans
+  section: srivaishnava
+  title: Sri Vaishnava acharyas
+  intro: Lifetimes as tradition gives them, many over a century long; dotted bars are traditional dates. Modern scholars
+    suggest 1077–1157 for Ramanuja. Blue marks the shared line, green the Tenkalai teachers and violet the Vadakalai.
+  from: 800
+  to: 1500
+  step: 100
+  rows:
+  - {name: Nathamuni, born: 823, died: 951, circa: true, tags: srivaishnava, color: srivaishnava}
+  - {name: Manakkal Nambi, born: 832, died: 937, circa: true, tags: srivaishnava, color: srivaishnava}
+  - {name: Alavandar (Yamunacharya), born: 916, died: 1041, circa: true, tags: srivaishnava, color: srivaishnava}
+  - {name: Ramanuja, born: 1017, died: 1137, circa: true, tags: srivaishnava, color: srivaishnava, label: 1017–1137 (traditional)}
+  - {name: Parasara Bhattar, born: 1062, died: 1174, circa: true, tags: srivaishnava, color: srivaishnava}
+  - {name: Periyavachan Pillai, born: 1167, died: 1262, circa: true, tags: srivaishnava, color: tenkalai}
+  - {name: Vadakku Thiruveedhi Pillai, born: 1167, died: 1264, circa: true, tags: srivaishnava, color: tenkalai}
+  - {name: Pillai Lokacharya, born: 1205, died: 1311, circa: true, tags: srivaishnava, color: tenkalai}
+  - {name: Vedanta Desika, born: 1268, died: 1369, tags: srivaishnava, color: vadakalai}
+  - {name: Manavala Mamunigal, born: 1370, died: 1443, tags: srivaishnava, color: tenkalai}
+- type: lifespans
+  section: madhva
+  title: Madhva's pontiffs
+  intro: Bars show the years as pontiff, except where a name is marked "life". The first six are the single line from
+    Madhva to Jayatirtha. After Vidyadhiraja the seat divided, as the tree below shows.
+  from: 1200
+  to: 1700
+  step: 100
+  rows:
+  - {name: Madhvacharya (life), born: 1238, died: 1317, tags: madhva, color: madhva}
+  - {name: Padmanabha Tirtha, born: 1317, died: 1324, circa: true, tags: madhva, color: madhva}
+  - {name: Narahari Tirtha, born: 1324, died: 1333, circa: true, tags: madhva, color: madhva}
+  - {name: Madhava Tirtha, born: 1333, died: 1350, tags: madhva, color: madhva}
+  - {name: Akshobhya Tirtha, born: 1350, died: 1365, tags: madhva, color: madhva}
+  - {name: Jayatirtha, born: 1365, died: 1388, tags: madhva, color: madhva}
+  - {name: Vyasatirtha (life), born: 1447, died: 1539, tags: madhva, color: other}
+  - {name: Vadiraja Tirtha (life), born: 1480, died: 1600, circa: true, tags: madhva, color: udupi}
+  - {name: Raghavendra Tirtha, born: 1621, died: 1671, tags: madhva, color: other}
+- type: family
+  section: madhva
+  title: How Madhva's seat branched
+  intro: Dashed boxes are institutions rather than single teachers.
+  colors: {madhva: madhva, udupi: udupi, other: other}
+  trees:
+  - root:
+      name: Madhvacharya
+      native: मध्वाचार्य
+      note: Founder of Dvaita (Tattvavada) · Udupi
+      tags: madhva
+      children:
+      - name: Padmanabha → Narahari → Madhava → Akshobhya
+        tags: madhva
+        note: The first four pontiffs after Madhva
+        children:
+        - name: Jayatirtha
+          tags: madhva
+          note: The great commentator (Tikacharya)
+          children:
+          - name: Vidyadhiraja Tirtha
+            tags: madhva
+            note: First division after him
+            children:
+            - name: Kavindra Tirtha
+              tags: other
+              note: Continues the main line as the Uttaradi Math
+              children:
+              - name: Ramachandra Tirtha
+                tags: other
+                note: Second division after him
+                children:
+                - {name: Uttaradi Math, tags: other, side: true, note: 'Through Vidyanidhi Tirtha'}
+                - {name: Raghavendra Math, tags: other, side: true, note: 'Through Vibhudendra Tirtha, Kumbakonam;
+                    Raghavendra Tirtha, pontiff 1621–1671, rests at Mantralayam'}
+            - {name: Vyasaraja Math, tags: other, side: true, note: 'Through Rajendra Tirtha; Vyasatirtha''s seat (Sosale)'}
+      - {name: The eight Ashta Mathas of Udupi, tags: udupi, side: true, note: 'Founded with eight direct disciples to
+          serve the Krishna temple; Vadiraja Tirtha of Sodhe Matha is among their best-known later heads'}
+- type: sources
+  items:
+  - {label: Guru Parampara — Sri Sringeri Sharada Peetham (official list), url: 'https://www.sringeri.net/jagadgurus'}
+  - {label: Sringeri Sharada Peetham — Wikipedia, url: 'https://en.wikipedia.org/wiki/Sringeri_Sharada_Peetham'}
+  - {label: Ramanuja — Wikipedia, url: 'https://en.wikipedia.org/wiki/Ramanuja'}
+  - {label: Nathamuni — Wikipedia, url: 'https://en.wikipedia.org/wiki/Nathamuni'}
+  - {label: Guru Parampara — Ramanuja.org Bhakti List archives, url: 'https://ramanuja.org/sri/BhaktiListArchives/Article?p=nov97%2F0138.html'}
+  - {label: Uttaradi Math — Wikipedia, url: 'https://en.wikipedia.org/wiki/Uttaradi_Math'}
+  - {label: Raghavendra Math (Mantralayam) — Wikipedia, url: 'https://en.wikipedia.org/wiki/Raghavendra_Math_(Mantralayam)'}
+  - {label: Jayatirtha — Wikipedia, url: 'https://en.wikipedia.org/wiki/Jayatirtha'}

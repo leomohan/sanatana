@@ -177,7 +177,7 @@
       });
     });
     /* Family-tree people stay in place (the tree keeps its shape); non-matches fade */
-    $$('.ft-node').forEach(function(n){
+    $$('.ft-node, [data-fade]').forEach(function(n){
       var tags = tagsOf(n), tagOK = F === 'all' || (tags && tags.indexOf(F) !== -1);
       var hit = !q || n.textContent.toLowerCase().indexOf(q) !== -1;
       n.classList.toggle('faded', !(tagOK && hit));

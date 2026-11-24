@@ -1,0 +1,218 @@
+page:
+  file: tamil-literature.html
+  layout: page
+  title: Tamil Literature — Sangam Anthologies, Thirukkural and the 18 Siddhars
+  description: Classical Tamil poetry mapped. The Eight Anthologies and Ten Idylls of the Sangam age, the five landscapes
+    of love poetry, the eighteen shorter works including the Thirukkural, and the 18 Siddhars.
+  favicon: 📜
+  search: Search works, poets, landscapes…
+  native: ta
+  palette:
+    tamil: ['#ff9f43', '#d9771a']
+    akam: ['#ff6b81', '#d63c5a']
+    puram: ['#4a9eff', '#1a6fc4']
+    ethics: ['#26de81', '#1e9e5c']
+    siddha: ['#a55eea', '#7b3fc4']
+    kurinji: ['#a55eea', '#7b3fc4']
+    mullai: ['#26de81', '#1e9e5c']
+    marutham: ['#f7b731', '#b7861b']
+    neythal: ['#2bcbba', '#1a9488']
+    palai: ['#ff6b6b', '#c43a3a']
+  gradient: [akam, tamil, puram, ethics]
+  primary: tamil
+  h1: Tamil Literature
+  intro: 'Two thousand years of Tamil poetry, from love lyrics coded by landscape to a book of 1,330 couplets on how
+    to live. The oldest layer is the Sangam corpus: eight anthologies and ten long poems, eighteen works in all. Eighteen
+    shorter works follow it, the Thirukkural among them. Running beside both are the songs of the Siddhars, the
+    rebel mystics.'
+  legend:
+  - {label: Akam — love, the inner world, color: akam}
+  - {label: Puram — war, kings, the outer world, color: puram}
+  - {label: Aram — ethics, color: ethics}
+  - {label: Siddhars, color: siddha}
+  filters:
+  - {value: all, label: Everything, color: tamil}
+  - {value: akam, label: ❤️ Akam, color: akam}
+  - {value: puram, label: ⚔️ Puram, color: puram}
+  - {value: ethics, label: ⚖️ Ethics, color: ethics}
+  - {value: siddha, label: 🌿 Siddhars, color: siddha}
+  footer: ['📜 A visual map of classical Tamil literature · Poem counts are those that survive; several anthologies
+      have lost poems', 'Dates for the Sangam corpus are debated; most scholars place it within c. 300 BCE–300 CE']
+blocks:
+- type: counts
+  items:
+  - {n: '8', label: Anthologies (Ettuthokai)}
+  - {n: '10', label: Idylls (Pattuppattu)}
+  - {n: '18', label: Shorter works (Kilkanakku)}
+  - {n: '1,330', label: Couplets in the Thirukkural}
+- type: callout
+  text: '🏛️ <strong>Why "Sangam"?</strong> Later tradition tells of three academies of poets (<em>sangams</em>) that
+    met in Pandya capitals over thousands of years. Scholars treat that chronology as legend, and most date the surviving
+    poems to roughly 300 BCE–300 CE; Kamil Zvelebil favoured 100 BCE–250 CE. The grammar <em>Tolkappiyam</em> sets out
+    the rules the poems follow.'
+- {type: filters}
+- type: cards
+  title: The five landscapes of love
+  intro: 'Akam poetry never names its lovers. Instead each poem is set in a landscape (<em>tinai</em>), and the landscape
+    tells the reader which mood of love is meant. Each tinai is named after a flower.'
+  section: akam
+  grid: v4
+  cards:
+  - title: Kurinji
+    native: குறிஞ்சி
+    subtitle: Mountains
+    accent: kurinji
+    tags: akam
+    corner_icon: ⛰️
+    facts:
+    - [Mood, Lovers' union]
+    - [Deity, Murugan (Ceyon)]
+  - title: Mullai
+    native: முல்லை
+    subtitle: Forests and pasture
+    accent: mullai
+    tags: akam
+    corner_icon: 🌳
+    facts:
+    - [Mood, Patient waiting]
+    - [Deity, Thirumal (Mayon)]
+  - title: Marutham
+    native: மருதம்
+    subtitle: Farmland by rivers
+    accent: marutham
+    tags: akam
+    corner_icon: 🌾
+    facts:
+    - [Mood, Sulking and lovers' quarrels]
+    - [Deity, Indra (Ventan)]
+  - title: Neythal
+    native: நெய்தல்
+    subtitle: The seashore
+    accent: neythal
+    tags: akam
+    corner_icon: 🌊
+    facts:
+    - [Mood, Anxious longing]
+    - [Deity, Varuna]
+  - title: Palai
+    native: பாலை
+    subtitle: Parched wasteland
+    accent: palai
+    tags: akam
+    corner_icon: 🏜️
+    facts:
+    - [Mood, Separation]
+    - [Deity, Korravai]
+- type: cards
+  title: The Eight Anthologies · Ettuthokai
+  intro: Collections of short and medium poems by hundreds of poets, gathered and arranged by later editors. Counts are
+    the poems that survive.
+  grid: v4
+  cards:
+  - {title: Natrinai, native: நற்றிணை, subtitle: 400 poems · 9–12 lines, accent: akam, tags: akam, body: '"The good tinai."
+      Love poems across all five landscapes.'}
+  - {title: Kurunthokai, native: குறுந்தொகை, subtitle: About 400 poems · 4–8 lines, accent: akam, tags: akam, body: The
+      short collection. Its compressed love lyrics are among the most translated Tamil poems.}
+  - {title: Ainkurunuru, native: ஐங்குறுநூறு, subtitle: About 500 poems · 3–6 lines, accent: akam, tags: akam, body: 'Five
+      poets, one landscape each, with a hundred very short poems apiece.'}
+  - {title: Kalithokai, native: கலித்தொகை, subtitle: 150 poems, accent: akam, tags: akam, body: Love poems in the
+      dramatic kali metre, often set as dialogues.}
+  - {title: Akananuru, native: அகநானூறு, subtitle: About 400 poems · 13–31 lines, accent: akam, tags: akam, body: '"The
+      four hundred on the inner world." The longest akam poems.'}
+  - {title: Purananuru, native: புறநானூறு, subtitle: About 400 poems, accent: puram, tags: puram, body: 'Kings, battles,
+      generosity, death and ethics. It holds the line "Every town is our town, everyone our kin."'}
+  - {title: Pathitrupathu, native: பதிற்றுப்பத்து, subtitle: 10 decades · 8 survive, accent: puram, tags: puram, body: Ten
+      poems each in praise of ten Chera kings. The first and last decades are lost.}
+  - {title: Paripadal, native: பரிபாடல், subtitle: 70 composed · 24 survive whole, accent: puram, tags: puram akam, body: 'Songs to Thirumal and Murugan and on the river
+      Vaigai. Hymns and love poetry meet here, early signs of later bhakti.'}
+- type: table
+  section: puram
+  title: The Ten Idylls · Pattuppattu
+  intro: Ten long poems, from about a hundred to almost eight hundred lines. Five are "guide poems" (<em>arruppadai</em>),
+    in which one bard directs another to a generous patron.
+  color: puram
+  columns: [Idyll, Poet, Lines, Kind]
+  rows:
+  - ['Thirumurugarruppadai · திருமுருகாற்றுப்படை', Nakkirar, '317', 'Guide poem to <a href="muruga.html">Murugan''s six abodes</a>']
+  - ['Porunararruppadai · பொருநராற்றுப்படை', Mudathama Kanniyar, '234', Guide poem · puram]
+  - ['Sirupanarruppadai · சிறுபாணாற்றுப்படை', Nattattanar, '296', Guide poem · puram]
+  - ['Perumpanarruppadai · பெரும்பாணாற்றுப்படை', Uruthirankannanar, '500', Guide poem · puram]
+  - ['Malaipadukadam · மலைபடுகடாம்', Perunkausikanar, '583', Guide poem · puram]
+  - ['Mullaippattu · முல்லைப்பாட்டு', Napputhanar, '103', Akam · waiting]
+  - ['Maduraikkanchi · மதுரைக்காஞ்சி', Mangudi Marudanar, '782', Puram · Madurai and impermanence]
+  - ['Nedunalvadai · நெடுநல்வாடை', Nakkirar, '188', 'Puram · the long north wind']
+  - ['Kurinjippattu · குறிஞ்சிப்பாட்டு', Kapilar, '261', Akam · union in the hills]
+  - ['Pattinappalai · பட்டினப்பாலை', Uruthirankannanar, '301', Akam · the port of Puhar]
+- type: cards
+  title: Thirukkural
+  section: ethics
+  grid: two
+  cards:
+  - title: Thirukkural
+    native: திருக்குறள்
+    subtitle: Thiruvalluvar · probably the early centuries CE
+    accent: ethics
+    tags: ethics
+    corner_icon: ⚖️
+    body: 'The best-known of the eighteen shorter works, and the most translated work in Tamil. It has 1,330 couplets
+      in 133 chapters of ten. Each couplet, a <em>kural</em>, is just seven metrical feet long. It speaks to no sect and
+      names no king, which is one reason every age has claimed it.'
+    facts:
+    - [Aram · virtue, 38 chapters]
+    - [Porul · wealth and statecraft, 70 chapters]
+    - [Inbam · love, 25 chapters]
+    - [First couplet, '"As A begins all letters, so God is first of the world" (அகர முதல எழுத்தெல்லாம் ஆதி பகவன் முதற்றே உலகு)']
+- type: table
+  title: The Eighteen Shorter Works · Pathinenkilkanakku
+  intro: Short poems in the venpa metre, mostly c. 100–500 CE. Eleven teach ethics, six are love poetry and one is about
+    war. Naladiyar is the only one by many poets; each of the others has a single author.
+  color: ethics
+  columns: [Work, Kind]
+  rows:
+  - [Naladiyar, 'Ethics · 400 quatrains by many poets']
+  - [Nanmanikkadigai, Ethics]
+  - [Inna Narpathu, 'Ethics · forty things that bring sorrow']
+  - [Iniyavai Narpathu, 'Ethics · forty things that bring joy']
+  - [Thirukkural, 'Ethics · 1,330 couplets']
+  - [Thirikadukam, Ethics]
+  - [Acharakkovai, 'Ethics · conduct']
+  - [Pazhamozhi Nanuru, 'Ethics · built on proverbs']
+  - [Sirupanchamulam, Ethics]
+  - [Mudumozhikkanchi, Ethics]
+  - [Elathi, Ethics]
+  - [Kar Narpathu, 'Akam · the rainy season']
+  - [Ainthinai Aimpathu, 'Akam · ten poems for each landscape']
+  - [Ainthinai Ezhupathu, Akam]
+  - [Thinaimozhi Aimpathu, Akam]
+  - [Thinaimalai Nutraimpathu, Akam]
+  - [Kainnilai, 'Akam · some lists name Innilai instead']
+  - [Kalavazhi Narpathu, 'Puram · a battle']
+- type: numgrid
+  section: siddha
+  title: The 18 Siddhars
+  intro: 'Mystics, alchemists and physicians of the Siddha tradition. They mocked ritual and caste, and they sang of
+    the divine within the body. The names in the list vary between sources; this is the list in the Abithana Chintamani.
+    Siddha medicine still bears their name.'
+  color: siddha
+  items: [Nandi, Thirumoolar, Agastyar, Kalangi Nathar, Patanjali, Korakkar, Sundaranandar, Konganar, Sattaimuni, Valmiki
+      (Vanmikar), Ramadevar, Dhanvantari, Idaikadar, Machamuni, Karuvoorar, Bogar, Pambatti, Kudhambai]
+- type: cards
+  section: siddha
+  title: Four Siddhars to know
+  grid: v4
+  cards:
+  - {title: Thirumoolar, native: திருமூலர், accent: siddha, body: 'His <em>Thirumantiram</em> of about 3,000 verses is the
+      tenth book of the Saiva canon (Tirumurai). It holds the famous line "Love is God" (அன்பே சிவம்).'}
+  - {title: Bogar, native: போகர், accent: siddha, body: 'Tradition credits him with the image of Murugan at <a href="muruga.html">Palani</a>,
+      made of nine minerals (navapashanam).'}
+  - {title: Karuvoorar, native: கருவூரார், accent: siddha, body: 'Linked by tradition with the building of the Brihadeeswara
+      temple at Thanjavur, which keeps a shrine to him.'}
+  - {title: Pambatti, native: பாம்பாட்டி, accent: siddha, body: 'The "snake-charmer" Siddhar. His songs urge the dancing
+      snake, the soul, to rise.'}
+- type: sources
+  items:
+  - {label: Sangam literature — Wikipedia, url: 'https://en.wikipedia.org/wiki/Sangam_literature'}
+  - {label: Eighteen Lesser Texts — Wikipedia, url: 'https://en.wikipedia.org/wiki/Eighteen_Lesser_Texts'}
+  - {label: Pathinen Kilkanakku — Tamil Nation (texts and authors), url: 'https://tamilnation.netlify.app/literature/pathinen'}
+  - {label: Siddhar — Wikipedia, url: 'https://en.wikipedia.org/wiki/Siddhar'}
+  - {label: Project Madurai — Tamil texts online, url: 'https://www.projectmadurai.org/'}

@@ -1,0 +1,240 @@
+page:
+  file: temples.html
+  layout: page
+  title: Temple Architecture — Nagara, Dravida and Vesara
+  description: The three classical styles of the Hindu temple, drawn as labelled diagrams, compared part by part and
+    mapped through fourteen landmark temples.
+  favicon: 🛕
+  search: Search temples, styles, parts…
+  native: sa
+  palette:
+    nagara: ['#ff9f43', '#d9771a']
+    dravida: ['#4a9eff', '#1a6fc4']
+    vesara: ['#a55eea', '#7b3fc4']
+    stone: ['#f7b731', '#b7861b']
+  gradient: [nagara, stone, dravida, vesara]
+  primary: stone
+  h1: Temple Architecture
+  intro: 'A Hindu temple is a house for a deity and a model of the cosmos, rising from a dark sanctum to a crowning
+    finial. Texts on architecture (<em>shilpa</em> and <em>vastu</em>) name three great styles. Nagara is the style of
+    the north, Dravida of the south, and Vesara is the hybrid of the Deccan between them.'
+  legend:
+  - {label: Nagara · north, color: nagara}
+  - {label: Dravida · south, color: dravida}
+  - {label: Vesara · Deccan, color: vesara}
+  filters:
+  - {value: all, label: All three, color: stone}
+  - {value: nagara, label: Nagara, color: nagara}
+  - {value: dravida, label: Dravida, color: dravida}
+  - {value: vesara, label: Vesara, color: vesara}
+  footer: ['🛕 A visual map of Hindu temple architecture · Diagrams are simplified elevations, not to scale', 'Map data
+      © OpenStreetMap contributors · Locations are approximate']
+blocks:
+- {type: filters}
+- type: figures
+  title: Three ways to raise a tower
+  intro: 'The styles differ most in the tower over the sanctum. The shape of the plan and the crown at the top follow
+    from it.'
+  items:
+  - title: Nagara
+    native: नागर
+    sub: North India · curving shikhara
+    svg: nagara.svg
+    color: nagara
+    tags: nagara
+    note: A single curved tower whose courses step inward as it rises. It is capped by a ribbed stone disc (amalaka) and
+      a pot-shaped finial (kalasha).
+  - title: Dravida
+    native: द्राविड
+    sub: South India · pyramidal vimana
+    svg: dravida.svg
+    color: dravida
+    tags: dravida
+    note: Storeys (talas) diminish like a stepped pyramid, each lined with miniature shrines. The top is a dome-shaped
+      shikhara. Later Dravida temples are known even more for their towering gateways (gopurams).
+  - title: Vesara
+    native: वेसर
+    sub: The Deccan · the hybrid
+    svg: vesara.svg
+    color: vesara
+    tags: vesara
+    note: '"Vesara" means mule, a mixed breed. One text explains it as a Dravida plan with Nagara detail. Hoysala temples
+      add star-shaped plans, high platforms and dense friezes.'
+- type: compare
+  title: Part by part
+  corner: Feature
+  min_width: 860
+  columns:
+  - {key: nagara, label: Nagara, color: nagara}
+  - {key: dravida, label: Dravida, color: dravida}
+  - {key: vesara, label: Vesara, color: vesara}
+  rows:
+  - label: Region
+    cells: ['North and central India, Odisha, Gujarat, Rajasthan', 'Tamil Nadu, Kerala, south Karnataka, Andhra', 'The Deccan: north Karnataka and its neighbours']
+  - label: Tower
+    cells: ['<strong>Shikhara</strong>, a curvilinear spire', '<strong>Vimana</strong>, a stepped pyramid of storeys', 'Stepped like a vimana but with Nagara-like vertical bands']
+  - label: Crown
+    cells: [Amalaka and kalasha, 'Domed shikhara and stupi (kalasha)', Rounded crown and kalasha]
+  - label: Shape in the Manasara
+    cells: ['Square (chaturasra)', 'Octagonal (ashtasra) or hexagonal', 'Circular (vritta); other texts allow apsidal']
+  - label: Gateway & enclosure
+    cells: ['Often no great enclosure; temples may stand on a high platform', 'High-walled courtyards; gopurams that later dwarf the sanctum', 'Compact, often on a raised star-shaped platform']
+  - label: Regional schools
+    cells: ['Odisha (Kalinga) · Khajuraho (Chandela) · Solanki (Maru-Gurjara)', 'Pallava · Chola · Pandya · Vijayanagara · Nayaka', 'Badami Chalukya · Kalyani Chalukya · Hoysala']
+- type: callout
+  text: '📐 <strong>The texts disagree.</strong> The Manasara defines the three styles by the shape of the tower''s crown:
+    square for Nagara, octagonal for Dravida, round for Vesara. It also places them north, south and in between. The
+    Kamikagama calls Vesara a Dravida plan with Nagara detail. Real temples mix freely. At Pattadakal the Chalukyas built
+    northern and southern towers side by side.'
+- type: pairs
+  title: The parts every temple shares
+  items:
+  - {title: Garbhagriha, color: stone, text: 'The "womb chamber", a small dark sanctum that holds the deity. Everything
+      else is arranged around it.'}
+  - {title: Antarala & mandapa, color: stone, text: 'A vestibule leads to one or more pillared halls, where devotees
+      gather, dance and wait for darshan.'}
+  - {title: Pradakshina patha, color: stone, text: 'The path for walking clockwise around the sanctum. It may be inside
+      the walls or open to the sky.'}
+  - {title: Vastu-purusha mandala, color: stone, text: 'Temple plans are laid out on a sacred grid, commonly of 8 × 8 =
+      64 squares, with Brahma at the centre over the sanctum.'}
+- {type: map, label: Map of landmark temples by style}
+- type: cards
+  title: Fourteen landmark temples
+  empty: Nothing matches your search. Try another word or clear the filter.
+  cards:
+  - id: deogarh
+    anchor: true
+    title: Dashavatara Temple, Deogarh
+    subtitle: Nagara · Gupta, c. 500 CE
+    accent: nagara
+    tags: nagara
+    body: One of the earliest surviving stone temples of the north, with superb Vishnu panels. Its tower is mostly lost,
+      but it shows the Nagara form beginning.
+    map: {lat: 24.5266, lng: 78.2418, popup: 'Nagara · Uttar Pradesh'}
+  - id: kandariya
+    anchor: true
+    title: Kandariya Mahadeva, Khajuraho
+    subtitle: Nagara · Chandela, c. 1030
+    accent: nagara
+    tags: nagara
+    body: The summit of the Khajuraho style. Its main spire is clustered with dozens of smaller spires (urushringas),
+      so the whole temple rises like a mountain range.
+    map: {lat: 24.8522, lng: 79.9204, popup: 'Nagara · Madhya Pradesh'}
+  - id: lingaraja
+    anchor: true
+    title: Lingaraja, Bhubaneswar
+    subtitle: Nagara (Kalinga) · 11th century
+    accent: nagara
+    tags: nagara
+    body: The Odisha school at its height. Its tall rekha deul (curved tower) stands over the sanctum, with a lower
+      pyramidal pidha deul over the hall.
+    map: {lat: 20.2382, lng: 85.8338, popup: 'Nagara (Kalinga) · Odisha'}
+  - id: konark
+    anchor: true
+    title: Sun Temple, Konark
+    subtitle: Nagara (Kalinga) · c. 1250
+    accent: nagara
+    tags: nagara
+    body: Built by Narasimhadeva I of the Eastern Gangas as the Sun god's chariot, with twenty-four carved wheels and
+      seven horses. The main tower has fallen; the great hall still stands.
+    map: {lat: 19.8876, lng: 86.0945, popup: 'Nagara (Kalinga) · Odisha'}
+  - id: modhera
+    anchor: true
+    title: Sun Temple, Modhera
+    subtitle: Nagara (Solanki) · 1026–27
+    accent: nagara
+    tags: nagara
+    body: A Chaulukya (Solanki) temple to Surya, fronted by a stepped tank whose flights of steps frame dozens of tiny
+      shrines.
+    map: {lat: 23.5835, lng: 72.1330, popup: 'Nagara · Gujarat'}
+  - id: shore
+    anchor: true
+    title: Shore Temple, Mamallapuram
+    subtitle: Dravida · Pallava, early 8th century
+    accent: dravida
+    tags: dravida
+    body: Built under the Pallava king Rajasimha on the edge of the sea. It is one of the earliest structural (built,
+      not rock-cut) stone temples in the south.
+    map: {lat: 12.6165, lng: 80.1993, popup: 'Dravida · Tamil Nadu'}
+  - id: kailasanatha
+    anchor: true
+    title: Kailasanatha, Kanchipuram
+    subtitle: Dravida · Pallava, c. 700
+    accent: dravida
+    tags: dravida
+    body: Rajasimha's royal temple to Shiva. Its sandstone courtyard is lined with small cell-shrines, and it already
+      has the stepped vimana and enclosure of the mature style.
+    map: {lat: 12.8432, lng: 79.6898, popup: 'Dravida · Tamil Nadu'}
+  - id: ellora
+    anchor: true
+    title: Kailasa Temple, Ellora
+    subtitle: Dravida · Rashtrakuta, 8th century
+    accent: dravida
+    tags: dravida
+    body: An entire Dravida temple carved downward out of a single hillside, with its courtyard, halls and vimana all
+      cut from the living rock. It stands in Maharashtra, far north of the style's home.
+    map: {lat: 20.0240, lng: 75.1790, popup: 'Dravida (rock-cut) · Maharashtra'}
+  - id: thanjavur
+    anchor: true
+    title: Brihadeeswara, Thanjavur
+    subtitle: Dravida · Chola, completed 1010
+    accent: dravida
+    tags: dravida
+    body: Rajaraja Chola's "great temple". Its vimana of about 66 m was the tallest of its day and is crowned by a single
+      massive capstone. It is a World Heritage Site with Gangaikonda Cholapuram and Darasuram.
+    map: {lat: 10.7828, lng: 79.1318, popup: 'Dravida · Tamil Nadu'}
+  - id: madurai
+    anchor: true
+    title: Meenakshi Amman, Madurai
+    subtitle: Dravida · Nayaka, mostly 16th–17th century
+    accent: dravida
+    tags: dravida
+    body: The late Dravida city-temple, ringed by fourteen gopurams covered in painted stucco figures. The gateways
+      now tower over the sanctum shrines.
+    map: {lat: 9.9195, lng: 78.1193, popup: 'Dravida · Tamil Nadu'}
+  - id: pattadakal
+    anchor: true
+    title: Pattadakal
+    subtitle: Vesara setting · Badami Chalukya, 7th–8th century
+    accent: vesara
+    tags: vesara nagara dravida
+    body: A royal temple group where the Chalukyas built in both styles side by side. The Virupaksha temple, raised by
+      Queen Lokamahadevi, is Dravida; the Papanatha has a Nagara tower.
+    map: {lat: 15.9486, lng: 75.8166, popup: 'Both styles · Karnataka'}
+  - id: belur
+    anchor: true
+    title: Chennakeshava, Belur
+    subtitle: Vesara · Hoysala, 1117
+    accent: vesara
+    tags: vesara
+    body: Built by the Hoysala king Vishnuvardhana. It is famed for its bracket figures of dancers (madanikas) and its
+      lathe-turned pillars, all carved in soft soapstone.
+    map: {lat: 13.1626, lng: 75.8606, popup: 'Vesara (Hoysala) · Karnataka'}
+  - id: halebidu
+    anchor: true
+    title: Hoysaleswara, Halebidu
+    subtitle: Vesara · Hoysala, begun 1121
+    accent: vesara
+    tags: vesara
+    body: A twin temple whose outer walls carry continuous friezes of elephants, lions, horsemen and epic scenes, one
+      above another.
+    map: {lat: 13.2131, lng: 75.9946, popup: 'Vesara (Hoysala) · Karnataka'}
+  - id: somanathapura
+    anchor: true
+    title: Keshava, Somanathapura
+    subtitle: Vesara · Hoysala, 1268
+    accent: vesara
+    tags: vesara
+    body: A small triple-shrine temple whose three star-shaped towers survive complete. It is the clearest picture of
+      the finished Hoysala form.
+    map: {lat: 12.2758, lng: 76.8815, popup: 'Vesara (Hoysala) · Karnataka'}
+- type: callout
+  text: '🔗 Many of these temples appear elsewhere on the site. See the <a href="geography.html">Divya Desams and Jyotirlingas</a>,
+    the <a href="pancha-bhoota.html">Pancha Bhoota Sthalams</a> and the <a href="navagraha.html">Navagraha temples</a>.'
+- type: sources
+  items:
+  - {label: Vesara — Wikipedia, url: 'https://en.wikipedia.org/wiki/Vesara'}
+  - {label: Shikhara — Wikipedia, url: 'https://en.wikipedia.org/wiki/Shikhara'}
+  - {label: 'Adam Hardy, "Indian Temple Typologies" (Cardiff University)', url: 'https://orca.cardiff.ac.uk/37341/1/Adam%20Hardy%2C%20Typologies%20.pdf'}
+  - {label: Group of Monuments at Pattadakal — UNESCO, url: 'https://whc.unesco.org/en/list/239/'}
+  - {label: Great Living Chola Temples — UNESCO, url: 'https://whc.unesco.org/en/list/250/'}

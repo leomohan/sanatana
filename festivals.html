@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Festival Wheel — Hindu Festivals Through the Lunar Year</title>
+<meta name="description" content="A year-round wheel of Hindu festivals set on the Panchanga. Twelve lunar months, their bright and dark halves and six seasons, with each festival placed on its tithi.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎆</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=7d8eeccc">
+<style>:root,[data-theme="dark"]{--vasanta:#26de81; --grishma:#ff9f43; --varsha:#4a9eff; --sharad:#a55eea; --hemanta:#2bcbba; --shishira:#ff6b81; --gold:#f7b731;} [data-theme="light"]{--vasanta:#1e9e5c; --grishma:#d9771a; --varsha:#1a6fc4; --sharad:#7b3fc4; --hemanta:#1a9488; --shishira:#d63c5a; --gold:#b7861b;} :root{--primary:var(--gold); --grad-h:linear-gradient(90deg,var(--vasanta),var(--grishma),var(--varsha),var(--sharad),var(--hemanta),var(--shishira)); --grad-v:linear-gradient(var(--vasanta),var(--grishma),var(--varsha),var(--sharad),var(--hemanta),var(--shishira));}</style>
+<script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
+  (function(){
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
+  })();
+</script>
+</head>
+<body>
+<div class="controls" role="toolbar" aria-label="Page controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
+  <div class="search-wrap">
+    <span aria-hidden="true">🔍</span>
+    <input type="search" id="searchInput" placeholder="Search festivals, months, regions…" aria-label="Search">
+  </div>
+  <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
+    <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">संस्कृतम्</button>
+  </div>
+  <div class="ctrl-group" role="group" aria-label="Text size">
+    <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
+    <span class="size-val" id="sizeVal">100%</span>
+    <button class="ctrl-btn size-btn" id="sizeUp" aria-label="Increase text size">A+</button>
+  </div>
+  <button class="ctrl-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+    <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+    <span id="toggleLabel">Light</span>
+  </button>
+</div>
+<header>
+  <h1>The Festival Wheel</h1>
+  <p>Hindu festivals are fixed by the Moon, not the Gregorian calendar, so they move from year to year. Tied to the <a href="jyotisha.html">Panchanga</a>, they keep their place in the lunar year. The wheel below lays out that year: twelve months, each with a bright half and a dark half, six seasons, and each festival on its tithi.</p>
+  <div class="legend"><span><i class="dot" style="background:var(--vasanta)"></i>Vasanta · spring</span><span><i class="dot" style="background:var(--grishma)"></i>Grishma · summer</span><span><i class="dot" style="background:var(--varsha)"></i>Varsha · rains</span><span><i class="dot" style="background:var(--sharad)"></i>Sharad · autumn</span><span><i class="dot" style="background:var(--hemanta)"></i>Hemanta · early winter</span><span><i class="dot" style="background:var(--shishira)"></i>Shishira · late winter</span></div>
+</header>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--gold)">Whole year</button>
+  <button class="filter-chip" data-filter="vasanta" aria-pressed="false" style="--fc:var(--vasanta)">Vasanta</button>
+  <button class="filter-chip" data-filter="grishma" aria-pressed="false" style="--fc:var(--grishma)">Grishma</button>
+  <button class="filter-chip" data-filter="varsha" aria-pressed="false" style="--fc:var(--varsha)">Varsha</button>
+  <button class="filter-chip" data-filter="sharad" aria-pressed="false" style="--fc:var(--sharad)">Sharad</button>
+  <button class="filter-chip" data-filter="hemanta" aria-pressed="false" style="--fc:var(--hemanta)">Hemanta</button>
+  <button class="filter-chip" data-filter="shishira" aria-pressed="false" style="--fc:var(--shishira)">Shishira</button>
+</div>
+<section class="fwheel" data-block>
+  <div class="fwheel-wrap">
+  <svg viewBox="0 0 640 640" role="img" aria-label="Festival wheel of the lunar year">
+    <path class="fw-ritu" style="--rc:var(--vasanta)" d="M321.76 152.01 A168 168 0 0 1 464.6 234.48 L430.17 254.84 A128 128 0 0 0 321.34 192.01 Z"/>
+    <text class="fw-ritu-l" x="394.0" y="186.83" style="fill:var(--vasanta)">Vasanta</text>
+    <text class="fw-ritu-s" x="394.0" y="200.83">spring</text>
+    <path class="fw-ritu" style="--rc:var(--grishma)" d="M466.36 237.53 A168 168 0 0 1 466.36 402.47 L431.52 382.84 A128 128 0 0 0 431.52 257.16 Z"/>
+    <text class="fw-ritu-l" x="468.0" y="315.0" style="fill:var(--grishma)">Grishma</text>
+    <text class="fw-ritu-s" x="468.0" y="329.0">summer</text>
+    <path class="fw-ritu" style="--rc:var(--varsha)" d="M464.6 405.52 A168 168 0 0 1 321.76 487.99 L321.34 447.99 A128 128 0 0 0 430.17 385.16 Z"/>
+    <text class="fw-ritu-l" x="394.0" y="443.17" style="fill:var(--varsha)">Varsha</text>
+    <text class="fw-ritu-s" x="394.0" y="457.17">rains</text>
+    <path class="fw-ritu" style="--rc:var(--sharad)" d="M318.24 487.99 A168 168 0 0 1 175.4 405.52 L209.83 385.16 A128 128 0 0 0 318.66 447.99 Z"/>
+    <text class="fw-ritu-l" x="246.0" y="443.17" style="fill:var(--sharad)">Sharad</text>
+    <text class="fw-ritu-s" x="246.0" y="457.17">autumn</text>
+    <path class="fw-ritu" style="--rc:var(--hemanta)" d="M173.64 402.47 A168 168 0 0 1 173.64 237.53 L208.48 257.16 A128 128 0 0 0 208.48 382.84 Z"/>
+    <text class="fw-ritu-l" x="172.0" y="315.0" style="fill:var(--hemanta)">Hemanta</text>
+    <text class="fw-ritu-s" x="172.0" y="329.0">early winter</text>
+    <path class="fw-ritu" style="--rc:var(--shishira)" d="M175.4 234.48 A168 168 0 0 1 318.24 152.01 L318.66 192.01 A128 128 0 0 0 209.83 254.84 Z"/>
+    <text class="fw-ritu-l" x="246.0" y="186.83" style="fill:var(--shishira)">Shishira</text>
+    <text class="fw-ritu-s" x="246.0" y="200.83">late winter</text>
+    <path class="fw-shukla" d="M321.93 44.01 A276 276 0 0 1 391.43 53.4 L381.08 92.04 A236 236 0 0 0 321.65 84.01 Z"><title>Chaitra · Shukla paksha (bright half)</title></path>
+    <path class="fw-krishna" d="M391.43 53.4 A276 276 0 0 1 456.33 80.02 L436.57 114.8 A236 236 0 0 0 381.08 92.04 Z"><title>Chaitra · Krishna paksha (dark half)</title></path>
+    <text class="fw-month" x="387.81" y="66.93" transform="rotate(15 387.81 66.93)">Chaitra</text>
+    <text class="fw-greg" x="384.19" y="80.45" transform="rotate(15 384.19 80.45)">Mar–Apr</text>
+    <circle class="fw-moon full" cx="390.61" cy="46.98" r="3.2"><title>Purnima · full moon</title></circle>
+    <circle class="fw-moon new" cx="458.86" cy="74.56" r="3.2"><title>Amavasya · new moon</title></circle>
+    <path class="fw-shukla" d="M459.67 81.95 A276 276 0 0 1 515.16 124.84 L486.88 153.12 A236 236 0 0 0 439.42 116.45 Z"><title>Vaishakha · Shukla paksha (bright half)</title></path>
+    <path class="fw-krishna" d="M515.16 124.84 A276 276 0 0 1 558.05 180.33 L523.55 200.58 A236 236 0 0 0 486.88 153.12 Z"><title>Vaishakha · Krishna paksha (dark half)</title></path>
+    <text class="fw-month" x="505.26" y="134.74" transform="rotate(45 505.26 134.74)">Vaishakha</text>
+    <text class="fw-greg" x="495.36" y="144.64" transform="rotate(45 495.36 144.64)">Apr–May</text>
+    <circle class="fw-moon full" cx="517.66" cy="118.86" r="3.2"><title>Purnima · full moon</title></circle>
+    <circle class="fw-moon new" cx="562.98" cy="176.87" r="3.2"><title>Amavasya · new moon</title></circle>
+    <path class="fw-shukla" d="M559.98 183.67 A276 276 0 0 1 586.6 248.57 L547.96 258.92 A236 236 0 0 0 525.2 203.43 Z"><title>Jyeshtha · Shukla paksha (bright half)</title></path>
+    <path class="fw-krishna" d="M586.6 248.57 A276 276 0 0 1 595.99 318.07 L555.99 318.35 A236 236 0 0 0 547.96 258.92 Z"><title>Jyeshtha · Krishna paksha (dark half)</title></path>
+    <text class="fw-month" x="573.07" y="252.19" transform="rotate(75 573.07 252.19)">Jyeshtha</text>
+    <text class="fw-greg" x="559.55" y="255.81" transform="rotate(75 559.55 255.81)">May–Jun</text>
+    <circle class="fw-moon full" cx="591.74" cy="244.64" r="3.2"><title>Purnima · full moon</title></circle>
+    <circle class="fw-moon new" cx="601.99" cy="317.54" r="3.2"><title>Amavasya · new moon</title></circle>
+    <path class="fw-shukla" d="M595.99 321.93 A276 276 0 0 1 586.6 391.43 L547.96 381.08 A236 236 0 0 0 555.99 321.65 Z"><title>Ashadha · Shukla paksha (bright half)</title></path>
+    <path class="fw-krishna" d="M586.6 391.43 A276 276 0 0 1 559.98 456.33 L525.2 436.57 A236 236 0 0 0 547.96 381.08 Z"><title>Ashadha · Krishna paksha (dark half)</title></path>
+    <text class="fw-month" x="560.52" y="384.45" transform="rotate(-75 560.52 384.45)">Ashadha</text>
+    <text class="fw-greg" x="574.04" y="388.07" transform="rotate(-75 574.04 388.07)">Jun–Jul</text>
+    <circle class="fw-moon full" cx="593.02" cy="390.61" r="3.2"><title>Purnima · full moon</title></circle>
+    <circle class="fw-moon new" cx="565.44" cy="458.86" r="3.2"><title>Amavasya · new moon</title></circle>
+    <path class="fw-shukla" d="M558.05 459.67 A276 276 0 0 1 515.16 515.16 L486.88 486.88 A236 236 0 0 0 523.55 439.42 Z"><title>Shravana · Shukla paksha (bright half)</title></path>
+    <path class="fw-krishna" d="M515.16 515.16 A276 276 0 0 1 459.67 558.05 L439.42 523.55 A236 236 0 0 0 486.88 486.88 Z"><title>Shravana · Krishna paksha (dark half)</title></path>
+    <text class="fw-month" x="496.07" y="496.07" transform="rotate(-45 496.07 496.07)">Shravana</text>
+    <text class="fw-greg" x="505.97" y="505.97" transform="rotate(-45 505.97 505.97)">Jul–Aug</text>
+    <circle class="fw-moon full" cx="521.14" cy="517.66" r="3.2"><title>Purnima · full moon</title></circle>
+    <circle class="fw-moon new" cx="463.13" cy="562.98" r="3.2"><title>Amavasya · new moon</title></circle>
+    <path class="fw-shukla" d="M456.33 559.98 A276 276 0 0 1 391.43 586.6 L381.08 547.96 A236 236 0 0 0 436.57 525.2 Z"><title>Bhadrapada · Shukla paksha (bright half)</title></path>
+    <path class="fw-krishna" d="M391.43 586.6 A276 276 0 0 1 321.93 595.99 L321.65 555.99 A236 236 0 0 0 381.08 547.96 Z"><title>Bhadrapada · Krishna paksha (dark half)</title></path>
+    <text class="fw-month" x="384.45" y="560.52" transform="rotate(-15 384.45 560.52)">Bhadrapada</text>
+    <text class="fw-greg" x="388.07" y="574.04" transform="rotate(-15 388.07 574.04)">Aug–Sep</text>
+    <circle class="fw-moon full" cx="395.36" cy="591.74" r="3.2"><title>Purnima · full moon</title></circle>
+    <circle class="fw-moon new" cx="322.46" cy="601.99" r="3.2"><title>Amavasya · new moon</title></circle>
+    <path class="fw-shukla" d="M318.07 595.99 A276 276 0 0 1 248.57 586.6 L258.92 547.96 A236 236 0 0 0 318.35 555.99 Z"><title>Ashvina · Shukla paksha (bright half)</title></path>
+    <path class="fw-krishna" d="M248.57 586.6 A276 276 0 0 1 183.67 559.98 L203.43 525.2 A236 236 0 0 0 258.92 547.96 Z"><title>Ashvina · Krishna paksha (dark half)</title></path>
+    <text class="fw-month" x="255.55" y="560.52" transform="rotate(15 255.55 560.52)">Ashvina</text>
+    <text class="fw-greg" x="251.93" y="574.04" transform="rotate(15 251.93 574.04)">Sep–Oct</text>
+    <circle class="fw-moon full" cx="249.39" cy="593.02" r="3.2"><title>Purnima · full moon</title></circle>
+    <circle class="fw-moon new" cx="181.14" cy="565.44" r="3.2"><title>Amavasya · new moon</title></circle>
+    <path class="fw-shukla" d="M180.33 558.05 A276 276 0 0 1 124.84 515.16 L153.12 486.88 A236 236 0 0 0 200.58 523.55 Z"><title>Kartika · Shukla paksha (bright half)</title></path>
+    <path class="fw-krishna" d="M124.84 515.16 A276 276 0 0 1 81.95 459.67 L116.45 439.42 A236 236 0 0 0 153.12 486.88 Z"><title>Kartika · Krishna paksha (dark half)</title></path>
+    <text class="fw-month" x="143.93" y="496.07" transform="rotate(45 143.93 496.07)">Kartika</text>
+    <text class="fw-greg" x="134.03" y="505.97" transform="rotate(45 134.03 505.97)">Oct–Nov</text>
+    <circle class="fw-moon full" cx="122.34" cy="521.14" r="3.2"><title>Purnima · full moon</title></circle>
+    <circle class="fw-moon new" cx="77.02" cy="463.13" r="3.2"><title>Amavasya · new moon</title></circle>
+    <path class="fw-shukla" d="M80.02 456.33 A276 276 0 0 1 53.4 391.43 L92.04 381.08 A236 236 0 0 0 114.8 436.57 Z"><title>Margashirsha · Shukla paksha (bright half)</title></path>
+    <path class="fw-krishna" d="M53.4 391.43 A276 276 0 0 1 44.01 321.93 L84.01 321.65 A236 236 0 0 0 92.04 381.08 Z"><title>Margashirsha · Krishna paksha (dark half)</title></path>
+    <text class="fw-month" x="79.48" y="384.45" transform="rotate(75 79.48 384.45)">Margashirsha</text>
+    <text class="fw-greg" x="65.96" y="388.07" transform="rotate(75 65.96 388.07)">Nov–Dec</text>
+    <circle class="fw-moon full" cx="48.26" cy="395.36" r="3.2"><title>Purnima · full moon</title></circle>
+    <circle class="fw-moon new" cx="38.01" cy="322.46" r="3.2"><title>Amavasya · new moon</title></circle>
+    <path class="fw-shukla" d="M44.01 318.07 A276 276 0 0 1 53.4 248.57 L92.04 258.92 A236 236 0 0 0 84.01 318.35 Z"><title>Pausha · Shukla paksha (bright half)</title></path>
+    <path class="fw-krishna" d="M53.4 248.57 A276 276 0 0 1 80.02 183.67 L114.8 203.43 A236 236 0 0 0 92.04 258.92 Z"><title>Pausha · Krishna paksha (dark half)</title></path>
+    <text class="fw-month" x="66.93" y="252.19" transform="rotate(285 66.93 252.19)">Pausha</text>
+    <text class="fw-greg" x="80.45" y="255.81" transform="rotate(285 80.45 255.81)">Dec–Jan</text>
+    <circle class="fw-moon full" cx="46.98" cy="249.39" r="3.2"><title>Purnima · full moon</title></circle>
+    <circle class="fw-moon new" cx="74.56" cy="181.14" r="3.2"><title>Amavasya · new moon</title></circle>
+    <path class="fw-shukla" d="M81.95 180.33 A276 276 0 0 1 124.84 124.84 L153.12 153.12 A236 236 0 0 0 116.45 200.58 Z"><title>Magha · Shukla paksha (bright half)</title></path>
+    <path class="fw-krishna" d="M124.84 124.84 A276 276 0 0 1 180.33 81.95 L200.58 116.45 A236 236 0 0 0 153.12 153.12 Z"><title>Magha · Krishna paksha (dark half)</title></path>
+    <text class="fw-month" x="134.74" y="134.74" transform="rotate(315 134.74 134.74)">Magha</text>
+    <text class="fw-greg" x="144.64" y="144.64" transform="rotate(315 144.64 144.64)">Jan–Feb</text>
+    <circle class="fw-moon full" cx="118.86" cy="122.34" r="3.2"><title>Purnima · full moon</title></circle>
+    <circle class="fw-moon new" cx="176.87" cy="77.02" r="3.2"><title>Amavasya · new moon</title></circle>
+    <path class="fw-shukla" d="M183.67 80.02 A276 276 0 0 1 248.57 53.4 L258.92 92.04 A236 236 0 0 0 203.43 114.8 Z"><title>Phalguna · Shukla paksha (bright half)</title></path>
+    <path class="fw-krishna" d="M248.57 53.4 A276 276 0 0 1 318.07 44.01 L318.35 84.01 A236 236 0 0 0 258.92 92.04 Z"><title>Phalguna · Krishna paksha (dark half)</title></path>
+    <text class="fw-month" x="252.19" y="66.93" transform="rotate(345 252.19 66.93)">Phalguna</text>
+    <text class="fw-greg" x="255.81" y="80.45" transform="rotate(345 255.81 80.45)">Feb–Mar</text>
+    <circle class="fw-moon full" cx="244.64" cy="48.26" r="3.2"><title>Purnima · full moon</title></circle>
+    <circle class="fw-moon new" cx="317.54" cy="38.01" r="3.2"><title>Amavasya · new moon</title></circle>
+    <circle class="fw-hub" cx="320" cy="320" r="118"/>
+    <text class="fw-hub-k" x="320" y="290">CHANDRAMANA</text>
+    <text class="fw-hub-b" x="320" y="324">Lunar year</text>
+    <text class="fw-hub-k" x="320" y="352">12 MONTHS · 360 TITHIS</text>
+    <a href="#ugadi" aria-label="Ugadi · Gudi Padwa"><g class="fw-dot" data-fade data-tags="vasanta" style="--dc:var(--vasanta)">
+      <circle cx="321.87" cy="106.01" r="11"/>
+      <text x="321.87" y="106.01">1</text><title>1 · Ugadi · Gudi Padwa — Chaitra · Shukla Pratipada</title></g></a>
+    <a href="#ramanavami" aria-label="Rama Navami"><g class="fw-dot" data-fade data-tags="vasanta" style="--dc:var(--vasanta)">
+      <circle cx="351.63" cy="108.35" r="11"/>
+      <text x="351.63" y="108.35">2</text><title>2 · Rama Navami — Chaitra · Shukla Navami</title></g></a>
+    <a href="#hanuman" aria-label="Hanuman Jayanti"><g class="fw-dot" data-fade data-tags="vasanta" style="--dc:var(--vasanta)">
+      <circle cx="366.07" cy="141.86" r="11"/>
+      <text x="366.07" y="141.86">3</text><title>3 · Hanuman Jayanti — Chaitra · Shukla Purnima</title></g></a>
+    <a href="#mesha" aria-label="Mesha Sankranti"><g class="fw-dot solar approx" data-fade data-tags="vasanta" style="--dc:var(--vasanta)">
+      <circle cx="436.88" cy="30.72" r="10"/>
+      <text x="436.88" y="30.72">4</text><title>4 · Mesha Sankranti — Solar · the Sun enters Mesha (Aries)</title></g></a>
+    <a href="#akshaya" aria-label="Akshaya Tritiya"><g class="fw-dot" data-fade data-tags="vasanta" style="--dc:var(--vasanta)">
+      <circle cx="434.98" cy="139.51" r="11"/>
+      <text x="434.98" y="139.51">5</text><title>5 · Akshaya Tritiya — Vaishakha · Shukla Tritiya</title></g></a>
+    <a href="#narasimha" aria-label="Narasimha Jayanti"><g class="fw-dot" data-fade data-tags="vasanta" style="--dc:var(--vasanta)">
+      <circle cx="467.31" cy="164.77" r="11"/>
+      <text x="467.31" y="164.77">6</text><title>6 · Narasimha Jayanti — Vaishakha · Shukla Chaturdashi</title></g></a>
+    <a href="#ganga" aria-label="Ganga Dussehra"><g class="fw-dot" data-fade data-tags="grishma" style="--dc:var(--grishma)">
+      <circle cx="520.45" cy="245.06" r="11"/>
+      <text x="520.45" y="245.06">7</text><title>7 · Ganga Dussehra — Jyeshtha · Shukla Dashami</title></g></a>
+    <a href="#vat" aria-label="Vat Purnima"><g class="fw-dot" data-fade data-tags="grishma" style="--dc:var(--grishma)">
+      <circle cx="497.31" cy="270.83" r="11"/>
+      <text x="497.31" y="270.83">8</text><title>8 · Vat Purnima — Jyeshtha · Shukla Purnima</title></g></a>
+    <a href="#rathyatra" aria-label="Rath Yatra"><g class="fw-dot" data-fade data-tags="grishma" style="--dc:var(--grishma)">
+      <circle cx="533.93" cy="325.6" r="11"/>
+      <text x="533.93" y="325.6">9</text><title>9 · Rath Yatra — Ashadha · Shukla Dvitiya</title></g></a>
+    <a href="#ashadhi" aria-label="Ashadhi Ekadashi"><g class="fw-dot" data-fade data-tags="grishma" style="--dc:var(--grishma)">
+      <circle cx="530.42" cy="359.0" r="11"/>
+      <text x="530.42" y="359.0">10</text><title>10 · Ashadhi Ekadashi — Ashadha · Shukla Ekadashi</title></g></a>
+    <a href="#gurupurnima" aria-label="Guru Purnima"><g class="fw-dot" data-fade data-tags="grishma" style="--dc:var(--grishma)">
+      <circle cx="498.14" cy="366.07" r="11"/>
+      <text x="498.14" y="366.07">11</text><title>11 · Guru Purnima — Ashadha · Shukla Purnima</title></g></a>
+    <a href="#nagapanchami" aria-label="Naga Panchami"><g class="fw-dot" data-fade data-tags="varsha" style="--dc:var(--varsha)">
+      <circle cx="496.36" cy="441.21" r="11"/>
+      <text x="496.36" y="441.21">12</text><title>12 · Naga Panchami — Shravana · Shukla Panchami</title></g></a>
+    <a href="#upakarma" aria-label="Raksha Bandhan · Upakarma"><g class="fw-dot" data-fade data-tags="varsha" style="--dc:var(--varsha)">
+      <circle cx="472.64" cy="469.99" r="11"/>
+      <text x="472.64" y="469.99">13</text><title>13 · Raksha Bandhan · Upakarma — Shravana · Shukla Purnima</title></g></a>
+    <a href="#janmashtami" aria-label="Krishna Janmashtami"><g class="fw-dot" data-fade data-tags="varsha" style="--dc:var(--varsha)">
+      <circle cx="450.27" cy="489.78" r="11"/>
+      <text x="450.27" y="489.78">14</text><title>14 · Krishna Janmashtami — Shravana · Krishna Ashtami</title></g></a>
+    <a href="#ganesh" aria-label="Ganesh Chaturthi"><g class="fw-dot" data-fade data-tags="varsha" style="--dc:var(--varsha)">
+      <circle cx="415.49" cy="511.52" r="11"/>
+      <text x="415.49" y="511.52">15</text><title>15 · Ganesh Chaturthi — Bhadrapada · Shukla Chaturthi</title></g></a>
+    <a href="#mahalaya" aria-label="Mahalaya Amavasya"><g class="fw-dot" data-fade data-tags="varsha" style="--dc:var(--varsha)">
+      <circle cx="321.87" cy="533.99" r="11"/>
+      <text x="321.87" y="533.99">16</text><title>16 · Mahalaya Amavasya — Bhadrapada · Amavasya (new moon)</title></g></a>
+    <a href="#navaratri" aria-label="Navaratri"><g class="fw-dot" data-fade data-tags="sharad" style="--dc:var(--sharad)">
+      <circle cx="318.39" cy="503.99" r="11"/>
+      <text x="318.39" y="503.99">17</text><title>17 · Navaratri — Ashvina · Shukla Pratipada</title></g></a>
+    <a href="#vijayadashami" aria-label="Vijayadashami · Dussehra"><g class="fw-dot" data-fade data-tags="sharad" style="--dc:var(--sharad)">
+      <circle cx="284.68" cy="531.07" r="11"/>
+      <text x="284.68" y="531.07">18</text><title>18 · Vijayadashami · Dussehra — Ashvina · Shukla Dashami</title></g></a>
+    <a href="#deepavali" aria-label="Deepavali"><g class="fw-dot" data-fade data-tags="sharad" style="--dc:var(--sharad)">
+      <circle cx="214.62" cy="506.26" r="11"/>
+      <text x="214.62" y="506.26">19</text><title>19 · Deepavali — Ashvina · Amavasya (new moon)</title></g></a>
+    <a href="#prabodhini" aria-label="Prabodhini Ekadashi"><g class="fw-dot" data-fade data-tags="sharad" style="--dc:var(--sharad)">
+      <circle cx="181.02" cy="482.73" r="11"/>
+      <text x="181.02" y="482.73">20</text><title>20 · Prabodhini Ekadashi — Kartika · Shukla Ekadashi</title></g></a>
+    <a href="#kartika" aria-label="Kartika Purnima · Karthigai Deepam"><g class="fw-dot" data-fade data-tags="sharad" style="--dc:var(--sharad)">
+      <circle cx="191.03" cy="451.24" r="11"/>
+      <text x="191.03" y="451.24">21</text><title>21 · Kartika Purnima · Karthigai Deepam — Kartika · Shukla Purnima</title></g></a>
+    <a href="#gitajayanti" aria-label="Gita Jayanti"><g class="fw-dot" data-fade data-tags="hemanta" style="--dc:var(--hemanta)">
+      <circle cx="118.27" cy="391.43" r="11"/>
+      <text x="118.27" y="391.43">22</text><title>22 · Gita Jayanti — Margashirsha · Shukla Ekadashi</title></g></a>
+    <a href="#vaikuntha" aria-label="Vaikuntha Ekadashi"><g class="fw-dot approx" data-fade data-tags="hemanta" style="--dc:var(--hemanta)">
+      <circle cx="109.58" cy="281.0" r="11"/>
+      <text x="109.58" y="281.0">23</text><title>23 · Vaikuntha Ekadashi — Pausha · Shukla Ekadashi</title></g></a>
+    <a href="#sankranti" aria-label="Makara Sankranti · Pongal"><g class="fw-dot solar approx" data-fade data-tags="hemanta" style="--dc:var(--hemanta)">
+      <circle cx="37.23" cy="188.14" r="10"/>
+      <text x="37.23" y="188.14">24</text><title>24 · Makara Sankranti · Pongal — Solar · the Sun enters Makara (Capricorn)</title></g></a>
+    <a href="#vasantpanchami" aria-label="Vasant Panchami"><g class="fw-dot" data-fade data-tags="shishira" style="--dc:var(--shishira)">
+      <circle cx="143.64" cy="198.79" r="11"/>
+      <text x="143.64" y="198.79">25</text><title>25 · Vasant Panchami — Magha · Shukla Panchami</title></g></a>
+    <a href="#rathasaptami" aria-label="Ratha Saptami"><g class="fw-dot" data-fade data-tags="shishira" style="--dc:var(--shishira)">
+      <circle cx="172.09" cy="210.55" r="11"/>
+      <text x="172.09" y="210.55">26</text><title>26 · Ratha Saptami — Magha · Shukla Saptami</title></g></a>
+    <a href="#shivaratri" aria-label="Maha Shivaratri"><g class="fw-dot" data-fade data-tags="shishira" style="--dc:var(--shishira)">
+      <circle cx="208.19" cy="137.54" r="11"/>
+      <text x="208.19" y="137.54">27</text><title>27 · Maha Shivaratri — Magha · Krishna Chaturdashi</title></g></a>
+    <a href="#holi" aria-label="Holi · Panguni Uttiram"><g class="fw-dot" data-fade data-tags="shishira" style="--dc:var(--shishira)">
+      <circle cx="262.81" cy="113.78" r="11"/>
+      <text x="262.81" y="113.78">28</text><title>28 · Holi · Panguni Uttiram — Phalguna · Shukla Purnima</title></g></a>
+  </svg>
+  </div><div class="legend fw-key"><span><i class="dot sh"></i>Shukla paksha · bright half</span><span><i class="dot kr"></i>Krishna paksha · dark half</span><span><i class="dot full"></i>Purnima · full moon</span><span><i class="dot new"></i>Amavasya · new moon</span><span><i class="dot sol"></i>Solar festival (dashed = position varies)</span></div>
+</section>
+<section>
+  <h2 class="section-title">How to read the wheel</h2>
+  <div class="pairs"><div class="pair" style="--a:var(--gold)"><h4>A tithi is a lunar day</h4><p>Each tithi is the time the Moon takes to gain 12° on the Sun. Thirty tithis make a lunar month, so the wheel has 360 of them, one degree each. Tithi is one of the five limbs of the <a href="jyotisha.html">Panchanga</a>.</p></div><div class="pair" style="--a:var(--gold)"><h4>Bright half and dark half</h4><p>Shukla paksha runs from new moon to full moon, the waxing half. Krishna paksha runs from full moon back to new moon. Most festivals are named by month, paksha and tithi, for example Chaitra Shukla Navami for Rama Navami.</p></div><div class="pair" style="--a:var(--gold)"><h4>Where the month ends</h4><p>This wheel uses <strong>amanta</strong> months, ending at the new moon, as in South India, Maharashtra and Gujarat. Most of North India uses <strong>purnimanta</strong> months that end at the full moon. There, a dark-half festival takes the next month's name: Janmashtami becomes Bhadrapada Krishna Ashtami, but the day itself is the same.</p></div><div class="pair" style="--a:var(--gold)"><h4>Keeping pace with the Sun</h4><p>Twelve lunar months fall about eleven days short of a solar year. Roughly every thirty-two and a half months an extra month (adhika masa) is added. Solar festivals such as Makara Sankranti follow the Sun's entry into a sign instead, so they land on a different tithi each year.</p></div></div>
+</section>
+<section data-block>
+  <h2 class="section-title">The festivals, month by month</h2>
+  <div class="grid v3">
+  <article class="card has-corner" id="ugadi" data-item data-id="ugadi" data-tags="vasanta" style="--accent:var(--vasanta)"><span class="ch-num">1</span>
+  <h3>Ugadi · Gudi Padwa <span class="native">युगादि</span></h3><span class="tag">Chaitra · Shukla Pratipada</span><p>The lunar New Year in the Deccan: Ugadi in Karnataka, Andhra and Telangana, Gudi Padwa in Maharashtra. A new Samvatsara of the <a href="jyotisha.html">sixty-year cycle</a> begins, and families taste neem with jaggery, bitter with sweet.</p><div class="chips"><span class="chip">Karnataka</span><span class="chip">Andhra</span><span class="chip">Maharashtra</span></div>
+</article>
+  <article class="card has-corner" id="ramanavami" data-item data-id="ramanavami" data-tags="vasanta" style="--accent:var(--vasanta)"><span class="ch-num">2</span>
+  <h3>Rama Navami <span class="native">राम नवमी</span></h3><span class="tag">Chaitra · Shukla Navami</span><p>The birth of Rama at noon in Ayodhya. Many keep the nine days before it as Vasanta Navaratri. See the <a href="ramayana.html">Ramayana journey</a>.</p><div class="chips"><span class="chip">Pan-Indian</span></div>
+</article>
+  <article class="card has-corner" id="hanuman" data-item data-id="hanuman" data-tags="vasanta" style="--accent:var(--vasanta)"><span class="ch-num">3</span>
+  <h3>Hanuman Jayanti <span class="native">हनुमान जयन्ती</span></h3><span class="tag">Chaitra · Shukla Purnima</span><p>Kept on Chaitra Purnima across much of North India. Regional calendars differ: Tamil Nadu keeps it on the new moon of Margazhi, and Andhra in Vaishakha.</p><div class="chips"><span class="chip">North India</span></div>
+</article>
+  <article class="card has-corner" id="mesha" data-item data-id="mesha" data-tags="vasanta" style="--accent:var(--vasanta)"><span class="ch-num">4</span>
+  <h3>Mesha Sankranti <span class="native">मेष संक्रान्ति</span></h3><span class="tag">Solar · the Sun enters Mesha (Aries)</span><p>The Sun enters Aries, usually about 14 April. It is the solar New Year in many regions: Puthandu in Tamil Nadu, Vishu in Kerala, Baisakhi in Punjab, Bohag Bihu in Assam and Pohela Boishakh in Bengal.</p><div class="chips"><span class="chip">Tamil Nadu</span><span class="chip">Kerala</span><span class="chip">Punjab</span><span class="chip">Assam</span><span class="chip">Bengal</span></div>
+</article>
+  <article class="card has-corner" id="akshaya" data-item data-id="akshaya" data-tags="vasanta" style="--accent:var(--vasanta)"><span class="ch-num">5</span>
+  <h3>Akshaya Tritiya <span class="native">अक्षय तृतीया</span></h3><span class="tag">Vaishakha · Shukla Tritiya</span><p>The "imperishable" third. Whatever is begun or given on this day is believed to grow without end, so it is a favourite day for weddings, new ventures and buying gold.</p><div class="chips"><span class="chip">Pan-Indian</span></div>
+</article>
+  <article class="card has-corner" id="narasimha" data-item data-id="narasimha" data-tags="vasanta" style="--accent:var(--vasanta)"><span class="ch-num">6</span>
+  <h3>Narasimha Jayanti <span class="native">नृसिंह जयन्ती</span></h3><span class="tag">Vaishakha · Shukla Chaturdashi</span><p>The day the man-lion burst from the pillar to save Prahlada. See the <a href="dashavatara.html">Dashavatara</a>.</p><div class="chips"><span class="chip">Ahobilam</span><span class="chip">Simhachalam</span></div>
+</article>
+  <article class="card has-corner" id="ganga" data-item data-id="ganga" data-tags="grishma" style="--accent:var(--grishma)"><span class="ch-num">7</span>
+  <h3>Ganga Dussehra <span class="native">गङ्गा दशहरा</span></h3><span class="tag">Jyeshtha · Shukla Dashami</span><p>The descent of the Ganga to earth through Bhagirathas penance, marked with bathing at Haridwar and Varanasi.</p><div class="chips"><span class="chip">North India</span></div>
+</article>
+  <article class="card has-corner" id="vat" data-item data-id="vat" data-tags="grishma" style="--accent:var(--grishma)"><span class="ch-num">8</span>
+  <h3>Vat Purnima <span class="native">वट पूर्णिमा</span></h3><span class="tag">Jyeshtha · Shukla Purnima</span><p>Married women tie threads around a banyan tree in memory of Savitri, who won back her husband Satyavan from Yama. North India keeps the same vow, Vat Savitri, on the new moon of Jyeshtha instead.</p><div class="chips"><span class="chip">Maharashtra</span><span class="chip">Gujarat</span><span class="chip">Karnataka</span></div>
+</article>
+  <article class="card has-corner" id="rathyatra" data-item data-id="rathyatra" data-tags="grishma" style="--accent:var(--grishma)"><span class="ch-num">9</span>
+  <h3>Rath Yatra <span class="native">रथ यात्रा</span></h3><span class="tag">Ashadha · Shukla Dvitiya</span><p>Jagannath, Balabhadra and Subhadra ride out of the Puri temple on three giant wooden chariots, rebuilt every year.</p><div class="chips"><span class="chip">Puri</span><span class="chip">Odisha</span></div>
+</article>
+  <article class="card has-corner" id="ashadhi" data-item data-id="ashadhi" data-tags="grishma" style="--accent:var(--grishma)"><span class="ch-num">10</span>
+  <h3>Ashadhi Ekadashi <span class="native">आषाढी एकादशी</span></h3><span class="tag">Ashadha · Shukla Ekadashi</span><p>Vishnu lies down to sleep on the serpent Shesha (Devshayani Ekadashi), and the four months of Chaturmasya begin. The great Wari pilgrimage on foot reaches Vithoba at Pandharpur on this day.</p><div class="chips"><span class="chip">Pandharpur</span><span class="chip">Maharashtra</span></div>
+</article>
+  <article class="card has-corner" id="gurupurnima" data-item data-id="gurupurnima" data-tags="grishma" style="--accent:var(--grishma)"><span class="ch-num">11</span>
+  <h3>Guru Purnima <span class="native">गुरु पूर्णिमा</span></h3><span class="tag">Ashadha · Shukla Purnima</span><p>Vyasa Purnima, the day to honour ones teachers. Sannyasis begin their rainy-season retreat. See the <a href="parampara.html">guru paramparas</a>.</p><div class="chips"><span class="chip">Pan-Indian</span></div>
+</article>
+  <article class="card has-corner" id="nagapanchami" data-item data-id="nagapanchami" data-tags="varsha" style="--accent:var(--varsha)"><span class="ch-num">12</span>
+  <h3>Naga Panchami <span class="native">नाग पञ्चमी</span></h3><span class="tag">Shravana · Shukla Panchami</span><p>Serpent deities are worshipped with milk at anthills and nagakal stones as the monsoon brings snakes out of the earth.</p><div class="chips"><span class="chip">Pan-Indian</span></div>
+</article>
+  <article class="card has-corner" id="upakarma" data-item data-id="upakarma" data-tags="varsha" style="--accent:var(--varsha)"><span class="ch-num">13</span>
+  <h3>Raksha Bandhan · Upakarma <span class="native">रक्षाबन्धन · उपाकर्म</span></h3><span class="tag">Shravana · Shukla Purnima</span><p>Sisters tie the protective rakhi on their brothers wrists. On the same full moon, Yajurvedi Brahmins renew the sacred thread (Avani Avittam in Tamil Nadu).</p><div class="chips"><span class="chip">Pan-Indian</span></div>
+</article>
+  <article class="card has-corner" id="janmashtami" data-item data-id="janmashtami" data-tags="varsha" style="--accent:var(--varsha)"><span class="ch-num">14</span>
+  <h3>Krishna Janmashtami <span class="native">कृष्ण जन्माष्टमी</span></h3><span class="tag">Shravana · Krishna Ashtami</span><p>Krishnas birth at midnight. Here it falls in Shravana; calendars that end the month at the full moon call the same day Bhadrapada Krishna Ashtami. Dahi Handi follows in Maharashtra.</p><div class="chips"><span class="chip">Pan-Indian</span><span class="chip">Mathura</span><span class="chip">Gokulashtami in the South</span></div>
+</article>
+  <article class="card has-corner" id="ganesh" data-item data-id="ganesh" data-tags="varsha" style="--accent:var(--varsha)"><span class="ch-num">15</span>
+  <h3>Ganesh Chaturthi <span class="native">गणेश चतुर्थी</span></h3><span class="tag">Bhadrapada · Shukla Chaturthi</span><p>Clay images of Ganesha are installed at home and in public pandals, worshipped for one to ten days and then immersed in water.</p><div class="chips"><span class="chip">Maharashtra</span><span class="chip">Karnataka</span><span class="chip">Telangana</span><span class="chip">Pan-Indian</span></div>
+</article>
+  <article class="card has-corner" id="mahalaya" data-item data-id="mahalaya" data-tags="varsha" style="--accent:var(--varsha)"><span class="ch-num">16</span>
+  <h3>Mahalaya Amavasya <span class="native">महालय अमावास्या</span></h3><span class="tag">Bhadrapada · Amavasya (new moon)</span><p>The last day of Pitru Paksha, the fortnight for offerings to ancestors. In Bengal it also heralds Durga Puja.</p><div class="chips"><span class="chip">Pan-Indian</span><span class="chip">Bengal</span></div>
+</article>
+  <article class="card has-corner" id="navaratri" data-item data-id="navaratri" data-tags="sharad" style="--accent:var(--sharad)"><span class="ch-num">17</span>
+  <h3>Navaratri <span class="native">नवरात्रि</span></h3><span class="tag">Ashvina · Shukla Pratipada</span><p>Nine nights of the Goddess. Bengal keeps them as Durga Puja, Gujarat dances garba, Tamil Nadu and Karnataka set up golu displays of dolls, and Mysuru holds its Dasara.</p><div class="chips"><span class="chip">Pan-Indian</span></div>
+</article>
+  <article class="card has-corner" id="vijayadashami" data-item data-id="vijayadashami" data-tags="sharad" style="--accent:var(--sharad)"><span class="ch-num">18</span>
+  <h3>Vijayadashami · Dussehra <span class="native">विजयादशमी</span></h3><span class="tag">Ashvina · Shukla Dashami</span><p>Victory day: Rama over Ravana in the North, Durga over Mahishasura in the East. It is an auspicious day to begin learning (Vidyarambham).</p><div class="chips"><span class="chip">Pan-Indian</span></div>
+</article>
+  <article class="card has-corner" id="deepavali" data-item data-id="deepavali" data-tags="sharad" style="--accent:var(--sharad)"><span class="ch-num">19</span>
+  <h3>Deepavali <span class="native">दीपावली</span></h3><span class="tag">Ashvina · Amavasya (new moon)</span><p>The festival of lamps. Lakshmi Puja falls on the new moon, and the South celebrates Naraka Chaturdashi, Krishnas victory over Narakasura, at dawn the day before. Northern calendars call the month Kartika.</p><div class="chips"><span class="chip">Pan-Indian</span></div>
+</article>
+  <article class="card has-corner" id="prabodhini" data-item data-id="prabodhini" data-tags="sharad" style="--accent:var(--sharad)"><span class="ch-num">20</span>
+  <h3>Prabodhini Ekadashi <span class="native">प्रबोधिनी एकादशी</span></h3><span class="tag">Kartika · Shukla Ekadashi</span><p>Vishnu wakes from his four-month sleep and Chaturmasya ends. Tulasi Vivah, the marriage of the tulasi plant to Vishnu, follows.</p><div class="chips"><span class="chip">Pan-Indian</span></div>
+</article>
+  <article class="card has-corner" id="kartika" data-item data-id="kartika" data-tags="sharad" style="--accent:var(--sharad)"><span class="ch-num">21</span>
+  <h3>Kartika Purnima · Karthigai Deepam <span class="native">कार्तिक पूर्णिमा</span></h3><span class="tag">Kartika · Shukla Purnima</span><p>The Ganga ghats of Varanasi glow for Dev Deepavali. In Tamil Nadu the great beacon is lit on Arunachala at <a href="pancha-bhoota.html">Tiruvannamalai</a>, timed by the Krittika star in the month of Karthigai.</p><div class="chips"><span class="chip">Varanasi</span><span class="chip">Tiruvannamalai</span></div>
+</article>
+  <article class="card has-corner" id="gitajayanti" data-item data-id="gitajayanti" data-tags="hemanta" style="--accent:var(--hemanta)"><span class="ch-num">22</span>
+  <h3>Gita Jayanti <span class="native">गीता जयन्ती</span></h3><span class="tag">Margashirsha · Shukla Ekadashi</span><p>The day Krishna spoke the <a href="gita.html">Bhagavad Gita</a> to Arjuna at Kurukshetra, kept on Mokshada Ekadashi.</p><div class="chips"><span class="chip">Kurukshetra</span><span class="chip">Pan-Indian</span></div>
+</article>
+  <article class="card has-corner" id="vaikuntha" data-item data-id="vaikuntha" data-tags="hemanta" style="--accent:var(--hemanta)"><span class="ch-num">23</span>
+  <h3>Vaikuntha Ekadashi <span class="native">वैकुण्ठ एकादशी</span></h3><span class="tag">Pausha · Shukla Ekadashi</span><p>The "gate to Vaikuntha" (Paramapada Vasal) opens in Vishnu temples such as Srirangam and Tirumala. It falls in the solar month of Margazhi (Dhanu), so its lunar month varies, and it is shown here at its usual place.</p><div class="chips"><span class="chip">Srirangam</span><span class="chip">Tirumala</span></div>
+</article>
+  <article class="card has-corner" id="sankranti" data-item data-id="sankranti" data-tags="hemanta" style="--accent:var(--hemanta)"><span class="ch-num">24</span>
+  <h3>Makara Sankranti · Pongal <span class="native">मकर सङ्क्रान्ति</span></h3><span class="tag">Solar · the Sun enters Makara (Capricorn)</span><p>The Sun enters Capricorn and begins its northward course (Uttarayana), usually about 14 January. It is Pongal in Tamil Nadu, Lohri the evening before in Punjab, Magh Bihu in Assam, and the kite festival Uttarayan in Gujarat.</p><div class="chips"><span class="chip">Tamil Nadu</span><span class="chip">Gujarat</span><span class="chip">Punjab</span><span class="chip">Assam</span></div>
+</article>
+  <article class="card has-corner" id="vasantpanchami" data-item data-id="vasantpanchami" data-tags="shishira" style="--accent:var(--shishira)"><span class="ch-num">25</span>
+  <h3>Vasant Panchami <span class="native">वसन्त पञ्चमी</span></h3><span class="tag">Magha · Shukla Panchami</span><p>The first breath of spring and the day of Saraswati. Children write their first letters, and books and instruments are worshipped.</p><div class="chips"><span class="chip">Pan-Indian</span><span class="chip">Bengal</span></div>
+</article>
+  <article class="card has-corner" id="rathasaptami" data-item data-id="rathasaptami" data-tags="shishira" style="--accent:var(--shishira)"><span class="ch-num">26</span>
+  <h3>Ratha Saptami <span class="native">रथ सप्तमी</span></h3><span class="tag">Magha · Shukla Saptami</span><p>Surya turns his chariot northward. It is a bathing festival for the Sun god, with arka leaves placed on the head.</p><div class="chips"><span class="chip">South India</span></div>
+</article>
+  <article class="card has-corner" id="shivaratri" data-item data-id="shivaratri" data-tags="shishira" style="--accent:var(--shishira)"><span class="ch-num">27</span>
+  <h3>Maha Shivaratri <span class="native">महाशिवरात्रि</span></h3><span class="tag">Magha · Krishna Chaturdashi</span><p>The great night of Shiva, kept with fasting and a vigil of four night-long worships. Here it falls in Magha; calendars that end the month at the full moon call it Phalguna. See <a href="shiva-muruga.html">Shiva & Muruga</a>.</p><div class="chips"><span class="chip">Pan-Indian</span></div>
+</article>
+  <article class="card has-corner" id="holi" data-item data-id="holi" data-tags="shishira" style="--accent:var(--shishira)"><span class="ch-num">28</span>
+  <h3>Holi · Panguni Uttiram <span class="native">होली</span></h3><span class="tag">Phalguna · Shukla Purnima</span><p>Bonfires for Holika on the full-moon night, then a day of colours. In Tamil Nadu the same full moon is Panguni Uttiram, when the divine weddings of Shiva and Parvati and of Murugan and Deivanai are celebrated.</p><div class="chips"><span class="chip">North India</span><span class="chip">Tamil Nadu</span></div>
+</article>
+  </div>
+</section>
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
+<section class="sources"><h2>Sources</h2><ul><li><a href="https://en.wikipedia.org/wiki/List_of_Hindu_festivals" target="_blank" rel="noopener">List of Hindu festivals — Wikipedia (month and tithi for each festival)</a></li><li><a href="https://www.drikpanchang.com/" target="_blank" rel="noopener">Drik Panchang — festival dates by year</a></li><li><a href="https://en.wikipedia.org/wiki/Hindu_calendar" target="_blank" rel="noopener">Hindu calendar — Wikipedia</a></li></ul></section>
+<footer>
+  <p>🪔 A visual map of the Hindu festival year · Months are amanta (new moon to new moon); Gregorian months are approximate</p>
+  <p>Regional calendars differ; check a local Panchanga for exact dates in a given year</p>
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
+    <a href="ramayana.html"><span aria-hidden="true">🏹</span>Ramayana Journey</a>
+    <a href="mahabharata.html"><span aria-hidden="true">⚔️</span>Mahabharata Family Tree</a>
+    <a href="dashavatara.html"><span aria-hidden="true">🐚</span>Dashavatara</a>
+    <a href="carnatic.html"><span aria-hidden="true">🎶</span>Carnatic Music</a>
+    <a href="raga-geometry.html"><span aria-hidden="true">🎡</span>Raga Geometry</a>
+    <a href="sanskrit-poets.html"><span aria-hidden="true">✒️</span>Sanskrit Poets</a>
+    <a href="ram.html"><span aria-hidden="true">🙏</span>When India Says Ram</a>
+    <a href="parampara.html"><span aria-hidden="true">🪔</span>Guru Parampara</a>
+    <a href="tamil-literature.html"><span aria-hidden="true">📜</span>Tamil Literature</a>
+    <a href="temples.html"><span aria-hidden="true">🛕</span>Temple Architecture</a>
+    <a href="festivals.html" aria-current="page"><span aria-hidden="true">🎆</span>Festival Wheel</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
+</footer>
+<script src="assets/site.js?v=7d8eeccc"></script>
+</body>
+</html>
