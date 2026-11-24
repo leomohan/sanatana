@@ -5,255 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arupadai Veedu — The Six Abodes of Lord Muruga</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦚</text></svg>">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="assets/site.css?v=420f3627">
+<style>:root,[data-theme="dark"]{--muruga:#f7b731; --muruga-2:#fc5c65;} [data-theme="light"]{--muruga:#c98a00; --muruga-2:#d63c46;} :root{--primary:var(--muruga); --grad-h:linear-gradient(90deg,var(--muruga),var(--muruga-2)); --grad-v:linear-gradient(var(--muruga),var(--muruga-2));}</style>
 <script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
   (function(){
-    var savedTheme = localStorage.getItem('muruga-theme');
-    var theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
-    var savedSize = localStorage.getItem('muruga-size') || '1';
-    document.documentElement.style.setProperty('--scale', savedSize);
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
   })();
 </script>
-<style>
-  :root,[data-theme="dark"]{
-    --bg:#0e0b1a; --bg-grad:#1b1435;
-    --card:#241d40; --card-2:#161129;
-    --border:rgba(255,255,255,.06); --border-strong:rgba(255,255,255,.14);
-    --chip-bg:rgba(255,255,255,.06); --chip-border:rgba(255,255,255,.08);
-    --text:#eae6f7; --muted:#a29ac2;
-    --shadow:0 14px 34px rgba(0,0,0,.5);
-    --muruga:#f7b731; --muruga-2:#fc5c65;
-    --root-text:#1a0f24;
-    --map-bg:#1a1530;
-  }
-  [data-theme="light"]{
-    --bg:#fdf9f3; --bg-grad:#fff4e6;
-    --card:#ffffff; --card-2:#fffaf2;
-    --border:rgba(60,40,20,.10); --border-strong:rgba(60,40,20,.22);
-    --chip-bg:rgba(120,80,30,.07); --chip-border:rgba(120,80,30,.14);
-    --text:#2a1f14; --muted:#6b5c4a;
-    --shadow:0 14px 34px rgba(90,60,20,.15);
-    --muruga:#c98a00; --muruga-2:#d63c46;
-    --root-text:#3a1a08;
-    --map-bg:#f5f0e8;
-  }
-
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  :root{ --scale:1; }
-
-  body{
-    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    background:radial-gradient(circle at top,var(--bg-grad) 0%,var(--bg) 60%);
-    color:var(--text);
-    min-height:100vh;
-    padding:90px 20px 80px;
-    line-height:1.6;
-    font-size:calc(17px * var(--scale));
-    transition:background .35s ease,color .35s ease;
-  }
-
-  /* CONTROL BAR */
-  .controls{
-    position:fixed; top:0; left:0; right:0; z-index:1000;
-    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
-    padding:12px 16px;
-    background:color-mix(in srgb,var(--bg) 90%,transparent);
-    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border-strong);
-  }
-  .ctrl-group{
-    display:flex; align-items:center; gap:6px;
-    background:var(--card); border:1px solid var(--border-strong);
-    border-radius:50px; padding:4px;
-  }
-  .ctrl-btn{
-    font-family:inherit; font-size:.85rem; font-weight:600;
-    color:var(--text); background:transparent; border:none; border-radius:40px;
-    padding:7px 13px; cursor:pointer; display:flex; align-items:center; gap:6px;
-    transition:background .2s,color .2s; white-space:nowrap;
-  }
-  .ctrl-btn:hover{background:var(--chip-bg);}
-  .ctrl-btn:focus-visible{outline:2px solid var(--muruga);outline-offset:2px;}
-  .ctrl-btn.active{background:var(--chip-bg);box-shadow:inset 0 0 0 1px var(--border-strong);}
-
-  .theme-toggle{padding:5px 12px 5px 6px;}
-  .toggle-track{position:relative;width:44px;height:24px;border-radius:20px;background:var(--chip-bg);border:1px solid var(--border-strong);flex-shrink:0;transition:background .3s;}
-  .toggle-knob{position:absolute;top:1px;left:1px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#ffcf6b,#ff9f43);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .3s cubic-bezier(.4,1.6,.5,1);box-shadow:0 2px 6px rgba(0,0,0,.3);}
-  [data-theme="light"] .toggle-knob{transform:translateX(20px);}
-
-  .size-btn{width:34px;height:34px;justify-content:center;padding:0;font-size:.9rem;font-weight:800;border-radius:50%;}
-  .size-val{min-width:40px;text-align:center;font-size:.8rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;}
-
-  .search-wrap{
-    display:flex;align-items:center;gap:8px;
-    background:var(--card);border:1px solid var(--border-strong);
-    border-radius:50px;padding:6px 14px;flex:1 1 180px;max-width:320px;
-  }
-  .search-wrap:focus-within{border-color:var(--muruga);}
-  .search-wrap input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:inherit;font-size:.9rem;min-width:0;}
-  .search-wrap input::placeholder{color:var(--muted);}
-
-  .lang-toggle .ctrl-btn.active{color:var(--muruga);}
-
-  /* FILTERS */
-  .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:1000px;margin:0 auto 30px;}
-  .filter-chip{
-    font-family:inherit;font-size:.82rem;font-weight:600;
-    padding:7px 15px;border-radius:30px;cursor:pointer;
-    background:var(--card);color:var(--muted);
-    border:1px solid var(--border-strong);transition:all .2s;
-  }
-  .filter-chip:hover{border-color:var(--muted);transform:translateY(-1px);}
-  .filter-chip:focus-visible{outline:2px solid var(--muruga);outline-offset:2px;}
-  .filter-chip.active{background:var(--fc,var(--muruga));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--fc,var(--muruga)) 40%,transparent);}
-
-  /* LAYOUT */
-  header{text-align:center;max-width:900px;margin:0 auto 34px;}
-  header h1{
-    font-size:clamp(1.6rem,4vw,2.6rem);
-    background:linear-gradient(90deg,var(--muruga),var(--muruga-2));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    font-weight:800;letter-spacing:.5px;margin-bottom:12px;
-  }
-  header p{color:var(--muted);font-size:1.05rem;max-width:700px;margin:0 auto;}
-
-  .legend{display:flex;flex-wrap:wrap;gap:12px 18px;justify-content:center;margin-top:22px;}
-  .legend span{display:flex;align-items:center;gap:7px;font-size:.85rem;color:var(--muted);}
-  .dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex-shrink:0;}
-
-  section{margin:50px auto;max-width:1200px;}
-
-  /* MAP */
-  #map{
-    height: min(55vh, 480px);
-    min-height: 320px;
-    border-radius: 20px;
-    border: 1px solid var(--border-strong);
-    box-shadow: var(--shadow);
-    background: var(--map-bg);
-    z-index: 1;
-    margin-bottom: 30px;
-  }
-  .leaflet-container{ background: var(--map-bg); font-family: inherit; }
-  .leaflet-popup-content-wrapper{
-    background: var(--card);
-    color: var(--text);
-    border-radius: 12px;
-    border: 1px solid var(--border-strong);
-    box-shadow: var(--shadow);
-  }
-  .leaflet-popup-tip{ background: var(--card); }
-  .leaflet-popup-content{ margin: 12px 14px; line-height: 1.5; }
-  .leaflet-popup-content h3{ font-size: .95rem; margin-bottom: 4px; color: var(--muruga); }
-  .leaflet-popup-content .sub{ font-size: .78rem; color: var(--muted); }
-  .leaflet-control-zoom a{ background: var(--card) !important; color: var(--text) !important; border-color: var(--border-strong) !important; }
-  .leaflet-control-attribution{ background: color-mix(in srgb, var(--card) 90%, transparent) !important; color: var(--muted) !important; font-size: .7rem !important; }
-
-  /* CARDS */
-  .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
-
-  .card{
-    position:relative;
-    background:linear-gradient(160deg,var(--card),var(--card-2));
-    border-radius:18px;padding:24px 22px 22px;
-    border:1px solid var(--border);
-    transition:transform .25s ease,box-shadow .25s ease,border-color .25s,opacity .3s;
-    overflow:hidden;
-  }
-  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent,var(--muruga));}
-  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--accent,var(--muruga));}
-  .card.hidden{display:none;}
-
-  .card .ch-num{
-    position:absolute; top:14px; right:18px;
-    font-size:2.2rem; font-weight:900; line-height:1;
-    color:var(--accent,var(--muruga)); opacity:.15;
-    user-select:none; pointer-events:none;
-  }
-  .card h3{
-    font-size:1.15rem;margin-bottom:4px;color:var(--accent,var(--muruga));
-    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
-    padding-right:45px;
-  }
-  .card h3 .tamil{font-size:.8rem;font-weight:500;opacity:.8;display:none;}
-  body.show-tamil .card h3 .tamil{display:inline;}
-  .card .tag{
-    font-size:.72rem;font-weight:600;text-transform:uppercase;
-    letter-spacing:.6px;color:var(--muted);margin-bottom:10px;display:block;
-  }
-  .card p{font-size:.92rem;color:var(--text);opacity:.9;}
-
-  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
-  .chip{font-size:.75rem;padding:4px 10px;border-radius:20px;background:var(--chip-bg);color:var(--muted);border:1px solid var(--chip-border);}
-  .chip.event{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,transparent);}
-
-  .muruga-card{--accent:var(--muruga);}
-
-  /* Journey strip */
-  .journey{
-    display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
-    max-width:900px; margin:0 auto 30px; padding:14px;
-    background:var(--card); border:1px solid var(--border); border-radius:16px;
-  }
-  .journey a{
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    min-width:110px; padding:10px 14px; border-radius:12px;
-    text-decoration:none; color:var(--text);
-    background:var(--chip-bg); border:1px solid var(--border);
-    transition:transform .2s, border-color .2s;
-    font-size:.8rem; font-weight:700; text-align:center; gap:2px;
-  }
-  .journey a:hover{transform:translateY(-3px); border-color:var(--muruga);}
-  .journey a .num{font-size:.7rem; color:var(--muruga); font-weight:800;}
-
-  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:60px;}
-
-  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important;}}
-  @media (max-width:680px){
-    body{padding-top:130px;}
-    .controls{gap:8px;}
-    .search-wrap{max-width:none;flex:1 1 100%;order:5;}
-    .ctrl-btn{padding:6px 10px;font-size:.8rem;}
-    .size-btn{width:30px;height:30px;}
-    .journey a{min-width:90px; font-size:.72rem;}
-    #map{height:45vh; min-height:280px;}
-  }
-
-  /* ---------- SITE NAV (home button + footer links) ---------- */
-  .home-btn{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:7px 14px;border-radius:999px;
-    background:var(--card);color:var(--text);
-    border:1px solid var(--border-strong,var(--border));
-    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
-    white-space:nowrap;transition:transform .2s,border-color .2s;
-  }
-  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
-  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
-  .site-nav{
-    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
-    max-width:980px;margin:26px auto 4px;padding-top:20px;
-    border-top:1px solid var(--border);
-  }
-  .site-nav a{
-    display:inline-flex;align-items:center;gap:5px;
-    padding:6px 12px;border-radius:999px;
-    font-size:.8rem;font-weight:600;text-decoration:none;
-    color:var(--muted);background:var(--card);
-    border:1px solid var(--border);
-    transition:color .2s,border-color .2s,transform .2s;
-  }
-  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
-  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
-  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
-  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
-</style>
 </head>
 <body>
-
-<div class="controls" role="toolbar" aria-label="Map controls">
+<div class="controls" role="toolbar" aria-label="Page controls">
   <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
@@ -261,7 +26,7 @@
   </div>
   <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
     <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
-    <button class="ctrl-btn" id="langTa" aria-pressed="false">தமிழ்</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">தமிழ்</button>
   </div>
   <div class="ctrl-group" role="group" aria-label="Text size">
     <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
@@ -273,89 +38,48 @@
     <span id="toggleLabel">Light</span>
   </button>
 </div>
-
 <header>
   <h1>Arupadai Veedu</h1>
   <p>The six sacred abodes of Lord Muruga, sung in the ancient Tamil Sangam poem <em>Thirumurugatruppadai</em> by Nakkirar. Each temple marks a chapter in Muruga's divine life — from his marriage to his victory over evil, from his wisdom to his renunciation.</p>
-  <div class="legend">
-    <span><i class="dot" style="background:var(--muruga)"></i>Six Abodes of Muruga</span>
-  </div>
+  <div class="legend"><span><i class="dot" style="background:var(--muruga)"></i>Six Abodes of Muruga</span></div>
 </header>
-
-<!-- Journey strip -->
-<div class="journey" id="journeyStrip" aria-label="Jump to abode"></div>
-
-<div class="filters" role="group" aria-label="Filter by theme">
-  <button class="filter-chip active" data-filter="all" style="--fc:var(--muruga)">All Six</button>
-  <button class="filter-chip" data-filter="wedding" style="--fc:var(--muruga)">💍 Wedding</button>
-  <button class="filter-chip" data-filter="victory" style="--fc:var(--muruga-2)">⚔️ Victory</button>
-  <button class="filter-chip" data-filter="renunciation" style="--fc:var(--muruga)">🧘 Renunciation</button>
-  <button class="filter-chip" data-filter="wisdom" style="--fc:var(--muruga)">🧠 Wisdom</button>
-  <button class="filter-chip" data-filter="union" style="--fc:var(--muruga)">💞 Union</button>
+<nav class="journey labels" aria-label="Jump to"><a href="#thiruparankundram"><span class="num">1</span>Thiruparankundram<span class="sub">Wedding</span></a><a href="#thiruchendur"><span class="num">2</span>Thiruchendur<span class="sub">Victory</span></a><a href="#palani"><span class="num">3</span>Palani<span class="sub">Renunciation</span></a><a href="#swamimalai"><span class="num">4</span>Swamimalai<span class="sub">Wisdom</span></a><a href="#thiruthani"><span class="num">5</span>Thiruthani<span class="sub">Union</span></a><a href="#pazhamudircholai"><span class="num">6</span>Pazhamudircholai<span class="sub">Forest</span></a>
+</nav>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--muruga)">All Six</button>
+  <button class="filter-chip" data-filter="wedding" aria-pressed="false" style="--fc:var(--muruga)">💍 Wedding</button>
+  <button class="filter-chip" data-filter="victory" aria-pressed="false" style="--fc:var(--muruga-2)">⚔️ Victory</button>
+  <button class="filter-chip" data-filter="renunciation" aria-pressed="false" style="--fc:var(--muruga)">🧘 Renunciation</button>
+  <button class="filter-chip" data-filter="wisdom" aria-pressed="false" style="--fc:var(--muruga)">🧠 Wisdom</button>
+  <button class="filter-chip" data-filter="union" aria-pressed="false" style="--fc:var(--muruga)">💞 Union</button>
 </div>
-
-<!-- MAP -->
 <div id="map" role="application" aria-label="Map of the six abodes"></div>
-
-<!-- ========== THE SIX ABODES ========== -->
-<section>
-  <div class="grid" id="abodeGrid">
-
-    <article class="card muruga-card" id="thiruparankundram" data-tags="wedding" data-id="thiruparankundram">
-      <span class="ch-num">1</span>
-      <h3>Thiruparankundram <span class="tamil">திருப்பரங்குன்றம்</span></h3>
-      <span class="tag">The Wedding Abode</span>
-      <p>Carved into a hillock near Madurai, this is where Muruga married Deivanai, the daughter of Indra. It is the first of the six abodes and a rare rock-cut temple where the sanctum is hewn from living stone.</p>
-      <div class="chips"><span class="chip event">💍 Wedding</span><span class="chip">Madurai</span></div>
-    </article>
-
-    <article class="card muruga-card" id="thiruchendur" data-tags="victory" data-id="thiruchendur">
-      <span class="ch-num">2</span>
-      <h3>Thiruchendur <span class="tamil">திருச்செந்தூர்</span></h3>
-      <span class="tag">The Victory Abode</span>
-      <p>The only abode on the seashore. Here Muruga defeated the demon Surapadma after a fierce battle, and worshipped Shiva in gratitude. The temple stands just 200 metres from the Gulf of Mannar, yet is said never to flood.</p>
-      <div class="chips"><span class="chip event">⚔️ Victory</span><span class="chip">Coastal</span><span class="chip">Skanda Sashti</span></div>
-    </article>
-
-    <article class="card muruga-card" id="palani" data-tags="renunciation" data-id="palani">
-      <span class="ch-num">3</span>
-      <h3>Palani <span class="tamil">பழனி</span></h3>
-      <span class="tag">The Abode of Renunciation</span>
-      <p>After losing the contest for the sacred fruit to his brother Ganesha, Muruga left his family in anger and settled on these hills as an ascetic. Here he is worshipped as Dhandayuthapani — the Lord with a staff, wearing only a loincloth.</p>
-      <div class="chips"><span class="chip event">🧘 Renunciation</span><span class="chip">Hilltop</span><span class="chip">Navapashanam idol</span></div>
-    </article>
-
-    <article class="card muruga-card" id="swamimalai" data-tags="wisdom" data-id="swamimalai">
-      <span class="ch-num">4</span>
-      <h3>Swamimalai <span class="tamil">சுவாமிமலை</span></h3>
-      <span class="tag">The Abode of Wisdom</span>
-      <p>At this hillock near Kumbakonam, the child Muruga taught the meaning of the Pranava Mantra (Om) to his own father, Shiva — and demanded that Shiva accept him as guru. Sixty steps lead to the shrine, one for each year of the Hindu calendar cycle.</p>
-      <div class="chips"><span class="chip event">🧠 Wisdom</span><span class="chip">Guru of Shiva</span><span class="chip">60 steps</span></div>
-    </article>
-
-    <article class="card muruga-card" id="thiruthani" data-tags="union" data-id="thiruthani">
-      <span class="ch-num">5</span>
-      <h3>Thiruthani <span class="tamil">திருத்தணி</span></h3>
-      <span class="tag">The Abode of Union</span>
-      <p>On this hill near Chennai, Muruga married Valli, the daughter of a tribal chieftain — a union celebrated as the blending of divine grace with the devotion of the humble. Its great festival is Aadi Krithigai, and pilgrims climb its 365 steps on New Year's Eve.</p>
-      <div class="chips"><span class="chip event">💞 Union</span><span class="chip">Valli</span><span class="chip">Aadi Krithigai</span></div>
-    </article>
-
-    <article class="card muruga-card" id="pazhamudircholai" data-tags="wisdom" data-id="pazhamudircholai">
-      <span class="ch-num">6</span>
-      <h3>Pazhamudircholai <span class="tamil">பழமுதிர்சோலை</span></h3>
-      <span class="tag">The Forest Abode</span>
-      <p>Nestled in the Azhagar Kovil forests near Madurai, this is the last of the six abodes. Here Muruga tested the Tamil saint Avvaiyar with a fruit, revealing his playful wisdom. It is a serene forest shrine, far from the bustle of the other temples.</p>
-      <div class="chips"><span class="chip event">🧠 Wisdom</span><span class="chip">Forest</span><span class="chip">Avvaiyar</span></div>
-    </article>
-
+<section data-block>
+  <div class="grid">
+  <article class="card has-corner" id="thiruparankundram" data-item data-id="thiruparankundram" data-tags="wedding" style="--accent:var(--muruga)"><span class="ch-num">1</span>
+  <h3>Thiruparankundram <span class="native">திருப்பரங்குன்றம்</span></h3><span class="tag">The Wedding Abode</span><p>Carved into a hillock near Madurai, this is where Muruga married Deivanai, the daughter of Indra. It is the first of the six abodes and a rare rock-cut temple where the sanctum is hewn from living stone.</p><div class="chips"><span class="chip event">💍 Wedding</span><span class="chip">Madurai</span></div><button class="map-link" data-id="thiruparankundram" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="thiruchendur" data-item data-id="thiruchendur" data-tags="victory" style="--accent:var(--muruga)"><span class="ch-num">2</span>
+  <h3>Thiruchendur <span class="native">திருச்செந்தூர்</span></h3><span class="tag">The Victory Abode</span><p>The only abode on the seashore. Here Muruga defeated the demon Surapadma after a fierce battle, and worshipped Shiva in gratitude. The temple stands just 200 metres from the Gulf of Mannar, yet is said never to flood.</p><div class="chips"><span class="chip event">⚔️ Victory</span><span class="chip">Coastal</span><span class="chip">Skanda Sashti</span></div><button class="map-link" data-id="thiruchendur" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="palani" data-item data-id="palani" data-tags="renunciation" style="--accent:var(--muruga)"><span class="ch-num">3</span>
+  <h3>Palani <span class="native">பழனி</span></h3><span class="tag">The Abode of Renunciation</span><p>After losing the contest for the sacred fruit to his brother Ganesha, Muruga left his family in anger and settled on these hills as an ascetic. Here he is worshipped as Dhandayuthapani — the Lord with a staff, wearing only a loincloth.</p><div class="chips"><span class="chip event">🧘 Renunciation</span><span class="chip">Hilltop</span><span class="chip">Navapashanam idol</span></div><button class="map-link" data-id="palani" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="swamimalai" data-item data-id="swamimalai" data-tags="wisdom" style="--accent:var(--muruga)"><span class="ch-num">4</span>
+  <h3>Swamimalai <span class="native">சுவாமிமலை</span></h3><span class="tag">The Abode of Wisdom</span><p>At this hillock near Kumbakonam, the child Muruga taught the meaning of the Pranava Mantra (Om) to his own father, Shiva — and demanded that Shiva accept him as guru. Sixty steps lead to the shrine, one for each year of the Hindu calendar cycle.</p><div class="chips"><span class="chip event">🧠 Wisdom</span><span class="chip">Guru of Shiva</span><span class="chip">60 steps</span></div><button class="map-link" data-id="swamimalai" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="thiruthani" data-item data-id="thiruthani" data-tags="union" style="--accent:var(--muruga)"><span class="ch-num">5</span>
+  <h3>Thiruthani <span class="native">திருத்தணி</span></h3><span class="tag">The Abode of Union</span><p>On this hill near Chennai, Muruga married Valli, the daughter of a tribal chieftain — a union celebrated as the blending of divine grace with the devotion of the humble. Its great festival is Aadi Krithigai, and pilgrims climb its 365 steps on New Year's Eve.</p><div class="chips"><span class="chip event">💞 Union</span><span class="chip">Valli</span><span class="chip">Aadi Krithigai</span></div><button class="map-link" data-id="thiruthani" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="pazhamudircholai" data-item data-id="pazhamudircholai" data-tags="wisdom" style="--accent:var(--muruga)"><span class="ch-num">6</span>
+  <h3>Pazhamudircholai <span class="native">பழமுதிர்சோலை</span></h3><span class="tag">The Forest Abode</span><p>Nestled in the Azhagar Kovil forests near Madurai, this is the last of the six abodes. Here Muruga tested the Tamil saint Avvaiyar with a fruit, revealing his playful wisdom. It is a serene forest shrine, far from the bustle of the other temples.</p><div class="chips"><span class="chip event">🧠 Wisdom</span><span class="chip">Forest</span><span class="chip">Avvaiyar</span></div><button class="map-link" data-id="pazhamudircholai" type="button">📍 Show on map</button>
+</article>
   </div>
 </section>
-
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
 <footer>
   <p>🦚 A visual map of the Arupadai Veedu · The six abodes are sung in the Sangam poem <em>Thirumurugatruppadai</em> by Nakkirar</p>
-  <p style="margin-top:6px">Map data © OpenStreetMap contributors · Coordinates are approximate</p>
-
+  <p>Map data © OpenStreetMap contributors · Coordinates are approximate</p>
   <nav class="site-nav" aria-label="All Sanatana maps">
     <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
     <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
@@ -370,186 +94,14 @@
     <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
     <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
     <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
   </nav>
   <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
-
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script>
-(function(){
-  "use strict";
-  var root = document.documentElement;
-  var body = document.body;
-
-  /* ---------- THEME ---------- */
-  var themeBtn = document.getElementById('themeToggle');
-  var knob = document.getElementById('knob');
-  var toggleLabel = document.getElementById('toggleLabel');
-  function applyTheme(t){
-    root.setAttribute('data-theme', t);
-    localStorage.setItem('muruga-theme', t);
-    var isLight = t === 'light';
-    knob.textContent = isLight ? '☀️' : '🌙';
-    toggleLabel.textContent = isLight ? 'Dark' : 'Light';
-    themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-  }
-  themeBtn.addEventListener('click', function(){
-    applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-  });
-
-  /* ---------- TEXT SIZE ---------- */
-  var sizes = [0.85, 1, 1.15, 1.3, 1.5];
-  var sizeIdx = parseInt(localStorage.getItem('muruga-size-idx') || '1', 10);
-  var sizeVal = document.getElementById('sizeVal');
-  function applySize(i){
-    sizeIdx = Math.max(0, Math.min(sizes.length - 1, i));
-    var scale = sizes[sizeIdx];
-    root.style.setProperty('--scale', scale);
-    localStorage.setItem('muruga-size', scale);
-    localStorage.setItem('muruga-size-idx', sizeIdx);
-    sizeVal.textContent = Math.round(scale * 100) + '%';
-  }
-  document.getElementById('sizeUp').addEventListener('click', function(){ applySize(sizeIdx + 1); });
-  document.getElementById('sizeDown').addEventListener('click', function(){ applySize(sizeIdx - 1); });
-
-  /* ---------- LANGUAGE ---------- */
-  var langEn = document.getElementById('langEn');
-  var langTa = document.getElementById('langTa');
-  function setLang(showTamil){
-    body.classList.toggle('show-tamil', showTamil);
-    langEn.classList.toggle('active', !showTamil);
-    langTa.classList.toggle('active', showTamil);
-    langEn.setAttribute('aria-pressed', String(!showTamil));
-    langTa.setAttribute('aria-pressed', String(showTamil));
-    localStorage.setItem('muruga-lang', showTamil ? 'ta' : 'en');
-  }
-  langEn.addEventListener('click', function(){ setLang(false); });
-  langTa.addEventListener('click', function(){ setLang(true); });
-
-  /* ---------- JOURNEY STRIP ---------- */
-  var journey = document.getElementById('journeyStrip');
-  var abodes = [
-    { id: 'thiruparankundram', name: 'Thiruparankundram', short: 'Wedding' },
-    { id: 'thiruchendur', name: 'Thiruchendur', short: 'Victory' },
-    { id: 'palani', name: 'Palani', short: 'Renunciation' },
-    { id: 'swamimalai', name: 'Swamimalai', short: 'Wisdom' },
-    { id: 'thiruthani', name: 'Thiruthani', short: 'Union' },
-    { id: 'pazhamudircholai', name: 'Pazhamudircholai', short: 'Forest' }
-  ];
-  abodes.forEach(function(a, i){
-    var link = document.createElement('a');
-    link.href = '#' + a.id;
-    link.innerHTML = '<span class="num">' + (i+1) + '</span>' + a.name + '<span style="font-size:.65rem;color:var(--muted);font-weight:500">' + a.short + '</span>';
-    journey.appendChild(link);
-  });
-
-  /* ---------- MAP ---------- */
-  var map = L.map('map', {
-    center: [9.8, 78.2],
-    zoom: 7,
-    scrollWheelZoom: true,
-    zoomControl: true
-  });
-
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
-  // Coordinates for the six abodes
-  var sites = [
-    { name: "Thiruparankundram", lat: 9.8790, lng: 78.0700, note: "Wedding to Deivanai · near Madurai" },
-    { name: "Thiruchendur", lat: 8.4958, lng: 78.1292, note: "Victory over Surapadma · coastal" },
-    { name: "Palani", lat: 10.4388, lng: 77.5203, note: "Renunciation · Dhandayuthapani" },
-    { name: "Swamimalai", lat: 10.9561, lng: 79.3248, note: "Taught Om to Shiva · near Kumbakonam" },
-    { name: "Thiruthani", lat: 13.1780, lng: 79.6080, note: "Marriage to Valli · near Chennai" },
-    { name: "Pazhamudircholai", lat: 10.0800, lng: 78.2200, note: "Forest abode · near Madurai" }
-  ];
-
-  function murugaIcon(){
-    return L.divIcon({
-      className: 'custom-marker',
-      html: '<div style="width:16px;height:16px;border-radius:50%;background:var(--muruga);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);"></div>',
-      iconSize: [16, 16],
-      iconAnchor: [8, 8],
-      popupAnchor: [0, -10]
-    });
-  }
-
-  var allMarkers = [];
-  sites.forEach(function(site){
-    var marker = L.marker([site.lat, site.lng], { icon: murugaIcon() });
-    marker.bindPopup(
-      '<h3>' + site.name + '</h3>' +
-      '<div class="sub">' + site.note + '</div>'
-    );
-    marker.addTo(map);
-    allMarkers.push(marker);
-  });
-
-  /* ---------- SEARCH + FILTER ---------- */
-  var searchInput = document.getElementById('searchInput');
-  var activeFilter = 'all';
-  var filterChips = document.querySelectorAll('.filter-chip');
-
-  filterChips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      activeFilter = chip.getAttribute('data-filter');
-      filterChips.forEach(function(c){ c.classList.toggle('active', c === chip); });
-      applyFilters();
-    });
-  });
-  searchInput.addEventListener('input', function(){ applyFilters(); });
-
-  function matches(el){
-    var q = searchInput.value.trim().toLowerCase();
-    var tags = (el.getAttribute('data-tags') || '').toLowerCase();
-    var text = el.textContent.toLowerCase();
-    if(activeFilter !== 'all' && tags.indexOf(activeFilter) === -1) return false;
-    if(q && text.indexOf(q) === -1) return false;
-    return true;
-  }
-
-  function applyFilters(){
-    document.querySelectorAll('.card[data-tags]').forEach(function(card){
-      card.classList.toggle('hidden', !matches(card));
-    });
-  }
-
-  /* ---------- BOOT SEQUENCE ---------- */
-  try { applyTheme(root.getAttribute('data-theme') || 'dark'); }
-  catch(e){ console.error('theme init failed:', e); }
-
-  try { applySize(sizeIdx); }
-  catch(e){ console.error('size init failed:', e); }
-
-  try { setLang(localStorage.getItem('muruga-lang') === 'ta'); }
-  catch(e){ console.error('lang init failed:', e); }
-
-  try { applyFilters(); }
-  catch(e){ console.error('filters init failed:', e); }
-
-  // Fix map sizing
-  setTimeout(function(){ map.invalidateSize(); }, 250);
-
-})();
-</script>
-
-<script>
-/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
-(function(){
-  function fit(){
-    var bar = document.querySelector('.controls');
-    if(!bar) return;
-    document.body.style.paddingTop = '';
-    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
-    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
-    if(need > base) document.body.style.paddingTop = need + 'px';
-  }
-  window.addEventListener('resize', fit);
-  window.addEventListener('load', fit);
-  fit();
-})();
-</script>
+<script>window.SANATANA_SITES = [{"id": "thiruparankundram", "n": "1", "name": "Thiruparankundram", "sub": "Wedding to Deivanai · near Madurai", "lat": 9.879, "lng": 78.07, "color": "var(--muruga)"}, {"id": "thiruchendur", "n": "2", "name": "Thiruchendur", "sub": "Victory over Surapadma · coastal", "lat": 8.4958, "lng": 78.1292, "color": "var(--muruga)"}, {"id": "palani", "n": "3", "name": "Palani", "sub": "Renunciation · Dhandayuthapani", "lat": 10.4388, "lng": 77.5203, "color": "var(--muruga)"}, {"id": "swamimalai", "n": "4", "name": "Swamimalai", "sub": "Taught Om to Shiva · near Kumbakonam", "lat": 10.9561, "lng": 79.3248, "color": "var(--muruga)"}, {"id": "thiruthani", "n": "5", "name": "Thiruthani", "sub": "Marriage to Valli · near Chennai", "lat": 13.178, "lng": 79.608, "color": "var(--muruga)"}, {"id": "pazhamudircholai", "n": "6", "name": "Pazhamudircholai", "sub": "Forest abode · near Madurai", "lat": 10.08, "lng": 78.22, "color": "var(--muruga)"}];</script>
+<script src="assets/site.js?v=420f3627"></script>
 </body>
 </html>

@@ -1,0 +1,275 @@
+page:
+  file: an.html
+  layout: page
+  title: Azhwars & Nayanmars — Twin Streams of Tamil Bhakti
+  favicon: 🪔
+  search: Search saints or works…
+  native: ta
+  palette:
+    vaishnava: ['#4a9eff', '#1a6fc4']
+    saiva: ['#ff6b6b', '#c43a3a']
+    both: ['#c084fc', '#8b45d6']
+  gradient: [vaishnava, both, saiva]
+  primary: both
+  h1: Azhwars & Nayanmars
+  intro: Two parallel streams of Tamil Bhakti — the Vaishnava Azhwars immersed in love of Vishnu, and the Saiva
+    Nayanmars devoted to Shiva. Together they shaped the devotional landscape of South India from the 6th to 9th
+    centuries CE.
+  legend:
+  - {label: Vaishnava (Azhwars), color: vaishnava}
+  - {label: Saiva (Nayanmars), color: saiva}
+  filters:
+  - {value: all, label: All, color: both}
+  - {value: vaishnava, label: 🔵 Vaishnava, color: vaishnava}
+  - {value: saiva, label: 🔴 Saiva, color: saiva}
+  - {value: woman, label: ♀ Women Saints, color: both}
+  footer: ['🪔 A visual map of Tamil Bhakti · Dates are approximate · Azhwars and Nayanmars, c. 6th–9th century CE']
+blocks:
+- {type: filters}
+- type: cards
+  title: 🔵 The Twelve Azhwars (Vaishnava)
+  color: vaishnava
+  intro: The Azhwars ("those immersed in God") sang in Tamil of their love for Vishnu. Their hymns were collected
+    as the <em>Nalayira Divya Prabandham</em> (Four Thousand Divine Verses), revered by Sri Vaishnavas as the Tamil
+    Veda.
+  grid: v3
+  cards:
+  - id: poigai
+    title: Poigai Azhwar
+    native: பொய்கையாழ்வார்
+    subtitle: Incarnation of Vishnu's conch
+    badge: c. 7th century CE
+    accent: vaishnava
+    tags: vaishnava
+    body: One of the three earliest Azhwars, born in Kanchipuram. His <em>Mudhal Thiruvandhadhi</em> opens the Divya
+      Prabandham canon.
+    chips:
+    - {text: Mudhal Thiruvandhadhi (100 verses), style: work}
+  - id: bhoothath
+    title: Bhoothath Azhwar
+    native: பூதத்தாழ்வார்
+    subtitle: Incarnation of Vishnu's mace
+    badge: c. 7th century CE
+    accent: vaishnava
+    tags: vaishnava
+    body: Born in Mahabalipuram. His hymns express wonder at Vishnu's presence in all things, forming the second
+      poem of the canon.
+    chips:
+    - {text: Irandam Thiruvandhadhi (100 verses), style: work}
+  - id: pey
+    title: Pey Azhwar
+    native: பேயாழ்வார்
+    subtitle: Incarnation of Vishnu's sword
+    badge: c. 7th century CE
+    accent: vaishnava
+    tags: vaishnava
+    body: Born in Mylapore. Tradition says the three earliest Azhwars met miraculously, and their combined devotion
+      lit a lamp that became the light of Vaishnavism.
+    chips:
+    - {text: Moondram Thiruvandhadhi (100 verses), style: work}
+  - id: thirumazhisai
+    title: Thirumazhisai Azhwar
+    native: திருமழிசையாழ்வார்
+    subtitle: Incarnation of Vishnu's discus
+    badge: c. 7th century CE
+    accent: vaishnava
+    tags: vaishnava
+    body: A former Jain who converted to Vaishnavism. His works blend philosophical inquiry with devotional surrender.
+    chips:
+    - {text: Nanmugan Thiruvandhadhi (96), style: work}
+    - {text: Thiruchanda Virutham (120), style: work}
+  - id: nammalvar
+    title: Nammalvar
+    native: நம்மாழ்வார்
+    subtitle: The greatest of the Azhwars
+    badge: c. 8th century CE
+    accent: vaishnava
+    tags: vaishnava
+    body: Considered the most important Azhwar. His <em>Tiruvaymoli</em> is called the "Tamil Veda" and is praised
+      as the essence of the Upanishads in Tamil.
+    chips:
+    - {text: 'Tiruvaymoli (1,102 verses)', style: work}
+    - {text: Tiruviruttam (100), style: work}
+  - id: madhurakavi
+    title: Madhurakavi Azhwar
+    native: மதுரகவியாழ்வார்
+    subtitle: Disciple of Nammalvar
+    badge: c. 8th century CE
+    accent: vaishnava
+    tags: vaishnava
+    body: His entire surviving work is a hymn of devotion to his guru Nammalvar — a rare celebration of the teacher
+      as the path to God.
+    chips:
+    - {text: Kanninun Siruthambu (11 verses), style: work}
+  - id: kulasekhara
+    title: Kulasekhara Azhwar
+    native: குலசேகராழ்வார்
+    subtitle: A Chera king who became a saint
+    badge: c. 9th century CE
+    accent: vaishnava
+    tags: vaishnava
+    body: A ruling king who renounced his throne for devotion. His <em>Perumal Tirumoli</em> expresses the anguish
+      of separation from Vishnu.
+    chips:
+    - {text: Perumal Tirumoli (105 verses), style: work}
+  - id: periyalvar
+    title: Periyalvar
+    native: பெரியாழ்வார்
+    subtitle: Foster father of Andal
+    badge: c. 8th century CE
+    accent: vaishnava
+    tags: vaishnava
+    body: Worshipped Vishnu as a mother loves her child Krishna. He discovered the baby Andal in his tulsi garden
+      and raised her in devotion.
+    chips:
+    - {text: Periyalvar Tirumoli (461 verses), style: work}
+    - {text: Tiruppallandu (12), style: work}
+  - id: andal
+    title: Andal
+    native: ஆண்டாள்
+    mark: ♀
+    subtitle: The only female Azhwar
+    badge: c. 8th century CE
+    accent: vaishnava
+    tags: vaishnava woman
+    body: Raised by Periyalvar, she refused all earthly marriage and merged with Vishnu at Srirangam. Her <em>Tiruppavai</em>
+      is recited in Vaishnava homes every December.
+    chips:
+    - {text: Tiruppavai (30 verses), style: work}
+    - {text: Nachiyar Tirumoli (143), style: work}
+  - id: thondaradippodi
+    title: Thondaradippodi Azhwar
+    native: தொண்டரடிப்பொடியாழ்வார்
+    subtitle: The humble servant
+    badge: c. 8th century CE
+    accent: vaishnava
+    tags: vaishnava
+    body: A former pleasure-seeker who reformed through devotion. He expresses deep humility and the joy of service
+      to Vishnu's devotees.
+    chips:
+    - {text: Tirumalai (45 verses), style: work}
+    - {text: Tirupalliezhuchi (10), style: work}
+  - id: thiruppaan
+    title: Thiruppaan Azhwar
+    native: திருப்பாணாழ்வார்
+    subtitle: From a marginalized community
+    badge: c. 8th century CE
+    accent: vaishnava
+    tags: vaishnava
+    body: A saint from a low-caste background whose devotion transcended social barriers. His ten verses on the
+      beauty of Ranganatha are celebrated for their ecstatic vision.
+    chips:
+    - {text: Amalanadhipiran (10 verses), style: work}
+  - id: thirumangai
+    title: Thirumangai Azhwar
+    native: திருமங்கையாழ்வார்
+    subtitle: The last of the twelve
+    badge: c. 8th century CE
+    accent: vaishnava
+    tags: vaishnava
+    body: A chieftain-turned-saint who composed the most verses after Nammalvar. His <em>Periya Tirumoli</em> is
+      a vast tour of Vishnu's shrines across Tamil Nadu.
+    chips:
+    - {text: 'Periya Tirumoli (1,084 verses)', style: work}
+    - {text: Tirunedunthandakam (30), style: work}
+- type: cards
+  title: 🔴 Key Nayanmars (Saiva)
+  color: saiva
+  intro: The Nayanmars ("servants of Shiva") number 63. The list begins with Sundarar's <em>Tiruthondar Thogai</em>,
+    was elaborated by Nambiyandar Nambi, and was told in full in Sekkizhar's <em>Periya Puranam</em>. The four most
+    prominent — Appar, Sambandar, Sundarar and Manikkavacakar — are called the <em>Nalvar</em>, and their hymns
+    form the core of the <em>Tirumurai</em>.
+  grid: v2
+  cards:
+  - id: appar
+    title: Appar (Thirunavukkarasar)
+    native: அப்பர்
+    subtitle: One of the Nalvar
+    badge: c. 580–661 CE
+    accent: saiva
+    tags: saiva
+    body: Originally a Jain who converted back to Saivism through his sister's influence. He travelled tirelessly
+      to Shiva temples, and his hymns (over 3,000 verses) are among the earliest in the Tevaram.
+    chips:
+    - {text: Tevaram (Books 4–6), style: work}
+  - id: sambandar
+    title: Sambandar (Thirugnanasambandar)
+    native: சம்பந்தர்
+    subtitle: Child saint of the Nalvar
+    badge: c. 635–651 CE
+    accent: saiva
+    tags: saiva
+    body: A Brahmin child prodigy who began singing Shiva's praises at age three. His intense, joyful hymns form
+      the first three books of the Tevaram and are considered the foundation of Tamil Saiva devotion.
+    chips:
+    - {text: Tevaram (Books 1–3), style: work}
+  - id: sundarar
+    title: Sundarar (Sundaramurti)
+    native: சுந்தரர்
+    subtitle: The third of the Nalvar
+    badge: c. 8th century CE
+    accent: saiva
+    tags: saiva
+    body: A friend of Shiva who sang with startling intimacy — treating the Lord as a companion and even demanding
+      favors. His <em>Tiruthondar Thogai</em> is the earliest list of the 63 Nayanmars.
+    chips:
+    - {text: Tevaram (Book 7), style: work}
+    - {text: Tiruthondar Thogai, style: work}
+  - id: manikkavacakar
+    title: Manikkavacakar
+    native: மாணிக்கவாசகர்
+    subtitle: The fourth of the Nalvar
+    badge: c. 9th century CE
+    accent: saiva
+    tags: saiva
+    body: A minister who became a saint. His <em>Tiruvachakam</em> is considered the most emotionally profound Saiva
+      text, exploring the soul's longing and surrender to Shiva. He is not counted among the 63 Nayanmars, but is
+      revered as one of the Nalvar.
+    chips:
+    - {text: Tiruvachakam (Book 8), style: work}
+  - id: karaikkal
+    title: Karaikkal Ammaiyar
+    native: காரைக்கால் அம்மையார்
+    mark: ♀
+    subtitle: The earliest woman Nayanmar
+    badge: c. 6th century CE
+    accent: saiva
+    tags: saiva woman
+    body: One of the earliest Saiva saints and one of the three women among the 63 Nayanmars (with Mangayarkkarasiyar
+      and Isaignaniyar). She prayed to become a ghost so she could serve Shiva without worldly attachments, and
+      her hymns are fierce and otherworldly.
+    chips:
+    - {text: Tirumurai (Book 11), style: work}
+  - id: kannappa
+    title: Kannappa Nayanar
+    native: கண்ணப்பர்
+    subtitle: The hunter-devotee
+    badge: Date uncertain (legendary)
+    accent: saiva
+    tags: saiva
+    body: 'A tribal hunter whose love for Shiva was so pure that he offered his own eyes to stop the deity''s bleeding.
+      His story embodies the Nayanmar ideal: devotion beyond ritual purity.'
+    chips:
+    - {text: Periya Puranam, style: work}
+- type: cards
+  title: 📚 The Two Canons
+  color: both
+  grid: v2
+  cards:
+  - title: Nalayira Divya Prabandham
+    subtitle: The Vaishnava Canon
+    accent: vaishnava
+    body: Four thousand Tamil verses by the twelve Azhwars, compiled by Nathamuni in the 9th century. Revered as
+      the "Tamil Veda" by Sri Vaishnavas, it is recited in temples and homes to this day.
+    chips:
+    - {text: '4,000 verses', style: work}
+    - {text: 12 Azhwars, style: work}
+  - title: Tirumurai
+    subtitle: The Saiva Canon
+    accent: saiva
+    body: Twelve books of Tamil Saiva hymns. Nambiyandar Nambi compiled the first eleven, traditionally under Raja
+      Raja Chola I; Sekkizhar's <em>Periya Puranam</em> was added later as the twelfth. The first seven books contain
+      the Tevaram hymns of Appar, Sambandar and Sundarar.
+    chips:
+    - {text: 12 volumes, style: work}
+    - {text: Tevaram core, style: work}

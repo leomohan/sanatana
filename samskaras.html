@@ -5,291 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>From Cradle to Pyre — Samskaras &amp; Life-Cycle Rituals</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕯️</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=420f3627">
+<style>:root,[data-theme="dark"]{--birth:#ff9f43; --education:#45aaf2; --householder:#26de81; --elder:#a55eea; --final:#fc5c65;} [data-theme="light"]{--birth:#e07b1a; --education:#1f7fc4; --householder:#12995a; --elder:#8b45d6; --final:#d63c46;} :root{--primary:var(--elder); --grad-h:linear-gradient(90deg,var(--birth),var(--education),var(--householder),var(--elder),var(--final)); --grad-v:linear-gradient(var(--birth),var(--education),var(--householder),var(--elder),var(--final));}</style>
 <script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
   (function(){
-    var savedTheme = localStorage.getItem('samskara-theme');
-    var theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
-    var savedSize = localStorage.getItem('samskara-size') || '1';
-    document.documentElement.style.setProperty('--scale', savedSize);
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
   })();
 </script>
-<style>
-  :root,[data-theme="dark"]{
-    --bg:#0e0b1a; --bg-grad:#1b1435;
-    --card:#241d40; --card-2:#161129;
-    --border:rgba(255,255,255,.06); --border-strong:rgba(255,255,255,.14);
-    --chip-bg:rgba(255,255,255,.06); --chip-border:rgba(255,255,255,.08);
-    --text:#eae6f7; --muted:#a29ac2;
-    --shadow:0 14px 34px rgba(0,0,0,.5);
-    
-    /* Life Phase Colors */
-    --birth:#ff9f43;      /* Birth & Childhood */
-    --education:#45aaf2;  /* Education & Youth */
-    --householder:#26de81;/* Marriage & Family */
-    --elder:#a55eea;      /* Wisdom & Renunciation */
-    --final:#fc5c65;      /* Final Rites */
-    
-    --root-text:#1a0f24;
-  }
-  [data-theme="light"]{
-    --bg:#fdf9f3; --bg-grad:#fff4e6;
-    --card:#ffffff; --card-2:#fffaf2;
-    --border:rgba(60,40,20,.10); --border-strong:rgba(60,40,20,.22);
-    --chip-bg:rgba(120,80,30,.07); --chip-border:rgba(120,80,30,.14);
-    --text:#2a1f14; --muted:#6b5c4a;
-    --shadow:0 14px 34px rgba(90,60,20,.15);
-    
-    --birth:#e07b1a; --education:#1f7fc4; --householder:#12995a;
-    --elder:#8b45d6; --final:#d63c46;
-    
-    --root-text:#3a1a08;
-  }
-
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  :root{ --scale:1; }
-
-  body{
-    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    background:radial-gradient(circle at top,var(--bg-grad) 0%,var(--bg) 60%);
-    color:var(--text);
-    min-height:100vh;
-    padding:90px 20px 80px;
-    line-height:1.6;
-    font-size:calc(17px * var(--scale));
-    transition:background .35s ease,color .35s ease;
-  }
-
-  /* CONTROL BAR */
-  .controls{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
-    padding:12px 16px;
-    background:color-mix(in srgb,var(--bg) 88%,transparent);
-    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border-strong);
-  }
-  .ctrl-group{
-    display:flex; align-items:center; gap:6px;
-    background:var(--card); border:1px solid var(--border-strong);
-    border-radius:50px; padding:5px;
-  }
-  .ctrl-btn{
-    font-family:inherit; font-size:.85rem; font-weight:600;
-    color:var(--text); background:transparent; border:none; border-radius:40px;
-    padding:7px 13px; cursor:pointer; display:flex; align-items:center; gap:6px;
-    transition:background .2s,color .2s; white-space:nowrap;
-  }
-  .ctrl-btn:hover{background:var(--chip-bg);}
-  .ctrl-btn:focus-visible{outline:2px solid var(--elder);outline-offset:2px;}
-  .ctrl-btn.active{background:var(--chip-bg);box-shadow:inset 0 0 0 1px var(--border-strong);}
-
-  .theme-toggle{padding:5px 12px 5px 6px;}
-  .toggle-track{position:relative;width:44px;height:24px;border-radius:20px;background:var(--chip-bg);border:1px solid var(--border-strong);flex-shrink:0;transition:background .3s;}
-  .toggle-knob{position:absolute;top:1px;left:1px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#ffcf6b,#ff9f43);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .3s cubic-bezier(.4,1.6,.5,1);box-shadow:0 2px 6px rgba(0,0,0,.3);}
-  [data-theme="light"] .toggle-knob{transform:translateX(20px);}
-
-  .size-btn{width:34px;height:34px;justify-content:center;padding:0;font-size:.9rem;font-weight:800;border-radius:50%;}
-  .size-val{min-width:40px;text-align:center;font-size:.8rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;}
-
-  .search-wrap{
-    display:flex;align-items:center;gap:8px;
-    background:var(--card);border:1px solid var(--border-strong);
-    border-radius:50px;padding:6px 14px;flex:1 1 180px;max-width:320px;
-  }
-  .search-wrap:focus-within{border-color:var(--elder);}
-  .search-wrap input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:inherit;font-size:.9rem;min-width:0;}
-  .search-wrap input::placeholder{color:var(--muted);}
-
-  /* FILTERS */
-  .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:1100px;margin:0 auto 30px;}
-  .filter-chip{
-    font-family:inherit;font-size:.82rem;font-weight:600;
-    padding:7px 15px;border-radius:30px;cursor:pointer;
-    background:var(--card);color:var(--muted);
-    border:1px solid var(--border-strong);transition:all .2s;
-  }
-  .filter-chip:hover{border-color:var(--muted);transform:translateY(-1px);}
-  .filter-chip:focus-visible{outline:2px solid var(--elder);outline-offset:2px;}
-  .filter-chip.active{background:var(--fc,var(--birth));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--fc,var(--birth)) 40%,transparent);}
-
-  /* LAYOUT */
-  header{text-align:center;max-width:900px;margin:0 auto 34px;}
-  header h1{
-    font-size:clamp(1.6rem,4vw,2.6rem);
-    background:linear-gradient(90deg,var(--birth),var(--education),var(--householder),var(--elder),var(--final));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    font-weight:800;letter-spacing:.5px;margin-bottom:12px;
-  }
-  header p{color:var(--muted);font-size:1.05rem;max-width:720px;margin:0 auto;}
-
-  .legend{display:flex;flex-wrap:wrap;gap:12px 18px;justify-content:center;margin-top:22px;}
-  .legend span{display:flex;align-items:center;gap:7px;font-size:.85rem;color:var(--muted);}
-  .dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex-shrink:0;}
-
-  /* TIMELINE */
-  .timeline-wrap{
-    max-width:900px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  /* The central vertical line */
-  .timeline-wrap::before{
-    content:"";
-    position:absolute;
-    top:0; bottom:0; left:40px;
-    width:3px;
-    background:linear-gradient(to bottom, 
-      var(--birth) 0%, 
-      var(--education) 25%, 
-      var(--householder) 50%, 
-      var(--elder) 75%, 
-      var(--final) 100%);
-    border-radius:3px;
-    opacity: 0.6;
-  }
-
-  .timeline-item{
-    position:relative;
-    padding-left: 100px;
-    margin-bottom: 40px;
-    transition: opacity .3s;
-  }
-  .timeline-item.hidden{ display: none; }
-
-  /* The dot on the line */
-  .timeline-dot{
-    position:absolute;
-    left: 32px; /* Center on the line */
-    top: 20px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--accent);
-    border: 3px solid var(--bg);
-    box-shadow: 0 0 0 3px var(--accent);
-    z-index: 2;
-    transition: transform .2s;
-  }
-  .timeline-item:hover .timeline-dot{
-    transform: scale(1.3);
-  }
-
-  /* The actual card content */
-  .card{
-    background:linear-gradient(160deg,var(--card),var(--card-2));
-    border-radius:18px; padding:24px 22px 22px;
-    border:1px solid var(--border);
-    box-shadow: var(--shadow);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s;
-    border-left: 4px solid var(--accent);
-    margin-top: 10px;
-  }
-  .card:hover{
-    transform: translateX(5px);
-    box-shadow: 0 18px 40px rgba(0,0,0,.4);
-    border-color: var(--accent);
-  }
-  
-  .card h3{font-size:1.25rem; margin-bottom:6px; color:var(--accent); display:flex; align-items:center; gap:10px;}
-  .card .sanskrit{font-size:.85rem; font-weight:500; opacity:.8; display:none;}
-  body.show-sanskrit .card .sanskrit{display:inline;}
-  
-  .card .tag{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);display:block;margin-bottom:10px;}
-  
-  .card p{font-size:.94rem; color:var(--text); opacity:.9; margin-bottom:12px;}
-  
-  .card .highlight{
-    background: color-mix(in srgb, var(--accent) 10%, transparent);
-    padding: 10px 14px;
-    border-radius: 8px;
-    font-style: italic;
-    font-size: .88rem;
-    color: var(--text);
-    border-left: 2px solid var(--accent);
-  }
-
-  /* Group headers for the main life stages */
-  .stage-header{
-    text-align: center;
-    margin: 60px auto 30px;
-    position: relative;
-    z-index: 3;
-  }
-  .stage-header span{
-    display: inline-block;
-    background: var(--card);
-    border: 1px solid var(--border-strong);
-    padding: 8px 24px;
-    border-radius: 30px;
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: var(--shadow);
-  }
-  .stage-header.hidden { display: none; }
-
-  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:80px;}
-
-  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important;}}
-  @media (max-width:680px){
-    body{padding-top:130px;}
-    .controls{gap:8px;}
-    .search-wrap{max-width:none;flex:1 1 100%;order:5;}
-    .ctrl-btn{padding:6px 10px;font-size:.8rem;}
-    .size-btn{width:30px;height:30px;}
-    
-    .timeline-wrap::before{ left: 20px; }
-    .timeline-item{ padding-left: 50px; }
-    .timeline-dot{ left: 12px; width: 16px; height: 16px; top: 22px; }
-    .card { padding: 18px 16px; }
-  }
-
-  /* ---------- SITE NAV (home button + footer links) ---------- */
-  .home-btn{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:7px 14px;border-radius:999px;
-    background:var(--card);color:var(--text);
-    border:1px solid var(--border-strong,var(--border));
-    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
-    white-space:nowrap;transition:transform .2s,border-color .2s;
-  }
-  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
-  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
-  .site-nav{
-    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
-    max-width:980px;margin:26px auto 4px;padding-top:20px;
-    border-top:1px solid var(--border);
-  }
-  .site-nav a{
-    display:inline-flex;align-items:center;gap:5px;
-    padding:6px 12px;border-radius:999px;
-    font-size:.8rem;font-weight:600;text-decoration:none;
-    color:var(--muted);background:var(--card);
-    border:1px solid var(--border);
-    transition:color .2s,border-color .2s,transform .2s;
-  }
-  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
-  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
-  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
-  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
-</style>
 </head>
 <body>
-
-<div class="controls" role="toolbar" aria-label="Map controls">
+<div class="controls" role="toolbar" aria-label="Page controls">
   <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
     <input type="search" id="searchInput" placeholder="Search rituals, life stages…" aria-label="Search">
   </div>
-  <div class="ctrl-group" role="group" aria-label="Language display">
+  <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
     <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
-    <button class="ctrl-btn" id="langSa" aria-pressed="false">संस्कृतम्</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">संस्कृतम्</button>
   </div>
   <div class="ctrl-group" role="group" aria-label="Text size">
     <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
@@ -301,221 +37,126 @@
     <span id="toggleLabel">Light</span>
   </button>
 </div>
-
 <header>
   <h1>From Cradle to Pyre</h1>
   <p>Sixteen samskaras and life-cycle rituals as observed in South Indian Brahmin homes — the sacred ceremonies that mark each stage of life, from the first blessing at birth to the final rites of passage. The Samskaras are the thread that binds the individual to family, tradition, and the cosmic order.</p>
-  <div class="legend">
-    <span><i class="dot" style="background:var(--birth)"></i>Birth & Childhood</span>
-    <span><i class="dot" style="background:var(--education)"></i>Education & Youth</span>
-    <span><i class="dot" style="background:var(--householder)"></i>Householder</span>
-    <span><i class="dot" style="background:var(--elder)"></i>Wisdom Years</span>
-    <span><i class="dot" style="background:var(--final)"></i>Final Rites</span>
-  </div>
+  <div class="legend"><span><i class="dot" style="background:var(--birth)"></i>Birth &amp; Childhood</span><span><i class="dot" style="background:var(--education)"></i>Education &amp; Youth</span><span><i class="dot" style="background:var(--householder)"></i>Householder</span><span><i class="dot" style="background:var(--elder)"></i>Wisdom Years</span><span><i class="dot" style="background:var(--final)"></i>Final Rites</span></div>
 </header>
-
-<div class="filters" role="group" aria-label="Filter by life stage">
-  <button class="filter-chip active" data-filter="all" style="--fc:var(--birth)">All Life Stages</button>
-  <button class="filter-chip" data-filter="birth" style="--fc:var(--birth)">👶 Birth</button>
-  <button class="filter-chip" data-filter="education" style="--fc:var(--education)">🎓 Education</button>
-  <button class="filter-chip" data-filter="householder" style="--fc:var(--householder)">🏡 Householder</button>
-  <button class="filter-chip" data-filter="elder" style="--fc:var(--elder)">🌿 Wisdom</button>
-  <button class="filter-chip" data-filter="final" style="--fc:var(--final)">🕯️ Final Rites</button>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--birth)">All Life Stages</button>
+  <button class="filter-chip" data-filter="birth" aria-pressed="false" style="--fc:var(--birth)">👶 Birth</button>
+  <button class="filter-chip" data-filter="education" aria-pressed="false" style="--fc:var(--education)">🎓 Education</button>
+  <button class="filter-chip" data-filter="householder" aria-pressed="false" style="--fc:var(--householder)">🏡 Householder</button>
+  <button class="filter-chip" data-filter="elder" aria-pressed="false" style="--fc:var(--elder)">🌿 Wisdom</button>
+  <button class="filter-chip" data-filter="final" aria-pressed="false" style="--fc:var(--final)">🕯️ Final Rites</button>
 </div>
-
-<div class="timeline-wrap" id="timeline">
-
-  <!-- STAGE 1: BIRTH & CHILDHOOD -->
-  <div class="stage-header" data-tags="birth" style="--accent:var(--birth)">
-    <span>👶 Birth & Childhood</span>
-  </div>
-
-  <div class="timeline-item" data-tags="birth" style="--accent:var(--birth)">
+<div class="life-timeline" data-block>
+  <div class="stage-header" data-stage="birth" style="--accent:var(--birth)"><span>👶 Birth &amp; Childhood</span></div>
+  <div class="timeline-item" data-item data-tags="birth" style="--accent:var(--birth)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Punyahavachanam <span class="sanskrit">पुण्याहवाचनम्</span></h3>
-      <span class="tag">The First Blessing (Purification &amp; Naming)</span>
-      <p>Conducted on the eleventh day after birth. The baby is bathed in medicinal holy water, a sacred fire is lit, and the father whispers the chosen name into the baby's right ear — a blessing that resonates across generations. The name reflects both spiritual aspiration and family heritage.</p>
-      <div class="highlight">The father's whisper connects the child to ancestral wisdom.</div>
-    </div>
+    <article class="card">
+  <h3>Punyahavachanam <span class="native">पुण्याहवाचनम्</span></h3><span class="tag">The First Blessing (Purification &amp; Naming)</span><p>Conducted on the eleventh day after birth. The baby is bathed in medicinal holy water, a sacred fire is lit, and the father whispers the chosen name into the baby's right ear — a blessing that resonates across generations. The name reflects both spiritual aspiration and family heritage.</p><div class="highlight">The father&#39;s whisper connects the child to ancestral wisdom.</div>
+</article>
   </div>
-
-  <div class="timeline-item" data-tags="birth" style="--accent:var(--birth)">
+  <div class="timeline-item" data-item data-tags="birth" style="--accent:var(--birth)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Annaprashanam <span class="sanskrit">अन्नप्राशनम्</span></h3>
-      <span class="tag">The First Solid Food</span>
-      <p>Performed around the sixth month. After prayers, the child is fed a first taste of cooked rice — often sweetened with ghee, honey or payasam — usually by the father or grandfather, in the presence of the family deity.</p>
-      <div class="highlight">The first grain received as a blessing, not merely as food.</div>
-    </div>
+    <article class="card">
+  <h3>Annaprashanam <span class="native">अन्नप्राशनम्</span></h3><span class="tag">The First Solid Food</span><p>Performed around the sixth month. After prayers, the child is fed a first taste of cooked rice — often sweetened with ghee, honey or payasam — usually by the father or grandfather, in the presence of the family deity.</p><div class="highlight">The first grain received as a blessing, not merely as food.</div>
+</article>
   </div>
-
-  <div class="timeline-item" data-tags="birth" style="--accent:var(--birth)">
+  <div class="timeline-item" data-item data-tags="birth" style="--accent:var(--birth)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Chaulam (Mundan) <span class="sanskrit">चौलम्</span></h3>
-      <span class="tag">The First Shear (Head-Shaving)</span>
-      <p>Traditionally performed between the first and third year. Represents purification, detachment, and the beginning of spiritual consciousness. The hair is symbolically removed to clear karmic impurities and offered to sacred waters, marking a transition into spiritual cleanliness.</p>
-      <div class="highlight">A ritual of renewal, removing attachment to external beauty.</div>
-    </div>
+    <article class="card">
+  <h3>Chaulam (Mundan) <span class="native">चौलम्</span></h3><span class="tag">The First Shear (Head-Shaving)</span><p>Traditionally performed between the first and third year. Represents purification, detachment, and the beginning of spiritual consciousness. The hair is symbolically removed to clear karmic impurities and offered to sacred waters, marking a transition into spiritual cleanliness.</p><div class="highlight">A ritual of renewal, removing attachment to external beauty.</div>
+</article>
   </div>
-
-  <div class="timeline-item" data-tags="birth" style="--accent:var(--birth)">
+  <div class="timeline-item" data-item data-tags="birth" style="--accent:var(--birth)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Karnavedha <span class="sanskrit">कर्णवेध</span></h3>
-      <span class="tag">Piercing Through Tradition (Ear Piercing)</span>
-      <p>Performed around ages three to five. Associated with stimulating vital energy points in Ayurveda, fostering intellect and sharpening the mind. The right ear is pierced first, aligning with Vedic texts that associate the right side with positive energy flow.</p>
-      <div class="highlight">The ear is seen as a gateway to knowledge and perception.</div>
-    </div>
+    <article class="card">
+  <h3>Karnavedha <span class="native">कर्णवेध</span></h3><span class="tag">Piercing Through Tradition (Ear Piercing)</span><p>Performed around ages three to five. Associated with stimulating vital energy points in Ayurveda, fostering intellect and sharpening the mind. The right ear is pierced first, aligning with Vedic texts that associate the right side with positive energy flow.</p><div class="highlight">The ear is seen as a gateway to knowledge and perception.</div>
+</article>
   </div>
-
-  <!-- STAGE 2: EDUCATION & YOUTH -->
-  <div class="stage-header" data-tags="education" style="--accent:var(--education)">
-    <span>🎓 Education & Youth</span>
-  </div>
-
-  <div class="timeline-item" data-tags="education" style="--accent:var(--education)">
+  <div class="stage-header" data-stage="education" style="--accent:var(--education)"><span>🎓 Education &amp; Youth</span></div>
+  <div class="timeline-item" data-item data-tags="education" style="--accent:var(--education)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Aksharabyasam <span class="sanskrit">अक्षराभ्यासम्</span></h3>
-      <span class="tag">Writing the First Letter</span>
-      <p>Conducted at ages three to five. Marks a child's formal entry into learning. The child traces their first letter — often 'Om' — on a plate of rice grains or a slate. Yellow turmeric rice and books are placed before the deity to invoke wisdom.</p>
-      <div class="highlight">A profound moment of initiation into learning, discipline, and lifelong curiosity.</div>
-    </div>
+    <article class="card">
+  <h3>Aksharabyasam <span class="native">अक्षराभ्यासम्</span></h3><span class="tag">Writing the First Letter</span><p>Conducted at ages three to five. Marks a child's formal entry into learning. The child traces their first letter — often 'Om' — on a plate of rice grains or a slate. Yellow turmeric rice and books are placed before the deity to invoke wisdom.</p><div class="highlight">A profound moment of initiation into learning, discipline, and lifelong curiosity.</div>
+</article>
   </div>
-
-  <div class="timeline-item" data-tags="education" style="--accent:var(--education)">
+  <div class="timeline-item" data-item data-tags="education" style="--accent:var(--education)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Upanayanam <span class="sanskrit">उपनयनम्</span></h3>
-      <span class="tag">The Sacred Thread</span>
-      <p>Typically performed between ages seven and sixteen. The boy receives three strands of the Yajnopavita, traditionally read as the three debts (rinas) owed to the sages, the gods and the ancestors. He is taught the Gayatri Mantra and seeks alms from elders in the Bhiksha ritual.</p>
-      <div class="highlight">A spiritual awakening, aligning one's journey with higher wisdom.</div>
-    </div>
+    <article class="card">
+  <h3>Upanayanam <span class="native">उपनयनम्</span></h3><span class="tag">The Sacred Thread</span><p>Typically performed between ages seven and sixteen. The boy receives three strands of the Yajnopavita, traditionally read as the three debts (rinas) owed to the sages, the gods and the ancestors. He is taught the Gayatri Mantra and seeks alms from elders in the Bhiksha ritual.</p><div class="highlight">A spiritual awakening, aligning one&#39;s journey with higher wisdom.</div>
+</article>
   </div>
-
-  <div class="timeline-item" data-tags="education" style="--accent:var(--education)">
+  <div class="timeline-item" data-item data-tags="education" style="--accent:var(--education)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Ritu Kala Samskara <span class="sanskrit">ऋतुकाल संस्कार</span></h3>
-      <span class="tag">A Young Girl's Transition</span>
-      <p>Held at the onset of puberty. An affirmation of womanhood, responsibility, and auspicious beginnings. The girl is dressed in her first half-saree (pavadai-davani in Tamil homes), receives a holy bath, and is blessed with gifts and prayers by elders.</p>
-      <div class="highlight">A moment of communal celebration, binding generations through customs.</div>
-    </div>
+    <article class="card">
+  <h3>Ritu Kala Samskara <span class="native">ऋतुकाल संस्कार</span></h3><span class="tag">A Young Girl&#39;s Transition</span><p>Held at the onset of puberty. An affirmation of womanhood, responsibility, and auspicious beginnings. The girl is dressed in her first half-saree (pavadai-davani in Tamil homes), receives a holy bath, and is blessed with gifts and prayers by elders.</p><div class="highlight">A moment of communal celebration, binding generations through customs.</div>
+</article>
   </div>
-
-  <!-- STAGE 3: MARRIAGE & HOUSEHOLDER -->
-  <div class="stage-header" data-tags="householder" style="--accent:var(--householder)">
-    <span>🏡 Marriage & Householder</span>
-  </div>
-
-  <div class="timeline-item" data-tags="householder" style="--accent:var(--householder)">
+  <div class="stage-header" data-stage="householder" style="--accent:var(--householder)"><span>🏡 Marriage &amp; Householder</span></div>
+  <div class="timeline-item" data-item data-tags="householder" style="--accent:var(--householder)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Vivaha Shanti <span class="sanskrit">विवाह शान्ति</span></h3>
-      <span class="tag">The Path to Marriage (Pre-wedding Rituals)</span>
-      <p>Ensures harmony between the bride and groom. Includes Nakshatra matching, Ganapati Puja to remove obstacles, Vratham, the playful Kashi Yatra, Mangalasnanam (purification bath), and the formal exchange of gifts between families.</p>
-      <div class="highlight">Setting the spiritual and emotional foundation for the couple's union.</div>
-    </div>
+    <article class="card">
+  <h3>Vivaha Shanti <span class="native">विवाह शान्ति</span></h3><span class="tag">The Path to Marriage (Pre-wedding Rituals)</span><p>Ensures harmony between the bride and groom. Includes Nakshatra matching, Ganapati Puja to remove obstacles, Vratham, the playful Kashi Yatra, Mangalasnanam (purification bath), and the formal exchange of gifts between families.</p><div class="highlight">Setting the spiritual and emotional foundation for the couple&#39;s union.</div>
+</article>
   </div>
-
-  <div class="timeline-item" data-tags="householder" style="--accent:var(--householder)">
+  <div class="timeline-item" data-item data-tags="householder" style="--accent:var(--householder)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Vivaham <span class="sanskrit">विवाहम्</span></h3>
-      <span class="tag">The Sacred Fire of Commitment</span>
-      <p>The main wedding ceremony. Kanyadaanam (giving the bride), Mangalasutram (tying the thread), Agni Sakshi (fire as witness), and Sapta Padi (seven steps, each with a blessing: for food, strength, wealth, happiness, progeny, the seasons, and lifelong friendship).</p>
-      <div class="highlight">A sacred bond witnessed by fire, strengthened by vows, and upheld by dharma.</div>
-    </div>
+    <article class="card">
+  <h3>Vivaham <span class="native">विवाहम्</span></h3><span class="tag">The Sacred Fire of Commitment</span><p>The main wedding ceremony. Kanyadaanam (giving the bride), Mangalasutram (tying the thread), Agni Sakshi (fire as witness), and Sapta Padi (seven steps, each with a blessing: for food, strength, wealth, happiness, progeny, the seasons, and lifelong friendship).</p><div class="highlight">A sacred bond witnessed by fire, strengthened by vows, and upheld by dharma.</div>
+</article>
   </div>
-
-  <div class="timeline-item" data-tags="householder" style="--accent:var(--householder)">
+  <div class="timeline-item" data-item data-tags="householder" style="--accent:var(--householder)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Seemantham <span class="sanskrit">सीमन्तम्</span></h3>
-      <span class="tag">Blessings for the Unborn</span>
-      <p>Performed during the seventh or ninth month of pregnancy. A prenatal ritual honoring the expectant mother and the life she carries. Vedic chanting, an oil bath, and floral adornment bring emotional, physical, and spiritual well-being.</p>
-      <div class="highlight">Recognizing the mother's role as the vessel of creation.</div>
-    </div>
+    <article class="card">
+  <h3>Seemantham <span class="native">सीमन्तम्</span></h3><span class="tag">Blessings for the Unborn</span><p>Performed during the seventh or ninth month of pregnancy. A prenatal ritual honoring the expectant mother and the life she carries. Vedic chanting, an oil bath, and floral adornment bring emotional, physical, and spiritual well-being.</p><div class="highlight">Recognizing the mother&#39;s role as the vessel of creation.</div>
+</article>
   </div>
-
-  <div class="timeline-item" data-tags="householder" style="--accent:var(--householder)">
+  <div class="timeline-item" data-item data-tags="householder" style="--accent:var(--householder)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>The Householder's Dharma <span class="sanskrit">गृहस्थ धर्म</span></h3>
-      <span class="tag">Grihastha Ashrama</span>
-      <p>The phase of family life, raising children, and fulfilling societal duties. The householder is the backbone of society, supporting the other three stages through their labor and offerings.</p>
-      <div class="highlight">A reminder that marriage is a moral, spiritual, and cultural commitment.</div>
-    </div>
+    <article class="card">
+  <h3>The Householder&#39;s Dharma <span class="native">गृहस्थ धर्म</span></h3><span class="tag">Grihastha Ashrama</span><p>The phase of family life, raising children, and fulfilling societal duties. The householder is the backbone of society, supporting the other three stages through their labor and offerings.</p><div class="highlight">A reminder that marriage is a moral, spiritual, and cultural commitment.</div>
+</article>
   </div>
-
-  <!-- STAGE 4: WISDOM YEARS -->
-  <div class="stage-header" data-tags="elder" style="--accent:var(--elder)">
-    <span>🌿 The Wisdom Years</span>
-  </div>
-
-  <div class="timeline-item" data-tags="elder" style="--accent:var(--elder)">
+  <div class="stage-header" data-stage="elder" style="--accent:var(--elder)"><span>🌿 The Wisdom Years</span></div>
+  <div class="timeline-item" data-item data-tags="elder" style="--accent:var(--elder)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Shashti Poorti <span class="sanskrit">षष्टिपूर्ति</span></h3>
-      <span class="tag">Renewing the Journey (60th Birthday)</span>
-      <p>A celebration of completing sixty years of life. It marks the transition into the wisdom years, honoring the individual's contributions and seeking blessings for the remainder of their life.</p>
-      <div class="highlight">A milestone of gratitude and renewed purpose.</div>
-    </div>
+    <article class="card">
+  <h3>Shashti Poorti <span class="native">षष्टिपूर्ति</span></h3><span class="tag">Renewing the Journey (60th Birthday)</span><p>A celebration of completing sixty years of life. It marks the transition into the wisdom years, honoring the individual's contributions and seeking blessings for the remainder of their life.</p><div class="highlight">A milestone of gratitude and renewed purpose.</div>
+</article>
   </div>
-
-  <div class="timeline-item" data-tags="elder" style="--accent:var(--elder)">
+  <div class="timeline-item" data-item data-tags="elder" style="--accent:var(--elder)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Bhima Ratha Shanti <span class="sanskrit">भीमरथ शान्ति</span></h3>
-      <span class="tag">The 70th Birthday</span>
-      <p>A ceremony performed at seventy to ensure health, longevity, and peace in the later years. It invokes divine blessings for a life free from suffering.</p>
-      <div class="highlight">Seeking peace and health in the twilight years.</div>
-    </div>
+    <article class="card">
+  <h3>Bhima Ratha Shanti <span class="native">भीमरथ शान्ति</span></h3><span class="tag">The 70th Birthday</span><p>A ceremony performed at seventy to ensure health, longevity, and peace in the later years. It invokes divine blessings for a life free from suffering.</p><div class="highlight">Seeking peace and health in the twilight years.</div>
+</article>
   </div>
-
-  <div class="timeline-item" data-tags="elder" style="--accent:var(--elder)">
+  <div class="timeline-item" data-item data-tags="elder" style="--accent:var(--elder)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Sathabhishekam <span class="sanskrit">शताभिषेकम्</span></h3>
-      <span class="tag">Eight Decades of Legacy (80th Birthday)</span>
-      <p>A grand celebration for the eightieth birthday, traditionally linked to having seen a thousand full moons. The individual is honored for their legacy, having seen eight decades of life. It involves elaborate rituals and blessings from family and community.</p>
-      <div class="highlight">Honoring a life well-lived and the wisdom accumulated.</div>
-    </div>
+    <article class="card">
+  <h3>Sathabhishekam <span class="native">शताभिषेकम्</span></h3><span class="tag">Eight Decades of Legacy (80th Birthday)</span><p>A grand celebration for the eightieth birthday, traditionally linked to having seen a thousand full moons. The individual is honored for their legacy, having seen eight decades of life. It involves elaborate rituals and blessings from family and community.</p><div class="highlight">Honoring a life well-lived and the wisdom accumulated.</div>
+</article>
   </div>
-
-  <!-- STAGE 5: FINAL RITES -->
-  <div class="stage-header" data-tags="final" style="--accent:var(--final)">
-    <span>🕯️ Final Rites</span>
-  </div>
-
-  <div class="timeline-item" data-tags="final" style="--accent:var(--final)">
+  <div class="stage-header" data-stage="final" style="--accent:var(--final)"><span>🕯️ Final Rites</span></div>
+  <div class="timeline-item" data-item data-tags="final" style="--accent:var(--final)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Antyeshti <span class="sanskrit">अन्त्येष्टि</span></h3>
-      <span class="tag">Embracing the Eternal Cycle (Funeral Rites)</span>
-      <p>The final samskara. The body is cremated, and the soul is released into the cosmic cycle. The rites are performed by the eldest son or a male relative, guiding the departed soul to the ancestral realm.</p>
-      <div class="highlight">The last rite of passage, returning the elements to their source.</div>
-    </div>
+    <article class="card">
+  <h3>Antyeshti <span class="native">अन्त्येष्टि</span></h3><span class="tag">Embracing the Eternal Cycle (Funeral Rites)</span><p>The final samskara. The body is cremated, and the soul is released into the cosmic cycle. The rites are performed by the eldest son or a male relative, guiding the departed soul to the ancestral realm.</p><div class="highlight">The last rite of passage, returning the elements to their source.</div>
+</article>
   </div>
-
-  <div class="timeline-item" data-tags="final" style="--accent:var(--final)">
+  <div class="timeline-item" data-item data-tags="final" style="--accent:var(--final)">
     <div class="timeline-dot"></div>
-    <div class="card">
-      <h3>Shraadha <span class="sanskrit">श्राद्ध</span></h3>
-      <span class="tag">Ancestral Offerings</span>
-      <p>Performed after the cremation, and then every year on the death anniversary, to sustain the departed soul in the ancestral realm. The family offers rice balls (pinda) and water, expressing gratitude to ancestors.</p>
-      <div class="highlight">An unbroken link between the living and the departed.</div>
-    </div>
+    <article class="card">
+  <h3>Shraadha <span class="native">श्राद्ध</span></h3><span class="tag">Ancestral Offerings</span><p>Performed after the cremation, and then every year on the death anniversary, to sustain the departed soul in the ancestral realm. The family offers rice balls (pinda) and water, expressing gratitude to ancestors.</p><div class="highlight">An unbroken link between the living and the departed.</div>
+</article>
   </div>
-
 </div>
-
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
 <footer>
   <p>🕯️ A visual map of sixteen samskaras and life-cycle rituals that sanctify each stage of life.</p>
-  <p style="margin-top:6px">The classical list of sixteen (Shodasha) samskaras differs from this practical sequence; regional and family variations exist.</p>
-
+  <p>The classical list of sixteen (Shodasha) samskaras differs from this practical sequence; regional and family variations exist.</p>
   <nav class="site-nav" aria-label="All Sanatana maps">
     <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
     <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
@@ -530,128 +171,12 @@
     <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
     <a href="samskaras.html" aria-current="page"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
     <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
   </nav>
   <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
-
-<script>
-(function(){
-  "use strict";
-  var root = document.documentElement;
-  var body = document.body;
-
-  /* ---------- THEME ---------- */
-  var themeBtn = document.getElementById('themeToggle');
-  var knob = document.getElementById('knob');
-  var toggleLabel = document.getElementById('toggleLabel');
-  function applyTheme(t){
-    root.setAttribute('data-theme', t);
-    localStorage.setItem('samskara-theme', t);
-    var isLight = t === 'light';
-    knob.textContent = isLight ? '☀️' : '🌙';
-    toggleLabel.textContent = isLight ? 'Dark' : 'Light';
-    themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-  }
-  themeBtn.addEventListener('click', function(){
-    applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-  });
-
-  /* ---------- TEXT SIZE ---------- */
-  var sizes = [0.85, 1, 1.15, 1.3, 1.5];
-  var sizeIdx = parseInt(localStorage.getItem('samskara-size-idx') || '1', 10);
-  var sizeVal = document.getElementById('sizeVal');
-  function applySize(i){
-    sizeIdx = Math.max(0, Math.min(sizes.length - 1, i));
-    var scale = sizes[sizeIdx];
-    root.style.setProperty('--scale', scale);
-    localStorage.setItem('samskara-size', scale);
-    localStorage.setItem('samskara-size-idx', sizeIdx);
-    sizeVal.textContent = Math.round(scale * 100) + '%';
-  }
-  document.getElementById('sizeUp').addEventListener('click', function(){ applySize(sizeIdx + 1); });
-  document.getElementById('sizeDown').addEventListener('click', function(){ applySize(sizeIdx - 1); });
-
-  /* ---------- LANGUAGE ---------- */
-  var langEn = document.getElementById('langEn');
-  var langSa = document.getElementById('langSa');
-  function setLang(showSanskrit){
-    body.classList.toggle('show-sanskrit', showSanskrit);
-    langEn.classList.toggle('active', !showSanskrit);
-    langSa.classList.toggle('active', showSanskrit);
-    langEn.setAttribute('aria-pressed', String(!showSanskrit));
-    langSa.setAttribute('aria-pressed', String(showSanskrit));
-    localStorage.setItem('samskara-lang', showSanskrit ? 'sa' : 'en');
-  }
-  langEn.addEventListener('click', function(){ setLang(false); });
-  langSa.addEventListener('click', function(){ setLang(true); });
-
-  /* ---------- SEARCH + FILTER ---------- */
-  var searchInput = document.getElementById('searchInput');
-  var activeFilter = 'all';
-  var filterChips = document.querySelectorAll('.filter-chip');
-
-  filterChips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      activeFilter = chip.getAttribute('data-filter');
-      filterChips.forEach(function(c){ c.classList.toggle('active', c === chip); });
-      applyFilters();
-    });
-  });
-  searchInput.addEventListener('input', function(){ applyFilters(); });
-
-  function matches(el){
-    var q = searchInput.value.trim().toLowerCase();
-    var tags = (el.getAttribute('data-tags') || '').toLowerCase();
-    var text = el.textContent.toLowerCase();
-    if(activeFilter !== 'all' && tags.indexOf(activeFilter) === -1) return false;
-    if(q && text.indexOf(q) === -1) return false;
-    return true;
-  }
-
-  function applyFilters(){
-    document.querySelectorAll('.timeline-item').forEach(function(el){
-      el.classList.toggle('hidden', !matches(el));
-    });
-    // A stage header stays visible while any ritual in its stage is visible
-    document.querySelectorAll('.stage-header').forEach(function(hd){
-      var stage = hd.getAttribute('data-tags');
-      var items = document.querySelectorAll('.timeline-item[data-tags="' + stage + '"]');
-      var anyVisible = Array.prototype.some.call(items, function(it){ return !it.classList.contains('hidden'); });
-      hd.classList.toggle('hidden', !anyVisible);
-    });
-  }
-
-  /* ---------- BOOT SEQUENCE ---------- */
-  try { applyTheme(root.getAttribute('data-theme') || 'dark'); }
-  catch(e){ console.error('theme init failed:', e); }
-
-  try { applySize(sizeIdx); }
-  catch(e){ console.error('size init failed:', e); }
-
-  try { setLang(localStorage.getItem('samskara-lang') === 'sa'); }
-  catch(e){ console.error('lang init failed:', e); }
-
-  try { applyFilters(); }
-  catch(e){ console.error('filters init failed:', e); }
-
-})();
-</script>
-
-<script>
-/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
-(function(){
-  function fit(){
-    var bar = document.querySelector('.controls');
-    if(!bar) return;
-    document.body.style.paddingTop = '';
-    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
-    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
-    if(need > base) document.body.style.paddingTop = need + 'px';
-  }
-  window.addEventListener('resize', fit);
-  window.addEventListener('load', fit);
-  fit();
-})();
-</script>
+<script src="assets/site.js?v=420f3627"></script>
 </body>
 </html>

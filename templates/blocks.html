@@ -1,0 +1,230 @@
+{#- ======================================================================
+    Reusable building blocks. Each YAML block's "type" picks a macro here.
+    Text fields are escaped; fields that may hold links or emphasis
+    (body, intro, facts, cells, notes…) are written as HTML.
+    ====================================================================== -#}
+
+{% macro card(c, item=True) -%}
+<article class="card{{ ' has-corner' if c.num or c.corner_icon }}"
+  {%- if c.anchor %} id="{{ c.anchor if c.anchor is string else c.id }}"{% endif %}
+  {%- if item %} data-item{% endif %}
+  {%- if c.id %} data-id="{{ c.id }}"{% endif %}
+  {%- if c.tags %} data-tags="{{ c.tags }}"{% endif %}
+  {%- if c.era %} data-era="{{ c.era }}"{% endif %}
+  {%- if c.links %} data-links="{{ c.links }}"{% endif %}
+  {%- if c.accent %} style="--accent:{{ c.accent|color }}"{% endif %}>
+  {%- if c.badge %}<div class="era-badge">{{ c.badge }}</div>{% endif %}
+  {%- if c.num %}<span class="ch-num">{{ c.num }}</span>{% endif %}
+  {%- if c.corner_icon %}<span class="corner-icon" aria-hidden="true">{{ c.corner_icon }}</span>{% endif %}
+  {%- if c.kicker %}<span class="tag">{{ c.kicker }}</span>{% endif %}
+  <h3>{% if c.icon %}<span class="icon">{{ c.icon }}</span> {% endif %}{{ c.title }}{% if c.native %} <span class="native">{{ c.native }}</span>{% endif %}{% if c.mark %} <span class="mark">{{ c.mark }}</span>{% endif %}</h3>
+  {%- if c.subtitle %}<span class="tag">{{ c.subtitle }}</span>{% endif %}
+  {%- if c.tagline %}<div class="tagline">{{ c.tagline }}</div>{% endif %}
+  {%- if c.deity_line %}<div class="deity-line"><span class="big-emoji">{{ c.deity_emoji }}</span> {{ c.deity_line|safe }}</div>{% endif %}
+  {%- if c.body %}{% for para in c.body.split('</p><p>') %}<p>{{ para|safe }}</p>{% endfor %}{% endif %}
+  {%- if c.key_teaching %}<div class="key-teaching"><span class="label">{{ c.key_teaching.label }}</span><p>{{ c.key_teaching.text|safe }}</p></div>{% endif %}
+  {%- if c.facts %}<dl class="facts">{% for k, v in c.facts %}<div class="fact"><dt>{{ k }}</dt><dd>{{ v|safe }}</dd></div>{% endfor %}</dl>{% endif %}
+  {%- if c.highlight %}<div class="highlight">{{ c.highlight }}</div>{% endif %}
+  {%- if c.chips %}<div class="chips">{{ chips(c.chips) }}</div>{% endif %}
+  {%- if c.hint %}<span class="link-hint">{{ c.hint }}</span>{% endif %}
+  {%- if c.map %}<button class="map-link" data-id="{{ c.id }}" type="button">📍 Show on map</button>{% endif %}
+</article>
+{%- endmacro %}
+
+{% macro chips(list) -%}
+{%- for ch in list -%}
+{%- if ch is string -%}<span class="chip">{{ ch|safe }}</span>
+{%- elif ch.href -%}<a class="chip{{ ' ' ~ ch.style if ch.style }}" href="{{ ch.href }}">{{ ch.text|safe }}</a>
+{%- else -%}<span class="chip {{ 'theme-tag' if ch.style == 'theme' else ch.style }}">{{ ch.text|safe }}</span>
+{%- endif -%}
+{%- endfor -%}
+{%- endmacro %}
+
+{% macro title(b, extra='') -%}
+{% if b.title %}<h2 class="section-title{{ extra }}"{% if b.color %} style="color:{{ b.color|color }}"{% endif %}>{{ b.title|safe }}</h2>{% endif %}
+{%- endmacro %}
+
+{% macro intro(b) -%}
+{% if b.intro %}<p class="section-intro">{{ b.intro|safe }}</p>{% endif %}
+{%- endmacro %}
+
+{% macro sect(b) %}{% if b.section %} data-section="{{ b.section }}"{% endif %}{% endmacro %}
+
+{# ---------------------------------------------------------------- block types #}
+{% macro render(b, page, all_cards) %}
+{%- if b.type == 'group' %}
+<div class="{{ b.cls }}">
+{% for sub in b.blocks %}{{ render(sub, page, all_cards) }}{% endfor %}
+</div>
+
+{%- elif b.type == 'filters' and page.filters %}
+<div class="filters" role="group" aria-label="Filter">
+{%- for f in page.filters %}
+  <button class="filter-chip{{ ' active' if loop.first }}" data-filter="{{ f.value }}" aria-pressed="{{ 'true' if loop.first else 'false' }}"{% if f.color %} style="--fc:{{ f.color|color }}"{% endif %}>{{ f.label }}</button>
+{%- endfor %}
+</div>
+
+{%- elif b.type == 'cards' %}
+<section data-block{{ sect(b) }}>
+  {{ title(b) }}
+  {{ intro(b) }}
+  <div class="grid{{ ' ' ~ b.grid if b.grid }}">
+  {%- for c in b.cards %}
+  {{ card(c) }}
+  {%- endfor %}
+  </div>
+</section>
+{%- if b.empty %}
+<p class="no-results">{{ b.empty }}</p>
+{%- endif %}
+
+{%- elif b.type == 'journey' %}
+<nav class="journey {{ b.style or 'labels' }}" aria-label="Jump to">
+{%- for c in all_cards if c.anchor %}
+  {%- set target = c.anchor if c.anchor is string else c.id %}
+  {%- if b.style == 'numbers' %}<a href="#{{ target }}" style="background:{{ c.accent|color }}" aria-label="Jump to {{ c.num }}">{{ c.num }}</a>
+  {%- else %}<a href="#{{ target }}"><span class="num">{{ c.num or loop.index }}</span>{{ c.journey.label if c.journey else c.title }}{% if c.journey and c.journey.sub %}<span class="sub">{{ c.journey.sub }}</span>{% endif %}</a>{% endif %}
+{%- endfor %}
+</nav>
+
+{%- elif b.type == 'map' %}
+<div id="map" role="application" aria-label="{{ b.label or 'Map' }}"></div>
+
+{%- elif b.type == 'story' %}
+<div class="story">{% if b.title %}<h2>{{ b.title }}</h2>{% endif %}{% for p in b.paragraphs %}<p>{{ p|safe }}</p>{% endfor %}</div>
+
+{%- elif b.type == 'callout' %}
+<div class="callout">{{ b.text|safe }}</div>
+
+{%- elif b.type == 'counts' %}
+<div class="counts"{% if b.label %} aria-label="{{ b.label }}"{% endif %}>{% for i in b['items'] %}<div><b>{{ i.n }}</b><span>{{ i.label }}</span></div>{% endfor %}</div>
+
+{%- elif b.type == 'sources' %}
+<section class="sources"><h2>Sources</h2><ul>{% for s in b['items'] %}<li><a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.label }}</a></li>{% endfor %}</ul></section>
+
+{%- elif b.type == 'empty' %}
+<div class="empty-state">{{ b.text }}</div>
+
+{%- elif b.type == 'tree' %}
+<section>
+  {{ title(b) }}
+  {%- set r = b.rows %}
+  <div class="tree" style="--ra:{{ r[0][0].color|color }};--rb:{{ r[0][2].color|color if r[0]|length > 2 else r[0][0].color|color }}">
+    <div class="root-node">{{ b.root }}</div>
+    {%- for row in b.rows %}
+    <div class="connector"{% if not loop.first %} style="--cc:{{ b.rows[loop.index0 - 1][-1].color|color }}"{% endif %}></div>
+    <div class="branch-row">{% for br in row %}<div class="branch" style="--bc:{{ br.color|color }}"><div class="b-title">{{ br.title }}</div><div class="b-sub">{{ br.sub }}</div></div>{% endfor %}</div>
+    {%- endfor %}
+  </div>
+</section>
+
+{%- elif b.type == 'lineage' %}
+<section class="lineage" data-block{{ sect(b) }} style="--bc:{{ b.branches[0].color|color }}">
+  {{ title(b) }}
+  <div class="lineage-root"><h3>{{ b.root.title }}</h3><p>{{ b.root.sub }}</p></div>
+  <div class="lineage-connector"></div>
+  <div class="lineage-branches">
+  {%- for br in b.branches %}
+    <div class="lineage-branch" style="--bc:{{ br.color|color }}"><div class="b-dir">{{ br.dir }}</div><div class="b-name">{{ br.name }}</div><div class="b-note">{{ br.note }}</div></div>
+  {%- endfor %}
+  </div>
+</section>
+
+{%- elif b.type == 'panel' %}
+<section data-block{{ sect(b) }}>
+  {{ title(b) }}
+  <div class="card panel" style="--accent:{{ b.accent|color }}"><p>{{ b.text|safe }}</p>{% if b.chips %}<div class="chips">{{ chips(b.chips) }}</div>{% endif %}</div>
+</section>
+
+{%- elif b.type == 'compare' %}
+<section>
+  {{ title(b) }}
+  {{ intro(b) }}
+  <div class="compare-scroll">
+    <table class="compare" style="min-width:{{ b.min_width or 900 }}px">
+      <thead><tr><th scope="col">{{ b.corner or 'Criterion' }}</th>{% for col in b.columns %}<th scope="col" data-col="{{ col.key }}" style="--accent:{{ col.color|color }}">{{ col.label }}</th>{% endfor %}</tr></thead>
+      <tbody>
+      {%- for row in b.rows %}
+        <tr><th scope="row">{{ row.label }}</th>{% for cell in row.cells %}<td data-col="{{ b.columns[loop.index0].key }}">{{ cell|safe }}</td>{% endfor %}</tr>
+      {%- endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{%- elif b.type == 'spectrum' %}
+<section>
+  {{ title(b) }}
+  <div class="spectrum">{% for p in b.points %}<div class="spectrum-point" style="--dot-color:{{ p.color|color }}"><div class="spectrum-dot"></div><div class="spectrum-label">{{ p.label }}</div><div class="spectrum-sub">{{ p.sub }}</div></div>{% endfor %}</div>
+</section>
+
+{%- elif b.type == 'glance' %}
+<section>
+  {{ title(b) }}
+  <div class="glance">{% for g in b['items'] %}<div class="glance-cell" style="--c:{{ g.color|color }}"><div class="g-emoji">{{ g.emoji }}</div><div class="g-name">{{ g.name }}</div><div class="g-sub">{{ g.sub }}</div></div>{% endfor %}</div>
+</section>
+
+{%- elif b.type == 'pairs' %}
+<section>
+  {{ title(b) }}
+  {{ intro(b) }}
+  <div class="pairs">{% for p in b['items'] %}<div class="pair" style="--a:{{ p.color|color }}"><h4>{{ p.title }}</h4><p>{{ p.text|safe }}</p></div>{% endfor %}</div>
+</section>
+
+{%- elif b.type == 'table' %}
+<section data-block{{ sect(b) }} style="--tc:{{ b.color|color }}">
+  {{ title(b) }}
+  {{ intro(b) }}
+  <div class="table-wrap"><table class="data-table">
+    <thead><tr>{% for h in b.columns %}<th>{{ h }}</th>{% endfor %}</tr></thead>
+    <tbody>{% for row in b.rows %}<tr data-item>{% for cell in row %}<td>{{ cell|safe }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+  </table></div>
+</section>
+
+{%- elif b.type == 'numgrid' %}
+<section data-block{{ sect(b) }} style="--tc:{{ b.color|color }}">
+  {{ title(b) }}
+  {{ intro(b) }}
+  <div class="numgrid">{% for name in b['items'] %}<div class="num-cell" data-item><span class="num">{{ loop.index }}</span><span class="name">{{ name }}</span></div>{% endfor %}</div>
+</section>
+
+{%- elif b.type == 'life-timeline' %}
+<div class="life-timeline" data-block>
+{%- for st in b.stages %}
+  <div class="stage-header" data-stage="{{ st.tag }}" style="--accent:{{ st.color|color }}"><span>{{ st.title }}</span></div>
+  {%- for c in st.cards %}
+  <div class="timeline-item" data-item data-tags="{{ st.tag }}" style="--accent:{{ st.color|color }}">
+    <div class="timeline-dot"></div>
+    {{ card(c | combine({'tags': None, 'accent': None}), item=False) }}
+  </div>
+  {%- endfor %}
+{%- endfor %}
+</div>
+
+{%- elif b.type == 'veda-timeline' %}
+<section class="chrono" id="chrono" data-block aria-label="Chronological view">
+  <h2 class="section-title chrono-title" style="color:{{ b.color|color }}">{{ b.title|safe }}</h2>
+</section>
+
+{%- elif b.type == 'geo-map' %}
+<div class="legend-bar">{% for l in b.legend %}<span><i class="legend-dot" style="background:{{ l.color|color }}"></i>{{ l.label }}</span>{% endfor %}<span class="hint">{{ b.hint }}</span></div>
+<div id="map" class="tall" role="application" aria-label="Map of sacred sites"></div>
+<p class="counter" id="counter">{{ b.loading }}</p>
+<div class="note">{{ b.note|safe }}</div>
+
+{%- elif b.type == 'home-cards' %}
+<main>
+  <div class="home-cards">
+  {%- for c in b.cards %}
+    <a class="map-card" href="{{ c.href }}" style="--accent:{{ c.accent|color }}">
+      <span class="emoji" aria-hidden="true">{{ c.emoji }}</span>
+      <h2>{{ c.title }}</h2>
+      <p>{{ c.text|safe }}</p>
+      <div class="meta">{% for m in c.meta %}<span>{{ m }}</span>{% endfor %}</div>
+      <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+  {%- endfor %}
+  </div>
+</main>
+{%- endif %}
+{% endmacro %}

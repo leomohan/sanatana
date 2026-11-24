@@ -3,217 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sacred Geography — Divya Desams & Jyotirlingas</title>
+<title>Sacred Geography — Divya Desams &amp; Jyotirlingas</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="assets/site.css?v=420f3627">
+<style>:root,[data-theme="dark"]{--divya:#4a9eff; --jyotir:#ff6b6b; --both:#c084fc;} [data-theme="light"]{--divya:#1a6fc4; --jyotir:#c43a3a; --both:#8b45d6;} :root{--primary:var(--divya); --grad-h:linear-gradient(90deg,var(--divya),var(--jyotir)); --grad-v:linear-gradient(var(--divya),var(--jyotir));}</style>
 <script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
   (function(){
-    var savedTheme = localStorage.getItem('geo-theme');
-    var theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
   })();
 </script>
-<style>
-  :root,[data-theme="dark"]{
-    --bg:#0e0b1a; --bg-grad:#1b1435;
-    --card:#241d40; --card-2:#161129;
-    --border:rgba(255,255,255,.08); --border-strong:rgba(255,255,255,.16);
-    --text:#eae6f7; --muted:#a29ac2;
-    --shadow:0 14px 34px rgba(0,0,0,.5);
-    --divya:#4a9eff; --jyotir:#ff6b6b; --both:#c084fc;
-    --map-bg:#1a1530;
-  }
-  [data-theme="light"]{
-    --bg:#fdf9f3; --bg-grad:#fff4e6;
-    --card:#ffffff; --card-2:#fffaf2;
-    --border:rgba(60,40,20,.10); --border-strong:rgba(60,40,20,.22);
-    --text:#2a1f14; --muted:#6b5c4a;
-    --shadow:0 14px 34px rgba(90,60,20,.15);
-    --divya:#1a6fc4; --jyotir:#c43a3a; --both:#8b45d6;
-    --map-bg:#f5f0e8;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-
-  body{
-    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    background:radial-gradient(circle at top,var(--bg-grad) 0%,var(--bg) 60%);
-    color:var(--text);
-    min-height:100vh;
-    padding:80px 16px 40px;
-    line-height:1.6;
-    font-size:17px;
-    transition:background .35s ease,color .35s ease;
-  }
-
-  /* CONTROL BAR */
-  .controls{
-    position:fixed; top:0; left:0; right:0; z-index:1000;
-    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
-    padding:10px 16px;
-    background:color-mix(in srgb,var(--bg) 90%,transparent);
-    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border-strong);
-  }
-  .ctrl-group{
-    display:flex; align-items:center; gap:6px;
-    background:var(--card); border:1px solid var(--border-strong);
-    border-radius:50px; padding:4px;
-  }
-  .ctrl-btn{
-    font-family:inherit; font-size:.85rem; font-weight:600;
-    color:var(--text); background:transparent; border:none; border-radius:40px;
-    padding:7px 13px; cursor:pointer; display:flex; align-items:center; gap:6px;
-    transition:background .2s,color .2s; white-space:nowrap;
-  }
-  .ctrl-btn:hover{background:rgba(128,128,128,.12);}
-  .ctrl-btn:focus-visible{outline:2px solid var(--both);outline-offset:2px;}
-  .ctrl-btn.active{background:rgba(128,128,128,.15);box-shadow:inset 0 0 0 1px var(--border-strong);}
-
-  .theme-toggle{padding:5px 12px 5px 6px;}
-  .toggle-track{position:relative;width:44px;height:24px;border-radius:20px;background:rgba(128,128,128,.18);border:1px solid var(--border-strong);flex-shrink:0;}
-  .toggle-knob{position:absolute;top:1px;left:1px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#ffcf6b,#ff9f43);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .3s cubic-bezier(.4,1.6,.5,1);box-shadow:0 2px 6px rgba(0,0,0,.3);}
-  [data-theme="light"] .toggle-knob{transform:translateX(20px);}
-
-  /* LEGEND */
-  .legend-bar{
-    display:flex; flex-wrap:wrap; gap:14px; align-items:center;
-    max-width:1100px; margin:0 auto 14px;
-    padding:10px 16px;
-    background:var(--card); border:1px solid var(--border);
-    border-radius:14px;
-    font-size:.85rem;
-  }
-  .legend-bar span{display:flex; align-items:center; gap:7px; color:var(--muted);}
-  .legend-dot{width:14px;height:14px;border-radius:50%;display:inline-block;flex-shrink:0;border:2px solid #fff;}
-  [data-theme="light"] .legend-dot{border-color:#333;}
-
-  /* MAP */
-  #map{
-    height: min(72vh, 680px);
-    min-height: 420px;
-    border-radius: 20px;
-    border: 1px solid var(--border-strong);
-    box-shadow: var(--shadow);
-    background: var(--map-bg);
-    z-index: 1;
-  }
-  .leaflet-container{ background: var(--map-bg); font-family: inherit; }
-  .leaflet-popup-content-wrapper{
-    background: var(--card);
-    color: var(--text);
-    border-radius: 12px;
-    border: 1px solid var(--border-strong);
-    box-shadow: var(--shadow);
-  }
-  .leaflet-popup-tip{ background: var(--card); }
-  .leaflet-popup-content{ margin: 14px 16px; line-height: 1.5; }
-  .leaflet-popup-content h3{ font-size: 1rem; margin-bottom: 4px; }
-  .leaflet-popup-content .sub{ font-size: .8rem; color: var(--muted); margin-bottom: 6px; }
-  .leaflet-popup-content .desc{ font-size: .85rem; }
-  .leaflet-popup-close-button{ color: var(--muted) !important; }
-
-  /* Leaflet controls themed */
-  .leaflet-control-zoom a{
-    background: var(--card) !important;
-    color: var(--text) !important;
-    border-color: var(--border-strong) !important;
-  }
-  .leaflet-control-attribution{
-    background: color-mix(in srgb, var(--card) 90%, transparent) !important;
-    color: var(--muted) !important;
-    font-size: .7rem !important;
-  }
-  .leaflet-control-attribution a{ color: var(--divya) !important; }
-
-  /* COUNTER */
-  .counter{
-    text-align:center; color:var(--muted); font-size:.85rem;
-    margin:12px auto 0; max-width:1100px;
-  }
-
-  /* NOTE */
-  .note{
-    max-width:1100px; margin:24px auto 0;
-    padding:16px 20px;
-    background:var(--card); border:1px solid var(--border);
-    border-radius:14px;
-    font-size:.88rem; color:var(--muted);
-    line-height:1.7;
-  }
-  .note strong{color:var(--text);}
-
-  footer{text-align:center;color:var(--muted);font-size:.82rem;margin-top:40px;}
-
-  @media (max-width:680px){
-    body{padding-top:110px;}
-    .ctrl-btn{padding:6px 10px;font-size:.78rem;}
-    .legend-bar{font-size:.78rem;gap:10px;padding:8px 12px;}
-    #map{height:62vh;min-height:360px;border-radius:14px;}
-  }
-
-  /* ---------- SITE NAV (home button + footer links) ---------- */
-  .home-btn{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:7px 14px;border-radius:999px;
-    background:var(--card);color:var(--text);
-    border:1px solid var(--border-strong,var(--border));
-    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
-    white-space:nowrap;transition:transform .2s,border-color .2s;
-  }
-  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
-  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
-  .site-nav{
-    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
-    max-width:980px;margin:26px auto 4px;padding-top:20px;
-    border-top:1px solid var(--border);
-  }
-  .site-nav a{
-    display:inline-flex;align-items:center;gap:5px;
-    padding:6px 12px;border-radius:999px;
-    font-size:.8rem;font-weight:600;text-decoration:none;
-    color:var(--muted);background:var(--card);
-    border:1px solid var(--border);
-    transition:color .2s,border-color .2s,transform .2s;
-  }
-  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
-  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
-  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
-  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
-</style>
 </head>
 <body>
-
-<div class="controls" role="toolbar" aria-label="Map controls">
+<div class="controls" role="toolbar" aria-label="Page controls">
   <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
-  <div class="ctrl-group" role="group" aria-label="Circuit filter">
-    <button class="ctrl-btn active" data-filter="all">All Sites</button>
-    <button class="ctrl-btn" data-filter="divya">🔵 Divya Desams</button>
-    <button class="ctrl-btn" data-filter="jyotir">🔴 Jyotirlingas</button>
+  <div class="ctrl-group" role="group" aria-label="Show sites">
+    <button class="ctrl-btn active" data-group-filter="all">All Sites</button>
+    <button class="ctrl-btn" data-group-filter="divya">🔵 Divya Desams</button>
+    <button class="ctrl-btn" data-group-filter="jyotir">🔴 Jyotirlingas</button>
   </div>
   <button class="ctrl-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
     <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
     <span id="toggleLabel">Light</span>
   </button>
 </div>
-
-<div class="legend-bar">
-  <span><i class="legend-dot" style="background:var(--divya)"></i>Divya Desam (Vishnu)</span>
-  <span><i class="legend-dot" style="background:var(--jyotir)"></i>Jyotirlinga (Shiva)</span>
-  <span style="margin-left:auto;font-size:.78rem;">Click any marker for details</span>
-</div>
-
-<div id="map" role="application" aria-label="Interactive map of sacred sites"></div>
-
+<div class="legend-bar"><span><i class="legend-dot" style="background:var(--divya)"></i>Divya Desam (Vishnu)</span><span><i class="legend-dot" style="background:var(--jyotir)"></i>Jyotirlinga (Shiva)</span><span class="hint">Click any marker for details</span></div>
+<div id="map" class="tall" role="application" aria-label="Map of sacred sites"></div>
 <p class="counter" id="counter">Loading sites…</p>
-
-<div class="note">
-  <strong>About this map:</strong> The 108 Divya Desams are the Vishnu abodes sung by the twelve Azhwars in the <em>Nalayira Divya Prabandham</em>. Of these, 106 are earthly temples concentrated in Tamil Nadu, Kerala, and northern India, with two (Thiruparkadal and Sri Vaikuntham) considered celestial and not mapped here. This map shows a representative set of 20 Divya Desams alongside all 12 Jyotirlingas. The 12 Jyotirlingas are the self-manifested shrines of Shiva scattered across India, from Somnath on the Arabian Sea to Kedarnath in the Himalayas. Coordinates are approximate temple locations; some Divya Desams share the same town and may overlap at this zoom level.
-</div>
-
+<div class="note"><strong>About this map:</strong> The 108 Divya Desams are the Vishnu abodes sung by the twelve Azhwars in the <em>Nalayira Divya Prabandham</em>. Of these, 106 are earthly temples concentrated in Tamil Nadu, Kerala, and northern India, with two (Thiruparkadal and Sri Vaikuntham) considered celestial and not mapped here. This map shows a representative set of 20 Divya Desams alongside all 12 Jyotirlingas. The 12 Jyotirlingas are the self-manifested shrines of Shiva scattered across India, from Somnath on the Arabian Sea to Kedarnath in the Himalayas. Coordinates are approximate temple locations; some Divya Desams share the same town and may overlap at this zoom level.</div>
 <footer>
   <p>🗺️ A sacred geography map · Markers are approximate · Map data © OpenStreetMap contributors</p>
-
   <nav class="site-nav" aria-label="All Sanatana maps">
     <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
     <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
@@ -228,189 +50,14 @@
     <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
     <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
     <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
   </nav>
   <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
-
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script>
-(function(){
-  "use strict";
-
-  var root = document.documentElement;
-
-  /* ---------- THEME ---------- */
-  var themeBtn = document.getElementById('themeToggle');
-  var knob = document.getElementById('knob');
-  var toggleLabel = document.getElementById('toggleLabel');
-  function applyTheme(t){
-    root.setAttribute('data-theme', t);
-    localStorage.setItem('geo-theme', t);
-    var isLight = t === 'light';
-    knob.textContent = isLight ? '☀️' : '🌙';
-    toggleLabel.textContent = isLight ? 'Dark' : 'Light';
-    themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-  }
-  themeBtn.addEventListener('click', function(){
-    applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-  });
-
-  /* ---------- DATA ---------- */
-  // Key Divya Desams (representative set — coordinates approximate)
-  // Full 106 earthly Divya Desams span TN (84), Kerala (11), UP (4), Uttarakhand (3), AP (2), Gujarat (1), Nepal (1). Pushkar and Guruvayur are NOT Divya Desams.
-  var divyaDesams = [
-    { name: "Srirangam (Ranganathaswamy)", loc: "Tamil Nadu", lat: 10.8625, lng: 78.6897, note: "Largest functioning Hindu temple; supreme Divya Desam." },
-    { name: "Thirukoḻi (Uraiyur)", loc: "Tamil Nadu", lat: 10.82, lng: 78.67, note: "Birthplace of Thiruppaan Azhwar." },
-    { name: "Thirukkarambanoor", loc: "Tamil Nadu", lat: 10.8772, lng: 78.7031, note: "Uthamar Koil, Tiruchirappalli; rare temple dedicated to the Trimurti." },
-    { name: "Pundarikakshan (Thiruvellarai)", loc: "Tamil Nadu", lat: 10.96, lng: 78.67, note: "Pallava-era temple with a swastika-shaped tank." },
-    { name: "Thiruvengadam (Tirumala)", loc: "Andhra Pradesh", lat: 13.6833, lng: 79.3472, note: "The seven hills of Venkateswara; one of the eight self-manifested shrines." },
-    { name: "Kanchipuram (Tirukkacchi)", loc: "Tamil Nadu", lat: 12.8342, lng: 79.7036, note: "City of a thousand temples; multiple Divya Desams here." },
-    { name: "Thiruvallikeni (Triplicane)", loc: "Tamil Nadu", lat: 13.0545, lng: 80.2756, note: "Parthasarathy temple, Chennai." },
-    { name: "Srivilliputhur", loc: "Tamil Nadu", lat: 9.5117, lng: 77.6333, note: "Birthplace of Periyalvar and Andal." },
-    { name: "Thirukkurungudi", loc: "Tamil Nadu", lat: 8.4333, lng: 77.5333, note: "Near Tirunelveli." },
-    { name: "Thiruvattar", loc: "Tamil Nadu", lat: 8.3167, lng: 77.2667, note: "Adikesava Perumal temple, Kanyakumari district." },
-    { name: "Thiruvananthapuram (Padmanabhaswamy)", loc: "Kerala", lat: 8.4833, lng: 76.95, note: "Often described as the richest temple in the world." },
-    { name: "Thirunavaya", loc: "Kerala", lat: 10.8833, lng: 75.9833, note: "Navamukunda temple on the Bharathapuzha." },
-    { name: "Badrinath", loc: "Uttarakhand", lat: 30.7433, lng: 79.4938, note: "One of the Char Dhams; self-manifested shrine." },
-    { name: "Muktinath (Thiru Saligramam)", loc: "Nepal", lat: 28.8167, lng: 83.8667, note: "The only Divya Desam outside India; the Kali Gandaki nearby yields the sacred saligrama stones." },
-    { name: "Naimisaranyam", loc: "Uttar Pradesh", lat: 27.2, lng: 80.6, note: "Ancient forest of sages; self-manifested shrine." },
-    { name: "Ayodhya", loc: "Uttar Pradesh", lat: 26.7956, lng: 82.1944, note: "Rama's birthplace; sung by the Azhwars as Thiru Ayodhi." },
-    { name: "Vadamathura (Mathura)", loc: "Uttar Pradesh", lat: 27.5047, lng: 77.6697, note: "Krishna's birthplace." },
-    { name: "Devaprayag (Thirukkandam)", loc: "Uttarakhand", lat: 30.1458, lng: 78.5987, note: "Raghunathji temple at the confluence that forms the Ganga." },
-    { name: "Thirukkovalur", loc: "Tamil Nadu", lat: 11.9675, lng: 79.2056, note: "Where the three earliest Azhwars met and sang the first Thiruvandhadhis." },
-    { name: "Dwaraka", loc: "Gujarat", lat: 22.2378, lng: 68.9686, note: "Krishna's kingdom; Dwarkadhish temple." }
-  ];
-
-  // All 12 Jyotirlingas
-  var jyotirlingas = [
-    { name: "Somnath", loc: "Prabhas Patan, Gujarat", lat: 20.8880, lng: 70.4010, note: "The first Jyotirlinga, on the Arabian Sea. Destroyed and rebuilt many times." },
-    { name: "Mallikarjuna", loc: "Srisailam, Andhra Pradesh", lat: 16.0745, lng: 78.8685, note: "On the Nallamala Hills; both Jyotirlinga and Shakti Peetha." },
-    { name: "Mahakaleshwar", loc: "Ujjain, Madhya Pradesh", lat: 23.1828, lng: 75.7682, note: "The only south-facing Jyotirlinga; famous Bhasma Aarti." },
-    { name: "Omkareshwar", loc: "Mandhata Island, Madhya Pradesh", lat: 22.2453, lng: 76.1510, note: "On the Narmada; the island resembles the Om symbol." },
-    { name: "Kedarnath", loc: "Garhwal Himalayas, Uttarakhand", lat: 30.7352, lng: 79.0669, note: "Highest Jyotirlinga at 3,583 m; open only April–November." },
-    { name: "Bhimashankar", loc: "Sahyadri Hills, Maharashtra", lat: 19.0720, lng: 73.5350, note: "Source of the Bhima River; in a wildlife sanctuary." },
-    { name: "Kashi Vishwanath", loc: "Varanasi, Uttar Pradesh", lat: 25.3109, lng: 83.0107, note: "Shiva's eternal abode on the Ganges; one of the oldest living cities." },
-    { name: "Trimbakeshwar", loc: "Nashik, Maharashtra", lat: 19.9322, lng: 73.5308, note: "Three-faced linga (Brahma, Vishnu, Shiva); origin of the Godavari." },
-    { name: "Nageshvara", loc: "Dwarka, Gujarat", lat: 22.3360, lng: 69.0860, note: "Near Dwarka; associated with the demon Daruka. Aundha Nagnath (Maharashtra) also claims this Jyotirlinga." },
-    { name: "Baidyanath", loc: "Deoghar, Jharkhand", lat: 24.4925, lng: 86.6997, note: "Also a Shakti Peetha; major pilgrimage in Shravan. Some traditions place this Jyotirlinga at Parli Vaijnath (Maharashtra)." },
-    { name: "Rameshwaram", loc: "Rameswaram Island, Tamil Nadu", lat: 9.2881, lng: 79.3174, note: "Built by Rama; one of the Char Dhams." },
-    { name: "Grishneshwar", loc: "Ellora, Maharashtra", lat: 20.0230, lng: 75.1660, note: "Beside the Ellora caves." }
-  ];
-
-  /* ---------- MAP ---------- */
-  var map = L.map('map', {
-    center: [20.5, 78.5],
-    zoom: 5,
-    scrollWheelZoom: true,
-    zoomControl: true
-  });
-
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
-  // Marker style helpers
-  function divyaIcon(){
-    return L.divIcon({
-      className: 'custom-marker',
-      html: '<div style="width:14px;height:14px;border-radius:50%;background:var(--divya);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);"></div>',
-      iconSize: [14, 14],
-      iconAnchor: [7, 7],
-      popupAnchor: [0, -8]
-    });
-  }
-  function jyotirIcon(){
-    return L.divIcon({
-      className: 'custom-marker',
-      html: '<div style="width:14px;height:14px;border-radius:50%;background:var(--jyotir);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);"></div>',
-      iconSize: [14, 14],
-      iconAnchor: [7, 7],
-      popupAnchor: [0, -8]
-    });
-  }
-
-  var allMarkers = [];
-
-  function addMarkers(list, type){
-    list.forEach(function(site){
-      var marker = L.marker([site.lat, site.lng], {
-        icon: type === 'divya' ? divyaIcon() : jyotirIcon()
-      });
-      var color = type === 'divya' ? 'var(--divya)' : 'var(--jyotir)';
-      var label = type === 'divya' ? 'Divya Desam' : 'Jyotirlinga';
-      marker.bindPopup(
-        '<h3 style="color:' + color + '">' + site.name + '</h3>' +
-        '<div class="sub">' + label + ' · ' + site.loc + '</div>' +
-        '<div class="desc">' + site.note + '</div>'
-      );
-      marker._siteType = type;
-      marker.addTo(map);
-      allMarkers.push(marker);
-    });
-  }
-
-  addMarkers(divyaDesams, 'divya');
-  addMarkers(jyotirlingas, 'jyotir');
-
-  // Update counter
-  var counter = document.getElementById('counter');
-  counter.textContent = '📍 ' + allMarkers.length + ' sites mapped — ' +
-    divyaDesams.length + ' Divya Desams (representative) · ' + jyotirlingas.length + ' Jyotirlingas';
-
-  /* ---------- FILTER ---------- */
-  var filterBtns = document.querySelectorAll('[data-filter]');
-  filterBtns.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var f = btn.getAttribute('data-filter');
-      filterBtns.forEach(function(b){ b.classList.toggle('active', b === btn); });
-
-      allMarkers.forEach(function(m){
-        var show = (f === 'all') || (m._siteType === f);
-        if(show){
-          if(!map.hasLayer(m)) m.addTo(map);
-        } else {
-          if(map.hasLayer(m)) map.removeLayer(m);
-        }
-      });
-
-      // Update counter text
-      if(f === 'all'){
-        counter.textContent = '📍 ' + allMarkers.length + ' sites mapped — ' +
-          divyaDesams.length + ' Divya Desams (representative) · ' + jyotirlingas.length + ' Jyotirlingas';
-      } else if(f === 'divya'){
-        counter.textContent = '🔵 Showing ' + divyaDesams.length + ' Divya Desam markers (representative set)';
-      } else {
-        counter.textContent = '🔴 Showing all ' + jyotirlingas.length + ' Jyotirlingas';
-      }
-    });
-  });
-
-  /* ---------- BOOT SEQUENCE ---------- */
-  try { applyTheme(root.getAttribute('data-theme') || 'dark'); }
-  catch(e){ console.error('theme init failed:', e); }
-
-  // Fix map sizing after layout settles
-  setTimeout(function(){ map.invalidateSize(); }, 250);
-
-})();
-</script>
-
-<script>
-/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
-(function(){
-  function fit(){
-    var bar = document.querySelector('.controls');
-    if(!bar) return;
-    document.body.style.paddingTop = '';
-    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
-    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
-    if(need > base) document.body.style.paddingTop = need + 'px';
-  }
-  window.addEventListener('resize', fit);
-  window.addEventListener('load', fit);
-  fit();
-})();
-</script>
+<script>window.SANATANA_GROUPS = [{"key": "divya", "label": "Divya Desam", "plural": "Divya Desams (representative)", "color": "var(--divya)", "sites": [{"name": "Srirangam (Ranganathaswamy)", "loc": "Tamil Nadu", "lat": 10.8625, "lng": 78.6897, "note": "Largest functioning Hindu temple; supreme Divya Desam."}, {"name": "Thirukoḻi (Uraiyur)", "loc": "Tamil Nadu", "lat": 10.82, "lng": 78.67, "note": "Birthplace of Thiruppaan Azhwar."}, {"name": "Thirukkarambanoor", "loc": "Tamil Nadu", "lat": 10.8772, "lng": 78.7031, "note": "Uthamar Koil, Tiruchirappalli; rare temple dedicated to the Trimurti."}, {"name": "Pundarikakshan (Thiruvellarai)", "loc": "Tamil Nadu", "lat": 10.96, "lng": 78.67, "note": "Pallava-era temple with a swastika-shaped tank."}, {"name": "Thiruvengadam (Tirumala)", "loc": "Andhra Pradesh", "lat": 13.6833, "lng": 79.3472, "note": "The seven hills of Venkateswara; one of the eight self-manifested shrines."}, {"name": "Kanchipuram (Tirukkacchi)", "loc": "Tamil Nadu", "lat": 12.8342, "lng": 79.7036, "note": "City of a thousand temples; multiple Divya Desams here."}, {"name": "Thiruvallikeni (Triplicane)", "loc": "Tamil Nadu", "lat": 13.0545, "lng": 80.2756, "note": "Parthasarathy temple, Chennai."}, {"name": "Srivilliputhur", "loc": "Tamil Nadu", "lat": 9.5117, "lng": 77.6333, "note": "Birthplace of Periyalvar and Andal."}, {"name": "Thirukkurungudi", "loc": "Tamil Nadu", "lat": 8.4333, "lng": 77.5333, "note": "Near Tirunelveli."}, {"name": "Thiruvattar", "loc": "Tamil Nadu", "lat": 8.3167, "lng": 77.2667, "note": "Adikesava Perumal temple, Kanyakumari district."}, {"name": "Thiruvananthapuram (Padmanabhaswamy)", "loc": "Kerala", "lat": 8.4833, "lng": 76.95, "note": "Often described as the richest temple in the world."}, {"name": "Thirunavaya", "loc": "Kerala", "lat": 10.8833, "lng": 75.9833, "note": "Navamukunda temple on the Bharathapuzha."}, {"name": "Badrinath", "loc": "Uttarakhand", "lat": 30.7433, "lng": 79.4938, "note": "One of the Char Dhams; self-manifested shrine."}, {"name": "Muktinath (Thiru Saligramam)", "loc": "Nepal", "lat": 28.8167, "lng": 83.8667, "note": "The only Divya Desam outside India; the Kali Gandaki nearby yields the sacred saligrama stones."}, {"name": "Naimisaranyam", "loc": "Uttar Pradesh", "lat": 27.2, "lng": 80.6, "note": "Ancient forest of sages; self-manifested shrine."}, {"name": "Ayodhya", "loc": "Uttar Pradesh", "lat": 26.7956, "lng": 82.1944, "note": "Rama's birthplace; sung by the Azhwars as Thiru Ayodhi."}, {"name": "Vadamathura (Mathura)", "loc": "Uttar Pradesh", "lat": 27.5047, "lng": 77.6697, "note": "Krishna's birthplace."}, {"name": "Devaprayag (Thirukkandam)", "loc": "Uttarakhand", "lat": 30.1458, "lng": 78.5987, "note": "Raghunathji temple at the confluence that forms the Ganga."}, {"name": "Thirukkovalur", "loc": "Tamil Nadu", "lat": 11.9675, "lng": 79.2056, "note": "Where the three earliest Azhwars met and sang the first Thiruvandhadhis."}, {"name": "Dwaraka", "loc": "Gujarat", "lat": 22.2378, "lng": 68.9686, "note": "Krishna's kingdom; Dwarkadhish temple."}]}, {"key": "jyotir", "label": "Jyotirlinga", "plural": "Jyotirlingas", "color": "var(--jyotir)", "sites": [{"name": "Somnath", "loc": "Prabhas Patan, Gujarat", "lat": 20.888, "lng": 70.401, "note": "The first Jyotirlinga, on the Arabian Sea. Destroyed and rebuilt many times."}, {"name": "Mallikarjuna", "loc": "Srisailam, Andhra Pradesh", "lat": 16.0745, "lng": 78.8685, "note": "On the Nallamala Hills; both Jyotirlinga and Shakti Peetha."}, {"name": "Mahakaleshwar", "loc": "Ujjain, Madhya Pradesh", "lat": 23.1828, "lng": 75.7682, "note": "The only south-facing Jyotirlinga; famous Bhasma Aarti."}, {"name": "Omkareshwar", "loc": "Mandhata Island, Madhya Pradesh", "lat": 22.2453, "lng": 76.151, "note": "On the Narmada; the island resembles the Om symbol."}, {"name": "Kedarnath", "loc": "Garhwal Himalayas, Uttarakhand", "lat": 30.7352, "lng": 79.0669, "note": "Highest Jyotirlinga at 3,583 m; open only April–November."}, {"name": "Bhimashankar", "loc": "Sahyadri Hills, Maharashtra", "lat": 19.072, "lng": 73.535, "note": "Source of the Bhima River; in a wildlife sanctuary."}, {"name": "Kashi Vishwanath", "loc": "Varanasi, Uttar Pradesh", "lat": 25.3109, "lng": 83.0107, "note": "Shiva's eternal abode on the Ganges; one of the oldest living cities."}, {"name": "Trimbakeshwar", "loc": "Nashik, Maharashtra", "lat": 19.9322, "lng": 73.5308, "note": "Three-faced linga (Brahma, Vishnu, Shiva); origin of the Godavari."}, {"name": "Nageshvara", "loc": "Dwarka, Gujarat", "lat": 22.336, "lng": 69.086, "note": "Near Dwarka; associated with the demon Daruka. Aundha Nagnath (Maharashtra) also claims this Jyotirlinga."}, {"name": "Baidyanath", "loc": "Deoghar, Jharkhand", "lat": 24.4925, "lng": 86.6997, "note": "Also a Shakti Peetha; major pilgrimage in Shravan. Some traditions place this Jyotirlinga at Parli Vaijnath (Maharashtra)."}, {"name": "Rameshwaram", "loc": "Rameswaram Island, Tamil Nadu", "lat": 9.2881, "lng": 79.3174, "note": "Built by Rama; one of the Char Dhams."}, {"name": "Grishneshwar", "loc": "Ellora, Maharashtra", "lat": 20.023, "lng": 75.166, "note": "Beside the Ellora caves."}]}];</script>
+<script src="assets/site.js?v=420f3627"></script>
 </body>
 </html>

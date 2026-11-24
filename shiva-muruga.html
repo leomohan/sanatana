@@ -3,222 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shiva & Muruga — Forms, Sites, Texts & Festivals</title>
+<title>Shiva &amp; Muruga — Forms, Sites, Texts &amp; Festivals</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔱</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=420f3627">
+<style>:root,[data-theme="dark"]{--shiva:#fc5c65; --muruga:#26de81;} [data-theme="light"]{--shiva:#d63c46; --muruga:#12995a;} :root{--primary:var(--muruga); --grad-h:linear-gradient(90deg,var(--shiva),var(--muruga)); --grad-v:linear-gradient(var(--shiva),var(--muruga));}</style>
 <script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
   (function(){
-    var savedTheme = localStorage.getItem('shiva-muruga-theme');
-    var theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
-    var savedSize = localStorage.getItem('shiva-muruga-size') || '1';
-    document.documentElement.style.setProperty('--scale', savedSize);
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
   })();
 </script>
-<style>
-  :root,[data-theme="dark"]{
-    --bg:#0e0b1a; --bg-grad:#1b1435;
-    --card:#241d40; --card-2:#161129;
-    --border:rgba(255,255,255,.06); --border-strong:rgba(255,255,255,.14);
-    --chip-bg:rgba(255,255,255,.06); --chip-border:rgba(255,255,255,.08);
-    --text:#eae6f7; --muted:#a29ac2;
-    --shadow:0 14px 34px rgba(0,0,0,.5);
-    --shiva:#fc5c65; --muruga:#26de81;
-    --root-text:#1a0f24;
-  }
-  [data-theme="light"]{
-    --bg:#fdf9f3; --bg-grad:#fff4e6;
-    --card:#ffffff; --card-2:#fffaf2;
-    --border:rgba(60,40,20,.10); --border-strong:rgba(60,40,20,.22);
-    --chip-bg:rgba(120,80,30,.07); --chip-border:rgba(120,80,30,.14);
-    --text:#2a1f14; --muted:#6b5c4a;
-    --shadow:0 14px 34px rgba(90,60,20,.15);
-    --shiva:#d63c46; --muruga:#12995a;
-    --root-text:#3a1a08;
-  }
-
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  :root{ --scale:1; }
-
-  body{
-    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    background:radial-gradient(circle at top,var(--bg-grad) 0%,var(--bg) 60%);
-    color:var(--text);
-    min-height:100vh;
-    padding:90px 20px 80px;
-    line-height:1.6;
-    font-size:calc(17px * var(--scale));
-    transition:background .35s ease,color .35s ease;
-  }
-
-  /* CONTROL BAR */
-  .controls{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
-    padding:12px 16px;
-    background:color-mix(in srgb,var(--bg) 88%,transparent);
-    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border-strong);
-  }
-  .ctrl-group{
-    display:flex; align-items:center; gap:6px;
-    background:var(--card); border:1px solid var(--border-strong);
-    border-radius:50px; padding:5px;
-  }
-  .ctrl-btn{
-    font-family:inherit; font-size:.85rem; font-weight:600;
-    color:var(--text); background:transparent; border:none; border-radius:40px;
-    padding:7px 13px; cursor:pointer; display:flex; align-items:center; gap:6px;
-    transition:background .2s,color .2s; white-space:nowrap;
-  }
-  .ctrl-btn:hover{background:var(--chip-bg);}
-  .ctrl-btn:focus-visible{outline:2px solid var(--muruga);outline-offset:2px;}
-  .ctrl-btn.active{background:var(--chip-bg);box-shadow:inset 0 0 0 1px var(--border-strong);}
-
-  .theme-toggle{padding:5px 12px 5px 6px;}
-  .toggle-track{position:relative;width:44px;height:24px;border-radius:20px;background:var(--chip-bg);border:1px solid var(--border-strong);flex-shrink:0;transition:background .3s;}
-  .toggle-knob{position:absolute;top:1px;left:1px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#ffcf6b,#ff9f43);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .3s cubic-bezier(.4,1.6,.5,1);box-shadow:0 2px 6px rgba(0,0,0,.3);}
-  [data-theme="light"] .toggle-knob{transform:translateX(20px);}
-
-  .size-btn{width:34px;height:34px;justify-content:center;padding:0;font-size:.9rem;font-weight:800;border-radius:50%;}
-  .size-val{min-width:40px;text-align:center;font-size:.8rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;}
-
-  .search-wrap{
-    display:flex;align-items:center;gap:8px;
-    background:var(--card);border:1px solid var(--border-strong);
-    border-radius:50px;padding:6px 14px;flex:1 1 180px;max-width:320px;
-  }
-  .search-wrap:focus-within{border-color:var(--muruga);}
-  .search-wrap input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:inherit;font-size:.9rem;min-width:0;}
-  .search-wrap input::placeholder{color:var(--muted);}
-
-  /* FILTERS */
-  .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:1100px;margin:0 auto 30px;}
-  .filter-chip{
-    font-family:inherit;font-size:.82rem;font-weight:600;
-    padding:7px 15px;border-radius:30px;cursor:pointer;
-    background:var(--card);color:var(--muted);
-    border:1px solid var(--border-strong);transition:all .2s;
-  }
-  .filter-chip:hover{border-color:var(--muted);transform:translateY(-1px);}
-  .filter-chip:focus-visible{outline:2px solid var(--muruga);outline-offset:2px;}
-  .filter-chip.active{background:var(--fc,var(--shiva));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--fc,var(--shiva)) 40%,transparent);}
-
-  /* LAYOUT */
-  header{text-align:center;max-width:900px;margin:0 auto 34px;}
-  header h1{
-    font-size:clamp(1.6rem,4vw,2.6rem);
-    background:linear-gradient(90deg,var(--shiva),var(--muruga));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    font-weight:800;letter-spacing:.5px;margin-bottom:12px;
-  }
-  header p{color:var(--muted);font-size:1.05rem;max-width:720px;margin:0 auto;}
-
-  .legend{display:flex;flex-wrap:wrap;gap:12px 18px;justify-content:center;margin-top:22px;}
-  .legend span{display:flex;align-items:center;gap:7px;font-size:.85rem;color:var(--muted);}
-  .dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex-shrink:0;}
-
-  section{margin:50px auto;max-width:1280px;}
-  .section-title{font-size:1.4rem;font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:12px;}
-  .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,currentColor,transparent);opacity:.4;}
-
-  /* CARDS */
-  .grid{display:grid;gap:20px;}
-  .grid.v3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
-  .grid.v4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
-
-  .card{
-    position:relative;
-    background:linear-gradient(160deg,var(--card),var(--card-2));
-    border-radius:18px;padding:22px 20px 20px;
-    border:1px solid var(--border);
-    transition:transform .25s ease,box-shadow .25s ease,border-color .25s,opacity .3s;
-    overflow:hidden;
-  }
-  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent,#888);}
-  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--accent,#888);}
-  .card.hidden{display:none;}
-
-  .card h3{font-size:1.1rem;margin-bottom:4px;color:var(--accent,#fff);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-  .card h3 .sanskrit{font-size:.8rem;font-weight:500;opacity:.8;display:none;}
-  body.show-sanskrit .card h3 .sanskrit{display:inline;}
-  .card .tag{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:8px;display:block;}
-  .card p{font-size:.9rem;color:var(--text);opacity:.9;}
-
-  .facts{display:grid;gap:6px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--border-strong);}
-  .fact{display:grid;grid-template-columns:80px 1fr;gap:8px;font-size:.82rem;align-items:baseline;}
-  .fact dt{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);}
-  .fact dd{color:var(--text);}
-
-  .shiva-card{--accent:var(--shiva);}
-  .muruga-card{--accent:var(--muruga);}
-
-  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
-  .chip{font-size:.72rem;padding:3px 9px;border-radius:20px;background:var(--chip-bg);color:var(--muted);border:1px solid var(--chip-border);}
-  .chip.theme-tag{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,transparent);}
-
-  .deity-icon{
-    position:absolute; top:16px; right:20px;
-    font-size:2.4rem; line-height:1;
-    opacity:.18;
-    user-select:none; pointer-events:none;
-    filter:grayscale(.2);
-  }
-
-  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:60px;}
-
-  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important;}}
-  @media (max-width:680px){
-    body{padding-top:130px;}
-    .controls{gap:8px;}
-    .search-wrap{max-width:none;flex:1 1 100%;order:5;}
-    .ctrl-btn{padding:6px 10px;font-size:.8rem;}
-    .size-btn{width:30px;height:30px;}
-    .fact{grid-template-columns:1fr;}
-    .fact dt{margin-top:2px;}
-  }
-
-  /* ---------- SITE NAV (home button + footer links) ---------- */
-  .home-btn{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:7px 14px;border-radius:999px;
-    background:var(--card);color:var(--text);
-    border:1px solid var(--border-strong,var(--border));
-    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
-    white-space:nowrap;transition:transform .2s,border-color .2s;
-  }
-  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
-  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
-  .site-nav{
-    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
-    max-width:980px;margin:26px auto 4px;padding-top:20px;
-    border-top:1px solid var(--border);
-  }
-  .site-nav a{
-    display:inline-flex;align-items:center;gap:5px;
-    padding:6px 12px;border-radius:999px;
-    font-size:.8rem;font-weight:600;text-decoration:none;
-    color:var(--muted);background:var(--card);
-    border:1px solid var(--border);
-    transition:color .2s,border-color .2s,transform .2s;
-  }
-  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
-  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
-  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
-  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
-</style>
 </head>
 <body>
-
-<div class="controls" role="toolbar" aria-label="Map controls">
+<div class="controls" role="toolbar" aria-label="Page controls">
   <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
     <input type="search" id="searchInput" placeholder="Search forms, texts, sites, festivals…" aria-label="Search">
   </div>
-  <div class="ctrl-group" role="group" aria-label="Language display">
+  <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
     <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
-    <button class="ctrl-btn" id="langSa" aria-pressed="false">संस्कृतम्</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">संस्कृतम्</button>
   </div>
   <div class="ctrl-group" role="group" aria-label="Text size">
     <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
@@ -230,230 +37,127 @@
     <span id="toggleLabel">Light</span>
   </button>
 </div>
-
 <header>
-  <h1>Shiva & Muruga</h1>
+  <h1>Shiva &amp; Muruga</h1>
   <p>Father and son, ascetic and warrior — the two great streams of Tamil Saiva devotion. Explore their forms, their sacred abodes, the scriptures that sing their praise, and the festivals that celebrate them.</p>
-  <div class="legend">
-    <span><i class="dot" style="background:var(--shiva)"></i>Lord Shiva</span>
-    <span><i class="dot" style="background:var(--muruga)"></i>Lord Muruga</span>
-  </div>
+  <div class="legend"><span><i class="dot" style="background:var(--shiva)"></i>Lord Shiva</span><span><i class="dot" style="background:var(--muruga)"></i>Lord Muruga</span></div>
 </header>
-
-<div class="filters" role="group" aria-label="Filter by deity or category">
-  <button class="filter-chip active" data-filter="all" style="--fc:var(--shiva)">All</button>
-  <button class="filter-chip" data-filter="shiva" style="--fc:var(--shiva)">🔱 Shiva</button>
-  <button class="filter-chip" data-filter="muruga" style="--fc:var(--muruga)">🦚 Muruga</button>
-  <button class="filter-chip" data-filter="text" style="--fc:var(--shiva)">📜 Texts</button>
-  <button class="filter-chip" data-filter="festival" style="--fc:var(--muruga)">🎉 Festivals</button>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--shiva)">All</button>
+  <button class="filter-chip" data-filter="shiva" aria-pressed="false" style="--fc:var(--shiva)">🔱 Shiva</button>
+  <button class="filter-chip" data-filter="muruga" aria-pressed="false" style="--fc:var(--muruga)">🦚 Muruga</button>
+  <button class="filter-chip" data-filter="text" aria-pressed="false" style="--fc:var(--shiva)">📜 Texts</button>
+  <button class="filter-chip" data-filter="festival" aria-pressed="false" style="--fc:var(--muruga)">🎉 Festivals</button>
 </div>
-
-<!-- ========== LORD SHIVA ========== -->
-<section>
-  <h2 class="section-title" style="color:var(--shiva)">🔱 Lord Shiva — Forms & Aspects</h2>
-  <p style="color:var(--muted);margin-bottom:22px;max-width:760px;font-size:.95rem">Shiva is the most complex deity of the Hindu pantheon — destroyer and benefactor, ascetic and householder, the cosmic dancer and the silent yogi. His forms depend on the needs of the devotee.</p>
+<section data-block>
+  <h2 class="section-title" style="color:var(--shiva)">🔱 Lord Shiva — Forms &amp; Aspects</h2>
+  <p class="section-intro">Shiva is the most complex deity of the Hindu pantheon — destroyer and benefactor, ascetic and householder, the cosmic dancer and the silent yogi. His forms depend on the needs of the devotee.</p>
   <div class="grid v3">
-
-    <article class="card shiva-card" data-tags="shiva" data-id="nataraja">
-      <span class="deity-icon">🔱</span>
-      <h3>Nataraja <span class="sanskrit">नटराज</span></h3>
-      <span class="tag">The Lord of the Cosmic Dance</span>
-      <p>The cosmic dancer whose <em>tandava</em> creates, sustains, and dissolves the universe. He dances on the demon Apasmara (ignorance), his drum sounding creation and his flame signalling destruction.</p>
-    </article>
-
-    <article class="card shiva-card" data-tags="shiva" data-id="dakshinamurti">
-      <span class="deity-icon">🧘</span>
-      <h3>Dakshinamurti <span class="sanskrit">दक्षिणामूर्ति</span></h3>
-      <span class="tag">The Silent Teacher</span>
-      <p>Shiva as the primordial guru, seated under a banyan tree, teaching the sages through silence. He represents the transmission of wisdom beyond words.</p>
-    </article>
-
-    <article class="card shiva-card" data-tags="shiva" data-id="ardhanarishvara">
-      <span class="deity-icon">☯️</span>
-      <h3>Ardhanarishvara <span class="sanskrit">अर्धनारीश्वर</span></h3>
-      <span class="tag">The Half-Female Lord</span>
-      <p>Shiva depicted as half-male and half-female, united with Parvati. This form expresses the non-duality of Shiva and Shakti — consciousness and energy as one.</p>
-    </article>
-
-    <article class="card shiva-card" data-tags="shiva" data-id="bhairava">
-      <span class="deity-icon">🔥</span>
-      <h3>Bhairava <span class="sanskrit">भैरव</span></h3>
-      <span class="tag">The Terrible Destroyer</span>
-      <p>The fierce, terrifying aspect of Shiva — the destroyer of evil and the guardian of the cremation ground. He is the wrathful form invoked for protection.</p>
-    </article>
-
-    <article class="card shiva-card" data-tags="shiva" data-id="lingam">
-      <span class="deity-icon">🕉️</span>
-      <h3>Lingam <span class="sanskrit">लिङ्गम्</span></h3>
-      <span class="tag">The Formless Symbol</span>
-      <p>The aniconic representation of Shiva, worshipped as the cosmic pillar of light. The lingam with the yoni base represents the union of Shiva and Shakti, the source of all creation.</p>
-    </article>
-
+  <article class="card has-corner" data-item data-id="nataraja" data-tags="shiva" style="--accent:var(--shiva)"><span class="corner-icon" aria-hidden="true">🔱</span>
+  <h3>Nataraja <span class="native">नटराज</span></h3><span class="tag">The Lord of the Cosmic Dance</span><p>The cosmic dancer whose <em>tandava</em> creates, sustains, and dissolves the universe. He dances on the demon Apasmara (ignorance), his drum sounding creation and his flame signalling destruction.</p>
+</article>
+  <article class="card has-corner" data-item data-id="dakshinamurti" data-tags="shiva" style="--accent:var(--shiva)"><span class="corner-icon" aria-hidden="true">🧘</span>
+  <h3>Dakshinamurti <span class="native">दक्षिणामूर्ति</span></h3><span class="tag">The Silent Teacher</span><p>Shiva as the primordial guru, seated under a banyan tree, teaching the sages through silence. He represents the transmission of wisdom beyond words.</p>
+</article>
+  <article class="card has-corner" data-item data-id="ardhanarishvara" data-tags="shiva" style="--accent:var(--shiva)"><span class="corner-icon" aria-hidden="true">☯️</span>
+  <h3>Ardhanarishvara <span class="native">अर्धनारीश्वर</span></h3><span class="tag">The Half-Female Lord</span><p>Shiva depicted as half-male and half-female, united with Parvati. This form expresses the non-duality of Shiva and Shakti — consciousness and energy as one.</p>
+</article>
+  <article class="card has-corner" data-item data-id="bhairava" data-tags="shiva" style="--accent:var(--shiva)"><span class="corner-icon" aria-hidden="true">🔥</span>
+  <h3>Bhairava <span class="native">भैरव</span></h3><span class="tag">The Terrible Destroyer</span><p>The fierce, terrifying aspect of Shiva — the destroyer of evil and the guardian of the cremation ground. He is the wrathful form invoked for protection.</p>
+</article>
+  <article class="card has-corner" data-item data-id="lingam" data-tags="shiva" style="--accent:var(--shiva)"><span class="corner-icon" aria-hidden="true">🕉️</span>
+  <h3>Lingam <span class="native">लिङ्गम्</span></h3><span class="tag">The Formless Symbol</span><p>The aniconic representation of Shiva, worshipped as the cosmic pillar of light. The lingam with the yoni base represents the union of Shiva and Shakti, the source of all creation.</p>
+</article>
   </div>
 </section>
-
-<!-- ========== LORD MURUGA ========== -->
-<section>
-  <h2 class="section-title" style="color:var(--muruga)">🦚 Lord Muruga — Forms & Aspects</h2>
-  <p style="color:var(--muted);margin-bottom:22px;max-width:760px;font-size:.95rem">Muruga (Skanda, Kartikeya, Subrahmanya) is the youthful commander of the divine army, born from six sparks of Shiva's third eye to destroy the demon Surapadman. He is both warrior and guru.</p>
+<section data-block>
+  <h2 class="section-title" style="color:var(--muruga)">🦚 Lord Muruga — Forms &amp; Aspects</h2>
+  <p class="section-intro">Muruga (Skanda, Kartikeya, Subrahmanya) is the youthful commander of the divine army, born from six sparks of Shiva's third eye to destroy the demon Surapadman. He is both warrior and guru.</p>
   <div class="grid v3">
-
-    <article class="card muruga-card" data-tags="muruga" data-id="arumugam">
-      <span class="deity-icon">🦚</span>
-      <h3>Arumugam <span class="sanskrit">अरुमुगम्</span></h3>
-      <span class="tag">The Six-Faced Lord</span>
-      <p>Muruga born with six faces — <em>eesanam, tatpurusham, vamadevam, agoram, sathyojatham, adhomugam</em>. Each face represents a divine attribute; together they symbolize completeness and the ability to see in all directions.</p>
-    </article>
-
-    <article class="card muruga-card" data-tags="muruga" data-id="dhandayuthapani">
-      <span class="deity-icon">🧘</span>
-      <h3>Dhandayuthapani <span class="sanskrit">दण्डायुधपाणि</span></h3>
-      <span class="tag">The Ascetic with the Staff</span>
-      <p>The form worshipped at Palani — Muruga as a renunciant, holding a staff (<em>danda</em>), wearing only a loincloth. He embodies detachment and the wisdom that comes from letting go.</p>
-    </article>
-
-    <article class="card muruga-card" data-tags="muruga" data-id="vel">
-      <span class="deity-icon">⚔️</span>
-      <h3>Vel <span class="sanskrit">वेल्</span></h3>
-      <span class="tag">The Divine Spear</span>
-      <p>Muruga's primary weapon, the spear of divine wisdom given by his mother Parvati. It pierces ignorance and vanquishes darkness. The <em>Vel</em> is itself worshipped as a symbol of Muruga's power.</p>
-    </article>
-
-    <article class="card muruga-card" data-tags="muruga" data-id="guru">
-      <span class="deity-icon">📿</span>
-      <h3>Swamimalai Muruga <span class="sanskrit">स्वामिमलै</span></h3>
-      <span class="tag">The Guru of Shiva</span>
-      <p>At Swamimalai, the child Muruga taught the meaning of <em>Om</em> to his own father, Shiva, and demanded that Shiva accept him as guru. This form represents the principle that wisdom transcends age and hierarchy.</p>
-    </article>
-
-    <article class="card muruga-card" data-tags="muruga" data-id="shanmukha">
-      <span class="deity-icon">🌟</span>
-      <h3>Shanmukha <span class="sanskrit">षण्मुख</span></h3>
-      <span class="tag">The Six-Faced Commander</span>
-      <p>The name <em>Shanmukha</em> (six-faced) is used across India for Kartikeya. As commander-in-chief of the divine army, he leads the forces of light against the demons.</p>
-    </article>
-
+  <article class="card has-corner" data-item data-id="arumugam" data-tags="muruga" style="--accent:var(--muruga)"><span class="corner-icon" aria-hidden="true">🦚</span>
+  <h3>Arumugam <span class="native">अरुमुगम्</span></h3><span class="tag">The Six-Faced Lord</span><p>Muruga born with six faces — <em>eesanam, tatpurusham, vamadevam, agoram, sathyojatham, adhomugam</em>. Each face represents a divine attribute; together they symbolize completeness and the ability to see in all directions.</p>
+</article>
+  <article class="card has-corner" data-item data-id="dhandayuthapani" data-tags="muruga" style="--accent:var(--muruga)"><span class="corner-icon" aria-hidden="true">🧘</span>
+  <h3>Dhandayuthapani <span class="native">दण्डायुधपाणि</span></h3><span class="tag">The Ascetic with the Staff</span><p>The form worshipped at Palani — Muruga as a renunciant, holding a staff (<em>danda</em>), wearing only a loincloth. He embodies detachment and the wisdom that comes from letting go.</p>
+</article>
+  <article class="card has-corner" data-item data-id="vel" data-tags="muruga" style="--accent:var(--muruga)"><span class="corner-icon" aria-hidden="true">⚔️</span>
+  <h3>Vel <span class="native">वेल्</span></h3><span class="tag">The Divine Spear</span><p>Muruga's primary weapon, the spear of divine wisdom given by his mother Parvati. It pierces ignorance and vanquishes darkness. The <em>Vel</em> is itself worshipped as a symbol of Muruga's power.</p>
+</article>
+  <article class="card has-corner" data-item data-id="guru" data-tags="muruga" style="--accent:var(--muruga)"><span class="corner-icon" aria-hidden="true">📿</span>
+  <h3>Swamimalai Muruga <span class="native">स्वामिमलै</span></h3><span class="tag">The Guru of Shiva</span><p>At Swamimalai, the child Muruga taught the meaning of <em>Om</em> to his own father, Shiva, and demanded that Shiva accept him as guru. This form represents the principle that wisdom transcends age and hierarchy.</p>
+</article>
+  <article class="card has-corner" data-item data-id="shanmukha" data-tags="muruga" style="--accent:var(--muruga)"><span class="corner-icon" aria-hidden="true">🌟</span>
+  <h3>Shanmukha <span class="native">षण्मुख</span></h3><span class="tag">The Six-Faced Commander</span><p>The name <em>Shanmukha</em> (six-faced) is used across India for Kartikeya. As commander-in-chief of the divine army, he leads the forces of light against the demons.</p>
+</article>
   </div>
 </section>
-
-<!-- ========== SACRED SITES ========== -->
-<section>
+<section data-block>
   <h2 class="section-title" style="color:var(--shiva)">🛕 Sacred Sites</h2>
   <div class="grid v4">
-
-    <article class="card shiva-card" data-tags="shiva" data-id="jyotirlinga">
-      <h3>12 Jyotirlingas <span class="sanskrit">ज्योतिर्लिङ्ग</span></h3>
-      <span class="tag">Shiva's Self-Manifested Shrines</span>
-      <p>Twelve temples scattered across India where Shiva is said to have manifested as a pillar of light. From Somnath on the sea to Kedarnath in the Himalayas.</p>
-    </article>
-
-    <article class="card shiva-card" data-tags="shiva" data-id="kailash">
-      <h3>Mount Kailash <span class="sanskrit">कैलाश</span></h3>
-      <span class="tag">Shiva's Eternal Abode</span>
-      <p>The sacred mountain in Tibet where Shiva sits in eternal meditation with Parvati. It is the axis of the world in Hindu cosmology.</p>
-    </article>
-
-    <article class="card muruga-card" data-tags="muruga" data-id="arupadai">
-      <h3>Arupadai Veedu <span class="sanskrit">अरुपडै वीडु</span></h3>
-      <span class="tag">The Six Abodes of Muruga</span>
-      <p>The six sacred temples of Muruga in Tamil Nadu — Thiruparankundram (wedding), Thiruchendur (victory), Palani (renunciation), Swamimalai (wisdom), Thiruthani (union), and Pazhamudircholai (forest).</p>
-    </article>
-
-    <article class="card muruga-card" data-tags="muruga" data-id="thiruchendur">
-      <h3>Thiruchendur <span class="sanskrit">तिरुच्चेन्दूर</span></h3>
-      <span class="tag">The Victory Abode</span>
-      <p>The only Arupadai Veedu on the seashore, where Muruga defeated the demon Surapadman. The temple stands just metres from the Gulf of Mannar yet is said never to flood.</p>
-    </article>
-
+  <article class="card" data-item data-id="jyotirlinga" data-tags="shiva" style="--accent:var(--shiva)">
+  <h3>12 Jyotirlingas <span class="native">ज्योतिर्लिङ्ग</span></h3><span class="tag">Shiva&#39;s Self-Manifested Shrines</span><p>Twelve temples scattered across India where Shiva is said to have manifested as a pillar of light. From Somnath on the sea to Kedarnath in the Himalayas.</p>
+</article>
+  <article class="card" data-item data-id="pancha-bhoota" data-tags="shiva" style="--accent:var(--shiva)">
+  <h3>Pancha Bhoota Sthalams <span class="native">पञ्चभूत स्थल</span></h3><span class="tag">Shiva as the Five Elements</span><p>Five temples where Shiva is worshipped as earth, water, fire, air and space — Kanchipuram, Thiruvanaikaval, Tiruvannamalai, Srikalahasti and Chidambaram. <a href="pancha-bhoota.html" style="color:inherit;font-weight:600">See the map →</a></p>
+</article>
+  <article class="card" data-item data-id="kailash" data-tags="shiva" style="--accent:var(--shiva)">
+  <h3>Mount Kailash <span class="native">कैलाश</span></h3><span class="tag">Shiva&#39;s Eternal Abode</span><p>The sacred mountain in Tibet where Shiva sits in eternal meditation with Parvati. It is the axis of the world in Hindu cosmology.</p>
+</article>
+  <article class="card" data-item data-id="arupadai" data-tags="muruga" style="--accent:var(--muruga)">
+  <h3>Arupadai Veedu <span class="native">अरुपडै वीडु</span></h3><span class="tag">The Six Abodes of Muruga</span><p>The six sacred temples of Muruga in Tamil Nadu — Thiruparankundram (wedding), Thiruchendur (victory), Palani (renunciation), Swamimalai (wisdom), Thiruthani (union), and Pazhamudircholai (forest).</p>
+</article>
+  <article class="card" data-item data-id="thiruchendur" data-tags="muruga" style="--accent:var(--muruga)">
+  <h3>Thiruchendur <span class="native">तिरुच्चेन्दूर</span></h3><span class="tag">The Victory Abode</span><p>The only Arupadai Veedu on the seashore, where Muruga defeated the demon Surapadman. The temple stands just metres from the Gulf of Mannar yet is said never to flood.</p>
+</article>
   </div>
 </section>
-
-<!-- ========== KEY TEXTS ========== -->
-<section>
+<section data-block>
   <h2 class="section-title" style="color:var(--muruga)">📜 Key Texts</h2>
   <div class="grid v3">
-
-    <article class="card shiva-card" data-tags="shiva text" data-id="shiva-purana">
-      <h3>Shiva Purana <span class="sanskrit">शिव पुराण</span></h3>
-      <span class="tag">The Great Scripture of Shiva</span>
-      <p>One of the eighteen Mahapuranas, narrating Shiva's forms, his marriage to Parvati, the destruction of Tripura, and the glory of the Jyotirlingas. It is a foundational text of Shaivism.</p>
-    </article>
-
-    <article class="card shiva-card" data-tags="shiva text" data-id="tirumurai">
-      <h3>Tirumurai <span class="sanskrit">திருமுறை</span></h3>
-      <span class="tag">The Tamil Saiva Canon</span>
-      <p>Twelve books of Tamil Saiva hymns and hagiography: the Tevaram of Appar, Sambandar and Sundarar, Manikkavacakar's Tiruvachakam, Tirumular's Tirumantiram and Sekkizhar's Periya Puranam. It is the heart of Tamil Saiva devotion.</p>
-    </article>
-
-    <article class="card shiva-card" data-tags="shiva text" data-id="agamas">
-      <h3>Saiva Agamas <span class="sanskrit">आगम</span></h3>
-      <span class="tag">Temple & Ritual Manuals</span>
-      <p>Twenty-eight principal texts that govern temple construction, daily worship, festivals, meditation, and Saiva philosophy. They are the ritual foundation of Shaiva Siddhanta.</p>
-    </article>
-
-    <article class="card muruga-card" data-tags="muruga text" data-id="skanda-purana">
-      <h3>Skanda Purana <span class="sanskrit">स्कन्द पुराण</span></h3>
-      <span class="tag">The Great Epic of Muruga</span>
-      <p>The largest of the eighteen Mahapuranas, narrating Muruga's birth, his destruction of Surapadman, and the sacred geography of India. It is the primary Sanskrit source for Muruga's mythology.</p>
-    </article>
-
-    <article class="card muruga-card" data-tags="muruga text" data-id="kanda-sasti">
-      <h3>Kanda Shashti Kavasam <span class="sanskrit">கந்த சஷ்டி கவசம்</span></h3>
-      <span class="tag">The Armour of Muruga</span>
-      <p>A Tamil hymn composed by Deva Raya Swamigal, recited for protection and to invoke Muruga's grace. It is one of the most beloved devotional texts in Tamil Nadu.</p>
-    </article>
-
-    <article class="card muruga-card" data-tags="muruga text" data-id="tiruppugal">
-      <h3>Tiruppugal <span class="sanskrit">திருப்புகழ்</span></h3>
-      <span class="tag">Songs of Muruga's Glory</span>
-      <p>The ecstatic Tamil hymns of Arunagirinathar, praising Muruga's beauty, power, and grace. They are celebrated for their poetic brilliance and rhythmic complexity.</p>
-    </article>
-
+  <article class="card" data-item data-id="shiva-purana" data-tags="shiva text" style="--accent:var(--shiva)">
+  <h3>Shiva Purana <span class="native">शिव पुराण</span></h3><span class="tag">The Great Scripture of Shiva</span><p>One of the eighteen Mahapuranas, narrating Shiva's forms, his marriage to Parvati, the destruction of Tripura, and the glory of the Jyotirlingas. It is a foundational text of Shaivism.</p>
+</article>
+  <article class="card" data-item data-id="tirumurai" data-tags="shiva text" style="--accent:var(--shiva)">
+  <h3>Tirumurai <span class="native">திருமுறை</span></h3><span class="tag">The Tamil Saiva Canon</span><p>Twelve books of Tamil Saiva hymns and hagiography: the Tevaram of Appar, Sambandar and Sundarar, Manikkavacakar's Tiruvachakam, Tirumular's Tirumantiram and Sekkizhar's Periya Puranam. It is the heart of Tamil Saiva devotion.</p>
+</article>
+  <article class="card" data-item data-id="agamas" data-tags="shiva text" style="--accent:var(--shiva)">
+  <h3>Saiva Agamas <span class="native">आगम</span></h3><span class="tag">Temple &amp; Ritual Manuals</span><p>Twenty-eight principal texts that govern temple construction, daily worship, festivals, meditation, and Saiva philosophy. They are the ritual foundation of Shaiva Siddhanta.</p>
+</article>
+  <article class="card" data-item data-id="skanda-purana" data-tags="muruga text" style="--accent:var(--muruga)">
+  <h3>Skanda Purana <span class="native">स्कन्द पुराण</span></h3><span class="tag">The Great Epic of Muruga</span><p>The largest of the eighteen Mahapuranas, narrating Muruga's birth, his destruction of Surapadman, and the sacred geography of India. It is the primary Sanskrit source for Muruga's mythology.</p>
+</article>
+  <article class="card" data-item data-id="kanda-sasti" data-tags="muruga text" style="--accent:var(--muruga)">
+  <h3>Kanda Shashti Kavasam <span class="native">கந்த சஷ்டி கவசம்</span></h3><span class="tag">The Armour of Muruga</span><p>A Tamil hymn composed by Deva Raya Swamigal, recited for protection and to invoke Muruga's grace. It is one of the most beloved devotional texts in Tamil Nadu.</p>
+</article>
+  <article class="card" data-item data-id="tiruppugal" data-tags="muruga text" style="--accent:var(--muruga)">
+  <h3>Tiruppugal <span class="native">திருப்புகழ்</span></h3><span class="tag">Songs of Muruga&#39;s Glory</span><p>The ecstatic Tamil hymns of Arunagirinathar, praising Muruga's beauty, power, and grace. They are celebrated for their poetic brilliance and rhythmic complexity.</p>
+</article>
   </div>
 </section>
-
-<!-- ========== FESTIVALS ========== -->
-<section>
+<section data-block>
   <h2 class="section-title" style="color:var(--shiva)">🎉 Festivals</h2>
   <div class="grid v3">
-
-    <article class="card shiva-card" data-tags="shiva festival" data-id="shivaratri">
-      <h3>Maha Shivaratri <span class="sanskrit">महाशिवरात्रि</span></h3>
-      <span class="tag">The Great Night of Shiva</span>
-      <p>Observed on the night before the new moon in February–March. Devotees fast, keep an all-night vigil, chant Shiva's 1,008 names, and bathe the lingam. It is the most sacred night of the Shaiva year.</p>
-    </article>
-
-    <article class="card shiva-card" data-tags="shiva festival" data-id="karthigai">
-      <h3>Karthigai Deepam <span class="sanskrit">கார்த்திகை தீபம்</span></h3>
-      <span class="tag">The Festival of Lights</span>
-      <p>Celebrated in November–December, honoring Shiva's manifestation as an infinite pillar of fire. The grand Maha Deepam is lit atop Annamalai Hill in Tiruvannamalai, visible for miles.</p>
-    </article>
-
-    <article class="card muruga-card" data-tags="muruga festival" data-id="skanda-sashti">
-      <h3>Skanda Sashti <span class="sanskrit">स्कन्द षष्ठी</span></h3>
-      <span class="tag">Muruga's Victory</span>
-      <p>A six-day festival in October–November commemorating Muruga's defeat of Surapadman. Devotees observe fasts, recite the Kanda Shashti Kavasam, and perform acts of penance.</p>
-    </article>
-
-    <article class="card muruga-card" data-tags="muruga festival" data-id="thaipusam">
-      <h3>Thaipusam <span class="sanskrit">தைப்பூசம்</span></h3>
-      <span class="tag">The Kavadi Festival</span>
-      <p>Celebrated in January–February, honoring the day Parvati gave Muruga the Vel. Devotees carry <em>kavadis</em> (burdens of devotion) and undertake acts of extreme penance.</p>
-    </article>
-
-    <article class="card muruga-card" data-tags="muruga festival" data-id="panguni">
-      <h3>Panguni Uthiram <span class="sanskrit">பங்குனி உத்திரம்</span></h3>
-      <span class="tag">The Divine Wedding</span>
-      <p>Celebrated in March–April, marking the marriage of Muruga to Deivanai. It is a major festival at Thiruparankundram and other Muruga temples.</p>
-    </article>
-
+  <article class="card" data-item data-id="shivaratri" data-tags="shiva festival" style="--accent:var(--shiva)">
+  <h3>Maha Shivaratri <span class="native">महाशिवरात्रि</span></h3><span class="tag">The Great Night of Shiva</span><p>Observed on the night before the new moon in February–March. Devotees fast, keep an all-night vigil, chant Shiva's 1,008 names, and bathe the lingam. It is the most sacred night of the Shaiva year.</p>
+</article>
+  <article class="card" data-item data-id="karthigai" data-tags="shiva festival" style="--accent:var(--shiva)">
+  <h3>Karthigai Deepam <span class="native">கார்த்திகை தீபம்</span></h3><span class="tag">The Festival of Lights</span><p>Celebrated in November–December, honoring Shiva's manifestation as an infinite pillar of fire. The grand Maha Deepam is lit atop Annamalai Hill in Tiruvannamalai, visible for miles.</p>
+</article>
+  <article class="card" data-item data-id="skanda-sashti" data-tags="muruga festival" style="--accent:var(--muruga)">
+  <h3>Skanda Sashti <span class="native">स्कन्द षष्ठी</span></h3><span class="tag">Muruga&#39;s Victory</span><p>A six-day festival in October–November commemorating Muruga's defeat of Surapadman. Devotees observe fasts, recite the Kanda Shashti Kavasam, and perform acts of penance.</p>
+</article>
+  <article class="card" data-item data-id="thaipusam" data-tags="muruga festival" style="--accent:var(--muruga)">
+  <h3>Thaipusam <span class="native">தைப்பூசம்</span></h3><span class="tag">The Kavadi Festival</span><p>Celebrated in January–February, honoring the day Parvati gave Muruga the Vel. Devotees carry <em>kavadis</em> (burdens of devotion) and undertake acts of extreme penance.</p>
+</article>
+  <article class="card" data-item data-id="panguni" data-tags="muruga festival" style="--accent:var(--muruga)">
+  <h3>Panguni Uthiram <span class="native">பங்குனி உத்திரம்</span></h3><span class="tag">The Divine Wedding</span><p>Celebrated in March–April, marking the marriage of Muruga to Deivanai. It is a major festival at Thiruparankundram and other Muruga temples.</p>
+</article>
   </div>
 </section>
-
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
 <footer>
   <p>🔱🦚 A devotional map of Lord Shiva and Lord Muruga · Forms, sacred sites, texts, and festivals</p>
-  <p style="margin-top:6px">Regional and family traditions vary. This map is for study and orientation.</p>
-
+  <p>Regional and family traditions vary. This map is for study and orientation.</p>
   <nav class="site-nav" aria-label="All Sanatana maps">
     <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
     <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
@@ -468,129 +172,12 @@
     <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
     <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
     <a href="shiva-muruga.html" aria-current="page"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
   </nav>
   <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
-
-<script>
-(function(){
-  "use strict";
-  var root = document.documentElement;
-  var body = document.body;
-
-  /* ---------- THEME ---------- */
-  var themeBtn = document.getElementById('themeToggle');
-  var knob = document.getElementById('knob');
-  var toggleLabel = document.getElementById('toggleLabel');
-  function applyTheme(t){
-    root.setAttribute('data-theme', t);
-    localStorage.setItem('shiva-muruga-theme', t);
-    var isLight = t === 'light';
-    knob.textContent = isLight ? '☀️' : '🌙';
-    toggleLabel.textContent = isLight ? 'Dark' : 'Light';
-    themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-  }
-  themeBtn.addEventListener('click', function(){
-    applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-  });
-
-  /* ---------- TEXT SIZE ---------- */
-  var sizes = [0.85, 1, 1.15, 1.3, 1.5];
-  var sizeIdx = parseInt(localStorage.getItem('shiva-muruga-size-idx') || '1', 10);
-  var sizeVal = document.getElementById('sizeVal');
-  function applySize(i){
-    sizeIdx = Math.max(0, Math.min(sizes.length - 1, i));
-    var scale = sizes[sizeIdx];
-    root.style.setProperty('--scale', scale);
-    localStorage.setItem('shiva-muruga-size', scale);
-    localStorage.setItem('shiva-muruga-size-idx', sizeIdx);
-    sizeVal.textContent = Math.round(scale * 100) + '%';
-  }
-  document.getElementById('sizeUp').addEventListener('click', function(){ applySize(sizeIdx + 1); });
-  document.getElementById('sizeDown').addEventListener('click', function(){ applySize(sizeIdx - 1); });
-
-  /* ---------- LANGUAGE ---------- */
-  var langEn = document.getElementById('langEn');
-  var langSa = document.getElementById('langSa');
-  function setLang(showSanskrit){
-    body.classList.toggle('show-sanskrit', showSanskrit);
-    langEn.classList.toggle('active', !showSanskrit);
-    langSa.classList.toggle('active', showSanskrit);
-    langEn.setAttribute('aria-pressed', String(!showSanskrit));
-    langSa.setAttribute('aria-pressed', String(showSanskrit));
-    localStorage.setItem('shiva-muruga-lang', showSanskrit ? 'sa' : 'en');
-  }
-  langEn.addEventListener('click', function(){ setLang(false); });
-  langSa.addEventListener('click', function(){ setLang(true); });
-
-  /* ---------- SEARCH + FILTER ---------- */
-  var searchInput = document.getElementById('searchInput');
-  var activeFilter = 'all';
-  var filterChips = document.querySelectorAll('.filter-chip');
-
-  filterChips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      activeFilter = chip.getAttribute('data-filter');
-      filterChips.forEach(function(c){ c.classList.toggle('active', c === chip); });
-      applyFilters();
-    });
-  });
-  searchInput.addEventListener('input', function(){ applyFilters(); });
-
-  function matches(el){
-    var q = searchInput.value.trim().toLowerCase();
-    var tags = (el.getAttribute('data-tags') || '').toLowerCase();
-    var text = el.textContent.toLowerCase();
-    if(activeFilter !== 'all' && tags.indexOf(activeFilter) === -1) return false;
-    if(q && text.indexOf(q) === -1) return false;
-    return true;
-  }
-
-  function applyFilters(){
-    document.querySelectorAll('.card[data-tags]').forEach(function(card){
-      card.classList.toggle('hidden', !matches(card));
-    });
-    // Hide a section if all its cards are hidden
-    document.querySelectorAll('section').forEach(function(sec){
-      var cards = sec.querySelectorAll('.card[data-tags]');
-      if(!cards.length) return;
-      var visible = false;
-      cards.forEach(function(c){ if(!c.classList.contains('hidden')) visible = true; });
-      sec.style.display = visible ? '' : 'none';
-    });
-  }
-
-  /* ---------- BOOT SEQUENCE ---------- */
-  try { applyTheme(root.getAttribute('data-theme') || 'dark'); }
-  catch(e){ console.error('theme init failed:', e); }
-
-  try { applySize(sizeIdx); }
-  catch(e){ console.error('size init failed:', e); }
-
-  try { setLang(localStorage.getItem('shiva-muruga-lang') === 'sa'); }
-  catch(e){ console.error('lang init failed:', e); }
-
-  try { applyFilters(); }
-  catch(e){ console.error('filters init failed:', e); }
-
-})();
-</script>
-
-<script>
-/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
-(function(){
-  function fit(){
-    var bar = document.querySelector('.controls');
-    if(!bar) return;
-    document.body.style.paddingTop = '';
-    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
-    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
-    if(need > base) document.body.style.paddingTop = need + 'px';
-  }
-  window.addEventListener('resize', fit);
-  window.addEventListener('load', fit);
-  fit();
-})();
-</script>
+<script src="assets/site.js?v=420f3627"></script>
 </body>
 </html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pancha Bhoota Sthalams — Shiva as the Five Elements</title>
+<meta name="description" content="Interactive map of the five Pancha Bhoota Sthalams — Shiva temples for earth, water, fire, air and space at Kanchipuram, Thiruvanaikaval, Tiruvannamalai, Srikalahasti and Chidambaram.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="assets/site.css?v=420f3627">
+<style>:root,[data-theme="dark"]{--muruga:#ff9f43; --muruga-2:#a55eea;} [data-theme="light"]{--muruga:#b9770e; --muruga-2:#5f27cd;} :root{--primary:var(--muruga); --grad-h:linear-gradient(90deg,var(--muruga),var(--muruga-2)); --grad-v:linear-gradient(var(--muruga),var(--muruga-2));}</style>
+<script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
+  (function(){
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
+  })();
+</script>
+</head>
+<body>
+<div class="controls" role="toolbar" aria-label="Page controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
+  <div class="search-wrap">
+    <span aria-hidden="true">🔍</span>
+    <input type="search" id="searchInput" placeholder="Search elements, temples, legends…" aria-label="Search">
+  </div>
+  <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
+    <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">தமிழ்</button>
+  </div>
+  <div class="ctrl-group" role="group" aria-label="Text size">
+    <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
+    <span class="size-val" id="sizeVal">100%</span>
+    <button class="ctrl-btn size-btn" id="sizeUp" aria-label="Increase text size">A+</button>
+  </div>
+  <button class="ctrl-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+    <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+    <span id="toggleLabel">Light</span>
+  </button>
+</div>
+<header>
+  <h1>Pancha Bhoota Sthalams</h1>
+  <p>Five Shiva temples in South India, each worshipped as one of the five elements (<em>pancha bhuta</em>) from which the world is made: earth, water, fire, air and space. Four are in Tamil Nadu; the air temple, Srikalahasti, is in Andhra Pradesh.</p>
+  <div class="legend"><span><i class="dot" style="background:#b9770e"></i>Earth</span><span><i class="dot" style="background:#2e86de"></i>Water</span><span><i class="dot" style="background:#ee5253"></i>Fire</span><span><i class="dot" style="background:#10ac84"></i>Air</span><span><i class="dot" style="background:#5f27cd"></i>Space</span></div>
+</header>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--muruga)">All Five</button>
+  <button class="filter-chip" data-filter="earth" aria-pressed="false" style="--fc:#b9770e">🌍 Earth</button>
+  <button class="filter-chip" data-filter="water" aria-pressed="false" style="--fc:#2e86de">💧 Water</button>
+  <button class="filter-chip" data-filter="fire" aria-pressed="false" style="--fc:#ee5253">🔥 Fire</button>
+  <button class="filter-chip" data-filter="air" aria-pressed="false" style="--fc:#10ac84">🌬️ Air</button>
+  <button class="filter-chip" data-filter="space" aria-pressed="false" style="--fc:#5f27cd">✨ Space</button>
+</div>
+<div id="map" role="application" aria-label="Map of the five Pancha Bhoota Sthalams"></div>
+<section data-block>
+  <div class="grid">
+  <article class="card has-corner" id="prithvi" data-item data-id="prithvi" data-tags="earth" style="--accent:#b9770e"><span class="ch-num">1</span>
+  <h3>Earth · Ekambareswarar <span class="native">நிலம் · ஏகாம்பரேஸ்வரர், காஞ்சிபுரம்</span></h3><span class="tag">Prithvi Lingam — Kanchipuram</span><p>Parvati is said to have shaped a lingam of sand under a mango tree on the banks of the Vegavati and, when the river flooded, held it in her embrace to protect it. Shiva appeared as Ekambareswarar, "Lord of the mango tree". Because the lingam is of earth, the usual water abhishekam is not performed on it. The temple's ancient mango tree has four branches said to stand for the four Vedas, and the complex even holds a Divya Desam of Vishnu.</p><dl class="facts"><div class="fact"><dt>Shiva as</dt><dd>Ekambareswarar (Ekambaranathar)</dd></div><div class="fact"><dt>Goddess</dt><dd>Parvati, worshipped in the legend as Kamakshi</dd></div><div class="fact"><dt>Place</dt><dd>Kanchipuram, Tamil Nadu</dd></div></dl><div class="chips"><span class="chip event">🌍 Earth</span><span class="chip">Sand lingam</span><span class="chip">Sacred mango tree</span></div><button class="map-link" data-id="prithvi" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="appu" data-item data-id="appu" data-tags="water" style="--accent:#2e86de"><span class="ch-num">2</span>
+  <h3>Water · Jambukeswarar <span class="native">நீர் · ஜம்புகேஸ்வரர், திருவானைக்காவல்</span></h3><span class="tag">Appu Lingam — Thiruvanaikaval, Tiruchirappalli</span><p>An underground spring keeps the lingam in the low sanctum partly under water. Akilandeswari is said to have fashioned it from Kaveri water under a jambu (naval) tree. The temple's name recalls an elephant (<em>aanai</em>) that bathed the lingam each day and a spider that spun a web to shade it; tradition holds the spider was reborn as the Chola king Kochengat, credited with building the shrine. It stands just across the river from Srirangam.</p><dl class="facts"><div class="fact"><dt>Shiva as</dt><dd>Jambukeswarar</dd></div><div class="fact"><dt>Goddess</dt><dd>Akilandeswari</dd></div><div class="fact"><dt>Place</dt><dd>Thiruvanaikaval, Tiruchirappalli, Tamil Nadu</dd></div></dl><div class="chips"><span class="chip event">💧 Water</span><span class="chip">Underground spring</span><span class="chip">Elephant &amp; spider</span></div><button class="map-link" data-id="appu" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="agni" data-item data-id="agni" data-tags="fire" style="--accent:#ee5253"><span class="ch-num">3</span>
+  <h3>Fire · Annamalaiyar <span class="native">நெருப்பு · அண்ணாமலையார், திருவண்ணாமலை</span></h3><span class="tag">Agni Lingam — Tiruvannamalai</span><p>Shiva once appeared as an endless column of fire whose top and bottom Brahma and Vishnu could not find; the red hill of Arunachala behind the temple is worshipped as that pillar, and as Shiva himself. On Karthigai Deepam a great beacon is lit on the summit, and on every full moon pilgrims walk the roughly 14 km path around the hill (girivalam).</p><dl class="facts"><div class="fact"><dt>Shiva as</dt><dd>Annamalaiyar (Arunachaleswarar)</dd></div><div class="fact"><dt>Goddess</dt><dd>Unnamulai Amman</dd></div><div class="fact"><dt>Place</dt><dd>Tiruvannamalai, Tamil Nadu</dd></div></dl><div class="chips"><span class="chip event">🔥 Fire</span><span class="chip">Arunachala hill</span><span class="chip">Karthigai Deepam</span></div><button class="map-link" data-id="agni" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="vayu" data-item data-id="vayu" data-tags="air" style="--accent:#10ac84"><span class="ch-num">4</span>
+  <h3>Air · Srikalahasteeswara <span class="native">காற்று · காளத்திநாதர், திருக்காளத்தி</span></h3><span class="tag">Vayu Lingam — Srikalahasti, Andhra Pradesh</span><p>A lamp in the sanctum is seen to flicker constantly though no breeze enters — taken as the presence of Vayu. The town's name joins Sri (spider), Kala (serpent) and Hasti (elephant), three creatures said to have worshipped the lingam. It is also where the hunter <a href="an.html">Kannappa Nayanar</a> offered his own eyes to Shiva, and it is visited as a Rahu–Ketu kshetra.</p><dl class="facts"><div class="fact"><dt>Shiva as</dt><dd>Srikalahasteeswara</dd></div><div class="fact"><dt>Goddess</dt><dd>Gnana Prasunambika</dd></div><div class="fact"><dt>Place</dt><dd>Srikalahasti, Tirupati district, Andhra Pradesh · on the Swarnamukhi river</dd></div></dl><div class="chips"><span class="chip event">🌬️ Air</span><span class="chip">Flickering lamp</span><span class="chip">Kannappa</span></div><button class="map-link" data-id="vayu" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="akasha" data-item data-id="akasha" data-tags="space" style="--accent:#5f27cd"><span class="ch-num">5</span>
+  <h3>Space · Nataraja <span class="native">ஆகாயம் · நடராஜர், சிதம்பரம் (தில்லை)</span></h3><span class="tag">Akasha Lingam — Chidambaram</span><p>Here Shiva is worshipped chiefly as Nataraja, performing the Ananda Tandava, rather than as a lingam. Beside him, behind a curtain, hangs a garland of golden bilva leaves before what appears to be empty space: the Chidambara Rahasyam, the "secret of Chidambaram", which represents Shiva as formless space. For Tamil Saivas this is simply <em>Koil</em>, "the temple".</p><dl class="facts"><div class="fact"><dt>Shiva as</dt><dd>Nataraja (Sabhanayaka)</dd></div><div class="fact"><dt>Goddess</dt><dd>Sivakami</dd></div><div class="fact"><dt>Place</dt><dd>Chidambaram, Cuddalore district, Tamil Nadu</dd></div></dl><div class="chips"><span class="chip event">✨ Space</span><span class="chip">Chidambara Rahasyam</span><span class="chip">Ananda Tandava</span></div><button class="map-link" data-id="akasha" type="button">📍 Show on map</button>
+</article>
+  </div>
+</section>
+<p class="no-results">No sites match your search. Try another name or clear the filter.</p>
+<div class="story"><h2>A curious alignment</h2><p>Three of the five — Srikalahasti (air), Kanchipuram (earth) and Chidambaram (space) — lie within about a hundredth of a degree of the same longitude, close to 79.7°E, across some 260 km from north to south. Visitors often remark on it; the texts that praise these temples do not mention it.</p><p>All five are also Paadal Petra Sthalams, sung by the Nayanmars in the Tevaram — see the <a href="an.html">Azhwars &amp; Nayanmars</a> and <a href="shiva-muruga.html">Shiva &amp; Muruga</a> pages.</p></div>
+<section class="sources"><h2>Sources</h2><ul><li><a href="https://en.wikipedia.org/wiki/Ekambareswarar_Temple" target="_blank" rel="noopener">Ekambareswarar Temple, Kanchipuram — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Jambukeswarar_Temple,_Thiruvanaikaval" target="_blank" rel="noopener">Jambukeswarar Temple, Thiruvanaikaval — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Annamalaiyar_Temple" target="_blank" rel="noopener">Arunachalesvara (Annamalaiyar) Temple — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Srikalahasteeswara_temple" target="_blank" rel="noopener">Srikalahasteeswara Temple — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Nataraja_Temple,_Chidambaram" target="_blank" rel="noopener">Nataraja Temple, Chidambaram — Wikipedia</a></li></ul></section>
+<footer>
+  <p>🔥 A visual map of the Pancha Bhoota Sthalams · Legends follow temple tradition</p>
+  <p>Map data © OpenStreetMap contributors · Coordinates are approximate</p>
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html" aria-current="page"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
+</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>window.SANATANA_SITES = [{"id": "prithvi", "n": "1", "name": "Ekambareswarar, Kanchipuram — Earth", "sub": "Earth (Prithvi) · Kanchipuram", "lat": 12.8466, "lng": 79.6973, "color": "#b9770e"}, {"id": "appu", "n": "2", "name": "Jambukeswarar, Thiruvanaikaval — Water", "sub": "Water (Appu) · Thiruvanaikaval", "lat": 10.8533, "lng": 78.7056, "color": "#2e86de"}, {"id": "agni", "n": "3", "name": "Annamalaiyar, Tiruvannamalai — Fire", "sub": "Fire (Agni) · Tiruvannamalai", "lat": 12.2316, "lng": 79.0672, "color": "#ee5253"}, {"id": "vayu", "n": "4", "name": "Srikalahasteeswara, Srikalahasti — Air", "sub": "Air (Vayu) · Srikalahasti", "lat": 13.7494, "lng": 79.6983, "color": "#10ac84"}, {"id": "akasha", "n": "5", "name": "Nataraja, Chidambaram — Space", "sub": "Space (Akasha) · Chidambaram", "lat": 11.3994, "lng": 79.6933, "color": "#5f27cd"}];</script>
+<script src="assets/site.js?v=420f3627"></script>
+</body>
+</html>

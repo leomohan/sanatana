@@ -1,0 +1,141 @@
+page:
+  file: shiva-muruga.html
+  layout: page
+  title: Shiva & Muruga — Forms, Sites, Texts & Festivals
+  favicon: 🔱
+  search: Search forms, texts, sites, festivals…
+  native: sa
+  palette:
+    shiva: ['#fc5c65', '#d63c46']
+    muruga: ['#26de81', '#12995a']
+  gradient: [shiva, muruga]
+  primary: muruga
+  h1: Shiva & Muruga
+  intro: Father and son, ascetic and warrior — the two great streams of Tamil Saiva devotion. Explore their forms,
+    their sacred abodes, the scriptures that sing their praise, and the festivals that celebrate them.
+  legend:
+  - {label: Lord Shiva, color: shiva}
+  - {label: Lord Muruga, color: muruga}
+  filters:
+  - {value: all, label: All, color: shiva}
+  - {value: shiva, label: 🔱 Shiva, color: shiva}
+  - {value: muruga, label: 🦚 Muruga, color: muruga}
+  - {value: text, label: 📜 Texts, color: shiva}
+  - {value: festival, label: 🎉 Festivals, color: muruga}
+  footer: ['🔱🦚 A devotional map of Lord Shiva and Lord Muruga · Forms, sacred sites, texts, and festivals', Regional
+      and family traditions vary. This map is for study and orientation.]
+blocks:
+- {type: filters}
+- type: cards
+  title: 🔱 Lord Shiva — Forms &amp; Aspects
+  color: shiva
+  intro: Shiva is the most complex deity of the Hindu pantheon — destroyer and benefactor, ascetic and householder,
+    the cosmic dancer and the silent yogi. His forms depend on the needs of the devotee.
+  grid: v3
+  cards:
+  - {id: nataraja, title: Nataraja, native: नटराज, subtitle: The Lord of the Cosmic Dance, corner_icon: 🔱, accent: shiva,
+    tags: shiva, body: 'The cosmic dancer whose <em>tandava</em> creates, sustains, and dissolves the universe.
+      He dances on the demon Apasmara (ignorance), his drum sounding creation and his flame signalling destruction.'}
+  - {id: dakshinamurti, title: Dakshinamurti, native: दक्षिणामूर्ति, subtitle: The Silent Teacher, corner_icon: 🧘,
+    accent: shiva, tags: shiva, body: 'Shiva as the primordial guru, seated under a banyan tree, teaching the sages
+      through silence. He represents the transmission of wisdom beyond words.'}
+  - {id: ardhanarishvara, title: Ardhanarishvara, native: अर्धनारीश्वर, subtitle: The Half-Female Lord, corner_icon: ☯️,
+    accent: shiva, tags: shiva, body: 'Shiva depicted as half-male and half-female, united with Parvati. This form
+      expresses the non-duality of Shiva and Shakti — consciousness and energy as one.'}
+  - {id: bhairava, title: Bhairava, native: भैरव, subtitle: The Terrible Destroyer, corner_icon: 🔥, accent: shiva,
+    tags: shiva, body: 'The fierce, terrifying aspect of Shiva — the destroyer of evil and the guardian of the cremation
+      ground. He is the wrathful form invoked for protection.'}
+  - {id: lingam, title: Lingam, native: लिङ्गम्, subtitle: The Formless Symbol, corner_icon: 🕉️, accent: shiva,
+    tags: shiva, body: 'The aniconic representation of Shiva, worshipped as the cosmic pillar of light. The lingam
+      with the yoni base represents the union of Shiva and Shakti, the source of all creation.'}
+- type: cards
+  title: 🦚 Lord Muruga — Forms &amp; Aspects
+  color: muruga
+  intro: Muruga (Skanda, Kartikeya, Subrahmanya) is the youthful commander of the divine army, born from six sparks
+    of Shiva's third eye to destroy the demon Surapadman. He is both warrior and guru.
+  grid: v3
+  cards:
+  - {id: arumugam, title: Arumugam, native: अरुमुगम्, subtitle: The Six-Faced Lord, corner_icon: 🦚, accent: muruga,
+    tags: muruga, body: 'Muruga born with six faces — <em>eesanam, tatpurusham, vamadevam, agoram, sathyojatham,
+      adhomugam</em>. Each face represents a divine attribute; together they symbolize completeness and the ability
+      to see in all directions.'}
+  - {id: dhandayuthapani, title: Dhandayuthapani, native: दण्डायुधपाणि, subtitle: The Ascetic with the Staff, corner_icon: 🧘,
+    accent: muruga, tags: muruga, body: 'The form worshipped at Palani — Muruga as a renunciant, holding a staff
+      (<em>danda</em>), wearing only a loincloth. He embodies detachment and the wisdom that comes from letting
+      go.'}
+  - {id: vel, title: Vel, native: वेल्, subtitle: The Divine Spear, corner_icon: ⚔️, accent: muruga, tags: muruga,
+    body: 'Muruga''s primary weapon, the spear of divine wisdom given by his mother Parvati. It pierces ignorance
+      and vanquishes darkness. The <em>Vel</em> is itself worshipped as a symbol of Muruga''s power.'}
+  - {id: guru, title: Swamimalai Muruga, native: स्वामिमलै, subtitle: The Guru of Shiva, corner_icon: 📿, accent: muruga,
+    tags: muruga, body: 'At Swamimalai, the child Muruga taught the meaning of <em>Om</em> to his own father, Shiva,
+      and demanded that Shiva accept him as guru. This form represents the principle that wisdom transcends age
+      and hierarchy.'}
+  - {id: shanmukha, title: Shanmukha, native: षण्मुख, subtitle: The Six-Faced Commander, corner_icon: 🌟, accent: muruga,
+    tags: muruga, body: 'The name <em>Shanmukha</em> (six-faced) is used across India for Kartikeya. As commander-in-chief
+      of the divine army, he leads the forces of light against the demons.'}
+- type: cards
+  title: 🛕 Sacred Sites
+  color: shiva
+  grid: v4
+  cards:
+  - {id: jyotirlinga, title: 12 Jyotirlingas, native: ज्योतिर्लिङ्ग, subtitle: Shiva's Self-Manifested Shrines,
+    accent: shiva, tags: shiva, body: Twelve temples scattered across India where Shiva is said to have manifested
+      as a pillar of light. From Somnath on the sea to Kedarnath in the Himalayas.}
+  - {id: pancha-bhoota, title: Pancha Bhoota Sthalams, native: पञ्चभूत स्थल, subtitle: Shiva as the Five Elements,
+    accent: shiva, tags: shiva, body: 'Five temples where Shiva is worshipped as earth, water, fire, air and space
+      — Kanchipuram, Thiruvanaikaval, Tiruvannamalai, Srikalahasti and Chidambaram. <a href="pancha-bhoota.html"
+      style="color:inherit;font-weight:600">See the map →</a>'}
+  - {id: kailash, title: Mount Kailash, native: कैलाश, subtitle: Shiva's Eternal Abode, accent: shiva, tags: shiva,
+    body: The sacred mountain in Tibet where Shiva sits in eternal meditation with Parvati. It is the axis of the
+      world in Hindu cosmology.}
+  - {id: arupadai, title: Arupadai Veedu, native: अरुपडै वीडु, subtitle: The Six Abodes of Muruga, accent: muruga,
+    tags: muruga, body: 'The six sacred temples of Muruga in Tamil Nadu — Thiruparankundram (wedding), Thiruchendur
+      (victory), Palani (renunciation), Swamimalai (wisdom), Thiruthani (union), and Pazhamudircholai (forest).'}
+  - {id: thiruchendur, title: Thiruchendur, native: तिरुच्चेन्दूर, subtitle: The Victory Abode, accent: muruga,
+    tags: muruga, body: 'The only Arupadai Veedu on the seashore, where Muruga defeated the demon Surapadman. The
+      temple stands just metres from the Gulf of Mannar yet is said never to flood.'}
+- type: cards
+  title: 📜 Key Texts
+  color: muruga
+  grid: v3
+  cards:
+  - {id: shiva-purana, title: Shiva Purana, native: शिव पुराण, subtitle: The Great Scripture of Shiva, accent: shiva,
+    tags: shiva text, body: 'One of the eighteen Mahapuranas, narrating Shiva''s forms, his marriage to Parvati,
+      the destruction of Tripura, and the glory of the Jyotirlingas. It is a foundational text of Shaivism.'}
+  - {id: tirumurai, title: Tirumurai, native: திருமுறை, subtitle: The Tamil Saiva Canon, accent: shiva, tags: shiva
+      text, body: 'Twelve books of Tamil Saiva hymns and hagiography: the Tevaram of Appar, Sambandar and Sundarar,
+      Manikkavacakar''s Tiruvachakam, Tirumular''s Tirumantiram and Sekkizhar''s Periya Puranam. It is the heart
+      of Tamil Saiva devotion.'}
+  - {id: agamas, title: Saiva Agamas, native: आगम, subtitle: Temple & Ritual Manuals, accent: shiva, tags: shiva
+      text, body: 'Twenty-eight principal texts that govern temple construction, daily worship, festivals, meditation,
+      and Saiva philosophy. They are the ritual foundation of Shaiva Siddhanta.'}
+  - {id: skanda-purana, title: Skanda Purana, native: स्कन्द पुराण, subtitle: The Great Epic of Muruga, accent: muruga,
+    tags: muruga text, body: 'The largest of the eighteen Mahapuranas, narrating Muruga''s birth, his destruction
+      of Surapadman, and the sacred geography of India. It is the primary Sanskrit source for Muruga''s mythology.'}
+  - {id: kanda-sasti, title: Kanda Shashti Kavasam, native: கந்த சஷ்டி கவசம், subtitle: The Armour of Muruga, accent: muruga,
+    tags: muruga text, body: 'A Tamil hymn composed by Deva Raya Swamigal, recited for protection and to invoke
+      Muruga''s grace. It is one of the most beloved devotional texts in Tamil Nadu.'}
+  - {id: tiruppugal, title: Tiruppugal, native: திருப்புகழ், subtitle: Songs of Muruga's Glory, accent: muruga,
+    tags: muruga text, body: 'The ecstatic Tamil hymns of Arunagirinathar, praising Muruga''s beauty, power, and
+      grace. They are celebrated for their poetic brilliance and rhythmic complexity.'}
+- type: cards
+  title: 🎉 Festivals
+  color: shiva
+  grid: v3
+  cards:
+  - {id: shivaratri, title: Maha Shivaratri, native: महाशिवरात्रि, subtitle: The Great Night of Shiva, accent: shiva,
+    tags: shiva festival, body: 'Observed on the night before the new moon in February–March. Devotees fast, keep
+      an all-night vigil, chant Shiva''s 1,008 names, and bathe the lingam. It is the most sacred night of the Shaiva
+      year.'}
+  - {id: karthigai, title: Karthigai Deepam, native: கார்த்திகை தீபம், subtitle: The Festival of Lights, accent: shiva,
+    tags: shiva festival, body: 'Celebrated in November–December, honoring Shiva''s manifestation as an infinite
+      pillar of fire. The grand Maha Deepam is lit atop Annamalai Hill in Tiruvannamalai, visible for miles.'}
+  - {id: skanda-sashti, title: Skanda Sashti, native: स्कन्द षष्ठी, subtitle: Muruga's Victory, accent: muruga,
+    tags: muruga festival, body: 'A six-day festival in October–November commemorating Muruga''s defeat of Surapadman.
+      Devotees observe fasts, recite the Kanda Shashti Kavasam, and perform acts of penance.'}
+  - {id: thaipusam, title: Thaipusam, native: தைப்பூசம், subtitle: The Kavadi Festival, accent: muruga, tags: muruga
+      festival, body: 'Celebrated in January–February, honoring the day Parvati gave Muruga the Vel. Devotees carry
+      <em>kavadis</em> (burdens of devotion) and undertake acts of extreme penance.'}
+  - {id: panguni, title: Panguni Uthiram, native: பங்குனி உத்திரம், subtitle: The Divine Wedding, accent: muruga,
+    tags: muruga festival, body: 'Celebrated in March–April, marking the marriage of Muruga to Deivanai. It is a
+      major festival at Thiruparankundram and other Muruga temples.'}

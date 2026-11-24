@@ -5,287 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Six Darshanas — A Comparison Map</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=420f3627">
+<style>:root,[data-theme="dark"]{--nyaya:#ff9f43; --vaisheshika:#26de81; --samkhya:#45aaf2; --yoga:#a55eea; --mimamsa:#fc5c65; --vedanta:#f7b731; --astika:#c084fc; --nastika:#8899aa;} [data-theme="light"]{--nyaya:#e07b1a; --vaisheshika:#12995a; --samkhya:#1f7fc4; --yoga:#8b45d6; --mimamsa:#d63c46; --vedanta:#c98a00; --astika:#8b45d6; --nastika:#5f6b7a;} :root{--primary:var(--astika); --grad-h:linear-gradient(90deg,var(--nyaya),var(--vaisheshika),var(--samkhya),var(--yoga),var(--mimamsa),var(--vedanta)); --grad-v:linear-gradient(var(--nyaya),var(--vaisheshika),var(--samkhya),var(--yoga),var(--mimamsa),var(--vedanta));}</style>
 <script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
   (function(){
-    var savedTheme = localStorage.getItem('darshana-theme');
-    var theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
-    var savedSize = localStorage.getItem('darshana-size') || '1';
-    document.documentElement.style.setProperty('--scale', savedSize);
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
   })();
 </script>
-<style>
-  :root,[data-theme="dark"]{
-    --bg:#0e0b1a; --bg-grad:#1b1435;
-    --card:#241d40; --card-2:#161129;
-    --border:rgba(255,255,255,.06); --border-strong:rgba(255,255,255,.14);
-    --chip-bg:rgba(255,255,255,.06); --chip-border:rgba(255,255,255,.08);
-    --text:#eae6f7; --muted:#a29ac2;
-    --shadow:0 14px 34px rgba(0,0,0,.5);
-    --nyaya:#ff9f43; --vaisheshika:#26de81; --samkhya:#45aaf2;
-    --yoga:#a55eea; --mimamsa:#fc5c65; --vedanta:#f7b731;
-    --astika:#c084fc; --nastika:#8899aa;
-  }
-  [data-theme="light"]{
-    --bg:#fdf9f3; --bg-grad:#fff4e6;
-    --card:#ffffff; --card-2:#fffaf2;
-    --border:rgba(60,40,20,.10); --border-strong:rgba(60,40,20,.22);
-    --chip-bg:rgba(120,80,30,.07); --chip-border:rgba(120,80,30,.14);
-    --text:#2a1f14; --muted:#6b5c4a;
-    --shadow:0 14px 34px rgba(90,60,20,.15);
-    --nyaya:#e07b1a; --vaisheshika:#12995a; --samkhya:#1f7fc4;
-    --yoga:#8b45d6; --mimamsa:#d63c46; --vedanta:#c98a00;
-    --astika:#8b45d6; --nastika:#5f6b7a;
-  }
-
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  :root{ --scale:1; }
-
-  body{
-    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    background:radial-gradient(circle at top,var(--bg-grad) 0%,var(--bg) 60%);
-    color:var(--text);
-    min-height:100vh;
-    padding:90px 20px 80px;
-    line-height:1.6;
-    font-size:calc(17px * var(--scale));
-    transition:background .35s ease,color .35s ease;
-  }
-
-  /* CONTROL BAR */
-  .controls{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
-    padding:12px 16px;
-    background:color-mix(in srgb,var(--bg) 88%,transparent);
-    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border-strong);
-  }
-  .ctrl-group{
-    display:flex; align-items:center; gap:6px;
-    background:var(--card); border:1px solid var(--border-strong);
-    border-radius:50px; padding:5px;
-  }
-  .ctrl-btn{
-    font-family:inherit; font-size:.85rem; font-weight:600;
-    color:var(--text); background:transparent; border:none; border-radius:40px;
-    padding:7px 13px; cursor:pointer; display:flex; align-items:center; gap:6px;
-    transition:background .2s,color .2s; white-space:nowrap;
-  }
-  .ctrl-btn:hover{background:var(--chip-bg);}
-  .ctrl-btn:focus-visible{outline:2px solid var(--astika);outline-offset:2px;}
-  .ctrl-btn.active{background:var(--chip-bg);box-shadow:inset 0 0 0 1px var(--border-strong);}
-
-  .theme-toggle{padding:5px 12px 5px 6px;}
-  .toggle-track{position:relative;width:44px;height:24px;border-radius:20px;background:var(--chip-bg);border:1px solid var(--border-strong);flex-shrink:0;transition:background .3s;}
-  .toggle-knob{position:absolute;top:1px;left:1px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#ffcf6b,#ff9f43);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .3s cubic-bezier(.4,1.6,.5,1);box-shadow:0 2px 6px rgba(0,0,0,.3);}
-  [data-theme="light"] .toggle-knob{transform:translateX(20px);}
-
-  .size-btn{width:34px;height:34px;justify-content:center;padding:0;font-size:.9rem;font-weight:800;border-radius:50%;}
-  .size-val{min-width:40px;text-align:center;font-size:.8rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;}
-
-  .search-wrap{
-    display:flex;align-items:center;gap:8px;
-    background:var(--card);border:1px solid var(--border-strong);
-    border-radius:50px;padding:6px 14px;flex:1 1 180px;max-width:320px;
-  }
-  .search-wrap:focus-within{border-color:var(--astika);}
-  .search-wrap input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:inherit;font-size:.9rem;min-width:0;}
-  .search-wrap input::placeholder{color:var(--muted);}
-
-  .lang-toggle .ctrl-btn.active{color:var(--astika);}
-
-  /* FILTERS */
-  .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:1000px;margin:0 auto 30px;}
-  .filter-chip{
-    font-family:inherit;font-size:.82rem;font-weight:600;
-    padding:7px 15px;border-radius:30px;cursor:pointer;
-    background:var(--card);color:var(--muted);
-    border:1px solid var(--border-strong);transition:all .2s;
-  }
-  .filter-chip:hover{border-color:var(--muted);transform:translateY(-1px);}
-  .filter-chip:focus-visible{outline:2px solid var(--astika);outline-offset:2px;}
-  .filter-chip.active{background:var(--fc,var(--astika));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--fc,var(--astika)) 40%,transparent);}
-
-  /* LAYOUT */
-  header{text-align:center;max-width:900px;margin:0 auto 34px;}
-  header h1{
-    font-size:clamp(1.6rem,4vw,2.6rem);
-    background:linear-gradient(90deg,var(--nyaya),var(--vaisheshika),var(--samkhya),var(--yoga),var(--mimamsa),var(--vedanta));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    font-weight:800;letter-spacing:.5px;margin-bottom:12px;
-  }
-  header p{color:var(--muted);font-size:1.05rem;max-width:680px;margin:0 auto;}
-
-  .legend{display:flex;flex-wrap:wrap;gap:12px 18px;justify-content:center;margin-top:22px;}
-  .legend span{display:flex;align-items:center;gap:7px;font-size:.85rem;color:var(--muted);}
-  .dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex-shrink:0;}
-
-  section{margin:50px auto;max-width:1280px;}
-  .section-title{font-size:1.4rem;font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:12px;}
-  .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,currentColor,transparent);opacity:.4;}
-
-  /* ---------- COMPARISON TABLE ---------- */
-  .compare-scroll{
-    overflow-x:auto;
-    border-radius:20px;
-    border:1px solid var(--border);
-    background:var(--card);
-    box-shadow:var(--shadow);
-    margin-bottom:30px;
-  }
-  .compare{
-    width:100%;
-    border-collapse:collapse;
-    min-width:1000px;
-    font-size:.88rem;
-  }
-  .compare th, .compare td{
-    padding:14px 16px;
-    text-align:left;
-    vertical-align:top;
-    border-bottom:1px solid var(--border);
-  }
-  .compare thead th{
-    position:sticky;
-    top:0;
-    background:linear-gradient(160deg,var(--card),var(--card-2));
-    font-size:.95rem;
-    font-weight:800;
-    letter-spacing:.3px;
-    z-index:2;
-    border-bottom:2px solid var(--border-strong);
-    white-space:nowrap;
-  }
-  .compare thead th:first-child{
-    color:var(--muted);
-    font-size:.78rem;
-    text-transform:uppercase;
-    letter-spacing:.8px;
-    font-weight:700;
-  }
-  .compare thead th[data-accent]{color:var(--accent);}
-  .compare tbody th{
-    font-weight:700;
-    color:var(--muted);
-    font-size:.78rem;
-    text-transform:uppercase;
-    letter-spacing:.7px;
-    white-space:nowrap;
-    background:var(--card-2);
-    position:sticky;
-    left:0;
-    z-index:1;
-    border-right:1px solid var(--border);
-  }
-  .compare tbody tr:last-child th,
-  .compare tbody tr:last-child td{border-bottom:none;}
-  .compare tbody tr:hover td{background:color-mix(in srgb,var(--bg) 60%,transparent);}
-  .compare td{color:var(--text);}
-  .compare td strong{color:var(--text);}
-  .compare td .sanskrit{font-size:.78rem;opacity:.7;display:block;margin-top:2px;}
-
-  /* Column hide toggles (from filter chips) */
-  .compare [data-col]{transition:opacity .25s,width .25s;}
-  .col-hidden{display:none !important;}
-
-  /* ---------- SCHOOL CARDS ---------- */
-  .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
-
-  .card{
-    position:relative;
-    background:linear-gradient(160deg,var(--card),var(--card-2));
-    border-radius:18px;padding:24px 22px 22px;
-    border:1px solid var(--border);
-    transition:transform .25s ease,box-shadow .25s ease,border-color .25s,opacity .3s;
-    overflow:hidden;
-  }
-  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent,#888);}
-  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--accent,#888);}
-  .card.hidden{display:none;}
-
-  .card h3{font-size:1.2rem;margin-bottom:6px;color:var(--accent,#fff);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-  .card h3 .sanskrit{font-size:.82rem;font-weight:500;opacity:.8;display:none;}
-  body.show-sanskrit .card h3 .sanskrit{display:inline;}
-  .card .tag{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:12px;display:block;}
-  .card p{font-size:.94rem;color:var(--text);opacity:.9;margin-bottom:14px;}
-
-  .facts{display:grid;gap:10px;margin-top:14px;padding-top:14px;border-top:1px dashed var(--border-strong);}
-  .fact{display:grid;grid-template-columns:84px 1fr;gap:10px;font-size:.86rem;align-items:baseline;}
-  .fact dt{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);}
-  .fact dd{color:var(--text);}
-
-  .nyaya-card{--accent:var(--nyaya);}
-  .vaisheshika-card{--accent:var(--vaisheshika);}
-  .samkhya-card{--accent:var(--samkhya);}
-  .yoga-card{--accent:var(--yoga);}
-  .mimamsa-card{--accent:var(--mimamsa);}
-  .vedanta-card{--accent:var(--vedanta);}
-
-  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
-  .chip{font-size:.75rem;padding:4px 10px;border-radius:20px;background:var(--chip-bg);color:var(--muted);border:1px solid var(--chip-border);}
-  .chip.theme-tag{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,transparent);}
-
-  .era-badge{display:inline-block;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--chip-bg);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);margin-bottom:10px;}
-
-  /* Pairs callout */
-  .pairs{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:10px;}
-  .pair{
-    background:linear-gradient(160deg,var(--card),var(--card-2));
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:18px 20px;
-  }
-  .pair h4{font-size:1rem;color:var(--a,var(--astika));margin-bottom:6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
-  .pair p{font-size:.88rem;color:var(--text);opacity:.88;}
-
-  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:60px;}
-
-  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important;}}
-  @media (max-width:680px){
-    body{padding-top:130px;}
-    .controls{gap:8px;}
-    .search-wrap{max-width:none;flex:1 1 100%;order:5;}
-    .ctrl-btn{padding:6px 10px;font-size:.8rem;}
-    .size-btn{width:30px;height:30px;}
-    .fact{grid-template-columns:1fr;}
-    .fact dt{margin-top:2px;}
-  }
-
-  /* ---------- SITE NAV (home button + footer links) ---------- */
-  .home-btn{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:7px 14px;border-radius:999px;
-    background:var(--card);color:var(--text);
-    border:1px solid var(--border-strong,var(--border));
-    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
-    white-space:nowrap;transition:transform .2s,border-color .2s;
-  }
-  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
-  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
-  .site-nav{
-    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
-    max-width:980px;margin:26px auto 4px;padding-top:20px;
-    border-top:1px solid var(--border);
-  }
-  .site-nav a{
-    display:inline-flex;align-items:center;gap:5px;
-    padding:6px 12px;border-radius:999px;
-    font-size:.8rem;font-weight:600;text-decoration:none;
-    color:var(--muted);background:var(--card);
-    border:1px solid var(--border);
-    transition:color .2s,border-color .2s,transform .2s;
-  }
-  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
-  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
-  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
-  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
-</style>
 </head>
 <body>
-
-<div class="controls" role="toolbar" aria-label="Map controls">
+<div class="controls" role="toolbar" aria-label="Page controls">
   <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
@@ -293,7 +25,7 @@
   </div>
   <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
     <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
-    <button class="ctrl-btn" id="langSa" aria-pressed="false">संस्कृतम्</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">संस्कृतम्</button>
   </div>
   <div class="ctrl-group" role="group" aria-label="Text size">
     <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
@@ -305,282 +37,75 @@
     <span id="toggleLabel">Light</span>
   </button>
 </div>
-
 <header>
   <h1>The Six Darshanas</h1>
   <p>Six classical schools of Indian philosophy, traditionally grouped into three complementary pairs. Each approaches reality, knowledge and liberation differently. Compare them side by side.</p>
-  <div class="legend">
-    <span><i class="dot" style="background:var(--nyaya)"></i>Nyaya</span>
-    <span><i class="dot" style="background:var(--vaisheshika)"></i>Vaisheshika</span>
-    <span><i class="dot" style="background:var(--samkhya)"></i>Samkhya</span>
-    <span><i class="dot" style="background:var(--yoga)"></i>Yoga</span>
-    <span><i class="dot" style="background:var(--mimamsa)"></i>Mimamsa</span>
-    <span><i class="dot" style="background:var(--vedanta)"></i>Vedanta</span>
-  </div>
+  <div class="legend"><span><i class="dot" style="background:var(--nyaya)"></i>Nyaya</span><span><i class="dot" style="background:var(--vaisheshika)"></i>Vaisheshika</span><span><i class="dot" style="background:var(--samkhya)"></i>Samkhya</span><span><i class="dot" style="background:var(--yoga)"></i>Yoga</span><span><i class="dot" style="background:var(--mimamsa)"></i>Mimamsa</span><span><i class="dot" style="background:var(--vedanta)"></i>Vedanta</span></div>
 </header>
-
-<div class="filters" role="group" aria-label="Filter schools">
-  <button class="filter-chip active" data-filter="all" style="--fc:var(--astika)">All Six</button>
-  <button class="filter-chip" data-filter="nyaya" style="--fc:var(--nyaya)">Nyaya</button>
-  <button class="filter-chip" data-filter="vaisheshika" style="--fc:var(--vaisheshika)">Vaisheshika</button>
-  <button class="filter-chip" data-filter="samkhya" style="--fc:var(--samkhya)">Samkhya</button>
-  <button class="filter-chip" data-filter="yoga" style="--fc:var(--yoga)">Yoga</button>
-  <button class="filter-chip" data-filter="mimamsa" style="--fc:var(--mimamsa)">Mimamsa</button>
-  <button class="filter-chip" data-filter="vedanta" style="--fc:var(--vedanta)">Vedanta</button>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--astika)">All Six</button>
+  <button class="filter-chip" data-filter="nyaya" aria-pressed="false" style="--fc:var(--nyaya)">Nyaya</button>
+  <button class="filter-chip" data-filter="vaisheshika" aria-pressed="false" style="--fc:var(--vaisheshika)">Vaisheshika</button>
+  <button class="filter-chip" data-filter="samkhya" aria-pressed="false" style="--fc:var(--samkhya)">Samkhya</button>
+  <button class="filter-chip" data-filter="yoga" aria-pressed="false" style="--fc:var(--yoga)">Yoga</button>
+  <button class="filter-chip" data-filter="mimamsa" aria-pressed="false" style="--fc:var(--mimamsa)">Mimamsa</button>
+  <button class="filter-chip" data-filter="vedanta" aria-pressed="false" style="--fc:var(--vedanta)">Vedanta</button>
 </div>
-
-<!-- ========== COMPARISON TABLE ========== -->
 <section>
   <h2 class="section-title" style="color:var(--astika)">⚖️ Side-by-Side Comparison</h2>
-  <p style="color:var(--muted);margin-bottom:18px;max-width:760px;font-size:.95rem">Scroll horizontally to see all six columns. Filter chips above can hide columns you don't need. Every row uses the same criteria across all schools.</p>
-
+  <p class="section-intro">Scroll horizontally to see all six columns. Filter chips above can hide columns you don't need. Every row uses the same criteria across all schools.</p>
   <div class="compare-scroll">
-    <table class="compare">
-      <thead>
-        <tr>
-          <th scope="col">Criterion</th>
-          <th scope="col" data-accent style="--accent:var(--nyaya)" data-col="nyaya">Nyaya</th>
-          <th scope="col" data-accent style="--accent:var(--vaisheshika)" data-col="vaisheshika">Vaisheshika</th>
-          <th scope="col" data-accent style="--accent:var(--samkhya)" data-col="samkhya">Samkhya</th>
-          <th scope="col" data-accent style="--accent:var(--yoga)" data-col="yoga">Yoga</th>
-          <th scope="col" data-accent style="--accent:var(--mimamsa)" data-col="mimamsa">Mimamsa</th>
-          <th scope="col" data-accent style="--accent:var(--vedanta)" data-col="vedanta">Vedanta</th>
-        </tr>
-      </thead>
+    <table class="compare" style="min-width:1000px">
+      <thead><tr><th scope="col">Criterion</th><th scope="col" data-col="nyaya" style="--accent:var(--nyaya)">Nyaya</th><th scope="col" data-col="vaisheshika" style="--accent:var(--vaisheshika)">Vaisheshika</th><th scope="col" data-col="samkhya" style="--accent:var(--samkhya)">Samkhya</th><th scope="col" data-col="yoga" style="--accent:var(--yoga)">Yoga</th><th scope="col" data-col="mimamsa" style="--accent:var(--mimamsa)">Mimamsa</th><th scope="col" data-col="vedanta" style="--accent:var(--vedanta)">Vedanta</th></tr></thead>
       <tbody>
-        <tr>
-          <th scope="row">Sanskrit Name</th>
-          <td data-col="nyaya">न्याय<span class="sanskrit">Nyāya</span></td>
-          <td data-col="vaisheshika">वैशेषिक<span class="sanskrit">Vaiśeṣika</span></td>
-          <td data-col="samkhya">सांख्य<span class="sanskrit">Sāṃkhya</span></td>
-          <td data-col="yoga">योग<span class="sanskrit">Yoga</span></td>
-          <td data-col="mimamsa">मीमांसा<span class="sanskrit">Mīmāṃsā</span></td>
-          <td data-col="vedanta">वेदान्त<span class="sanskrit">Vedānta</span></td>
-        </tr>
-        <tr>
-          <th scope="row">Founder</th>
-          <td data-col="nyaya">Gautama (Akṣapāda)</td>
-          <td data-col="vaisheshika">Kaṇāda (Kaśyapa)</td>
-          <td data-col="samkhya">Kapila</td>
-          <td data-col="yoga">Patañjali</td>
-          <td data-col="mimamsa">Jaimini</td>
-          <td data-col="vedanta">Bādarāyaṇa (Vyāsa)</td>
-        </tr>
-        <tr>
-          <th scope="row">Core Text</th>
-          <td data-col="nyaya">Nyāya Sūtra</td>
-          <td data-col="vaisheshika">Vaiśeṣika Sūtra</td>
-          <td data-col="samkhya">Sāṃkhya Kārikā</td>
-          <td data-col="yoga">Yoga Sūtra</td>
-          <td data-col="mimamsa">Mīmāṃsā Sūtra</td>
-          <td data-col="vedanta">Brahma Sūtra</td>
-        </tr>
-        <tr>
-          <th scope="row">Approx. Era</th>
-          <td data-col="nyaya">c. 200 BCE – 200 CE</td>
-          <td data-col="vaisheshika">c. 200 BCE – 100 CE</td>
-          <td data-col="samkhya">c. 500 BCE – 500 CE</td>
-          <td data-col="yoga">c. 200 BCE – 400 CE</td>
-          <td data-col="mimamsa">c. 300 BCE – 200 CE</td>
-          <td data-col="vedanta">c. 200 BCE – 800 CE</td>
-        </tr>
-        <tr>
-          <th scope="row">Central Question</th>
-          <td data-col="nyaya"><strong>How do we know?</strong> Logic and valid means of knowledge (pramāṇa).</td>
-          <td data-col="vaisheshika"><strong>What is real?</strong> Categories of being (padārtha).</td>
-          <td data-col="samkhya"><strong>What is consciousness?</strong> Distinguishing Puruṣa (spirit) from Prakṛti (matter).</td>
-          <td data-col="yoga"><strong>How do we still the mind?</strong> Practice leading to liberation.</td>
-          <td data-col="mimamsa"><strong>How do we act rightly?</strong> Ritual and dharma from the Vedas.</td>
-          <td data-col="vedanta"><strong>What is Brahman?</strong> The nature of ultimate reality and Self.</td>
-        </tr>
-        <tr>
-          <th scope="row">Key Method</th>
-          <td data-col="nyaya">Debate, inference, syllogism (5-membered)</td>
-          <td data-col="vaisheshika">Atomistic analysis of substances</td>
-          <td data-col="samkhya">Discrimination (viveka) between two principles</td>
-          <td data-col="yoga">Eight limbs (aṣṭāṅga): ethics → meditation</td>
-          <td data-col="mimamsa">Exegesis of Vedic injunction (vidhi)</td>
-          <td data-col="vedanta">Reasoning on Upanishadic mahāvākyas</td>
-        </tr>
-        <tr>
-          <th scope="row">View of the Self</th>
-          <td data-col="nyaya">Ātman is distinct, eternal, conscious; liberation = freedom from suffering</td>
-          <td data-col="vaisheshika">Ātman is a substance, eternal, many selves; liberation = cessation of karma</td>
-          <td data-col="samkhya">Puruṣa is pure witness; liberation = aloneness (kaivalya)</td>
-          <td data-col="yoga">Puruṣa is pure consciousness; liberation = kaivalya via practice</td>
-          <td data-col="mimamsa">Self is real and acts; liberation = heaven through ritual, not dissolution</td>
-          <td data-col="vedanta">Varies by school: Ātman = Brahman (Advaita); an inseparable mode of Brahman (Viśiṣṭādvaita); eternally distinct (Dvaita)</td>
-        </tr>
-        <tr>
-          <th scope="row">God / Īśvara</th>
-          <td data-col="nyaya">Īśvara as creator and omniscient knower (later Nyāya)</td>
-          <td data-col="vaisheshika">Īśvara as efficient cause (later theism)</td>
-          <td data-col="samkhya">No active creator; Puruṣa/Prakṛti suffice</td>
-          <td data-col="yoga">Īśvara as special Puruṣa, object of devotion</td>
-          <td data-col="mimamsa">Minimal; focus on ritual action, not a creator God</td>
-          <td data-col="vedanta">Brahman as ground of all (Īśvara in theistic schools)</td>
-        </tr>
-        <tr>
-          <th scope="row">Means of Knowledge (Pramāṇa)</th>
-          <td data-col="nyaya">Perception, inference, comparison, testimony</td>
-          <td data-col="vaisheshika">Perception and inference only (testimony is treated as a form of inference)</td>
-          <td data-col="samkhya">Perception, inference, testimony</td>
-          <td data-col="yoga">Perception, inference, testimony, plus meditative insight</td>
-          <td data-col="mimamsa">Testimony (Veda) primary; perception/inference secondary</td>
-          <td data-col="vedanta">Scripture (śabda) is decisive; Advaita accepts six pramāṇas, Viśiṣṭādvaita and Dvaita three (perception, inference, testimony)</td>
-        </tr>
-        <tr>
-          <th scope="row">Pair / Allied School</th>
-          <td data-col="nyaya"><strong>Paired with Vaiśeṣika</strong> — logic + ontology</td>
-          <td data-col="vaisheshika"><strong>Paired with Nyāya</strong> — ontology + logic</td>
-          <td data-col="samkhya"><strong>Paired with Yoga</strong> — theory + practice</td>
-          <td data-col="yoga"><strong>Paired with Sāṃkhya</strong> — practice + theory</td>
-          <td data-col="mimamsa"><strong>Paired with Vedānta</strong> — ritual + knowledge</td>
-          <td data-col="vedanta"><strong>Paired with Mīmāṃsā</strong> — knowledge + ritual</td>
-        </tr>
-        <tr>
-          <th scope="row">Liberation (Mokṣa)</th>
-          <td data-col="nyaya">Freedom from bondage through correct knowledge</td>
-          <td data-col="vaisheshika">Release from karmic cycle; cessation of the self's suffering</td>
-          <td data-col="samkhya">Kaivalya: Puruṣa stands alone, free of Prakṛti</td>
-          <td data-col="yoga">Kaivalya through aṣṭāṅga; citta-vṛtti-nirodha</td>
-          <td data-col="mimamsa">Attainment of heaven (svarga) via proper ritual</td>
-          <td data-col="vedanta">Mokṣa through knowledge of Brahman: realized identity (Advaita), or eternal communion and service (Viśiṣṭādvaita, Dvaita)</td>
-        </tr>
-        <tr>
-          <th scope="row">Legacy</th>
-          <td data-col="nyaya">Indian logic, jurisprudence, debate tradition</td>
-          <td data-col="vaisheshika">Early physics, atomism, categories of reality</td>
-          <td data-col="samkhya">Framework for Yoga, Ayurveda, Bhagavad Gita</td>
-          <td data-col="yoga">Global yoga tradition, meditation science</td>
-          <td data-col="mimamsa">Hindu ritual, legal hermeneutics, Vedic interpretation</td>
-          <td data-col="vedanta">Advaita, Viśiṣṭādvaita, Dvaita — dominant schools today</td>
-        </tr>
+        <tr><th scope="row">Sanskrit Name</th><td data-col="nyaya">न्याय<span class="sanskrit">Nyāya</span></td><td data-col="vaisheshika">वैशेषिक<span class="sanskrit">Vaiśeṣika</span></td><td data-col="samkhya">सांख्य<span class="sanskrit">Sāṃkhya</span></td><td data-col="yoga">योग<span class="sanskrit">Yoga</span></td><td data-col="mimamsa">मीमांसा<span class="sanskrit">Mīmāṃsā</span></td><td data-col="vedanta">वेदान्त<span class="sanskrit">Vedānta</span></td></tr>
+        <tr><th scope="row">Founder</th><td data-col="nyaya">Gautama (Akṣapāda)</td><td data-col="vaisheshika">Kaṇāda (Kaśyapa)</td><td data-col="samkhya">Kapila</td><td data-col="yoga">Patañjali</td><td data-col="mimamsa">Jaimini</td><td data-col="vedanta">Bādarāyaṇa (Vyāsa)</td></tr>
+        <tr><th scope="row">Core Text</th><td data-col="nyaya">Nyāya Sūtra</td><td data-col="vaisheshika">Vaiśeṣika Sūtra</td><td data-col="samkhya">Sāṃkhya Kārikā</td><td data-col="yoga">Yoga Sūtra</td><td data-col="mimamsa">Mīmāṃsā Sūtra</td><td data-col="vedanta">Brahma Sūtra</td></tr>
+        <tr><th scope="row">Approx. Era</th><td data-col="nyaya">c. 200 BCE – 200 CE</td><td data-col="vaisheshika">c. 200 BCE – 100 CE</td><td data-col="samkhya">c. 500 BCE – 500 CE</td><td data-col="yoga">c. 200 BCE – 400 CE</td><td data-col="mimamsa">c. 300 BCE – 200 CE</td><td data-col="vedanta">c. 200 BCE – 800 CE</td></tr>
+        <tr><th scope="row">Central Question</th><td data-col="nyaya"><strong>How do we know?</strong> Logic and valid means of knowledge (pramāṇa).</td><td data-col="vaisheshika"><strong>What is real?</strong> Categories of being (padārtha).</td><td data-col="samkhya"><strong>What is consciousness?</strong> Distinguishing Puruṣa (spirit) from Prakṛti (matter).</td><td data-col="yoga"><strong>How do we still the mind?</strong> Practice leading to liberation.</td><td data-col="mimamsa"><strong>How do we act rightly?</strong> Ritual and dharma from the Vedas.</td><td data-col="vedanta"><strong>What is Brahman?</strong> The nature of ultimate reality and Self.</td></tr>
+        <tr><th scope="row">Key Method</th><td data-col="nyaya">Debate, inference, syllogism (5-membered)</td><td data-col="vaisheshika">Atomistic analysis of substances</td><td data-col="samkhya">Discrimination (viveka) between two principles</td><td data-col="yoga">Eight limbs (aṣṭāṅga): ethics → meditation</td><td data-col="mimamsa">Exegesis of Vedic injunction (vidhi)</td><td data-col="vedanta">Reasoning on Upanishadic mahāvākyas</td></tr>
+        <tr><th scope="row">View of the Self</th><td data-col="nyaya">Ātman is distinct, eternal, conscious; liberation = freedom from suffering</td><td data-col="vaisheshika">Ātman is a substance, eternal, many selves; liberation = cessation of karma</td><td data-col="samkhya">Puruṣa is pure witness; liberation = aloneness (kaivalya)</td><td data-col="yoga">Puruṣa is pure consciousness; liberation = kaivalya via practice</td><td data-col="mimamsa">Self is real and acts; liberation = heaven through ritual, not dissolution</td><td data-col="vedanta">Varies by school: Ātman = Brahman (Advaita); an inseparable mode of Brahman (Viśiṣṭādvaita); eternally distinct (Dvaita)</td></tr>
+        <tr><th scope="row">God / Īśvara</th><td data-col="nyaya">Īśvara as creator and omniscient knower (later Nyāya)</td><td data-col="vaisheshika">Īśvara as efficient cause (later theism)</td><td data-col="samkhya">No active creator; Puruṣa/Prakṛti suffice</td><td data-col="yoga">Īśvara as special Puruṣa, object of devotion</td><td data-col="mimamsa">Minimal; focus on ritual action, not a creator God</td><td data-col="vedanta">Brahman as ground of all (Īśvara in theistic schools)</td></tr>
+        <tr><th scope="row">Means of Knowledge (Pramāṇa)</th><td data-col="nyaya">Perception, inference, comparison, testimony</td><td data-col="vaisheshika">Perception and inference only (testimony is treated as a form of inference)</td><td data-col="samkhya">Perception, inference, testimony</td><td data-col="yoga">Perception, inference, testimony, plus meditative insight</td><td data-col="mimamsa">Testimony (Veda) primary; perception/inference secondary</td><td data-col="vedanta">Scripture (śabda) is decisive; Advaita accepts six pramāṇas, Viśiṣṭādvaita and Dvaita three (perception, inference, testimony)</td></tr>
+        <tr><th scope="row">Pair / Allied School</th><td data-col="nyaya"><strong>Paired with Vaiśeṣika</strong> — logic + ontology</td><td data-col="vaisheshika"><strong>Paired with Nyāya</strong> — ontology + logic</td><td data-col="samkhya"><strong>Paired with Yoga</strong> — theory + practice</td><td data-col="yoga"><strong>Paired with Sāṃkhya</strong> — practice + theory</td><td data-col="mimamsa"><strong>Paired with Vedānta</strong> — ritual + knowledge</td><td data-col="vedanta"><strong>Paired with Mīmāṃsā</strong> — knowledge + ritual</td></tr>
+        <tr><th scope="row">Liberation (Mokṣa)</th><td data-col="nyaya">Freedom from bondage through correct knowledge</td><td data-col="vaisheshika">Release from karmic cycle; cessation of the self's suffering</td><td data-col="samkhya">Kaivalya: Puruṣa stands alone, free of Prakṛti</td><td data-col="yoga">Kaivalya through aṣṭāṅga; citta-vṛtti-nirodha</td><td data-col="mimamsa">Attainment of heaven (svarga) via proper ritual</td><td data-col="vedanta">Mokṣa through knowledge of Brahman: realized identity (Advaita), or eternal communion and service (Viśiṣṭādvaita, Dvaita)</td></tr>
+        <tr><th scope="row">Legacy</th><td data-col="nyaya">Indian logic, jurisprudence, debate tradition</td><td data-col="vaisheshika">Early physics, atomism, categories of reality</td><td data-col="samkhya">Framework for Yoga, Ayurveda, Bhagavad Gita</td><td data-col="yoga">Global yoga tradition, meditation science</td><td data-col="mimamsa">Hindu ritual, legal hermeneutics, Vedic interpretation</td><td data-col="vedanta">Advaita, Viśiṣṭādvaita, Dvaita — dominant schools today</td></tr>
       </tbody>
     </table>
   </div>
 </section>
-
-<!-- ========== SCHOOL CARDS ========== -->
-<section>
+<section data-block>
   <h2 class="section-title" style="color:var(--astika)">📖 The Six Schools in Detail</h2>
   <div class="grid">
-
-    <article class="card nyaya-card" data-tags="nyaya" data-id="nyaya">
-      <div class="era-badge">c. 200 BCE – 200 CE</div>
-      <h3>Nyaya <span class="sanskrit">न्याय</span></h3>
-      <span class="tag">The School of Logic &amp; Epistemology</span>
-      <p>Nyāya (“rule” or “method”) is India’s premier school of logic and epistemology. It systematically analyses how we know anything at all — defining four valid means of knowledge and a five-step syllogism that influenced centuries of debate. Later Nyāya developed a sophisticated theism, arguing for Īśvara as the intelligent cause of the world.</p>
-      <dl class="facts">
-        <div class="fact"><dt>Founder</dt><dd>Gautama (Akṣapāda)</dd></div>
-        <div class="fact"><dt>Core text</dt><dd>Nyāya Sūtra</dd></div>
-        <div class="fact"><dt>Focus</dt><dd>Pramāṇa (means of knowledge), logic, debate</dd></div>
-        <div class="fact"><dt>Key idea</dt><dd>Valid knowledge → liberation from suffering</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">⚖️ Logic</span><span class="chip">Epistemology</span></div>
-    </article>
-
-    <article class="card vaisheshika-card" data-tags="vaisheshika" data-id="vaisheshika">
-      <div class="era-badge">c. 200 BCE – 100 CE</div>
-      <h3>Vaisheshika <span class="sanskrit">वैशेषिक</span></h3>
-      <span class="tag">The School of Categories &amp; Atomism</span>
-      <p>Vaiśeṣika (“particularity”) is an early ontology — a systematic catalogue of everything that exists. Kaṇāda’s sūtras divide reality into six categories (padārtha), to which later writers added a seventh, non-existence (abhāva), and propose an atomistic physics in which material things arise from combinations of eternal atoms. It became the natural companion to Nyāya: ontology + logic.</p>
-      <dl class="facts">
-        <div class="fact"><dt>Founder</dt><dd>Kaṇāda (Kaśyapa)</dd></div>
-        <div class="fact"><dt>Core text</dt><dd>Vaiśeṣika Sūtra</dd></div>
-        <div class="fact"><dt>Focus</dt><dd>Padārtha (categories of being), atomism</dd></div>
-        <div class="fact"><dt>Key idea</dt><dd>Reality is analysable into six (later seven) categories</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🌿 Ontology</span><span class="chip">Atomism</span></div>
-    </article>
-
-    <article class="card samkhya-card" data-tags="samkhya" data-id="samkhya">
-      <div class="era-badge">c. 500 BCE – 500 CE</div>
-      <h3>Samkhya <span class="sanskrit">सांख्य</span></h3>
-      <span class="tag">The School of Dualism</span>
-      <p>Sāṃkhya (“enumeration”) is India’s oldest systematic philosophy. It posits two ultimate principles — <em>Puruṣa</em> (pure consciousness) and <em>Prakṛti</em> (matter/nature) — and explains the entire cosmos as the evolution of Prakṛti for the sake of Puruṣa. Liberation is <em>kaivalya</em>: realizing that consciousness was never bound in the first place.</p>
-      <dl class="facts">
-        <div class="fact"><dt>Founder</dt><dd>Kapila</dd></div>
-        <div class="fact"><dt>Core text</dt><dd>Sāṃkhya Kārikā (Īśvarakṛṣṇa)</dd></div>
-        <div class="fact"><dt>Focus</dt><dd>Puruṣa vs. Prakṛti; 25 tattvas</dd></div>
-        <div class="fact"><dt>Key idea</dt><dd>Discrimination (viveka) → kaivalya</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🧠 Dualism</span><span class="chip">Cosmology</span></div>
-    </article>
-
-    <article class="card yoga-card" data-tags="yoga" data-id="yoga">
-      <div class="era-badge">c. 200 BCE – 400 CE</div>
-      <h3>Yoga <span class="sanskrit">योग</span></h3>
-      <span class="tag">The School of Practice</span>
-      <p>Patañjali’s Yoga is the practical counterpart to Sāṃkhya theory. Its 196 sūtras define yoga as <em>citta-vṛtti-nirodha</em> — the stilling of mental fluctuations — and lay out an eight-limbed path from ethics and posture to meditation and absorption. It remains India’s most globally influential philosophical export.</p>
-      <dl class="facts">
-        <div class="fact"><dt>Founder</dt><dd>Patañjali</dd></div>
-        <div class="fact"><dt>Core text</dt><dd>Yoga Sūtra (196 sūtras)</dd></div>
-        <div class="fact"><dt>Focus</dt><dd>Aṣṭāṅga — eight limbs of practice</dd></div>
-        <div class="fact"><dt>Key idea</dt><dd>Still the mind → kaivalya</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🧘 Practice</span><span class="chip">Meditation</span></div>
-    </article>
-
-    <article class="card mimamsa-card" data-tags="mimamsa" data-id="mimamsa">
-      <div class="era-badge">c. 300 BCE – 200 CE</div>
-      <h3>Mimamsa <span class="sanskrit">मीमांसा</span></h3>
-      <span class="tag">The School of Ritual Hermeneutics</span>
-      <p>Mīmāṃsā (“inquiry”) is the rigorous science of Vedic interpretation. Jaimini’s sūtras analyse the ritual injunctions of the Vedas with extraordinary precision, arguing that dharma is known only through scripture, and that right action — not metaphysical speculation — is the path to the good. It profoundly shaped Hindu law and ritual practice.</p>
-      <dl class="facts">
-        <div class="fact"><dt>Founder</dt><dd>Jaimini</dd></div>
-        <div class="fact"><dt>Core text</dt><dd>Mīmāṃsā Sūtra</dd></div>
-        <div class="fact"><dt>Focus</dt><dd>Vedic ritual, dharma, hermeneutics</dd></div>
-        <div class="fact"><dt>Key idea</dt><dd>Right action (karma) → svarga</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🔥 Ritual</span><span class="chip">Hermeneutics</span></div>
-    </article>
-
-    <article class="card vedanta-card" data-tags="vedanta" data-id="vedanta">
-      <div class="era-badge">c. 200 BCE – 800 CE</div>
-      <h3>Vedanta <span class="sanskrit">वेदान्त</span></h3>
-      <span class="tag">The School of the Upanishads</span>
-      <p>Vedānta (“end of the Vedas”) is the philosophical culmination of the Upanishads. Bādarāyaṇa’s Brahma Sūtra systematized its teachings, and later commentators — Śaṅkara (Advaita), Rāmānuja (Viśiṣṭādvaita) and Madhva (Dvaita) — produced the schools that dominate Hindu thought today. Its central question is how the Self (Ātman) relates to ultimate reality (Brahman): identity for Advaita, inseparable relation for Viśiṣṭādvaita, eternal difference for Dvaita.</p>
-      <dl class="facts">
-        <div class="fact"><dt>Founder</dt><dd>Bādarāyaṇa (Vyāsa)</dd></div>
-        <div class="fact"><dt>Core text</dt><dd>Brahma Sūtra</dd></div>
-        <div class="fact"><dt>Focus</dt><dd>Ātman, Brahman, mokṣa</dd></div>
-        <div class="fact"><dt>Key idea</dt><dd>Knowledge of Brahman → liberation</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🧠 Brahman</span><span class="chip">Upanishads</span></div>
-    </article>
-
+  <article class="card" data-item data-id="nyaya" data-tags="nyaya" style="--accent:var(--nyaya)"><div class="era-badge">c. 200 BCE – 200 CE</div>
+  <h3>Nyaya <span class="native">न्याय</span></h3><span class="tag">The School of Logic &amp; Epistemology</span><p>Nyāya (“rule” or “method”) is India’s premier school of logic and epistemology. It systematically analyses how we know anything at all — defining four valid means of knowledge and a five-step syllogism that influenced centuries of debate. Later Nyāya developed a sophisticated theism, arguing for Īśvara as the intelligent cause of the world.</p><dl class="facts"><div class="fact"><dt>Founder</dt><dd>Gautama (Akṣapāda)</dd></div><div class="fact"><dt>Core text</dt><dd>Nyāya Sūtra</dd></div><div class="fact"><dt>Focus</dt><dd>Pramāṇa (means of knowledge), logic, debate</dd></div><div class="fact"><dt>Key idea</dt><dd>Valid knowledge → liberation from suffering</dd></div></dl><div class="chips"><span class="chip theme-tag">⚖️ Logic</span><span class="chip">Epistemology</span></div>
+</article>
+  <article class="card" data-item data-id="vaisheshika" data-tags="vaisheshika" style="--accent:var(--vaisheshika)"><div class="era-badge">c. 200 BCE – 100 CE</div>
+  <h3>Vaisheshika <span class="native">वैशेषिक</span></h3><span class="tag">The School of Categories &amp; Atomism</span><p>Vaiśeṣika (“particularity”) is an early ontology — a systematic catalogue of everything that exists. Kaṇāda’s sūtras divide reality into six categories (padārtha), to which later writers added a seventh, non-existence (abhāva), and propose an atomistic physics in which material things arise from combinations of eternal atoms. It became the natural companion to Nyāya: ontology + logic.</p><dl class="facts"><div class="fact"><dt>Founder</dt><dd>Kaṇāda (Kaśyapa)</dd></div><div class="fact"><dt>Core text</dt><dd>Vaiśeṣika Sūtra</dd></div><div class="fact"><dt>Focus</dt><dd>Padārtha (categories of being), atomism</dd></div><div class="fact"><dt>Key idea</dt><dd>Reality is analysable into six (later seven) categories</dd></div></dl><div class="chips"><span class="chip theme-tag">🌿 Ontology</span><span class="chip">Atomism</span></div>
+</article>
+  <article class="card" data-item data-id="samkhya" data-tags="samkhya" style="--accent:var(--samkhya)"><div class="era-badge">c. 500 BCE – 500 CE</div>
+  <h3>Samkhya <span class="native">सांख्य</span></h3><span class="tag">The School of Dualism</span><p>Sāṃkhya (“enumeration”) is India’s oldest systematic philosophy. It posits two ultimate principles — <em>Puruṣa</em> (pure consciousness) and <em>Prakṛti</em> (matter/nature) — and explains the entire cosmos as the evolution of Prakṛti for the sake of Puruṣa. Liberation is <em>kaivalya</em>: realizing that consciousness was never bound in the first place.</p><dl class="facts"><div class="fact"><dt>Founder</dt><dd>Kapila</dd></div><div class="fact"><dt>Core text</dt><dd>Sāṃkhya Kārikā (Īśvarakṛṣṇa)</dd></div><div class="fact"><dt>Focus</dt><dd>Puruṣa vs. Prakṛti; 25 tattvas</dd></div><div class="fact"><dt>Key idea</dt><dd>Discrimination (viveka) → kaivalya</dd></div></dl><div class="chips"><span class="chip theme-tag">🧠 Dualism</span><span class="chip">Cosmology</span></div>
+</article>
+  <article class="card" data-item data-id="yoga" data-tags="yoga" style="--accent:var(--yoga)"><div class="era-badge">c. 200 BCE – 400 CE</div>
+  <h3>Yoga <span class="native">योग</span></h3><span class="tag">The School of Practice</span><p>Patañjali’s Yoga is the practical counterpart to Sāṃkhya theory. Its 196 sūtras define yoga as <em>citta-vṛtti-nirodha</em> — the stilling of mental fluctuations — and lay out an eight-limbed path from ethics and posture to meditation and absorption. It remains India’s most globally influential philosophical export.</p><dl class="facts"><div class="fact"><dt>Founder</dt><dd>Patañjali</dd></div><div class="fact"><dt>Core text</dt><dd>Yoga Sūtra (196 sūtras)</dd></div><div class="fact"><dt>Focus</dt><dd>Aṣṭāṅga — eight limbs of practice</dd></div><div class="fact"><dt>Key idea</dt><dd>Still the mind → kaivalya</dd></div></dl><div class="chips"><span class="chip theme-tag">🧘 Practice</span><span class="chip">Meditation</span></div>
+</article>
+  <article class="card" data-item data-id="mimamsa" data-tags="mimamsa" style="--accent:var(--mimamsa)"><div class="era-badge">c. 300 BCE – 200 CE</div>
+  <h3>Mimamsa <span class="native">मीमांसा</span></h3><span class="tag">The School of Ritual Hermeneutics</span><p>Mīmāṃsā (“inquiry”) is the rigorous science of Vedic interpretation. Jaimini’s sūtras analyse the ritual injunctions of the Vedas with extraordinary precision, arguing that dharma is known only through scripture, and that right action — not metaphysical speculation — is the path to the good. It profoundly shaped Hindu law and ritual practice.</p><dl class="facts"><div class="fact"><dt>Founder</dt><dd>Jaimini</dd></div><div class="fact"><dt>Core text</dt><dd>Mīmāṃsā Sūtra</dd></div><div class="fact"><dt>Focus</dt><dd>Vedic ritual, dharma, hermeneutics</dd></div><div class="fact"><dt>Key idea</dt><dd>Right action (karma) → svarga</dd></div></dl><div class="chips"><span class="chip theme-tag">🔥 Ritual</span><span class="chip">Hermeneutics</span></div>
+</article>
+  <article class="card" data-item data-id="vedanta" data-tags="vedanta" style="--accent:var(--vedanta)"><div class="era-badge">c. 200 BCE – 800 CE</div>
+  <h3>Vedanta <span class="native">वेदान्त</span></h3><span class="tag">The School of the Upanishads</span><p>Vedānta (“end of the Vedas”) is the philosophical culmination of the Upanishads. Bādarāyaṇa’s Brahma Sūtra systematized its teachings, and later commentators — Śaṅkara (Advaita), Rāmānuja (Viśiṣṭādvaita) and Madhva (Dvaita) — produced the schools that dominate Hindu thought today. Its central question is how the Self (Ātman) relates to ultimate reality (Brahman): identity for Advaita, inseparable relation for Viśiṣṭādvaita, eternal difference for Dvaita.</p><dl class="facts"><div class="fact"><dt>Founder</dt><dd>Bādarāyaṇa (Vyāsa)</dd></div><div class="fact"><dt>Core text</dt><dd>Brahma Sūtra</dd></div><div class="fact"><dt>Focus</dt><dd>Ātman, Brahman, mokṣa</dd></div><div class="fact"><dt>Key idea</dt><dd>Knowledge of Brahman → liberation</dd></div></dl><div class="chips"><span class="chip theme-tag">🧠 Brahman</span><span class="chip">Upanishads</span></div>
+</article>
   </div>
 </section>
-
-<!-- ========== THE THREE PAIRS ========== -->
 <section>
   <h2 class="section-title" style="color:var(--astika)">🔗 The Three Pairs</h2>
-  <p style="color:var(--muted);margin-bottom:20px;max-width:760px;font-size:.95rem">The six schools are traditionally grouped into three complementary pairs — each pair combining theory with practice, or logic with ontology, or ritual with knowledge.</p>
-  <div class="pairs">
-
-    <div class="pair" style="--a:var(--nyaya)">
-      <h4>⚖️ Nyāya + Vaiśeṣika</h4>
-      <p><strong>Logic + Ontology.</strong> Nyāya supplies the tools of reasoning; Vaiśeṣika supplies the map of reality. Together they form a complete realist system — what exists, and how we can know it.</p>
-    </div>
-
-    <div class="pair" style="--a:var(--samkhya)">
-      <h4>🧠 Sāṃkhya + Yoga</h4>
-      <p><strong>Theory + Practice.</strong> Sāṃkhya explains the metaphysics of consciousness and matter; Yoga provides the practical discipline to realize it. The Yoga Sūtra openly builds on Sāṃkhya categories.</p>
-    </div>
-
-    <div class="pair" style="--a:var(--mimamsa)">
-      <h4>🔥 Mīmāṃsā + Vedānta</h4>
-      <p><strong>Ritual + Knowledge.</strong> Mīmāṃsā focuses on the karma-kāṇḍa (action section) of the Vedas; Vedānta focuses on the jñāna-kāṇḍa (knowledge section). Together they cover the whole Vedic path.</p>
-    </div>
-
-  </div>
+  <p class="section-intro">The six schools are traditionally grouped into three complementary pairs — each pair combining theory with practice, or logic with ontology, or ritual with knowledge.</p>
+  <div class="pairs"><div class="pair" style="--a:var(--nyaya)"><h4>⚖️ Nyāya + Vaiśeṣika</h4><p><strong>Logic + Ontology.</strong> Nyāya supplies the tools of reasoning; Vaiśeṣika supplies the map of reality. Together they form a complete realist system — what exists, and how we can know it.</p></div><div class="pair" style="--a:var(--samkhya)"><h4>🧠 Sāṃkhya + Yoga</h4><p><strong>Theory + Practice.</strong> Sāṃkhya explains the metaphysics of consciousness and matter; Yoga provides the practical discipline to realize it. The Yoga Sūtra openly builds on Sāṃkhya categories.</p></div><div class="pair" style="--a:var(--mimamsa)"><h4>🔥 Mīmāṃsā + Vedānta</h4><p><strong>Ritual + Knowledge.</strong> Mīmāṃsā focuses on the karma-kāṇḍa (action section) of the Vedas; Vedānta focuses on the jñāna-kāṇḍa (knowledge section). Together they cover the whole Vedic path.</p></div></div>
 </section>
-
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
 <footer>
   <p>⚖️ A comparison map of the Six Darshanas · Dates are approximate · Schools evolved over centuries with many sub-schools</p>
-  <p style="margin-top:6px">All six are <em>āstika</em> schools — they accept the authority of the Vedas.</p>
-
+  <p>All six are <em>āstika</em> schools — they accept the authority of the Vedas.</p>
   <nav class="site-nav" aria-label="All Sanatana maps">
     <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
     <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
@@ -595,137 +120,12 @@
     <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
     <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
     <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
   </nav>
   <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
-
-<script>
-(function(){
-  "use strict";
-  var root = document.documentElement;
-  var body = document.body;
-
-  /* ---------- THEME ---------- */
-  var themeBtn = document.getElementById('themeToggle');
-  var knob = document.getElementById('knob');
-  var toggleLabel = document.getElementById('toggleLabel');
-  function applyTheme(t){
-    root.setAttribute('data-theme', t);
-    localStorage.setItem('darshana-theme', t);
-    var isLight = t === 'light';
-    knob.textContent = isLight ? '☀️' : '🌙';
-    toggleLabel.textContent = isLight ? 'Dark' : 'Light';
-    themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-  }
-  themeBtn.addEventListener('click', function(){
-    applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-  });
-
-  /* ---------- TEXT SIZE ---------- */
-  var sizes = [0.85, 1, 1.15, 1.3, 1.5];
-  var sizeIdx = parseInt(localStorage.getItem('darshana-size-idx') || '1', 10);
-  var sizeVal = document.getElementById('sizeVal');
-  function applySize(i){
-    sizeIdx = Math.max(0, Math.min(sizes.length - 1, i));
-    var scale = sizes[sizeIdx];
-    root.style.setProperty('--scale', scale);
-    localStorage.setItem('darshana-size', scale);
-    localStorage.setItem('darshana-size-idx', sizeIdx);
-    sizeVal.textContent = Math.round(scale * 100) + '%';
-  }
-  document.getElementById('sizeUp').addEventListener('click', function(){ applySize(sizeIdx + 1); });
-  document.getElementById('sizeDown').addEventListener('click', function(){ applySize(sizeIdx - 1); });
-
-  /* ---------- LANGUAGE ---------- */
-  var langEn = document.getElementById('langEn');
-  var langSa = document.getElementById('langSa');
-  function setLang(showSanskrit){
-    body.classList.toggle('show-sanskrit', showSanskrit);
-    langEn.classList.toggle('active', !showSanskrit);
-    langSa.classList.toggle('active', showSanskrit);
-    langEn.setAttribute('aria-pressed', String(!showSanskrit));
-    langSa.setAttribute('aria-pressed', String(showSanskrit));
-    localStorage.setItem('darshana-lang', showSanskrit ? 'sa' : 'en');
-  }
-  langEn.addEventListener('click', function(){ setLang(false); });
-  langSa.addEventListener('click', function(){ setLang(true); });
-
-  /* ---------- SEARCH + FILTER ---------- */
-  var searchInput = document.getElementById('searchInput');
-  var activeFilter = 'all';
-  var filterChips = document.querySelectorAll('.filter-chip');
-
-  filterChips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      activeFilter = chip.getAttribute('data-filter');
-      filterChips.forEach(function(c){ c.classList.toggle('active', c === chip); });
-      applyFilters();
-    });
-  });
-  searchInput.addEventListener('input', function(){ applyFilters(); });
-
-  function matches(el){
-    var q = searchInput.value.trim().toLowerCase();
-    var tags = (el.getAttribute('data-tags') || '').toLowerCase();
-    var text = el.textContent.toLowerCase();
-    if(activeFilter !== 'all' && tags.indexOf(activeFilter) === -1) return false;
-    if(q && text.indexOf(q) === -1) return false;
-    return true;
-  }
-
-  function applyFilters(){
-    // 1) Card visibility
-    document.querySelectorAll('.card[data-tags]').forEach(function(card){
-      card.classList.toggle('hidden', !matches(card));
-    });
-
-    // 2) Hide a section if all its cards are hidden (only sections that contain cards)
-    document.querySelectorAll('section').forEach(function(sec){
-      var cards = sec.querySelectorAll('.card[data-tags]');
-      if(!cards.length) return;
-      var visible = false;
-      cards.forEach(function(c){ if(!c.classList.contains('hidden')) visible = true; });
-      sec.style.display = visible ? '' : 'none';
-    });
-
-    // 3) Table column visibility — driven by the same filter
-    document.querySelectorAll('.compare [data-col]').forEach(function(cell){
-      var col = cell.getAttribute('data-col');
-      cell.classList.toggle('col-hidden', activeFilter !== 'all' && col !== activeFilter);
-    });
-  }
-
-  /* ---------- BOOT SEQUENCE ---------- */
-  try { applyTheme(root.getAttribute('data-theme') || 'dark'); }
-  catch(e){ console.error('theme init failed:', e); }
-
-  try { applySize(sizeIdx); }
-  catch(e){ console.error('size init failed:', e); }
-
-  try { setLang(localStorage.getItem('darshana-lang') === 'sa'); }
-  catch(e){ console.error('lang init failed:', e); }
-
-  try { applyFilters(); }
-  catch(e){ console.error('filters init failed:', e); }
-
-})();
-</script>
-
-<script>
-/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
-(function(){
-  function fit(){
-    var bar = document.querySelector('.controls');
-    if(!bar) return;
-    document.body.style.paddingTop = '';
-    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
-    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
-    if(need > base) document.body.style.paddingTop = need + 'px';
-  }
-  window.addEventListener('resize', fit);
-  window.addEventListener('load', fit);
-  fit();
-})();
-</script>
+<script src="assets/site.js?v=420f3627"></script>
 </body>
 </html>

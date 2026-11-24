@@ -1,0 +1,566 @@
+page:
+  file: veda.html
+  layout: veda
+  title: Map of Vedic Literature — Vedas, Puranas & Upanishads
+  favicon: 🕉️
+  search: Search texts…
+  native: sa
+  palette:
+    veda: ['#ff9f43', '#e07b1a']
+    purana: ['#a55eea', '#8b45d6']
+    upanishad: ['#26de81', '#12995a']
+    brahmana: ['#45aaf2', '#1f7fc4']
+    aranyaka: ['#fc5c65', '#d63c46']
+    itihasa: ['#f7b731', '#c98a00']
+    upaveda: ['#20bf6b', '#0f9956']
+  gradient: [veda, purana, upanishad, brahmana]
+  primary: upanishad
+  h1: Map of Vedic Literature
+  intro: An interactive overview of the Vedas, Puranas, Upanishads and the broader Vedic corpus. Click any text
+    to see its connections.
+  legend:
+  - {label: Vedas, color: veda}
+  - {label: Brahmanas, color: brahmana}
+  - {label: Aranyakas, color: aranyaka}
+  - {label: Upanishads, color: upanishad}
+  - {label: Puranas, color: purana}
+  - {label: Itihasas, color: itihasa}
+  - {label: Upavedas, color: upaveda}
+  filters:
+  - {value: all, label: All, color: muted}
+  - {value: ritual, label: 🔥 Ritual, color: veda}
+  - {value: philosophy, label: 🧠 Philosophy, color: upanishad}
+  - {value: devotion, label: 🙏 Devotion, color: purana}
+  - {value: cosmology, label: 🌌 Cosmology, color: brahmana}
+  - {value: healing, label: 🌿 Healing, color: upaveda}
+  - {value: history, label: ⚔️ Epic History, color: itihasa}
+  footer: [🗺️ A study map of Śruti &amp; Smṛti literature · Click a Veda to highlight its connections · Dates are
+      approximate]
+blocks:
+- {type: filters}
+- type: tree
+  title: 🌳 The Vedic Knowledge Tree
+  color: veda
+  group: category
+  root: ŚRUTI • “That which is heard”
+  rows:
+  - - {title: 4 Vedas, sub: Samhitas — hymns & mantras, color: veda}
+    - {title: Brahmanas, sub: Ritual & sacrifice manuals, color: brahmana}
+    - {title: Aranyakas, sub: “Forest texts” — inner meaning, color: aranyaka}
+    - {title: Upanishads, sub: Vedanta — philosophy of Self, color: upanishad}
+  - - {title: Puranas, sub: Smriti — mythology & cosmology, color: purana}
+    - {title: Itihasas, sub: Ramayana & Mahabharata, color: itihasa}
+    - {title: Upavedas, sub: 'Ayurveda, Dhanurveda, etc.', color: upaveda}
+- type: cards
+  title: 🕉️ The Four Vedas
+  color: veda
+  group: category
+  grid: v4
+  cards:
+  - id: rigveda
+    title: Rigveda
+    native: ऋग्वेद
+    icon: 📖
+    kicker: Veda 1
+    accent: veda
+    tags: ritual cosmology
+    era: c. 1500–1200 BCE
+    links: aitareya-br,aitareya-up,aitareya-ar
+    body: The oldest of the four Vedas, a collection of 1,028 hymns (suktas) in 10 mandalas. It praises deities
+      like Agni, Indra and Varuna, and contains the famous Gayatri Mantra and Nasadiya Sukta on creation.
+    chips:
+    - Samhita
+    - {text: 🔥 Ritual, style: theme}
+    - {text: 🌌 Cosmology, style: theme}
+    hint: click to link →
+  - id: samaveda
+    title: Samaveda
+    native: सामवेद
+    icon: 🎵
+    kicker: Veda 2
+    accent: veda
+    tags: ritual
+    era: c. 1200–900 BCE
+    links: jaiminiya-br,chandogya-ar,chandogya-up,kena-up
+    body: The Veda of melodies and chants. It takes verses from the Rigveda and sets them to musical notation (saman),
+      forming the root of Indian classical music and Vedic ritual singing.
+    chips:
+    - Samhita
+    - {text: 🔥 Ritual, style: theme}
+    - Music
+    hint: click to link →
+  - id: yajurveda
+    title: Yajurveda
+    native: यजुर्वेद
+    icon: 🔥
+    kicker: Veda 3
+    accent: veda
+    tags: ritual cosmology
+    era: c. 1200–900 BCE
+    links: shatapatha-br,taittiriya-ar,brihadaranyaka-ar,isha-up,katha-up,taittiriya-up,brihadaranyaka-up,shvetashvatara-up
+    body: The Veda of sacrifice (yajna). It contains prose formulas and procedures for performing rituals, guiding
+      the adhvaryu priest. Divided into Shukla (white) and Krishna (black) Yajurveda.
+    chips:
+    - Ritual
+    - {text: 🔥 Ritual, style: theme}
+    - Yajna
+    hint: click to link →
+  - id: atharvaveda
+    title: Atharvaveda
+    native: अथर्ववेद
+    icon: 🌿
+    kicker: Veda 4
+    accent: veda
+    tags: healing ritual philosophy
+    era: c. 1200–900 BCE
+    links: gopatha-br,prashna-up,mundaka-up,mandukya-up
+    body: The Veda of everyday life — medicine, spells, charms, kingship and cosmology. It deals with healing, protection
+      and the practical concerns of ancient society, later linked to Ayurveda.
+    chips:
+    - {text: 🌿 Healing, style: theme}
+    - Magic
+    - Ayurveda roots
+    hint: click to link →
+- type: cards
+  title: ✨ Principal Upanishads (Mukhya Upanishads)
+  color: upanishad
+  group: category
+  grid: v3
+  cards:
+  - id: isha-up
+    title: Ishavasya
+    native: ईशावास्य
+    subtitle: Shukla Yajurveda
+    accent: upanishad
+    tags: philosophy devotion
+    era: c. 800–500 BCE
+    body: A short text of 18 verses teaching that the Divine pervades all — one should enjoy through renunciation.
+      A bridge between ritual and philosophy.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+  - id: kena-up
+    title: Kena
+    native: केन
+    subtitle: Samaveda
+    accent: upanishad
+    tags: philosophy
+    era: c. 800–500 BCE
+    body: Asks “By whom is the mind directed?” — explores Brahman as the unseen seer, the unheard hearer, beyond
+      all description.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+  - id: katha-up
+    title: Katha
+    native: कठ
+    subtitle: Krishna Yajurveda
+    accent: upanishad
+    tags: philosophy
+    era: c. 800–500 BCE
+    body: The dialogue of Nachiketa and Yama (death) on the nature of the Self and immortality — famous for the
+      chariot metaphor of body and soul.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+  - id: prashna-up
+    title: Prashna
+    native: प्रश्न
+    subtitle: Atharvaveda
+    accent: upanishad
+    tags: philosophy cosmology
+    era: c. 500–300 BCE
+    body: Six seekers ask sage Pippalada six questions about creation, prana, dream states and the Self — structured
+      as a Q&amp;A.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+    - {text: 🌌 Cosmology, style: theme}
+  - id: mundaka-up
+    title: Mundaka
+    native: मुण्डक
+    subtitle: Atharvaveda
+    accent: upanishad
+    tags: philosophy
+    era: c. 500–300 BCE
+    body: Distinguishes “lower knowledge” (ritual texts) from “higher knowledge” (knowledge of Brahman). Uses the
+      arrow-and-bow metaphor for concentration.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+  - id: mandukya-up
+    title: Mandukya
+    native: माण्डूक्य
+    subtitle: Atharvaveda
+    accent: upanishad
+    tags: philosophy
+    era: c. 500–300 BCE
+    body: The shortest Upanishad (12 verses) on the sacred syllable <em>Om</em> and the four states of consciousness,
+      including turiya, the fourth.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+  - id: taittiriya-up
+    title: Taittiriya
+    native: तैत्तिरीय
+    subtitle: Krishna Yajurveda
+    accent: upanishad
+    tags: philosophy
+    era: c. 800–500 BCE
+    body: Lays out the five sheaths (koshas) of the self and the famous “satyam jnanam anantam brahma” — truth,
+      knowledge, infinity.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+  - id: aitareya-up
+    title: Aitareya
+    native: ऐतरेय
+    subtitle: Rigveda
+    accent: upanishad
+    tags: philosophy cosmology
+    era: c. 800–500 BCE
+    body: Explores creation and the entry of the Self into the body, with the celebrated teaching “Consciousness
+      is Brahman” (Prajnanam Brahma).
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+    - {text: 🌌 Cosmology, style: theme}
+  - id: chandogya-up
+    title: Chandogya
+    native: छान्दोग्य
+    subtitle: Samaveda
+    accent: upanishad
+    tags: philosophy devotion
+    era: c. 800–500 BCE
+    body: One of the oldest and largest Upanishads, home of “Tat Tvam Asi” (Thou art That) and the story of Satyakama
+      and the syllable Om.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+    - {text: 🙏 Devotion, style: theme}
+  - id: brihadaranyaka-up
+    title: Brihadaranyaka
+    native: बृहदारण्यक
+    subtitle: Shukla Yajurveda
+    accent: upanishad
+    tags: philosophy cosmology
+    era: c. 800–500 BCE
+    body: The largest Upanishad, containing the “neti neti” (not this, not this) method and the great saying “Aham
+      Brahmasmi” (I am Brahman).
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+    - {text: 🌌 Cosmology, style: theme}
+  - id: shvetashvatara-up
+    title: Shvetashvatara
+    native: श्वेताश्वतर
+    subtitle: Krishna Yajurveda
+    accent: upanishad
+    tags: philosophy devotion
+    era: c. 500–300 BCE
+    body: Presents a personal God (Ishvara) and devotion (bhakti) alongside Vedanta philosophy — a synthesis of
+      theism and monism.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+    - {text: 🙏 Devotion, style: theme}
+- type: cards
+  title: 📜 The Mahapuranas <span style="font-size:.6em;opacity:.7;font-weight:600">(a selection of 9 of the 18)</span>
+  color: purana
+  group: category
+  grid: v3
+  cards:
+  - id: brahma-p
+    title: Brahma Purana
+    native: ब्रह्मपुराण
+    accent: purana
+    tags: cosmology devotion
+    era: c. 300–1000 CE
+    body: Describes creation by Brahma, genealogies, the sacred sites of Puri and Konark, and the glory of the Sun
+      god. One of the eighteen Mahapuranas.
+    chips:
+    - {text: 🌌 Cosmology, style: theme}
+    - {text: 🙏 Devotion, style: theme}
+  - id: vishnu-p
+    title: Vishnu Purana
+    native: विष्णुपुराण
+    accent: purana
+    tags: devotion cosmology
+    era: c. 300–1000 CE
+    body: Focuses on Vishnu and his avatars, cosmology, the Manvantaras and the genealogy of kings. Famous for the
+      story of Prahlada and Dhruva.
+    chips:
+    - {text: 🙏 Devotion, style: theme}
+    - {text: 🌌 Cosmology, style: theme}
+  - id: shiva-p
+    title: Shiva Purana
+    native: शिवपुराण
+    accent: purana
+    tags: devotion
+    era: c. 300–1000 CE
+    body: Devoted to Shiva — his forms, the twelve Jyotirlingas, the marriage to Parvati, and the destruction of
+      the demon Tripura.
+    chips:
+    - {text: 🙏 Devotion, style: theme}
+  - id: bhagavata-p
+    title: Bhagavata Purana
+    native: भागवतपुराण
+    accent: purana
+    tags: devotion philosophy
+    era: c. 500–1000 CE
+    body: The most celebrated Purana, narrating Krishna’s life, the Dashavatara, and the child-devotee Prahlada.
+      It is the supreme text of Vaishnava bhakti.
+    chips:
+    - {text: 🙏 Devotion, style: theme}
+    - {text: 🧠 Philosophy, style: theme}
+  - id: markandeya-p
+    title: Markandeya Purana
+    native: मार्कण्डेयपुराण
+    accent: purana
+    tags: devotion
+    era: c. 300–600 CE
+    body: Contains the Devi Mahatmya (Durga Saptashati), the great hymn to the Goddess, celebrating her victory
+      over Mahishasura.
+    chips:
+    - {text: 🙏 Devotion, style: theme}
+  - id: matsya-p
+    title: Matsya Purana
+    native: मत्स्यपुराण
+    accent: purana
+    tags: cosmology devotion
+    era: c. 300–1000 CE
+    body: Narrates the fish avatar (Matsya) of Vishnu who saves the Vedas and Manu from the great deluge, plus temple
+      architecture and king lists.
+    chips:
+    - {text: 🌌 Cosmology, style: theme}
+    - {text: 🙏 Devotion, style: theme}
+  - id: agni-p
+    title: Agni Purana
+    native: अग्निपुराण
+    accent: purana
+    tags: ritual cosmology
+    era: c. 700–1100 CE
+    body: A vast encyclopedia-like text covering ritual, iconography, medicine, astronomy, grammar and the art of
+      war — a compendium of knowledge.
+    chips:
+    - {text: 🔥 Ritual, style: theme}
+    - {text: 🌌 Cosmology, style: theme}
+  - id: linga-p
+    title: Linga Purana
+    native: लिङ्गपुराण
+    accent: purana
+    tags: devotion ritual
+    era: c. 300–1000 CE
+    body: Centers on the Shiva Linga as the cosmic principle and the source of creation, with detailed ritual and
+      the significance of pilgrimage.
+    chips:
+    - {text: 🙏 Devotion, style: theme}
+    - {text: 🔥 Ritual, style: theme}
+  - id: skanda-p
+    title: Skanda Purana
+    native: स्कन्दपुराण
+    accent: purana
+    tags: devotion
+    era: c. 700–1200 CE
+    body: The largest Purana, dedicated to Skanda (Kartikeya). It extols the sacred geography of India, with long
+      sections on Kashi, Avanti (Ujjain), Prabhasa, Puri and other tirthas.
+    chips:
+    - {text: 🙏 Devotion, style: theme}
+- type: cards
+  title: 🔵 Brahmanas &amp; Aranyakas
+  color: brahmana
+  group: category
+  grid: v2
+  cards:
+  - id: aitareya-br
+    title: Aitareya Brahmana
+    native: ऐतरेय ब्राह्मण
+    accent: brahmana
+    tags: ritual
+    era: c. 1000–800 BCE
+    body: Belongs to the Rigveda. Explains the procedure of Soma sacrifices and the famous legend of Shunahshepa,
+      and the ideal of the king as protector.
+    chips:
+    - {text: 🔥 Ritual, style: theme}
+  - id: shatapatha-br
+    title: Shatapatha Brahmana
+    native: शतपथ ब्राह्मण
+    accent: brahmana
+    tags: ritual cosmology
+    era: c. 900–700 BCE
+    body: The largest and most important Brahmana (Yajurveda). Details the agnicayana fire altar, creation myths,
+      and contains the earliest Upanishadic thought.
+    chips:
+    - {text: 🔥 Ritual, style: theme}
+    - {text: 🌌 Cosmology, style: theme}
+  - id: jaiminiya-br
+    title: Jaiminiya Brahmana
+    native: जैमिनीय ब्राह्मण
+    accent: brahmana
+    tags: ritual
+    era: c. 1000–800 BCE
+    body: Belongs to the Samaveda. Deals with Soma rituals, chants and stories of sages, reflecting the musical
+      and sacrificial tradition.
+    chips:
+    - {text: 🔥 Ritual, style: theme}
+  - id: gopatha-br
+    title: Gopatha Brahmana
+    native: गोपथ ब्राह्मण
+    accent: brahmana
+    tags: ritual
+    era: c. 600–400 BCE
+    body: The only surviving Brahmana of the Atharvaveda, describing ritual applications of Atharvan mantras and
+      the duties of the priests.
+    chips:
+    - {text: 🔥 Ritual, style: theme}
+  - id: aitareya-ar
+    title: Aitareya Aranyaka
+    native: ऐतरेय आरण्यक
+    accent: aranyaka
+    tags: philosophy ritual
+    era: c. 900–700 BCE
+    body: A “forest text” of the Rigveda, exploring the mystic meaning of sacrifice and the cosmic person — it leads
+      directly into the Aitareya Upanishad.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+    - {text: 🔥 Ritual, style: theme}
+  - id: brihadaranyaka-ar
+    title: Brihadaranyaka
+    native: बृहदारण्यक
+    accent: aranyaka
+    tags: philosophy cosmology
+    era: c. 800–600 BCE
+    body: Technically both an Aranyaka and Upanishad. A profound dialogue text on the Self, creation, and the “neti
+      neti” path to Brahman.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+    - {text: 🌌 Cosmology, style: theme}
+  - id: taittiriya-ar
+    title: Taittiriya Aranyaka
+    native: तैत्तिरीय आरण्यक
+    accent: aranyaka
+    tags: philosophy ritual
+    era: c. 900–700 BCE
+    body: Part of the Krishna Yajurveda. Contains the famous Narayana Sukta and leads into the Taittiriya Upanishad's
+      teachings on the sheaths.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+    - {text: 🔥 Ritual, style: theme}
+  - id: chandogya-ar
+    title: Jaiminiya Upanishad Brahmana
+    native: जैमिनीय उपनिषद् ब्राह्मण
+    accent: aranyaka
+    tags: philosophy ritual
+    era: c. 900–700 BCE
+    body: Belongs to the Samaveda (Jaiminiya school) and is also called the Talavakara Aranyaka. It explores the
+      esoteric meaning of the Sama chants and meditation (upasana) on their syllables, and contains the Kena Upanishad.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+    - {text: 🔥 Ritual, style: theme}
+- type: cards
+  title: ⚔️ The Itihasas (Epics)
+  color: itihasa
+  group: category
+  grid: v2
+  cards:
+  - id: ramayana
+    title: Ramayana
+    native: रामायण
+    icon: 🏹
+    subtitle: By Valmiki · 24,000 verses
+    accent: itihasa
+    tags: history devotion philosophy
+    era: c. 500 BCE – 100 CE
+    body: The journey of Prince Rama of Ayodhya — his exile, the abduction of Sita by Ravana, and the war to rescue
+      her with Hanuman’s help. A foundational text of dharma, loyalty and ideal kingship.
+    chips:
+    - {text: ⚔️ Epic, style: theme}
+    - {text: 🙏 Devotion, style: theme}
+    - {text: 🧠 Philosophy, style: theme}
+  - id: mahabharata
+    title: Mahabharata
+    native: महाभारत
+    icon: 🏛️
+    subtitle: By Vyasa · ~100,000 verses
+    accent: itihasa
+    tags: history philosophy devotion
+    era: c. 400 BCE – 400 CE
+    body: One of the longest epics ever composed — the Kurukshetra war between the Pandavas and Kauravas. It contains
+      the Bhagavad Gita and explores duty, choice, fate and the moral complexity of human life.
+    chips:
+    - {text: ⚔️ Epic, style: theme}
+    - {text: 🧠 Philosophy, style: theme}
+    - {text: 🙏 Devotion, style: theme}
+  - id: bhagavad-gita
+    title: Bhagavad Gita
+    native: भगवद्गीता
+    icon: 🪷
+    subtitle: Part of Mahabharata · 700 verses
+    accent: itihasa
+    tags: philosophy devotion
+    era: c. 200 BCE – 200 CE
+    body: Krishna’s dialogue with Arjuna on the battlefield — the essence of Vedanta in 18 chapters. It teaches
+      karma yoga, jnana yoga and bhakti yoga as paths to liberation.
+    chips:
+    - {text: 🧠 Philosophy, style: theme}
+    - {text: 🙏 Devotion, style: theme}
+  - id: harivamsha
+    title: Harivamsha
+    native: हरिवंश
+    icon: 🐄
+    subtitle: Appendix to Mahabharata
+    accent: itihasa
+    tags: history devotion
+    era: c. 300–500 CE
+    body: An appendix to the Mahabharata that narrates the life of Krishna, his lineage and his childhood in Vrindavan
+      — a bridge between epic and Puranic tradition.
+    chips:
+    - {text: ⚔️ Epic, style: theme}
+    - {text: 🙏 Devotion, style: theme}
+- type: cards
+  title: 🌿 The Upavedas (Applied Knowledge)
+  color: upaveda
+  group: category
+  grid: v2
+  cards:
+  - id: ayurveda
+    title: Ayurveda
+    native: आयुर्वेद
+    icon: 🌿
+    subtitle: Upaveda of Atharvaveda (per Charaka & Sushruta)
+    accent: upaveda
+    tags: healing
+    era: c. 500 BCE – 500 CE
+    body: 'The science of life — a holistic system of medicine covering diagnosis, herbal remedies, diet, daily
+      routine and surgery. Rooted in the balance of three doshas: vata, pitta and kapha.'
+    chips:
+    - {text: 🌿 Healing, style: theme}
+  - id: dhanurveda
+    title: Dhanurveda
+    native: धनुर्वेद
+    icon: 🏹
+    subtitle: Upaveda of Yajurveda
+    accent: upaveda
+    tags: history ritual
+    era: c. 500 BCE – 500 CE
+    body: The Veda of archery and warfare — training, ethics of battle, weapons and strategy. Its principles echo
+      throughout the Mahabharata and Ramayana.
+    chips:
+    - {text: ⚔️ Epic, style: theme}
+    - {text: 🔥 Ritual, style: theme}
+  - id: gandharvaveda
+    title: Gandharvaveda
+    native: गान्धर्ववेद
+    icon: 🎶
+    subtitle: Upaveda of Samaveda
+    accent: upaveda
+    tags: devotion
+    era: c. 500 BCE – 500 CE
+    body: The Veda of music and dance — ragas, performance arts, and the spiritual power of sound. It expands the
+      melodic tradition of the Samaveda into a complete aesthetic science.
+    chips:
+    - {text: 🙏 Devotion, style: theme}
+  - id: arthashastra
+    title: Arthashastra
+    native: अर्थशास्त्र
+    icon: ⚖️
+    subtitle: Upaveda of Atharvaveda (per the Charanavyuha)
+    accent: upaveda
+    tags: history philosophy
+    era: c. 400 BCE – 300 CE
+    body: The science of statecraft, economics and governance. Attributed to Chanakya, it covers diplomacy, taxation,
+      military strategy and the ethics of a ruler — a practical guide to power.
+    chips:
+    - {text: ⚔️ Epic, style: theme}
+    - {text: 🧠 Philosophy, style: theme}
+- {type: empty, text: No texts match your search. Try a different keyword or filter.}
+- {type: veda-timeline, title: ⏳ Chronological View, color: veda}

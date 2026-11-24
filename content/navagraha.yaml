@@ -1,0 +1,250 @@
+page:
+  file: navagraha.html
+  layout: page
+  title: Navagraha Temples — The Nine Planet Shrines of the Kaveri Delta
+  description: Interactive map of the nine Navagraha temples around Kumbakonam, Tamil Nadu, with their deities,
+    legends and links to the Jyotisha grahas.
+  favicon: 🪐
+  search: Search grahas, temples, towns…
+  native: ta
+  palette:
+    muruga: ['#f7b731', '#b7791f']
+    muruga-2: ['#a55eea', '#7b3fc4']
+  gradient: [muruga, muruga-2]
+  primary: muruga
+  h1: Navagraha Temples
+  intro: Nine temples in the Kaveri delta around Kumbakonam, each the seat of one of the nine Grahas of <a href="jyotisha.html"
+    style="color:inherit;text-decoration:underline">Jyotisha</a>. Except at Suryanar Kovil, the main deity is Shiva
+    and the Graha has its own shrine within the temple. Built and enlarged under the Cholas, they are visited together
+    as one pilgrimage.
+  legend:
+  - {label: Luminaries — Sun & Moon, color: '#e67e22'}
+  - {label: Planets — Mars to Saturn, color: '#4b7bec'}
+  - {label: Shadow planets — Rahu & Ketu, color: '#8854d0'}
+  filters:
+  - {value: all, label: All Nine, color: muruga}
+  - {value: luminary, label: ☀️ Sun & Moon, color: '#e67e22'}
+  - {value: planet, label: 🪐 Five planets, color: '#4b7bec'}
+  - {value: shadow, label: 🐍 Rahu & Ketu, color: '#8854d0'}
+  footer: [🪐 A visual map of the Navagraha temples of the Kaveri delta · Deities and legends follow temple tradition,
+    Map data © OpenStreetMap contributors · Coordinates are approximate]
+blocks:
+- {type: callout, text: '🌌 Each Graha''s nature, rulership and exaltation are on the <a href="jyotisha.html">Jyotisha
+    page</a> — every Graha there links back to its temple here.'}
+- type: story
+  title: Why nine temples?
+  paragraphs: ['A temple legend tells of the sage Kalava, whom the nine Grahas cured of illness. Brahma, angered
+      that the planets had granted a boon on their own, cursed them with leprosy and sent them to Vellerukku Vanam
+      — today''s Suryanar Kovil. Shiva lifted the curse and declared that the Grahas would bless devotees from these
+      places. Most pilgrims base themselves in Kumbakonam and cover all nine over one or two days.']
+- {type: filters}
+- {type: map, label: Map of the nine Navagraha temples}
+- type: cards
+  cards:
+  - id: surya
+    anchor: true
+    title: Surya · Suryanar Kovil
+    native: சூரியன் · சூரியனார் கோயில்
+    subtitle: The Sun
+    num: '1'
+    accent: '#e67e22'
+    tags: luminary
+    body: 'The one Navagraha temple where the planet itself is the presiding deity: Surya stands in the main shrine,
+      with the other eight Grahas in their own shrines around him. Pilgrims usually begin the circuit here. Legend
+      makes this the place, once called Vellerukku Vanam, where the nine Grahas were cursed by Brahma for granting
+      the sage Kalava a boon, and later freed by Shiva.'
+    facts:
+    - [Presiding, Surya (Suryanarayana)]
+    - [Built, 'Chola period, attributed to Kulothunga Chola I (11th–12th c.)']
+    - [Place, 'Suryanar Kovil, near Aduthurai, Thanjavur district · about 15 km from Kumbakonam']
+    chips:
+    - {text: ☀️ Luminary, style: event}
+    - Planet as main deity
+    - Start of the circuit
+    journey: {label: Surya, sub: Suryanar Kovil}
+    map: {lat: 11.0297, lng: 79.4778, popup: Surya (Sun) · Thanjavur district, name: Suryanar Kovil — Surya}
+  - id: chandra
+    anchor: true
+    title: Chandra · Thingalur
+    native: சந்திரன் · திங்களூர்
+    subtitle: The Moon
+    num: '2'
+    accent: '#8395a7'
+    tags: luminary
+    body: A Shiva temple near Thiruvaiyaru whose very name comes from <em>thingal</em>, the Tamil word for the Moon;
+      Chandra is said to have regained his lustre by worshipping here. It is linked with the Nayanmar Appudhi Adigal,
+      whose story Sekkizhar tells in the Periya Puranam, and is a favoured place for a child's first rice feeding
+      (<a href="samskaras.html">Annaprashanam</a>).
+    facts:
+    - [Shiva as, Kailasanathar]
+    - [Consort, Periyanayaki]
+    - [Place, 'Thingalur, Thanjavur district · near Thiruvaiyaru']
+    chips:
+    - {text: 🌙 Luminary, style: event}
+    - First rice feeding
+    - Appudhi Adigal
+    journey: {label: Chandra, sub: Thingalur}
+    map: {lat: 10.8867, lng: 79.1256, popup: Chandra (Moon) · near Thiruvaiyaru, name: Thingalur — Chandra}
+  - id: mangala
+    anchor: true
+    title: Angaraka · Vaitheeswaran Koil
+    native: செவ்வாய் · வைத்தீஸ்வரன் கோயில்
+    subtitle: Mars
+    num: '3'
+    accent: '#e74c3c'
+    tags: planet
+    body: Here Shiva is Vaidyanathar, the divine physician, who is said to have cured Angaraka (Mars) of a skin
+      disease. Devotees come for healing as much as for Mars, and the town is the best-known centre of Nadi astrology,
+      read from palm-leaf manuscripts.
+    facts:
+    - [Shiva as, Vaidyanathar (Vaitheeswaran)]
+    - [Consort, Thaiyal Nayaki]
+    - [Place, 'Vaitheeswaran Koil, Mayiladuthurai district · near Sirkazhi']
+    chips:
+    - {text: 🔴 Planet, style: event}
+    - Healing
+    - Nadi astrology
+    journey: {label: Angaraka, sub: Vaitheeswaran Koil}
+    map: {lat: 11.195, lng: 79.7142, popup: Angaraka (Mars) · Mayiladuthurai district, name: Vaitheeswaran Koil
+        — Angaraka}
+  - id: budha
+    anchor: true
+    title: Budha · Thiruvenkadu
+    native: புதன் · திருவெண்காடு
+    subtitle: Mercury
+    num: '4'
+    accent: '#20bf6b'
+    tags: planet
+    body: The "white forest" temple of Swetharanyeswarar on the road to Poompuhar, with a separate shrine for Budha,
+      the Graha of speech and intellect. It is also famed for Shiva's fierce Aghora form, and its three sacred tanks
+      are believed to bring relief to those who bathe in all of them.
+    facts:
+    - [Shiva as, Swetharanyeswarar]
+    - [Consort, Brahma Vidya Ambal]
+    - [Place, 'Thiruvenkadu, Mayiladuthurai district · near Sirkazhi']
+    chips:
+    - {text: 🟢 Planet, style: event}
+    - Aghora form
+    - Three tanks
+    journey: {label: Budha, sub: Thiruvenkadu}
+    map: {lat: 11.1753, lng: 79.8094, popup: Budha (Mercury) · near Sirkazhi, name: Thiruvenkadu — Budha}
+  - id: guru
+    anchor: true
+    title: Guru · Alangudi
+    native: குரு · ஆலங்குடி
+    subtitle: Jupiter
+    num: '5'
+    accent: '#d4a017'
+    tags: planet
+    body: Guru is worshipped here in the form of Dakshinamurthy, Shiva as the silent teacher. The village name is
+      read as <em>alam</em> (poison) + <em>kudi</em> (drank), recalling Shiva swallowing the poison from the churning
+      of the ocean — hence Apatsahayesvarar, the one who saves in times of danger. Crowds peak at Guru Peyarchi,
+      Jupiter's transit into a new sign.
+    facts:
+    - [Shiva as, Apatsahayesvarar]
+    - [Consort, Elavarkuzhali]
+    - [Place, 'Alangudi, Valangaiman taluk, Tiruvarur district · about 17 km from Kumbakonam']
+    chips:
+    - {text: 🟡 Planet, style: event}
+    - Dakshinamurthy
+    - Guru Peyarchi
+    journey: {label: Guru, sub: Alangudi}
+    map: {lat: 10.83, lng: 79.4103, popup: Guru (Jupiter) · Tiruvarur district, name: Alangudi — Guru}
+  - id: shukra
+    anchor: true
+    title: Shukra · Kanjanur
+    native: சுக்கிரன் · கஞ்சனூர்
+    subtitle: Venus
+    num: '6'
+    accent: '#e05fa0'
+    tags: planet
+    body: 'Unusually, there is no separate shrine for Shukra: Shiva himself, as Agniswarar, is worshipped as Venus,
+      and Shukra is said to reside within the lingam. Agni is believed to have worshipped Shiva here, giving the
+      deity his name. The temple stands on the northern bank of the Kaveri.'
+    facts:
+    - [Shiva as, Agniswarar]
+    - [Consort, Karpagambigai]
+    - [Place, 'Kanjanur, Thanjavur district · about 18 km north-east of Kumbakonam']
+    chips:
+    - {text: 💗 Planet, style: event}
+    - Shiva as Shukra
+    - Built by the Cholas
+    journey: {label: Shukra, sub: Kanjanur}
+    map: {lat: 11.0658, lng: 79.4958, popup: Shukra (Venus) · near Kumbakonam, name: Kanjanur — Shukra}
+  - id: shani
+    anchor: true
+    title: Shani · Thirunallar
+    native: சனி · திருநள்ளாறு
+    subtitle: Saturn
+    num: '7'
+    accent: '#4b7bec'
+    tags: planet
+    body: One of the busiest temples of the circuit, in the Karaikal enclave of Puducherry. Tradition holds that
+      King Nala was freed from Shani's long affliction after bathing in the temple tank, the Nala Theertham, which
+      gives the town its name. Sani Peyarchi, Saturn's move into a new sign every two and a half years, draws vast
+      crowds. It is a Paadal Petra Sthalam sung in the Tevaram.
+    facts:
+    - [Shiva as, Dharbaranyeswarar]
+    - [Consort, Pranambikai (Bogamartha Poonmulaiyal)]
+    - [Place, 'Thirunallar, Karaikal district, Puducherry · about 5 km west of Karaikal']
+    chips:
+    - {text: 🔵 Planet, style: event}
+    - Nala Theertham
+    - Sani Peyarchi
+    journey: {label: Shani, sub: Thirunallar}
+    map: {lat: 10.9256, lng: 79.7922, popup: 'Shani (Saturn) · Karaikal, Puducherry', name: Thirunallar — Shani}
+  - id: rahu
+    anchor: true
+    title: Rahu · Thirunageswaram
+    native: ராகு · திருநாகேஸ்வரம்
+    subtitle: North lunar node
+    num: '8'
+    accent: '#8854d0'
+    tags: shadow
+    body: Rahu, said to have worshipped Shiva here to be freed from a curse, appears in an unusual auspicious form
+      with a human face and his two consorts, Nagavalli and Nagakanni. Devotees describe the milk poured over his
+      image during abhishekam appearing to turn blue. The temple is just east of Kumbakonam.
+    facts:
+    - [Shiva as, Naganathaswamy]
+    - [Consort, Giri Gujambika]
+    - [Place, 'Thirunageswaram, Thanjavur district · about 6 km from Kumbakonam']
+    chips:
+    - {text: 🐍 Shadow planet, style: event}
+    - Human-faced Rahu
+    - Rahu Kalam pujas
+    journey: {label: Rahu, sub: Thirunageswaram}
+    map: {lat: 10.9643, lng: 79.4293, popup: Rahu · near Kumbakonam, name: Thirunageswaram — Rahu}
+  - id: ketu
+    anchor: true
+    title: Ketu · Keezhperumpallam
+    native: கேது · கீழப்பெரும்பள்ளம்
+    subtitle: South lunar node
+    num: '9'
+    accent: '#a0785a'
+    tags: shadow
+    body: A small Chola-era shrine near Poompuhar, where the Kaveri meets the sea. Ketu is shown with a serpent's
+      head and an asura's body, his hands folded in worship of Shiva. Legend says the serpent Vasuki prayed here,
+      which gave Shiva the name Naganatha. Rahu–Ketu transits are celebrated every one and a half years or so.
+    facts:
+    - [Shiva as, Naganathaswamy]
+    - [Consort, Soundaryanayaki]
+    - [Place, 'Keezhperumpallam, Mayiladuthurai district · about 2 km from Poompuhar']
+    chips:
+    - {text: ☄️ Shadow planet, style: event}
+    - Near Poompuhar
+    - Vasuki legend
+    journey: {label: Ketu, sub: Keezhperumpallam}
+    map: {lat: 11.1351, lng: 79.8353, popup: Ketu · near Poompuhar, name: Keezhperumpallam — Ketu}
+  empty: No sites match your search. Try another name or clear the filter.
+- type: sources
+  items:
+  - {label: Navagraha temples — Wikipedia, url: 'https://en.wikipedia.org/wiki/Navagraha_temples'}
+  - {label: Suryanar Kovil — Wikipedia, url: 'https://en.wikipedia.org/wiki/Suryanar_Kovil'}
+  - {label: 'Kailasanathar Temple, Thingalur — Wikipedia', url: 'https://en.wikipedia.org/wiki/Kailasanathar_Temple,_Thingalur'}
+  - {label: Vaitheeswaran Koil — Wikipedia, url: 'https://en.wikipedia.org/wiki/Vaitheeswaran_Koil'}
+  - {label: Swetharanyeswarar Temple — Wikipedia, url: 'https://en.wikipedia.org/wiki/Swetharanyeswarar_Temple'}
+  - {label: 'Apatsahayesvarar Temple, Alangudi — Wikipedia', url: 'https://en.wikipedia.org/wiki/Apatsahayesvarar_Temple,_Alangudi'}
+  - {label: 'Agniswarar Temple, Kanjanur — Wikipedia', url: 'https://en.wikipedia.org/wiki/Agniswarar_Temple,_Kanjanur'}
+  - {label: Tirunallar Dharbaranyeswarar Temple — Wikipedia, url: 'https://en.wikipedia.org/wiki/Dharbaranyeswarar_Temple'}
+  - {label: Tirunageswaram Naganathar Temple — Wikipedia, url: 'https://en.wikipedia.org/wiki/Rahu_Stalam'}
+  - {label: 'Nagannathaswamy Temple, Keelaperumpallam — Wikipedia', url: 'https://en.wikipedia.org/wiki/Nagannathaswamy_Temple,_Keelaperumpallam'}

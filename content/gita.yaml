@@ -1,0 +1,285 @@
+page:
+  file: gita.html
+  layout: page
+  title: The Bhagavad Gita — 18 Chapters Visualized
+  favicon: 🪷
+  search: Search chapters, yoga, keywords…
+  native: sa
+  palette:
+    karma: ['#ff9f43', '#e07b1a']
+    jnana: ['#45aaf2', '#1f7fc4']
+    bhakti: ['#a55eea', '#8b45d6']
+    dhyana: ['#26de81', '#12995a']
+    vishada: ['#fc5c65', '#d63c46']
+  gradient: [vishada, karma, jnana, bhakti, dhyana]
+  primary: bhakti
+  h1: The Bhagavad Gita
+  intro: Eighteen chapters, one conversation on the battlefield of Kurukshetra. Each chapter is a yoga — a path
+    — unfolding from Arjuna's despair to Krishna's final call to surrender.
+  legend:
+  - {label: Despair, color: vishada}
+  - {label: Karma Yoga (Action), color: karma}
+  - {label: Jnana Yoga (Knowledge), color: jnana}
+  - {label: Bhakti Yoga (Devotion), color: bhakti}
+  - {label: Dhyana Yoga (Meditation), color: dhyana}
+  filters:
+  - {value: all, label: All 18 Chapters, color: karma}
+  - {value: karma, label: 🔥 Karma, color: karma}
+  - {value: jnana, label: 🧠 Jnana, color: jnana}
+  - {value: bhakti, label: 🙏 Bhakti, color: bhakti}
+  - {value: dhyana, label: 🧘 Dhyana, color: dhyana}
+  - {value: vishada, label: 😔 Despair, color: vishada}
+  footer: ['🪷 A chapter-by-chapter map of the Bhagavad Gita · 18 chapters, ~700 verses · Yoga paths and groupings
+      follow traditional classifications', 'The Gita is set in the Mahabharata, Book 6 (Bhīṣma Parva), chapters
+      25–42.']
+blocks:
+- {type: journey, style: numbers}
+- {type: filters}
+- type: cards
+  cards:
+  - id: '1'
+    anchor: ch1
+    title: Arjuna Viṣāda Yoga
+    native: अर्जुनविषादयोग
+    subtitle: The Yoga of Arjuna's Despair
+    num: '1'
+    accent: vishada
+    tags: vishada
+    body: On the battlefield, Arjuna sees his teachers, cousins and friends arrayed against him. His bow slips from
+      his hand, his mind reels, and he collapses in grief — refusing to fight.
+    chips:
+    - {text: 😔 Viṣāda (Despair), style: yoga}
+    - 47 verses
+  - id: '2'
+    anchor: ch2
+    title: Sāṃkhya Yoga
+    native: सांख्ययोग
+    subtitle: The Yoga of Knowledge (Summary of the Gita)
+    num: '2'
+    accent: jnana
+    tags: jnana
+    body: 'Krishna begins his teaching: the soul is eternal, the body is temporary. Arjuna must do his duty without
+      attachment to results. This chapter is often called the summary of the entire Gita.'
+    chips:
+    - {text: 🧠 Jnana, style: yoga}
+    - 72 verses
+    - Karma Yoga introduced
+  - id: '3'
+    anchor: ch3
+    title: Karma Yoga
+    native: कर्मयोग
+    subtitle: The Yoga of Action
+    num: '3'
+    accent: karma
+    tags: karma
+    body: No one can remain truly inactive. The path is not to abandon action but to act without selfish attachment
+      — as service, as sacrifice. Krishna explains the duties of one's station in life.
+    chips:
+    - {text: 🔥 Karma, style: yoga}
+    - 43 verses
+  - id: '4'
+    anchor: ch4
+    title: Jñāna Karma Sanyāsa Yoga
+    native: ज्ञानकर्मसंन्यासयोग
+    subtitle: The Yoga of Knowledge, Action & Renunciation
+    num: '4'
+    accent: jnana
+    tags: jnana
+    body: 'Krishna reveals his divine descent: he takes birth whenever dharma declines. He teaches that knowledge
+      of the Self burns away all karma, and that the wise see action in inaction.'
+    chips:
+    - {text: 🧠 Jnana, style: yoga}
+    - 42 verses
+    - Avatāra teaching
+  - id: '5'
+    anchor: ch5
+    title: Karma Sanyāsa Yoga
+    native: कर्मसंन्यासयोग
+    subtitle: The Yoga of Renunciation of Action
+    num: '5'
+    accent: karma
+    tags: karma
+    body: 'Arjuna asks: is it better to renounce action or to act? Krishna answers that both lead to the same goal
+      — the key is inner detachment. The sage acts without being the doer.'
+    chips:
+    - {text: 🔥 Karma, style: yoga}
+    - 29 verses
+  - id: '6'
+    anchor: ch6
+    title: Dhyāna Yoga
+    native: ध्यानयोग
+    subtitle: The Yoga of Meditation
+    num: '6'
+    accent: dhyana
+    tags: dhyana
+    body: Krishna describes the practice of meditation — posture, a steady gaze, withdrawal of the senses — and
+      the difficulty of controlling the restless mind. The mind can be trained through practice and detachment.
+    chips:
+    - {text: 🧘 Dhyana, style: yoga}
+    - 47 verses
+    - Ātma-saṃyama
+  - id: '7'
+    anchor: ch7
+    title: Jñāna Vijñāna Yoga
+    native: ज्ञानविज्ञानयोग
+    subtitle: The Yoga of Knowledge & Realization
+    num: '7'
+    accent: jnana
+    tags: jnana
+    body: Krishna describes his lower and higher natures, and the power of Māyā that veils him from the world. Four
+      kinds of people turn to God; the wise, seeking the Self, are dearest.
+    chips:
+    - {text: 🧠 Jnana, style: yoga}
+    - 30 verses
+    - Māyā
+  - id: '8'
+    anchor: ch8
+    title: Aksara Brahma Yoga
+    native: अक्षरब्रह्मयोग
+    subtitle: The Yoga of the Imperishable Brahman
+    num: '8'
+    accent: bhakti
+    tags: bhakti
+    body: What happens at the moment of death? Krishna explains that the last thought determines the next birth
+      — and that remembering him leads to liberation. The bright and dark paths of the soul are described.
+    chips:
+    - {text: 🙏 Bhakti, style: yoga}
+    - 28 verses
+  - id: '9'
+    anchor: ch9
+    title: Rāja Vidyā Yoga
+    native: राजविद्यायोग
+    subtitle: The Yoga of Royal Knowledge
+    num: '9'
+    accent: bhakti
+    tags: bhakti
+    body: 'Krishna reveals the "royal secret": he pervades all things, yet remains untouched. Even a leaf, a flower,
+      or water offered with love is accepted. Devotion is the easiest and highest path.'
+    chips:
+    - {text: 🙏 Bhakti, style: yoga}
+    - 34 verses
+    - '"Royal secret"'
+  - id: '10'
+    anchor: ch10
+    title: Vibhūti Yoga
+    native: विभूतियोग
+    subtitle: The Yoga of Divine Glories
+    num: '10'
+    accent: bhakti
+    tags: bhakti
+    body: 'Krishna describes his manifestations: he is the sun among lights, Meru among peaks, the Himalayas among
+      immovable things, the Ganges among rivers. Arjuna is overwhelmed and asks to see the full divine form.'
+    chips:
+    - {text: 🙏 Bhakti, style: yoga}
+    - 42 verses
+    - Vibhūtis
+  - id: '11'
+    anchor: ch11
+    title: Viśvarūpa Darśana Yoga
+    native: विश्वरूपदर्शनयोग
+    subtitle: The Yoga of the Vision of the Universal Form
+    num: '11'
+    accent: bhakti
+    tags: bhakti
+    body: Krishna grants Arjuna divine sight and reveals his cosmic form — all worlds, all beings, all time blazing
+      in one infinite body. Arjuna trembles, terrified and awestruck, and begs Krishna to return to his gentle human
+      form.
+    chips:
+    - {text: 🙏 Bhakti, style: yoga}
+    - 55 verses
+    - Cosmic vision
+  - id: '12'
+    anchor: ch12
+    title: Bhakti Yoga
+    native: भक्तियोग
+    subtitle: The Yoga of Devotion
+    num: '12'
+    accent: bhakti
+    tags: bhakti
+    body: 'Arjuna asks: is it better to worship God with form or without form? Krishna describes the qualities of
+      a true devotee — free from ego, equal in praise and blame, content, and devoted with unwavering love.'
+    chips:
+    - {text: 🙏 Bhakti, style: yoga}
+    - 20 verses
+    - Qualities of a devotee
+  - id: '13'
+    anchor: ch13
+    title: Kṣetra Kṣetrajña Vibhāga Yoga
+    native: क्षेत्रक्षेत्रज्ञविभागयोग
+    subtitle: The Yoga of the Field & Its Knower
+    num: '13'
+    accent: jnana
+    tags: jnana
+    body: The body is the "field" (kṣetra); the consciousness that knows it is the "knower" (kṣetrajña). Krishna
+      distinguishes matter from spirit, and teaches that the Self within all beings is the same.
+    chips:
+    - {text: 🧠 Jnana, style: yoga}
+    - 34 verses
+  - id: '14'
+    anchor: ch14
+    title: Guṇatraya Vibhāga Yoga
+    native: गुणत्रयविभागयोग
+    subtitle: The Yoga of the Three Guṇas
+    num: '14'
+    accent: jnana
+    tags: jnana
+    body: 'All of nature is woven from three qualities: sattva (clarity), rajas (passion), and tamas (inertia).
+      These bind the soul to the body. One who transcends all three attains liberation.'
+    chips:
+    - {text: 🧠 Jnana, style: yoga}
+    - 27 verses
+    - Three guṇas
+  - id: '15'
+    anchor: ch15
+    title: Puruṣottama Yoga
+    native: पुरुषोत्तमयोग
+    subtitle: The Yoga of the Supreme Person
+    num: '15'
+    accent: jnana
+    tags: jnana
+    body: The world is described as an inverted tree with roots above. Beyond the perishable and the imperishable
+      stands the Supreme Person (Puruṣottama) — the source and support of all.
+    chips:
+    - {text: 🧠 Jnana, style: yoga}
+    - 20 verses
+    - Puruṣottama
+  - id: '16'
+    anchor: ch16
+    title: Daivāsura Sampad Vibhāga Yoga
+    native: दैवासुरसम्पद्विभागयोग
+    subtitle: The Yoga of Divine & Demoniac Natures
+    num: '16'
+    accent: jnana
+    tags: jnana
+    body: 'Krishna contrasts the divine qualities — fearlessness, purity, generosity — with the demoniac: arrogance,
+      cruelty, greed. The demoniac are bound by desire and end in lower births.'
+    chips:
+    - {text: 🧠 Jnana, style: yoga}
+    - 24 verses
+  - id: '17'
+    anchor: ch17
+    title: Śraddhātraya Vibhāga Yoga
+    native: श्रद्धात्रयविभागयोग
+    subtitle: The Yoga of the Threefold Faith
+    num: '17'
+    accent: jnana
+    tags: jnana
+    body: Faith, food, sacrifice and austerity are each of three kinds, corresponding to the three guṇas. Krishna
+      explains that actions done without faith are worthless, and that "Om Tat Sat" sanctifies all offering.
+    chips:
+    - {text: 🧠 Jnana, style: yoga}
+    - 28 verses
+  - id: '18'
+    anchor: ch18
+    title: Mokṣa Sanyāsa Yoga
+    native: मोक्षसंन्यासयोग
+    subtitle: The Yoga of Liberation through Renunciation
+    num: '18'
+    accent: bhakti
+    tags: bhakti
+    body: 'Krishna summarizes all paths and gives his final teaching: abandon all dharma and take refuge in him
+      alone. Arjuna rises, his delusion gone, and chooses to fight. Sanjaya rejoices.'
+    chips:
+    - {text: 🙏 Bhakti, style: yoga}
+    - 78 verses
+    - '"Sarva-dharmān parityajya"'

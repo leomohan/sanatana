@@ -1,0 +1,21 @@
+# Site-wide settings. Add a page here once and it appears in every footer.
+name: Sanatana
+tagline: visual maps of Hindu literature, philosophy and saints
+leaflet_version: 1.9.4
+nav:
+  - {file: index.html, emoji: 🏠, label: Home}
+  - {file: veda.html, emoji: 📜, label: Vedic Literature}
+  - {file: an.html, emoji: 🪔, label: Azhwars & Nayanmars}
+  - {file: darshanas.html, emoji: ⚖️, label: Six Darshanas}
+  - {file: geography.html, emoji: 🗺️, label: Sacred Geography}
+  - {file: gita.html, emoji: 🪷, label: Bhagavad Gita}
+  - {file: vedanta.html, emoji: 🪷, label: Three Vedantas}
+  - {file: muruga.html, emoji: 🦚, label: Arupadai Veedu}
+  - {file: shanmata.html, emoji: 🕉️, label: Shanmata}
+  - {file: mathas.html, emoji: 🛕, label: Mathas}
+  - {file: jyotisha.html, emoji: 🌌, label: Jyotisha}
+  - {file: samskaras.html, emoji: 🕯️, label: Cradle to Pyre}
+  - {file: shiva-muruga.html, emoji: 🔱, label: Shiva & Muruga}
+  - {file: navagraha.html, emoji: 🪐, label: Navagraha Temples}
+  - {file: pancha-bhoota.html, emoji: 🔥, label: Pancha Bhoota Sthalams}
+  - {file: shakti-peethas.html, emoji: 🌺, label: Shakti Peethas}

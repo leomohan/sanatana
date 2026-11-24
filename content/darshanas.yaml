@@ -1,0 +1,238 @@
+page:
+  file: darshanas.html
+  layout: page
+  title: The Six Darshanas — A Comparison Map
+  favicon: ⚖️
+  search: Search schools, concepts, sutras…
+  native: sa
+  palette:
+    nyaya: ['#ff9f43', '#e07b1a']
+    vaisheshika: ['#26de81', '#12995a']
+    samkhya: ['#45aaf2', '#1f7fc4']
+    yoga: ['#a55eea', '#8b45d6']
+    mimamsa: ['#fc5c65', '#d63c46']
+    vedanta: ['#f7b731', '#c98a00']
+    astika: ['#c084fc', '#8b45d6']
+    nastika: ['#8899aa', '#5f6b7a']
+  gradient: [nyaya, vaisheshika, samkhya, yoga, mimamsa, vedanta]
+  primary: astika
+  h1: The Six Darshanas
+  intro: Six classical schools of Indian philosophy, traditionally grouped into three complementary pairs. Each
+    approaches reality, knowledge and liberation differently. Compare them side by side.
+  legend:
+  - {label: Nyaya, color: nyaya}
+  - {label: Vaisheshika, color: vaisheshika}
+  - {label: Samkhya, color: samkhya}
+  - {label: Yoga, color: yoga}
+  - {label: Mimamsa, color: mimamsa}
+  - {label: Vedanta, color: vedanta}
+  filters:
+  - {value: all, label: All Six, color: astika}
+  - {value: nyaya, label: Nyaya, color: nyaya}
+  - {value: vaisheshika, label: Vaisheshika, color: vaisheshika}
+  - {value: samkhya, label: Samkhya, color: samkhya}
+  - {value: yoga, label: Yoga, color: yoga}
+  - {value: mimamsa, label: Mimamsa, color: mimamsa}
+  - {value: vedanta, label: Vedanta, color: vedanta}
+  footer: [⚖️ A comparison map of the Six Darshanas · Dates are approximate · Schools evolved over centuries with
+      many sub-schools, All six are <em>āstika</em> schools — they accept the authority of the Vedas.]
+blocks:
+- {type: filters}
+- type: compare
+  title: ⚖️ Side-by-Side Comparison
+  color: astika
+  intro: Scroll horizontally to see all six columns. Filter chips above can hide columns you don't need. Every row
+    uses the same criteria across all schools.
+  corner: Criterion
+  columns:
+  - {key: nyaya, label: Nyaya, color: nyaya}
+  - {key: vaisheshika, label: Vaisheshika, color: vaisheshika}
+  - {key: samkhya, label: Samkhya, color: samkhya}
+  - {key: yoga, label: Yoga, color: yoga}
+  - {key: mimamsa, label: Mimamsa, color: mimamsa}
+  - {key: vedanta, label: Vedanta, color: vedanta}
+  rows:
+  - label: Sanskrit Name
+    cells: [न्याय<span class="sanskrit">Nyāya</span>, वैशेषिक<span class="sanskrit">Vaiśeṣika</span>, सांख्य<span
+        class="sanskrit">Sāṃkhya</span>, योग<span class="sanskrit">Yoga</span>, मीमांसा<span class="sanskrit">Mīmāṃsā</span>,
+      वेदान्त<span class="sanskrit">Vedānta</span>]
+  - label: Founder
+    cells: [Gautama (Akṣapāda), Kaṇāda (Kaśyapa), Kapila, Patañjali, Jaimini, Bādarāyaṇa (Vyāsa)]
+  - label: Core Text
+    cells: [Nyāya Sūtra, Vaiśeṣika Sūtra, Sāṃkhya Kārikā, Yoga Sūtra, Mīmāṃsā Sūtra, Brahma Sūtra]
+  - label: Approx. Era
+    cells: [c. 200 BCE – 200 CE, c. 200 BCE – 100 CE, c. 500 BCE – 500 CE, c. 200 BCE – 400 CE, c. 300 BCE – 200
+        CE, c. 200 BCE – 800 CE]
+  - label: Central Question
+    cells: ['<strong>How do we know?</strong> Logic and valid means of knowledge (pramāṇa).', '<strong>What is real?</strong>
+        Categories of being (padārtha).', '<strong>What is consciousness?</strong> Distinguishing Puruṣa (spirit)
+        from Prakṛti (matter).', '<strong>How do we still the mind?</strong> Practice leading to liberation.', '<strong>How
+        do we act rightly?</strong> Ritual and dharma from the Vedas.', '<strong>What is Brahman?</strong> The nature
+        of ultimate reality and Self.']
+  - label: Key Method
+    cells: ['Debate, inference, syllogism (5-membered)', Atomistic analysis of substances, Discrimination (viveka)
+        between two principles, 'Eight limbs (aṣṭāṅga): ethics → meditation', Exegesis of Vedic injunction (vidhi),
+      Reasoning on Upanishadic mahāvākyas]
+  - label: View of the Self
+    cells: ['Ātman is distinct, eternal, conscious; liberation = freedom from suffering', 'Ātman is a substance,
+        eternal, many selves; liberation = cessation of karma', Puruṣa is pure witness; liberation = aloneness (kaivalya),
+      Puruṣa is pure consciousness; liberation = kaivalya via practice, 'Self is real and acts; liberation = heaven
+        through ritual, not dissolution', 'Varies by school: Ātman = Brahman (Advaita); an inseparable mode of Brahman
+        (Viśiṣṭādvaita); eternally distinct (Dvaita)']
+  - label: God / Īśvara
+    cells: [Īśvara as creator and omniscient knower (later Nyāya), Īśvara as efficient cause (later theism), No
+        active creator; Puruṣa/Prakṛti suffice, 'Īśvara as special Puruṣa, object of devotion', 'Minimal; focus
+        on ritual action, not a creator God', Brahman as ground of all (Īśvara in theistic schools)]
+  - label: Means of Knowledge (Pramāṇa)
+    cells: ['Perception, inference, comparison, testimony', Perception and inference only (testimony is treated
+        as a form of inference), 'Perception, inference, testimony', 'Perception, inference, testimony, plus meditative
+        insight', Testimony (Veda) primary; perception/inference secondary, 'Scripture (śabda) is decisive; Advaita
+        accepts six pramāṇas, Viśiṣṭādvaita and Dvaita three (perception, inference, testimony)']
+  - label: Pair / Allied School
+    cells: [<strong>Paired with Vaiśeṣika</strong> — logic + ontology, <strong>Paired with Nyāya</strong> — ontology
+        + logic, <strong>Paired with Yoga</strong> — theory + practice, <strong>Paired with Sāṃkhya</strong> — practice
+        + theory, <strong>Paired with Vedānta</strong> — ritual + knowledge, <strong>Paired with Mīmāṃsā</strong>
+        — knowledge + ritual]
+  - label: Liberation (Mokṣa)
+    cells: [Freedom from bondage through correct knowledge, Release from karmic cycle; cessation of the self's suffering,
+      'Kaivalya: Puruṣa stands alone, free of Prakṛti', Kaivalya through aṣṭāṅga; citta-vṛtti-nirodha, Attainment
+        of heaven (svarga) via proper ritual, 'Mokṣa through knowledge of Brahman: realized identity (Advaita),
+        or eternal communion and service (Viśiṣṭādvaita, Dvaita)']
+  - label: Legacy
+    cells: ['Indian logic, jurisprudence, debate tradition', 'Early physics, atomism, categories of reality', 'Framework
+        for Yoga, Ayurveda, Bhagavad Gita', 'Global yoga tradition, meditation science', 'Hindu ritual, legal hermeneutics,
+        Vedic interpretation', 'Advaita, Viśiṣṭādvaita, Dvaita — dominant schools today']
+  min_width: 1000
+- type: cards
+  title: 📖 The Six Schools in Detail
+  color: astika
+  cards:
+  - id: nyaya
+    title: Nyaya
+    native: न्याय
+    subtitle: The School of Logic & Epistemology
+    badge: c. 200 BCE – 200 CE
+    accent: nyaya
+    tags: nyaya
+    body: Nyāya (“rule” or “method”) is India’s premier school of logic and epistemology. It systematically analyses
+      how we know anything at all — defining four valid means of knowledge and a five-step syllogism that influenced
+      centuries of debate. Later Nyāya developed a sophisticated theism, arguing for Īśvara as the intelligent cause
+      of the world.
+    facts:
+    - [Founder, Gautama (Akṣapāda)]
+    - [Core text, Nyāya Sūtra]
+    - [Focus, 'Pramāṇa (means of knowledge), logic, debate']
+    - [Key idea, Valid knowledge → liberation from suffering]
+    chips:
+    - {text: ⚖️ Logic, style: theme}
+    - Epistemology
+  - id: vaisheshika
+    title: Vaisheshika
+    native: वैशेषिक
+    subtitle: The School of Categories & Atomism
+    badge: c. 200 BCE – 100 CE
+    accent: vaisheshika
+    tags: vaisheshika
+    body: 'Vaiśeṣika (“particularity”) is an early ontology — a systematic catalogue of everything that exists.
+      Kaṇāda’s sūtras divide reality into six categories (padārtha), to which later writers added a seventh, non-existence
+      (abhāva), and propose an atomistic physics in which material things arise from combinations of eternal atoms.
+      It became the natural companion to Nyāya: ontology + logic.'
+    facts:
+    - [Founder, Kaṇāda (Kaśyapa)]
+    - [Core text, Vaiśeṣika Sūtra]
+    - [Focus, 'Padārtha (categories of being), atomism']
+    - [Key idea, Reality is analysable into six (later seven) categories]
+    chips:
+    - {text: 🌿 Ontology, style: theme}
+    - Atomism
+  - id: samkhya
+    title: Samkhya
+    native: सांख्य
+    subtitle: The School of Dualism
+    badge: c. 500 BCE – 500 CE
+    accent: samkhya
+    tags: samkhya
+    body: 'Sāṃkhya (“enumeration”) is India’s oldest systematic philosophy. It posits two ultimate principles —
+      <em>Puruṣa</em> (pure consciousness) and <em>Prakṛti</em> (matter/nature) — and explains the entire cosmos
+      as the evolution of Prakṛti for the sake of Puruṣa. Liberation is <em>kaivalya</em>: realizing that consciousness
+      was never bound in the first place.'
+    facts:
+    - [Founder, Kapila]
+    - [Core text, Sāṃkhya Kārikā (Īśvarakṛṣṇa)]
+    - [Focus, Puruṣa vs. Prakṛti; 25 tattvas]
+    - [Key idea, Discrimination (viveka) → kaivalya]
+    chips:
+    - {text: 🧠 Dualism, style: theme}
+    - Cosmology
+  - id: yoga
+    title: Yoga
+    native: योग
+    subtitle: The School of Practice
+    badge: c. 200 BCE – 400 CE
+    accent: yoga
+    tags: yoga
+    body: Patañjali’s Yoga is the practical counterpart to Sāṃkhya theory. Its 196 sūtras define yoga as <em>citta-vṛtti-nirodha</em>
+      — the stilling of mental fluctuations — and lay out an eight-limbed path from ethics and posture to meditation
+      and absorption. It remains India’s most globally influential philosophical export.
+    facts:
+    - [Founder, Patañjali]
+    - [Core text, Yoga Sūtra (196 sūtras)]
+    - [Focus, Aṣṭāṅga — eight limbs of practice]
+    - [Key idea, Still the mind → kaivalya]
+    chips:
+    - {text: 🧘 Practice, style: theme}
+    - Meditation
+  - id: mimamsa
+    title: Mimamsa
+    native: मीमांसा
+    subtitle: The School of Ritual Hermeneutics
+    badge: c. 300 BCE – 200 CE
+    accent: mimamsa
+    tags: mimamsa
+    body: Mīmāṃsā (“inquiry”) is the rigorous science of Vedic interpretation. Jaimini’s sūtras analyse the ritual
+      injunctions of the Vedas with extraordinary precision, arguing that dharma is known only through scripture,
+      and that right action — not metaphysical speculation — is the path to the good. It profoundly shaped Hindu
+      law and ritual practice.
+    facts:
+    - [Founder, Jaimini]
+    - [Core text, Mīmāṃsā Sūtra]
+    - [Focus, 'Vedic ritual, dharma, hermeneutics']
+    - [Key idea, Right action (karma) → svarga]
+    chips:
+    - {text: 🔥 Ritual, style: theme}
+    - Hermeneutics
+  - id: vedanta
+    title: Vedanta
+    native: वेदान्त
+    subtitle: The School of the Upanishads
+    badge: c. 200 BCE – 800 CE
+    accent: vedanta
+    tags: vedanta
+    body: 'Vedānta (“end of the Vedas”) is the philosophical culmination of the Upanishads. Bādarāyaṇa’s Brahma
+      Sūtra systematized its teachings, and later commentators — Śaṅkara (Advaita), Rāmānuja (Viśiṣṭādvaita) and
+      Madhva (Dvaita) — produced the schools that dominate Hindu thought today. Its central question is how the
+      Self (Ātman) relates to ultimate reality (Brahman): identity for Advaita, inseparable relation for Viśiṣṭādvaita,
+      eternal difference for Dvaita.'
+    facts:
+    - [Founder, Bādarāyaṇa (Vyāsa)]
+    - [Core text, Brahma Sūtra]
+    - [Focus, 'Ātman, Brahman, mokṣa']
+    - [Key idea, Knowledge of Brahman → liberation]
+    chips:
+    - {text: 🧠 Brahman, style: theme}
+    - Upanishads
+- type: pairs
+  title: 🔗 The Three Pairs
+  color: astika
+  intro: The six schools are traditionally grouped into three complementary pairs — each pair combining theory with
+    practice, or logic with ontology, or ritual with knowledge.
+  items:
+  - {title: ⚖️ Nyāya + Vaiśeṣika, text: '<strong>Logic + Ontology.</strong> Nyāya supplies the tools of reasoning;
+      Vaiśeṣika supplies the map of reality. Together they form a complete realist system — what exists, and how
+      we can know it.', color: nyaya}
+  - {title: 🧠 Sāṃkhya + Yoga, text: <strong>Theory + Practice.</strong> Sāṃkhya explains the metaphysics of consciousness
+      and matter; Yoga provides the practical discipline to realize it. The Yoga Sūtra openly builds on Sāṃkhya
+      categories., color: samkhya}
+  - {title: 🔥 Mīmāṃsā + Vedānta, text: <strong>Ritual + Knowledge.</strong> Mīmāṃsā focuses on the karma-kāṇḍa (action
+      section) of the Vedas; Vedānta focuses on the jñāna-kāṇḍa (knowledge section). Together they cover the whole
+      Vedic path., color: mimamsa}

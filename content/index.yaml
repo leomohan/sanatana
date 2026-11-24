@@ -1,0 +1,136 @@
+page:
+  file: index.html
+  layout: home
+  title: Sanatana — Visual Maps of Hindu Literature & Saints
+  favicon: 🕉️
+  palette:
+    veda: ['#ff9f43', '#e07b1a']
+    vaishnava: ['#4a9eff', '#1a6fc4']
+    saiva: ['#ff6b6b', '#c43a3a']
+    both: ['#c084fc', '#8b45d6']
+    darshana: ['#f7b731', '#c98a00']
+    divya: ['#4a9eff', '#1a6fc4']
+    jyotir: ['#ff6b6b', '#d63c46']
+    gita: ['#a55eea', '#8b45d6']
+    vedanta: ['#f7b731', '#c98a00']
+    muruga: ['#ff6b6b', '#c43a3a']
+    shakta: ['#c084fc', '#8b45d6']
+    madhva: ['#4a9eff', '#1a6fc4']
+    graha: ['#f7b731', '#c98a00']
+    birth: ['#ff9f43', '#e07b1a']
+    shiva: ['#a55eea', '#8b45d6']
+  h1: Sanatana
+  intro: Visual maps of Hindu literature, philosophy and saints — built to be explored, not just read.
+  footer: ['🕉️ Sanatana — a growing collection of visual maps of Hindu literature, philosophy and saints.', Built
+      as an educational overview. Dates and classifications vary across traditions.]
+  primary: both
+  gradient: [veda, both, vaishnava, saiva]
+  om_gradient: [veda, both, vaishnava]
+blocks:
+- type: home-cards
+  cards:
+  - title: Map of Vedic Literature
+    accent: veda
+    href: veda.html
+    emoji: 📜
+    text: The Vedas, Brahmanas, Aranyakas, Upanishads, Puranas, Itihasas and Upavedas — with interactive connections,
+      a chronological timeline, and search across the whole corpus.
+    meta: [7 categories, 40 texts, Map + Timeline]
+  - title: Azhwars & Nayanmars
+    accent: both
+    href: an.html
+    emoji: 🪔
+    text: The twin streams of Tamil Bhakti — the twelve Vaishnava Azhwars and the Saiva Nayanmars — with their timelines,
+      key works and the two great canons they gave us.
+    meta: [2 traditions, 20 saints & canons, Women saints]
+  - title: The Six Darshanas
+    accent: darshana
+    href: darshanas.html
+    emoji: ⚖️
+    text: Nyaya, Vaisheshika, Samkhya, Yoga, Mimamsa, Vedanta — a side-by-side comparison of India's six classical
+      schools of philosophy.
+    meta: [6 schools, 11 criteria, Comparison table]
+  - title: Sacred Geography
+    accent: divya
+    href: geography.html
+    emoji: 🗺️
+    text: The 108 Divya Desams of Vishnu and the 12 Jyotirlingas of Shiva — an interactive map of India's most sacred
+      pilgrimage circuits.
+    meta: [32 key sites, Interactive map, Two circuits]
+  - title: The Bhagavad Gita
+    accent: gita
+    href: gita.html
+    emoji: 🪷
+    text: All 18 chapters visualized — from Arjuna's despair to Krishna's final call to surrender. Each chapter
+      as a yoga, a step on the path.
+    meta: [18 chapters, 700 verses, 5 yoga paths]
+  - title: The Three Vedantas
+    accent: vedanta
+    href: vedanta.html
+    emoji: 🪷
+    text: Advaita, Vishishtadvaita, Dvaita — three great commentators on the Upanishads, three visions of the soul's
+      relationship to God.
+    meta: [3 schools, 12 criteria, Comparison table]
+  - title: Arupadai Veedu
+    accent: muruga
+    href: muruga.html
+    emoji: 🦚
+    text: The six sacred abodes of Lord Muruga — from his wedding at Thiruparankundram to his victory at Thiruchendur,
+      his renunciation at Palani, and his wisdom at Swamimalai.
+    meta: [6 abodes, Interactive map, Sangam tradition]
+  - title: The Shanmata
+    accent: shakta
+    href: shanmata.html
+    emoji: 🕉️
+    text: Shaiva, Vaishnava, Shakta, Ganapatya, Saura, Kaumara — the six major sectarian traditions of Hinduism,
+      each centred on a primary deity and a body of scripture.
+    meta: [6 traditions, 9 criteria, Comparison table]
+  - title: The Mathas
+    accent: madhva
+    href: mathas.html
+    emoji: 🛕
+    text: The four Amnaya Peethams of Adi Shankara and the eight Ashta Mathas of Madhvacharya — their locations,
+      founders, and the lineages that carry their traditions forward.
+    meta: [12 mathas, 2 lineages, Lineage tree]
+  - title: Jyotisha
+    accent: graha
+    href: jyotisha.html
+    emoji: 🌌
+    text: The nine Grahas, twelve Rashis, twenty-seven Nakshatras, five limbs of the Panchanga, and the sixty-year
+      Samvatsara cycle — the architecture of Vedic time and sky.
+    meta: [9 Grahas, 27 Nakshatras, 60 Samvatsaras]
+  - title: From Cradle to Pyre
+    accent: birth
+    href: samskaras.html
+    emoji: 🕯️
+    text: The 16 Samskaras and life-stage rituals of a South Indian Brahmin — from Punyahavachanam to Shraadha —
+      visualised as a flowing timeline.
+    meta: [16 rituals, 5 life stages, Visual timeline]
+  - title: Shiva & Muruga
+    accent: shiva
+    href: shiva-muruga.html
+    emoji: 🔱
+    text: The forms, sacred sites, scriptures, and festivals of Lord Shiva and his son Lord Muruga — the twin streams
+      of Tamil Saiva devotion.
+    meta: [2 deities, 10 forms, Texts & Festivals]
+  - title: Navagraha Temples
+    accent: '#8854d0'
+    href: navagraha.html
+    emoji: 🪐
+    text: Nine Shiva temples around Kumbakonam, each the seat of one of the nine Grahas — the pilgrimage that brings
+      the planets of Jyotisha down to earth.
+    meta: [9 temples, Interactive map, Linked to Jyotisha]
+  - title: Pancha Bhoota Sthalams
+    accent: '#ee5253'
+    href: pancha-bhoota.html
+    emoji: 🔥
+    text: Shiva as the five elements — earth at Kanchipuram, water at Thiruvanaikaval, fire at Tiruvannamalai, air
+      at Srikalahasti and space at Chidambaram.
+    meta: [5 elements, Interactive map, South India]
+  - title: Shakti Peethas
+    accent: '#e84393'
+    href: shakti-peethas.html
+    emoji: 🌺
+    text: Where the body of Sati fell — the 18 Maha Shakti Peethas from Sri Lanka to Kashmir, the four Adi Peethas,
+      and the legend of Daksha's sacrifice.
+    meta: [18 + 4 peethas, Interactive map, Sati legend]

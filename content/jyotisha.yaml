@@ -1,0 +1,365 @@
+page:
+  file: jyotisha.html
+  layout: page
+  title: Jyotisha — Grahas, Rashis, Nakshatras, Panchanga & Samvatsaras
+  favicon: 🌌
+  search: Search grahas, rashis, nakshatras…
+  native: sa
+  palette:
+    graha: ['#f7b731', '#c98a00']
+    rashi: ['#45aaf2', '#1f7fc4']
+    nakshatra: ['#a55eea', '#8b45d6']
+    panchanga: ['#26de81', '#12995a']
+    samvatsara: ['#fc5c65', '#d63c46']
+  gradient: [graha, rashi, nakshatra, panchanga, samvatsara]
+  primary: nakshatra
+  h1: Jyotisha
+  intro: The architecture of Vedic time and sky — the nine Grahas that rule, the twelve Rashis and twenty-seven
+    Nakshatras they govern, the five limbs of the Panchanga that organise daily life, and the sixty-year Samvatsara
+    cycle that turns the long wheel.
+  legend:
+  - {label: 9 Grahas, color: graha}
+  - {label: 12 Rashis, color: rashi}
+  - {label: 27 Nakshatras, color: nakshatra}
+  - {label: Panchanga, color: panchanga}
+  - {label: 60 Samvatsaras, color: samvatsara}
+  filters:
+  - {value: all, label: All Sections, color: graha}
+  - {value: graha, label: 🪐 Grahas, color: graha}
+  - {value: rashi, label: ♈ Rashis, color: rashi}
+  - {value: nakshatra, label: ✨ Nakshatras, color: nakshatra}
+  - {value: panchanga, label: 📅 Panchanga, color: panchanga}
+  - {value: samvatsara, label: 🔄 Samvatsaras, color: samvatsara}
+  footer: ['🌌 A visual map of Jyotisha · Grahas, Rashis, Nakshatras, Panchanga &amp; Samvatsaras · Data is traditional
+      and approximate', 'Regional traditions vary in spelling and some details. This map is for study and orientation,
+      not as an astronomical almanac.']
+blocks:
+- {type: filters}
+- type: cards
+  title: 🪐 The Nine Grahas (Planetary Rulers)
+  color: graha
+  section: graha
+  intro: The Navagraha are the governors of the sky — every Rashi and Nakshatra is ruled by one of them. They are
+    worshipped as deities and their positions shape the birth chart (Kundali). Each Graha has its own temple in
+    the Kaveri delta — see the <a href="navagraha.html" style="color:var(--graha);font-weight:600">Navagraha Temples</a>
+    map.
+  grid: v3
+  cards:
+  - id: surya
+    title: Surya
+    native: सूर्य
+    subtitle: Sun
+    accent: graha
+    tags: graha
+    body: The head of the Navagrahas. Rules the soul, vitality, authority, and the father. Exalted in Mesha (Aries).
+    facts:
+    - [Rules, Simha (Leo)]
+    - [Nature, Malefic (mildly)]
+    - [Temple, '<a href="navagraha.html#surya" style="color:inherit;font-weight:600">🛕 Suryanar Kovil →</a>']
+    chips:
+    - {text: ☀️ Sun, style: theme}
+  - id: chandra
+    title: Chandra
+    native: चन्द्र
+    subtitle: Moon
+    accent: graha
+    tags: graha
+    body: Rules the mind, emotions, and the mother. The Moon's position defines the Rashi (Janma Rashi) and the
+      Nakshatra of birth.
+    facts:
+    - [Rules, Karka (Cancer)]
+    - [Nature, Benefic]
+    - [Temple, '<a href="navagraha.html#chandra" style="color:inherit;font-weight:600">🛕 Thingalur →</a>']
+    chips:
+    - {text: 🌙 Moon, style: theme}
+  - id: mangala
+    title: Mangala
+    native: मङ्गल
+    subtitle: Mars
+    accent: graha
+    tags: graha
+    body: Rules courage, energy, conflict, and the siblings. Exalted in Makara (Capricorn).
+    facts:
+    - [Rules, 'Mesha, Vrischika']
+    - [Nature, Malefic]
+    - [Temple, '<a href="navagraha.html#mangala" style="color:inherit;font-weight:600">🛕 Vaitheeswaran Koil →</a>']
+    chips:
+    - {text: 🔴 Mars, style: theme}
+  - id: budha
+    title: Budha
+    native: बुध
+    subtitle: Mercury
+    accent: graha
+    tags: graha
+    body: Rules intellect, communication, and commerce. Exalted in Kanya (Virgo).
+    facts:
+    - [Rules, 'Mithuna, Kanya']
+    - [Nature, Benefic (with benefics)]
+    - [Temple, '<a href="navagraha.html#budha" style="color:inherit;font-weight:600">🛕 Thiruvenkadu →</a>']
+    chips:
+    - {text: 🟢 Mercury, style: theme}
+  - id: guru
+    title: Guru (Brihaspati)
+    native: गुरु
+    subtitle: Jupiter
+    accent: graha
+    tags: graha
+    body: The teacher of the gods. Rules wisdom, dharma, expansion, and fortune. Exalted in Karka (Cancer).
+    facts:
+    - [Rules, 'Dhanus, Meena']
+    - [Nature, Benefic]
+    - [Temple, '<a href="navagraha.html#guru" style="color:inherit;font-weight:600">🛕 Alangudi →</a>']
+    chips:
+    - {text: 🟡 Jupiter, style: theme}
+  - id: shukra
+    title: Shukra
+    native: शुक्र
+    subtitle: Venus
+    accent: graha
+    tags: graha
+    body: Rules love, beauty, art, and pleasure. Exalted in Meena (Pisces).
+    facts:
+    - [Rules, 'Vrishabha, Tula']
+    - [Nature, Benefic]
+    - [Temple, '<a href="navagraha.html#shukra" style="color:inherit;font-weight:600">🛕 Kanjanur →</a>']
+    chips:
+    - {text: 💎 Venus, style: theme}
+  - id: shani
+    title: Shani
+    native: शनि
+    subtitle: Saturn
+    accent: graha
+    tags: graha
+    body: Rules discipline, karma, delay, and endurance. Exalted in Tula (Libra). The great teacher through hardship.
+    facts:
+    - [Rules, 'Makara, Kumbha']
+    - [Nature, Malefic]
+    - [Temple, '<a href="navagraha.html#shani" style="color:inherit;font-weight:600">🛕 Thirunallar →</a>']
+    chips:
+    - {text: 🔵 Saturn, style: theme}
+  - id: rahu
+    title: Rahu
+    native: राहु
+    subtitle: North Lunar Node
+    accent: graha
+    tags: graha
+    body: The eclipse-causing node. Rules illusion, ambition, and the unconventional. Always retrograde.
+    facts:
+    - [Rules, Kumbha (co-ruler)]
+    - [Nature, Malefic]
+    - [Temple, '<a href="navagraha.html#rahu" style="color:inherit;font-weight:600">🛕 Thirunageswaram →</a>']
+    chips:
+    - {text: 🐍 Rahu, style: theme}
+  - id: ketu
+    title: Ketu
+    native: केतु
+    subtitle: South Lunar Node
+    accent: graha
+    tags: graha
+    body: Rules detachment, spirituality, and liberation. The headless node that points toward moksha.
+    facts:
+    - [Rules, Vrischika (co-ruler)]
+    - [Nature, Malefic]
+    - [Temple, '<a href="navagraha.html#ketu" style="color:inherit;font-weight:600">🛕 Keezhperumpallam →</a>']
+    chips:
+    - {text: ☄️ Ketu, style: theme}
+- type: cards
+  title: ♈ The Twelve Rashis (Zodiac Signs)
+  color: rashi
+  section: rashi
+  intro: The sidereal zodiac is a 360° belt divided into 12 equal parts of 30°, each called a Rashi. Your Janma
+    Rashi is determined by the Moon's position at birth, not the Sun.
+  grid: v4
+  cards:
+  - id: mesha
+    title: Mesha
+    native: मेष
+    subtitle: Aries · Ram
+    accent: rashi
+    tags: rashi
+    body: 'Ruled by Mangala (Mars). Element: Fire. Quality: Chara (Movable).'
+    chips:
+    - {text: 🔥 Fire, style: theme}
+    - Mars
+  - id: vrishabha
+    title: Vrishabha
+    native: वृषभ
+    subtitle: Taurus · Bull
+    accent: rashi
+    tags: rashi
+    body: 'Ruled by Shukra (Venus). Element: Earth. Quality: Sthira (Fixed).'
+    chips:
+    - {text: 🌍 Earth, style: theme}
+    - Venus
+  - id: mithuna
+    title: Mithuna
+    native: मिथुन
+    subtitle: Gemini · Twins
+    accent: rashi
+    tags: rashi
+    body: 'Ruled by Budha (Mercury). Element: Air. Quality: Dvisvabhava (Dual).'
+    chips:
+    - {text: 💨 Air, style: theme}
+    - Mercury
+  - id: karka
+    title: Karka
+    native: कर्क
+    subtitle: Cancer · Crab
+    accent: rashi
+    tags: rashi
+    body: 'Ruled by Chandra (Moon). Element: Water. Quality: Chara (Movable).'
+    chips:
+    - {text: 💧 Water, style: theme}
+    - Moon
+  - id: simha
+    title: Simha
+    native: सिंह
+    subtitle: Leo · Lion
+    accent: rashi
+    tags: rashi
+    body: 'Ruled by Surya (Sun). Element: Fire. Quality: Sthira (Fixed).'
+    chips:
+    - {text: 🔥 Fire, style: theme}
+    - Sun
+  - id: kanya
+    title: Kanya
+    native: कन्या
+    subtitle: Virgo · Maiden
+    accent: rashi
+    tags: rashi
+    body: 'Ruled by Budha (Mercury). Element: Earth. Quality: Dvisvabhava (Dual).'
+    chips:
+    - {text: 🌍 Earth, style: theme}
+    - Mercury
+  - id: tula
+    title: Tula
+    native: तुला
+    subtitle: Libra · Balance
+    accent: rashi
+    tags: rashi
+    body: 'Ruled by Shukra (Venus). Element: Air. Quality: Chara (Movable).'
+    chips:
+    - {text: 💨 Air, style: theme}
+    - Venus
+  - id: vrischika
+    title: Vrischika
+    native: वृश्चिक
+    subtitle: Scorpio · Scorpion
+    accent: rashi
+    tags: rashi
+    body: 'Ruled by Mangala (Mars). Element: Water. Quality: Sthira (Fixed).'
+    chips:
+    - {text: 💧 Water, style: theme}
+    - Mars
+  - id: dhanus
+    title: Dhanus
+    native: धनुस्
+    subtitle: Sagittarius · Archer
+    accent: rashi
+    tags: rashi
+    body: 'Ruled by Guru (Jupiter). Element: Fire. Quality: Dvisvabhava (Dual).'
+    chips:
+    - {text: 🔥 Fire, style: theme}
+    - Jupiter
+  - id: makara
+    title: Makara
+    native: मकर
+    subtitle: Capricorn · Crocodile
+    accent: rashi
+    tags: rashi
+    body: 'Ruled by Shani (Saturn). Element: Earth. Quality: Chara (Movable).'
+    chips:
+    - {text: 🌍 Earth, style: theme}
+    - Saturn
+  - id: kumbha
+    title: Kumbha
+    native: कुम्भ
+    subtitle: Aquarius · Water-Pot
+    accent: rashi
+    tags: rashi
+    body: 'Ruled by Shani (Saturn) and Rahu. Element: Air. Quality: Sthira (Fixed).'
+    chips:
+    - {text: 💨 Air, style: theme}
+    - Saturn / Rahu
+  - id: meena
+    title: Meena
+    native: मीन
+    subtitle: Pisces · Fishes
+    accent: rashi
+    tags: rashi
+    body: 'Ruled by Guru (Jupiter). Element: Water. Quality: Dvisvabhava (Dual).'
+    chips:
+    - {text: 💧 Water, style: theme}
+    - Jupiter
+- type: table
+  title: ✨ The Twenty-Seven Nakshatras (Lunar Mansions)
+  color: nakshatra
+  section: nakshatra
+  intro: The Moon passes through 27 lunar mansions, each spanning 13°20′ of the ecliptic. Every Nakshatra has a
+    ruling planet, a presiding deity, and a symbol.
+  columns: [Nakshatra, Ruling Planet, Presiding Deity, Symbol]
+  rows:
+  - [Ashwini, Ketu, Ashwini Kumaras, Horse's head]
+  - [Bharani, Shukra (Venus), Yama, Yoni]
+  - [Krittika, Surya (Sun), Agni, Knife]
+  - [Rohini, Chandra (Moon), Brahma, 'Cart, temple']
+  - [Mrigashira, Mangala (Mars), Soma, Deer's head]
+  - [Ardra, Rahu, Rudra, Teardrop]
+  - [Punarvasu, Guru (Jupiter), Aditi, Bow and quiver]
+  - [Pushya, Shani (Saturn), Brihaspati, 'Cow''s udder, lotus']
+  - [Ashlesha, Budha (Mercury), Nagas, Serpent]
+  - [Magha, Ketu, Pitris, Royal throne]
+  - [Purva Phalguni, Shukra (Venus), Bhaga, Front legs of bed]
+  - [Uttara Phalguni, Surya (Sun), Aryaman, Back legs of bed]
+  - [Hasta, Chandra (Moon), Savitr, Hand]
+  - [Chitra, Mangala (Mars), Vishwakarma, Bright jewel]
+  - [Swati, Rahu, Vayu, Shoot of plant]
+  - [Vishakha, Guru (Jupiter), Indra-Agni, Triumphal arch]
+  - [Anuradha, Shani (Saturn), Mitra, Lotus]
+  - [Jyeshtha, Budha (Mercury), Indra, Circular amulet]
+  - [Mula, Ketu, Nirriti, Bunch of roots]
+  - [Purva Ashadha, Shukra (Venus), Apas, Elephant tusk]
+  - [Uttara Ashadha, Surya (Sun), Vishvedevas, Elephant tusk]
+  - [Shravana, Chandra (Moon), Vishnu, 'Ear, three footprints']
+  - [Dhanishtha, Mangala (Mars), Eight Vasus, Drum]
+  - [Shatabhisha, Rahu, Varuna, Empty circle]
+  - [Purva Bhadrapada, Guru (Jupiter), Aja Ekapada, Swords]
+  - [Uttara Bhadrapada, Shani (Saturn), Ahir Budhnya, 'Twins, snake']
+  - [Revati, Budha (Mercury), Pushan, Pair of fish]
+- type: cards
+  title: 📅 The Panchanga (Five Limbs of Time)
+  color: panchanga
+  section: panchanga
+  intro: The Panchanga is the traditional Hindu almanac — its name means "five limbs" because it tracks five aspects
+    of time based on the Moon's motion. Nakshatra is one of the five; the others are how people use the sky every
+    day.
+  grid: v3
+  cards:
+  - {id: tithi, title: Tithi, native: तिथि, subtitle: Lunar Day, accent: panchanga, tags: panchanga, body: 'The
+      time for the Moon-Sun longitude gap to grow by 12°. There are 30 Tithis in a lunar month, divided into Shukla
+      Paksha (waxing) and Krishna Paksha (waning).'}
+  - {id: vara, title: Vara, native: वार, subtitle: Weekday, accent: panchanga, tags: panchanga, body: 'The seven
+      days of the week, each ruled by a Graha: Ravi (Sun), Soma (Moon), Mangala (Mars), Budha (Mercury), Guru (Jupiter),
+      Shukra (Venus), Shani (Saturn).'}
+  - {id: nakshatra, title: Nakshatra, native: नक्षत्र, subtitle: Lunar Mansion, accent: panchanga, tags: panchanga,
+    body: 'The Moon''s transit through one of the 27 lunar mansions on a given day. Used for naming children, scheduling
+      ceremonies, and matching compatibility.'}
+  - {id: yoga, title: Yoga, native: योग, subtitle: Sun-Moon Combination, accent: panchanga, tags: panchanga, body: A
+      calculation based on the sum of the Sun and Moon's longitudes. There are 27 Yogas; some are considered auspicious
+      and others inauspicious for specific activities.}
+  - {id: karana, title: Karana, native: करण, subtitle: Half-Tithi, accent: panchanga, tags: panchanga, body: Half
+      of a lunar day; two Karanas per Tithi. There are 11 Karanas in total. The Vishti (Bhadra) Karana is avoided
+      for auspicious ceremonies.}
+- type: numgrid
+  title: 🔄 The Sixty Samvatsaras (Jovian Year Cycle)
+  color: samvatsara
+  section: samvatsara
+  intro: A cycle of 60 named years, traditionally linked to Jupiter's movement (in South Indian calendars it simply
+    runs with the solar or lunar year). The names repeat every 60 years, divided into three groups of 20 attributed
+    to Brahma, Vishnu, and Shiva. Regional lists vary slightly in spelling.
+  items: [Prabhava, Vibhava, Shukla, Pramoda, Prajapati, Angirasa, Shrimukha, Bhava, Yuvan, Dhatri, Ishvara, Bahudhanya,
+    Pramathin, Vikrama, Vrisha, Chitrabhanu, Svabhanu, Tarana, Parthiva, Vyaya, Sarvajit, Sarvadharin, Virodhin,
+    Vikrita, Khara, Nandana, Vijaya, Jaya, Manmatha, Durmukha, Hemalambin, Vilambin, Vikarin, Sharvari, Plava, Shubhakrit,
+    Shobhana, Krodhin, Vishvavasu, Parabhava, Plavanga, Kilaka, Saumya, Sadharaṇa, Virodhikrit, Paritapin, Pramadin,
+    Ananda, Rakshasa, Anala, Pingala, Kalayukti, Siddharthin, Raudra, Durmati, Dundubhi, Rudhirodgarin, Raktaksha,
+    Krodhana, Akshaya]

@@ -1,0 +1,98 @@
+page:
+  file: geography.html
+  layout: page
+  title: Sacred Geography — Divya Desams & Jyotirlingas
+  palette:
+    divya: ['#4a9eff', '#1a6fc4']
+    jyotir: ['#ff6b6b', '#c43a3a']
+    both: ['#c084fc', '#8b45d6']
+  favicon: 🗺️
+  footer: [🗺️ A sacred geography map · Markers are approximate · Map data © OpenStreetMap contributors]
+  toggles:
+  - {value: all, label: All Sites}
+  - {value: divya, label: 🔵 Divya Desams}
+  - {value: jyotir, label: 🔴 Jyotirlingas}
+  primary: divya
+  gradient: [divya, jyotir]
+blocks:
+- type: geo-map
+  legend:
+  - {label: Divya Desam (Vishnu), color: divya}
+  - {label: Jyotirlinga (Shiva), color: jyotir}
+  hint: Click any marker for details
+  loading: Loading sites…
+  groups:
+  - key: divya
+    label: Divya Desam
+    color: divya
+    sites:
+    - {name: Srirangam (Ranganathaswamy), loc: Tamil Nadu, lat: 10.8625, lng: 78.6897, note: Largest functioning
+        Hindu temple; supreme Divya Desam.}
+    - {name: Thirukoḻi (Uraiyur), loc: Tamil Nadu, lat: 10.82, lng: 78.67, note: Birthplace of Thiruppaan Azhwar.}
+    - {name: Thirukkarambanoor, loc: Tamil Nadu, lat: 10.8772, lng: 78.7031, note: 'Uthamar Koil, Tiruchirappalli;
+        rare temple dedicated to the Trimurti.'}
+    - {name: Pundarikakshan (Thiruvellarai), loc: Tamil Nadu, lat: 10.96, lng: 78.67, note: Pallava-era temple with
+        a swastika-shaped tank.}
+    - {name: Thiruvengadam (Tirumala), loc: Andhra Pradesh, lat: 13.6833, lng: 79.3472, note: The seven hills of
+        Venkateswara; one of the eight self-manifested shrines.}
+    - {name: Kanchipuram (Tirukkacchi), loc: Tamil Nadu, lat: 12.8342, lng: 79.7036, note: City of a thousand temples;
+        multiple Divya Desams here.}
+    - {name: Thiruvallikeni (Triplicane), loc: Tamil Nadu, lat: 13.0545, lng: 80.2756, note: 'Parthasarathy temple,
+        Chennai.'}
+    - {name: Srivilliputhur, loc: Tamil Nadu, lat: 9.5117, lng: 77.6333, note: Birthplace of Periyalvar and Andal.}
+    - {name: Thirukkurungudi, loc: Tamil Nadu, lat: 8.4333, lng: 77.5333, note: Near Tirunelveli.}
+    - {name: Thiruvattar, loc: Tamil Nadu, lat: 8.3167, lng: 77.2667, note: 'Adikesava Perumal temple, Kanyakumari
+        district.'}
+    - {name: Thiruvananthapuram (Padmanabhaswamy), loc: Kerala, lat: 8.4833, lng: 76.95, note: Often described as
+        the richest temple in the world.}
+    - {name: Thirunavaya, loc: Kerala, lat: 10.8833, lng: 75.9833, note: Navamukunda temple on the Bharathapuzha.}
+    - {name: Badrinath, loc: Uttarakhand, lat: 30.7433, lng: 79.4938, note: One of the Char Dhams; self-manifested
+        shrine.}
+    - {name: Muktinath (Thiru Saligramam), loc: Nepal, lat: 28.8167, lng: 83.8667, note: The only Divya Desam outside
+        India; the Kali Gandaki nearby yields the sacred saligrama stones.}
+    - {name: Naimisaranyam, loc: Uttar Pradesh, lat: 27.2, lng: 80.6, note: Ancient forest of sages; self-manifested
+        shrine.}
+    - {name: Ayodhya, loc: Uttar Pradesh, lat: 26.7956, lng: 82.1944, note: Rama's birthplace; sung by the Azhwars
+        as Thiru Ayodhi.}
+    - {name: Vadamathura (Mathura), loc: Uttar Pradesh, lat: 27.5047, lng: 77.6697, note: Krishna's birthplace.}
+    - {name: Devaprayag (Thirukkandam), loc: Uttarakhand, lat: 30.1458, lng: 78.5987, note: Raghunathji temple at
+        the confluence that forms the Ganga.}
+    - {name: Thirukkovalur, loc: Tamil Nadu, lat: 11.9675, lng: 79.2056, note: Where the three earliest Azhwars
+        met and sang the first Thiruvandhadhis.}
+    - {name: Dwaraka, loc: Gujarat, lat: 22.2378, lng: 68.9686, note: Krishna's kingdom; Dwarkadhish temple.}
+    plural: Divya Desams (representative)
+  - key: jyotir
+    label: Jyotirlinga
+    color: jyotir
+    sites:
+    - {name: Somnath, loc: 'Prabhas Patan, Gujarat', lat: 20.888, lng: 70.401, note: 'The first Jyotirlinga, on
+        the Arabian Sea. Destroyed and rebuilt many times.'}
+    - {name: Mallikarjuna, loc: 'Srisailam, Andhra Pradesh', lat: 16.0745, lng: 78.8685, note: On the Nallamala
+        Hills; both Jyotirlinga and Shakti Peetha.}
+    - {name: Mahakaleshwar, loc: 'Ujjain, Madhya Pradesh', lat: 23.1828, lng: 75.7682, note: The only south-facing
+        Jyotirlinga; famous Bhasma Aarti.}
+    - {name: Omkareshwar, loc: 'Mandhata Island, Madhya Pradesh', lat: 22.2453, lng: 76.151, note: On the Narmada;
+        the island resembles the Om symbol.}
+    - {name: Kedarnath, loc: 'Garhwal Himalayas, Uttarakhand', lat: 30.7352, lng: 79.0669, note: 'Highest Jyotirlinga
+        at 3,583 m; open only April–November.'}
+    - {name: Bhimashankar, loc: 'Sahyadri Hills, Maharashtra', lat: 19.072, lng: 73.535, note: Source of the Bhima
+        River; in a wildlife sanctuary.}
+    - {name: Kashi Vishwanath, loc: 'Varanasi, Uttar Pradesh', lat: 25.3109, lng: 83.0107, note: Shiva's eternal
+        abode on the Ganges; one of the oldest living cities.}
+    - {name: Trimbakeshwar, loc: 'Nashik, Maharashtra', lat: 19.9322, lng: 73.5308, note: 'Three-faced linga (Brahma,
+        Vishnu, Shiva); origin of the Godavari.'}
+    - {name: Nageshvara, loc: 'Dwarka, Gujarat', lat: 22.336, lng: 69.086, note: Near Dwarka; associated with the
+        demon Daruka. Aundha Nagnath (Maharashtra) also claims this Jyotirlinga.}
+    - {name: Baidyanath, loc: 'Deoghar, Jharkhand', lat: 24.4925, lng: 86.6997, note: Also a Shakti Peetha; major
+        pilgrimage in Shravan. Some traditions place this Jyotirlinga at Parli Vaijnath (Maharashtra).}
+    - {name: Rameshwaram, loc: 'Rameswaram Island, Tamil Nadu', lat: 9.2881, lng: 79.3174, note: Built by Rama;
+        one of the Char Dhams.}
+    - {name: Grishneshwar, loc: 'Ellora, Maharashtra', lat: 20.023, lng: 75.166, note: Beside the Ellora caves.}
+    plural: Jyotirlingas
+  note: <strong>About this map:</strong> The 108 Divya Desams are the Vishnu abodes sung by the twelve Azhwars in
+    the <em>Nalayira Divya Prabandham</em>. Of these, 106 are earthly temples concentrated in Tamil Nadu, Kerala,
+    and northern India, with two (Thiruparkadal and Sri Vaikuntham) considered celestial and not mapped here. This
+    map shows a representative set of 20 Divya Desams alongside all 12 Jyotirlingas. The 12 Jyotirlingas are the
+    self-manifested shrines of Shiva scattered across India, from Somnath on the Arabian Sea to Kedarnath in the
+    Himalayas. Coordinates are approximate temple locations; some Divya Desams share the same town and may overlap
+    at this zoom level.

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navagraha Temples — The Nine Planet Shrines of the Kaveri Delta</title>
+<meta name="description" content="Interactive map of the nine Navagraha temples around Kumbakonam, Tamil Nadu, with their deities, legends and links to the Jyotisha grahas.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪐</text></svg>">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="assets/site.css?v=420f3627">
+<style>:root,[data-theme="dark"]{--muruga:#f7b731; --muruga-2:#a55eea;} [data-theme="light"]{--muruga:#b7791f; --muruga-2:#7b3fc4;} :root{--primary:var(--muruga); --grad-h:linear-gradient(90deg,var(--muruga),var(--muruga-2)); --grad-v:linear-gradient(var(--muruga),var(--muruga-2));}</style>
+<script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
+  (function(){
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
+  })();
+</script>
+</head>
+<body>
+<div class="controls" role="toolbar" aria-label="Page controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
+  <div class="search-wrap">
+    <span aria-hidden="true">🔍</span>
+    <input type="search" id="searchInput" placeholder="Search grahas, temples, towns…" aria-label="Search">
+  </div>
+  <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
+    <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">தமிழ்</button>
+  </div>
+  <div class="ctrl-group" role="group" aria-label="Text size">
+    <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
+    <span class="size-val" id="sizeVal">100%</span>
+    <button class="ctrl-btn size-btn" id="sizeUp" aria-label="Increase text size">A+</button>
+  </div>
+  <button class="ctrl-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+    <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+    <span id="toggleLabel">Light</span>
+  </button>
+</div>
+<header>
+  <h1>Navagraha Temples</h1>
+  <p>Nine temples in the Kaveri delta around Kumbakonam, each the seat of one of the nine Grahas of <a href="jyotisha.html" style="color:inherit;text-decoration:underline">Jyotisha</a>. Except at Suryanar Kovil, the main deity is Shiva and the Graha has its own shrine within the temple. Built and enlarged under the Cholas, they are visited together as one pilgrimage.</p>
+  <div class="legend"><span><i class="dot" style="background:#e67e22"></i>Luminaries — Sun &amp; Moon</span><span><i class="dot" style="background:#4b7bec"></i>Planets — Mars to Saturn</span><span><i class="dot" style="background:#8854d0"></i>Shadow planets — Rahu &amp; Ketu</span></div>
+</header>
+<div class="callout">🌌 Each Graha's nature, rulership and exaltation are on the <a href="jyotisha.html">Jyotisha page</a> — every Graha there links back to its temple here.</div>
+<div class="story"><h2>Why nine temples?</h2><p>A temple legend tells of the sage Kalava, whom the nine Grahas cured of illness. Brahma, angered that the planets had granted a boon on their own, cursed them with leprosy and sent them to Vellerukku Vanam — today's Suryanar Kovil. Shiva lifted the curse and declared that the Grahas would bless devotees from these places. Most pilgrims base themselves in Kumbakonam and cover all nine over one or two days.</p></div>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--muruga)">All Nine</button>
+  <button class="filter-chip" data-filter="luminary" aria-pressed="false" style="--fc:#e67e22">☀️ Sun &amp; Moon</button>
+  <button class="filter-chip" data-filter="planet" aria-pressed="false" style="--fc:#4b7bec">🪐 Five planets</button>
+  <button class="filter-chip" data-filter="shadow" aria-pressed="false" style="--fc:#8854d0">🐍 Rahu &amp; Ketu</button>
+</div>
+<div id="map" role="application" aria-label="Map of the nine Navagraha temples"></div>
+<section data-block>
+  <div class="grid">
+  <article class="card has-corner" id="surya" data-item data-id="surya" data-tags="luminary" style="--accent:#e67e22"><span class="ch-num">1</span>
+  <h3>Surya · Suryanar Kovil <span class="native">சூரியன் · சூரியனார் கோயில்</span></h3><span class="tag">The Sun</span><p>The one Navagraha temple where the planet itself is the presiding deity: Surya stands in the main shrine, with the other eight Grahas in their own shrines around him. Pilgrims usually begin the circuit here. Legend makes this the place, once called Vellerukku Vanam, where the nine Grahas were cursed by Brahma for granting the sage Kalava a boon, and later freed by Shiva.</p><dl class="facts"><div class="fact"><dt>Presiding</dt><dd>Surya (Suryanarayana)</dd></div><div class="fact"><dt>Built</dt><dd>Chola period, attributed to Kulothunga Chola I (11th–12th c.)</dd></div><div class="fact"><dt>Place</dt><dd>Suryanar Kovil, near Aduthurai, Thanjavur district · about 15 km from Kumbakonam</dd></div></dl><div class="chips"><span class="chip event">☀️ Luminary</span><span class="chip">Planet as main deity</span><span class="chip">Start of the circuit</span></div><button class="map-link" data-id="surya" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="chandra" data-item data-id="chandra" data-tags="luminary" style="--accent:#8395a7"><span class="ch-num">2</span>
+  <h3>Chandra · Thingalur <span class="native">சந்திரன் · திங்களூர்</span></h3><span class="tag">The Moon</span><p>A Shiva temple near Thiruvaiyaru whose very name comes from <em>thingal</em>, the Tamil word for the Moon; Chandra is said to have regained his lustre by worshipping here. It is linked with the Nayanmar Appudhi Adigal, whose story Sekkizhar tells in the Periya Puranam, and is a favoured place for a child's first rice feeding (<a href="samskaras.html">Annaprashanam</a>).</p><dl class="facts"><div class="fact"><dt>Shiva as</dt><dd>Kailasanathar</dd></div><div class="fact"><dt>Consort</dt><dd>Periyanayaki</dd></div><div class="fact"><dt>Place</dt><dd>Thingalur, Thanjavur district · near Thiruvaiyaru</dd></div></dl><div class="chips"><span class="chip event">🌙 Luminary</span><span class="chip">First rice feeding</span><span class="chip">Appudhi Adigal</span></div><button class="map-link" data-id="chandra" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="mangala" data-item data-id="mangala" data-tags="planet" style="--accent:#e74c3c"><span class="ch-num">3</span>
+  <h3>Angaraka · Vaitheeswaran Koil <span class="native">செவ்வாய் · வைத்தீஸ்வரன் கோயில்</span></h3><span class="tag">Mars</span><p>Here Shiva is Vaidyanathar, the divine physician, who is said to have cured Angaraka (Mars) of a skin disease. Devotees come for healing as much as for Mars, and the town is the best-known centre of Nadi astrology, read from palm-leaf manuscripts.</p><dl class="facts"><div class="fact"><dt>Shiva as</dt><dd>Vaidyanathar (Vaitheeswaran)</dd></div><div class="fact"><dt>Consort</dt><dd>Thaiyal Nayaki</dd></div><div class="fact"><dt>Place</dt><dd>Vaitheeswaran Koil, Mayiladuthurai district · near Sirkazhi</dd></div></dl><div class="chips"><span class="chip event">🔴 Planet</span><span class="chip">Healing</span><span class="chip">Nadi astrology</span></div><button class="map-link" data-id="mangala" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="budha" data-item data-id="budha" data-tags="planet" style="--accent:#20bf6b"><span class="ch-num">4</span>
+  <h3>Budha · Thiruvenkadu <span class="native">புதன் · திருவெண்காடு</span></h3><span class="tag">Mercury</span><p>The "white forest" temple of Swetharanyeswarar on the road to Poompuhar, with a separate shrine for Budha, the Graha of speech and intellect. It is also famed for Shiva's fierce Aghora form, and its three sacred tanks are believed to bring relief to those who bathe in all of them.</p><dl class="facts"><div class="fact"><dt>Shiva as</dt><dd>Swetharanyeswarar</dd></div><div class="fact"><dt>Consort</dt><dd>Brahma Vidya Ambal</dd></div><div class="fact"><dt>Place</dt><dd>Thiruvenkadu, Mayiladuthurai district · near Sirkazhi</dd></div></dl><div class="chips"><span class="chip event">🟢 Planet</span><span class="chip">Aghora form</span><span class="chip">Three tanks</span></div><button class="map-link" data-id="budha" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="guru" data-item data-id="guru" data-tags="planet" style="--accent:#d4a017"><span class="ch-num">5</span>
+  <h3>Guru · Alangudi <span class="native">குரு · ஆலங்குடி</span></h3><span class="tag">Jupiter</span><p>Guru is worshipped here in the form of Dakshinamurthy, Shiva as the silent teacher. The village name is read as <em>alam</em> (poison) + <em>kudi</em> (drank), recalling Shiva swallowing the poison from the churning of the ocean — hence Apatsahayesvarar, the one who saves in times of danger. Crowds peak at Guru Peyarchi, Jupiter's transit into a new sign.</p><dl class="facts"><div class="fact"><dt>Shiva as</dt><dd>Apatsahayesvarar</dd></div><div class="fact"><dt>Consort</dt><dd>Elavarkuzhali</dd></div><div class="fact"><dt>Place</dt><dd>Alangudi, Valangaiman taluk, Tiruvarur district · about 17 km from Kumbakonam</dd></div></dl><div class="chips"><span class="chip event">🟡 Planet</span><span class="chip">Dakshinamurthy</span><span class="chip">Guru Peyarchi</span></div><button class="map-link" data-id="guru" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="shukra" data-item data-id="shukra" data-tags="planet" style="--accent:#e05fa0"><span class="ch-num">6</span>
+  <h3>Shukra · Kanjanur <span class="native">சுக்கிரன் · கஞ்சனூர்</span></h3><span class="tag">Venus</span><p>Unusually, there is no separate shrine for Shukra: Shiva himself, as Agniswarar, is worshipped as Venus, and Shukra is said to reside within the lingam. Agni is believed to have worshipped Shiva here, giving the deity his name. The temple stands on the northern bank of the Kaveri.</p><dl class="facts"><div class="fact"><dt>Shiva as</dt><dd>Agniswarar</dd></div><div class="fact"><dt>Consort</dt><dd>Karpagambigai</dd></div><div class="fact"><dt>Place</dt><dd>Kanjanur, Thanjavur district · about 18 km north-east of Kumbakonam</dd></div></dl><div class="chips"><span class="chip event">💗 Planet</span><span class="chip">Shiva as Shukra</span><span class="chip">Built by the Cholas</span></div><button class="map-link" data-id="shukra" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="shani" data-item data-id="shani" data-tags="planet" style="--accent:#4b7bec"><span class="ch-num">7</span>
+  <h3>Shani · Thirunallar <span class="native">சனி · திருநள்ளாறு</span></h3><span class="tag">Saturn</span><p>One of the busiest temples of the circuit, in the Karaikal enclave of Puducherry. Tradition holds that King Nala was freed from Shani's long affliction after bathing in the temple tank, the Nala Theertham, which gives the town its name. Sani Peyarchi, Saturn's move into a new sign every two and a half years, draws vast crowds. It is a Paadal Petra Sthalam sung in the Tevaram.</p><dl class="facts"><div class="fact"><dt>Shiva as</dt><dd>Dharbaranyeswarar</dd></div><div class="fact"><dt>Consort</dt><dd>Pranambikai (Bogamartha Poonmulaiyal)</dd></div><div class="fact"><dt>Place</dt><dd>Thirunallar, Karaikal district, Puducherry · about 5 km west of Karaikal</dd></div></dl><div class="chips"><span class="chip event">🔵 Planet</span><span class="chip">Nala Theertham</span><span class="chip">Sani Peyarchi</span></div><button class="map-link" data-id="shani" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="rahu" data-item data-id="rahu" data-tags="shadow" style="--accent:#8854d0"><span class="ch-num">8</span>
+  <h3>Rahu · Thirunageswaram <span class="native">ராகு · திருநாகேஸ்வரம்</span></h3><span class="tag">North lunar node</span><p>Rahu, said to have worshipped Shiva here to be freed from a curse, appears in an unusual auspicious form with a human face and his two consorts, Nagavalli and Nagakanni. Devotees describe the milk poured over his image during abhishekam appearing to turn blue. The temple is just east of Kumbakonam.</p><dl class="facts"><div class="fact"><dt>Shiva as</dt><dd>Naganathaswamy</dd></div><div class="fact"><dt>Consort</dt><dd>Giri Gujambika</dd></div><div class="fact"><dt>Place</dt><dd>Thirunageswaram, Thanjavur district · about 6 km from Kumbakonam</dd></div></dl><div class="chips"><span class="chip event">🐍 Shadow planet</span><span class="chip">Human-faced Rahu</span><span class="chip">Rahu Kalam pujas</span></div><button class="map-link" data-id="rahu" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="ketu" data-item data-id="ketu" data-tags="shadow" style="--accent:#a0785a"><span class="ch-num">9</span>
+  <h3>Ketu · Keezhperumpallam <span class="native">கேது · கீழப்பெரும்பள்ளம்</span></h3><span class="tag">South lunar node</span><p>A small Chola-era shrine near Poompuhar, where the Kaveri meets the sea. Ketu is shown with a serpent's head and an asura's body, his hands folded in worship of Shiva. Legend says the serpent Vasuki prayed here, which gave Shiva the name Naganatha. Rahu–Ketu transits are celebrated every one and a half years or so.</p><dl class="facts"><div class="fact"><dt>Shiva as</dt><dd>Naganathaswamy</dd></div><div class="fact"><dt>Consort</dt><dd>Soundaryanayaki</dd></div><div class="fact"><dt>Place</dt><dd>Keezhperumpallam, Mayiladuthurai district · about 2 km from Poompuhar</dd></div></dl><div class="chips"><span class="chip event">☄️ Shadow planet</span><span class="chip">Near Poompuhar</span><span class="chip">Vasuki legend</span></div><button class="map-link" data-id="ketu" type="button">📍 Show on map</button>
+</article>
+  </div>
+</section>
+<p class="no-results">No sites match your search. Try another name or clear the filter.</p>
+<section class="sources"><h2>Sources</h2><ul><li><a href="https://en.wikipedia.org/wiki/Navagraha_temples" target="_blank" rel="noopener">Navagraha temples — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Suryanar_Kovil" target="_blank" rel="noopener">Suryanar Kovil — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Kailasanathar_Temple,_Thingalur" target="_blank" rel="noopener">Kailasanathar Temple, Thingalur — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Vaitheeswaran_Koil" target="_blank" rel="noopener">Vaitheeswaran Koil — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Swetharanyeswarar_Temple" target="_blank" rel="noopener">Swetharanyeswarar Temple — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Apatsahayesvarar_Temple,_Alangudi" target="_blank" rel="noopener">Apatsahayesvarar Temple, Alangudi — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Agniswarar_Temple,_Kanjanur" target="_blank" rel="noopener">Agniswarar Temple, Kanjanur — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Dharbaranyeswarar_Temple" target="_blank" rel="noopener">Tirunallar Dharbaranyeswarar Temple — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Rahu_Stalam" target="_blank" rel="noopener">Tirunageswaram Naganathar Temple — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Nagannathaswamy_Temple,_Keelaperumpallam" target="_blank" rel="noopener">Nagannathaswamy Temple, Keelaperumpallam — Wikipedia</a></li></ul></section>
+<footer>
+  <p>🪐 A visual map of the Navagraha temples of the Kaveri delta · Deities and legends follow temple tradition</p>
+  <p>Map data © OpenStreetMap contributors · Coordinates are approximate</p>
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html" aria-current="page"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
+</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>window.SANATANA_SITES = [{"id": "surya", "n": "1", "name": "Suryanar Kovil — Surya", "sub": "Surya (Sun) · Thanjavur district", "lat": 11.0297, "lng": 79.4778, "color": "#e67e22"}, {"id": "chandra", "n": "2", "name": "Thingalur — Chandra", "sub": "Chandra (Moon) · near Thiruvaiyaru", "lat": 10.8867, "lng": 79.1256, "color": "#8395a7"}, {"id": "mangala", "n": "3", "name": "Vaitheeswaran Koil — Angaraka", "sub": "Angaraka (Mars) · Mayiladuthurai district", "lat": 11.195, "lng": 79.7142, "color": "#e74c3c"}, {"id": "budha", "n": "4", "name": "Thiruvenkadu — Budha", "sub": "Budha (Mercury) · near Sirkazhi", "lat": 11.1753, "lng": 79.8094, "color": "#20bf6b"}, {"id": "guru", "n": "5", "name": "Alangudi — Guru", "sub": "Guru (Jupiter) · Tiruvarur district", "lat": 10.83, "lng": 79.4103, "color": "#d4a017"}, {"id": "shukra", "n": "6", "name": "Kanjanur — Shukra", "sub": "Shukra (Venus) · near Kumbakonam", "lat": 11.0658, "lng": 79.4958, "color": "#e05fa0"}, {"id": "shani", "n": "7", "name": "Thirunallar — Shani", "sub": "Shani (Saturn) · Karaikal, Puducherry", "lat": 10.9256, "lng": 79.7922, "color": "#4b7bec"}, {"id": "rahu", "n": "8", "name": "Thirunageswaram — Rahu", "sub": "Rahu · near Kumbakonam", "lat": 10.9643, "lng": 79.4293, "color": "#8854d0"}, {"id": "ketu", "n": "9", "name": "Keezhperumpallam — Ketu", "sub": "Ketu · near Poompuhar", "lat": 11.1351, "lng": 79.8353, "color": "#a0785a"}];</script>
+<script src="assets/site.js?v=420f3627"></script>
+</body>
+</html>

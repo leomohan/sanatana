@@ -1,0 +1,129 @@
+page:
+  file: samskaras.html
+  layout: page
+  title: From Cradle to Pyre — Samskaras & Life-Cycle Rituals
+  favicon: 🕯️
+  search: Search rituals, life stages…
+  native: sa
+  palette:
+    birth: ['#ff9f43', '#e07b1a']
+    education: ['#45aaf2', '#1f7fc4']
+    householder: ['#26de81', '#12995a']
+    elder: ['#a55eea', '#8b45d6']
+    final: ['#fc5c65', '#d63c46']
+  gradient: [birth, education, householder, elder, final]
+  primary: elder
+  h1: From Cradle to Pyre
+  intro: Sixteen samskaras and life-cycle rituals as observed in South Indian Brahmin homes — the sacred ceremonies
+    that mark each stage of life, from the first blessing at birth to the final rites of passage. The Samskaras
+    are the thread that binds the individual to family, tradition, and the cosmic order.
+  legend:
+  - {label: Birth & Childhood, color: birth}
+  - {label: Education & Youth, color: education}
+  - {label: Householder, color: householder}
+  - {label: Wisdom Years, color: elder}
+  - {label: Final Rites, color: final}
+  filters:
+  - {value: all, label: All Life Stages, color: birth}
+  - {value: birth, label: 👶 Birth, color: birth}
+  - {value: education, label: 🎓 Education, color: education}
+  - {value: householder, label: 🏡 Householder, color: householder}
+  - {value: elder, label: 🌿 Wisdom, color: elder}
+  - {value: final, label: 🕯️ Final Rites, color: final}
+  footer: [🕯️ A visual map of sixteen samskaras and life-cycle rituals that sanctify each stage of life., The classical
+      list of sixteen (Shodasha) samskaras differs from this practical sequence; regional and family variations
+      exist.]
+blocks:
+- {type: filters}
+- type: life-timeline
+  stages:
+  - tag: birth
+    title: 👶 Birth & Childhood
+    color: birth
+    cards:
+    - {title: Punyahavachanam, native: पुण्याहवाचनम्, subtitle: The First Blessing (Purification & Naming), tags: birth,
+      body: 'Conducted on the eleventh day after birth. The baby is bathed in medicinal holy water, a sacred fire
+        is lit, and the father whispers the chosen name into the baby''s right ear — a blessing that resonates across
+        generations. The name reflects both spiritual aspiration and family heritage.', highlight: The father's
+        whisper connects the child to ancestral wisdom.}
+    - {title: Annaprashanam, native: अन्नप्राशनम्, subtitle: The First Solid Food, tags: birth, body: 'Performed
+        around the sixth month. After prayers, the child is fed a first taste of cooked rice — often sweetened with
+        ghee, honey or payasam — usually by the father or grandfather, in the presence of the family deity.', highlight: 'The
+        first grain received as a blessing, not merely as food.'}
+    - {title: Chaulam (Mundan), native: चौलम्, subtitle: The First Shear (Head-Shaving), tags: birth, body: 'Traditionally
+        performed between the first and third year. Represents purification, detachment, and the beginning of spiritual
+        consciousness. The hair is symbolically removed to clear karmic impurities and offered to sacred waters,
+        marking a transition into spiritual cleanliness.', highlight: 'A ritual of renewal, removing attachment
+        to external beauty.'}
+    - {title: Karnavedha, native: कर्णवेध, subtitle: Piercing Through Tradition (Ear Piercing), tags: birth, body: 'Performed
+        around ages three to five. Associated with stimulating vital energy points in Ayurveda, fostering intellect
+        and sharpening the mind. The right ear is pierced first, aligning with Vedic texts that associate the right
+        side with positive energy flow.', highlight: The ear is seen as a gateway to knowledge and perception.}
+  - tag: education
+    title: 🎓 Education & Youth
+    color: education
+    cards:
+    - {title: Aksharabyasam, native: अक्षराभ्यासम्, subtitle: Writing the First Letter, tags: education, body: Conducted
+        at ages three to five. Marks a child's formal entry into learning. The child traces their first letter —
+        often 'Om' — on a plate of rice grains or a slate. Yellow turmeric rice and books are placed before the
+        deity to invoke wisdom., highlight: 'A profound moment of initiation into learning, discipline, and lifelong
+        curiosity.'}
+    - {title: Upanayanam, native: उपनयनम्, subtitle: The Sacred Thread, tags: education, body: 'Typically performed
+        between ages seven and sixteen. The boy receives three strands of the Yajnopavita, traditionally read as
+        the three debts (rinas) owed to the sages, the gods and the ancestors. He is taught the Gayatri Mantra and
+        seeks alms from elders in the Bhiksha ritual.', highlight: 'A spiritual awakening, aligning one''s journey
+        with higher wisdom.'}
+    - {title: Ritu Kala Samskara, native: ऋतुकाल संस्कार, subtitle: A Young Girl's Transition, tags: education,
+      body: 'Held at the onset of puberty. An affirmation of womanhood, responsibility, and auspicious beginnings.
+        The girl is dressed in her first half-saree (pavadai-davani in Tamil homes), receives a holy bath, and is
+        blessed with gifts and prayers by elders.', highlight: 'A moment of communal celebration, binding generations
+        through customs.'}
+  - tag: householder
+    title: 🏡 Marriage & Householder
+    color: householder
+    cards:
+    - {title: Vivaha Shanti, native: विवाह शान्ति, subtitle: The Path to Marriage (Pre-wedding Rituals), tags: householder,
+      body: 'Ensures harmony between the bride and groom. Includes Nakshatra matching, Ganapati Puja to remove obstacles,
+        Vratham, the playful Kashi Yatra, Mangalasnanam (purification bath), and the formal exchange of gifts between
+        families.', highlight: Setting the spiritual and emotional foundation for the couple's union.}
+    - {title: Vivaham, native: विवाहम्, subtitle: The Sacred Fire of Commitment, tags: householder, body: 'The main
+        wedding ceremony. Kanyadaanam (giving the bride), Mangalasutram (tying the thread), Agni Sakshi (fire as
+        witness), and Sapta Padi (seven steps, each with a blessing: for food, strength, wealth, happiness, progeny,
+        the seasons, and lifelong friendship).', highlight: 'A sacred bond witnessed by fire, strengthened by vows,
+        and upheld by dharma.'}
+    - {title: Seemantham, native: सीमन्तम्, subtitle: Blessings for the Unborn, tags: householder, body: 'Performed
+        during the seventh or ninth month of pregnancy. A prenatal ritual honoring the expectant mother and the
+        life she carries. Vedic chanting, an oil bath, and floral adornment bring emotional, physical, and spiritual
+        well-being.', highlight: Recognizing the mother's role as the vessel of creation.}
+    - {title: The Householder's Dharma, native: गृहस्थ धर्म, subtitle: Grihastha Ashrama, tags: householder, body: 'The
+        phase of family life, raising children, and fulfilling societal duties. The householder is the backbone
+        of society, supporting the other three stages through their labor and offerings.', highlight: 'A reminder
+        that marriage is a moral, spiritual, and cultural commitment.'}
+  - tag: elder
+    title: 🌿 The Wisdom Years
+    color: elder
+    cards:
+    - {title: Shashti Poorti, native: षष्टिपूर्ति, subtitle: Renewing the Journey (60th Birthday), tags: elder,
+      body: 'A celebration of completing sixty years of life. It marks the transition into the wisdom years, honoring
+        the individual''s contributions and seeking blessings for the remainder of their life.', highlight: A milestone
+        of gratitude and renewed purpose.}
+    - {title: Bhima Ratha Shanti, native: भीमरथ शान्ति, subtitle: The 70th Birthday, tags: elder, body: 'A ceremony
+        performed at seventy to ensure health, longevity, and peace in the later years. It invokes divine blessings
+        for a life free from suffering.', highlight: Seeking peace and health in the twilight years.}
+    - {title: Sathabhishekam, native: शताभिषेकम्, subtitle: Eight Decades of Legacy (80th Birthday), tags: elder,
+      body: 'A grand celebration for the eightieth birthday, traditionally linked to having seen a thousand full
+        moons. The individual is honored for their legacy, having seen eight decades of life. It involves elaborate
+        rituals and blessings from family and community.', highlight: Honoring a life well-lived and the wisdom
+        accumulated.}
+  - tag: final
+    title: 🕯️ Final Rites
+    color: final
+    cards:
+    - {title: Antyeshti, native: अन्त्येष्टि, subtitle: Embracing the Eternal Cycle (Funeral Rites), tags: final,
+      body: 'The final samskara. The body is cremated, and the soul is released into the cosmic cycle. The rites
+        are performed by the eldest son or a male relative, guiding the departed soul to the ancestral realm.',
+      highlight: 'The last rite of passage, returning the elements to their source.'}
+    - {title: Shraadha, native: श्राद्ध, subtitle: Ancestral Offerings, tags: final, body: 'Performed after the
+        cremation, and then every year on the death anniversary, to sustain the departed soul in the ancestral realm.
+        The family offers rice balls (pinda) and water, expressing gratitude to ancestors.', highlight: An unbroken
+        link between the living and the departed.}

@@ -1,0 +1,46 @@
+# Starter for a new page. Copy to content/<name>.yaml (no leading underscore),
+# add the page to content/site.yaml's nav list, then run:  python3 build.py <name>
+page:
+  file: example.html                 # the page that gets written
+  title: Example — a new Sanatana map
+  description: One sentence for search engines.
+  favicon: 🪔
+  search: Search…                    # remove to hide search and text size
+  native: sa                         # sa = Sanskrit toggle, ta = Tamil, remove for none
+  palette:                           # name: [dark-theme colour, light-theme colour]
+    first: ['#ff9f43', '#e07b1a']
+    second: ['#45aaf2', '#1f7fc4']
+  primary: first                     # main accent colour
+  gradient: [first, second]          # heading gradient
+  h1: Example
+  intro: A short introduction. <em>HTML</em> such as links and emphasis is allowed here.
+  legend:
+  - {label: First group, color: first}
+  - {label: Second group, color: second}
+  filters:                           # chips; a card shows when its tags include the value
+  - {value: all, label: All, color: primary}
+  - {value: one, label: First group, color: first}
+  - {value: two, label: Second group, color: second}
+  footer: [🪔 A visual map of … · Dates are approximate]
+blocks:
+- {type: filters}
+- type: cards
+  title: 🪔 Section heading
+  color: first
+  intro: Optional line under the heading.
+  grid: v3                           # v2 / v3 / v4 = wider or narrower cards
+  cards:
+  - id: example-one                  # unique on this page
+    title: Card title
+    native: शीर्षक                   # shown when the Sanskrit/Tamil toggle is on
+    subtitle: Small caps line
+    accent: first
+    tags: one
+    body: The main paragraph. Links like <a href="gita.html">this</a> are fine.
+    facts:
+    - [Founder, Name]
+    - [Place, Somewhere]
+    chips: [Plain chip, {text: 🔥 Coloured chip, style: theme}]
+- type: sources
+  items:
+  - {label: Source title — Wikipedia, url: 'https://en.wikipedia.org/wiki/Example'}

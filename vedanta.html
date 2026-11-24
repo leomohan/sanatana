@@ -5,329 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Three Vedantas — Advaita, Vishishtadvaita, Dvaita</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪷</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=420f3627">
+<style>:root,[data-theme="dark"]{--advaita:#45aaf2; --vishishtadvaita:#f7b731; --dvaita:#fc5c65;} [data-theme="light"]{--advaita:#1f7fc4; --vishishtadvaita:#c98a00; --dvaita:#d63c46;} :root{--primary:var(--vishishtadvaita); --grad-h:linear-gradient(90deg,var(--advaita),var(--vishishtadvaita),var(--dvaita)); --grad-v:linear-gradient(var(--advaita),var(--vishishtadvaita),var(--dvaita));}</style>
 <script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
   (function(){
-    var savedTheme = localStorage.getItem('vedanta-theme');
-    var theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
-    var savedSize = localStorage.getItem('vedanta-size') || '1';
-    document.documentElement.style.setProperty('--scale', savedSize);
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
   })();
 </script>
-<style>
-  :root,[data-theme="dark"]{
-    --bg:#0e0b1a; --bg-grad:#1b1435;
-    --card:#241d40; --card-2:#161129;
-    --border:rgba(255,255,255,.06); --border-strong:rgba(255,255,255,.14);
-    --chip-bg:rgba(255,255,255,.06); --chip-border:rgba(255,255,255,.08);
-    --text:#eae6f7; --muted:#a29ac2;
-    --shadow:0 14px 34px rgba(0,0,0,.5);
-    --advaita:#45aaf2; --vishishtadvaita:#f7b731; --dvaita:#fc5c65;
-    --root-text:#1a0f24;
-  }
-  [data-theme="light"]{
-    --bg:#fdf9f3; --bg-grad:#fff4e6;
-    --card:#ffffff; --card-2:#fffaf2;
-    --border:rgba(60,40,20,.10); --border-strong:rgba(60,40,20,.22);
-    --chip-bg:rgba(120,80,30,.07); --chip-border:rgba(120,80,30,.14);
-    --text:#2a1f14; --muted:#6b5c4a;
-    --shadow:0 14px 34px rgba(90,60,20,.15);
-    --advaita:#1f7fc4; --vishishtadvaita:#c98a00; --dvaita:#d63c46;
-    --root-text:#3a1a08;
-  }
-
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  :root{ --scale:1; }
-
-  body{
-    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    background:radial-gradient(circle at top,var(--bg-grad) 0%,var(--bg) 60%);
-    color:var(--text);
-    min-height:100vh;
-    padding:90px 20px 80px;
-    line-height:1.6;
-    font-size:calc(17px * var(--scale));
-    transition:background .35s ease,color .35s ease;
-  }
-
-  /* CONTROL BAR */
-  .controls{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
-    padding:12px 16px;
-    background:color-mix(in srgb,var(--bg) 88%,transparent);
-    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border-strong);
-  }
-  .ctrl-group{
-    display:flex; align-items:center; gap:6px;
-    background:var(--card); border:1px solid var(--border-strong);
-    border-radius:50px; padding:5px;
-  }
-  .ctrl-btn{
-    font-family:inherit; font-size:.85rem; font-weight:600;
-    color:var(--text); background:transparent; border:none; border-radius:40px;
-    padding:7px 13px; cursor:pointer; display:flex; align-items:center; gap:6px;
-    transition:background .2s,color .2s; white-space:nowrap;
-  }
-  .ctrl-btn:hover{background:var(--chip-bg);}
-  .ctrl-btn:focus-visible{outline:2px solid var(--vishishtadvaita);outline-offset:2px;}
-  .ctrl-btn.active{background:var(--chip-bg);box-shadow:inset 0 0 0 1px var(--border-strong);}
-
-  .theme-toggle{padding:5px 12px 5px 6px;}
-  .toggle-track{position:relative;width:44px;height:24px;border-radius:20px;background:var(--chip-bg);border:1px solid var(--border-strong);flex-shrink:0;transition:background .3s;}
-  .toggle-knob{position:absolute;top:1px;left:1px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#ffcf6b,#ff9f43);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .3s cubic-bezier(.4,1.6,.5,1);box-shadow:0 2px 6px rgba(0,0,0,.3);}
-  [data-theme="light"] .toggle-knob{transform:translateX(20px);}
-
-  .size-btn{width:34px;height:34px;justify-content:center;padding:0;font-size:.9rem;font-weight:800;border-radius:50%;}
-  .size-val{min-width:40px;text-align:center;font-size:.8rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;}
-
-  .search-wrap{
-    display:flex;align-items:center;gap:8px;
-    background:var(--card);border:1px solid var(--border-strong);
-    border-radius:50px;padding:6px 14px;flex:1 1 180px;max-width:320px;
-  }
-  .search-wrap:focus-within{border-color:var(--vishishtadvaita);}
-  .search-wrap input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:inherit;font-size:.9rem;min-width:0;}
-  .search-wrap input::placeholder{color:var(--muted);}
-
-  .lang-toggle .ctrl-btn.active{color:var(--advaita);}
-
-  /* FILTERS */
-  .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:1000px;margin:0 auto 30px;}
-  .filter-chip{
-    font-family:inherit;font-size:.82rem;font-weight:600;
-    padding:7px 15px;border-radius:30px;cursor:pointer;
-    background:var(--card);color:var(--muted);
-    border:1px solid var(--border-strong);transition:all .2s;
-  }
-  .filter-chip:hover{border-color:var(--muted);transform:translateY(-1px);}
-  .filter-chip:focus-visible{outline:2px solid var(--vishishtadvaita);outline-offset:2px;}
-  .filter-chip.active{background:var(--fc,var(--advaita));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--fc,var(--advaita)) 40%,transparent);}
-
-  /* LAYOUT */
-  header{text-align:center;max-width:900px;margin:0 auto 34px;}
-  header h1{
-    font-size:clamp(1.6rem,4vw,2.6rem);
-    background:linear-gradient(90deg,var(--advaita),var(--vishishtadvaita),var(--dvaita));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    font-weight:800;letter-spacing:.5px;margin-bottom:12px;
-  }
-  header p{color:var(--muted);font-size:1.05rem;max-width:680px;margin:0 auto;}
-
-  .legend{display:flex;flex-wrap:wrap;gap:12px 18px;justify-content:center;margin-top:22px;}
-  .legend span{display:flex;align-items:center;gap:7px;font-size:.85rem;color:var(--muted);}
-  .dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex-shrink:0;}
-
-  section{margin:50px auto;max-width:1200px;}
-  .section-title{font-size:1.4rem;font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:12px;}
-  .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,currentColor,transparent);opacity:.4;}
-
-  /* ---------- COMPARISON TABLE ---------- */
-  .compare-scroll{
-    overflow-x:auto;
-    border-radius:20px;
-    border:1px solid var(--border);
-    background:var(--card);
-    box-shadow:var(--shadow);
-    margin-bottom:30px;
-  }
-  .compare{
-    width:100%;
-    border-collapse:collapse;
-    min-width:820px;
-    font-size:.88rem;
-  }
-  .compare th, .compare td{
-    padding:14px 16px;
-    text-align:left;
-    vertical-align:top;
-    border-bottom:1px solid var(--border);
-  }
-  .compare thead th{
-    position:sticky;
-    top:0;
-    background:linear-gradient(160deg,var(--card),var(--card-2));
-    font-size:.95rem;
-    font-weight:800;
-    letter-spacing:.3px;
-    z-index:2;
-    border-bottom:2px solid var(--border-strong);
-    white-space:nowrap;
-  }
-  .compare thead th:first-child{
-    color:var(--muted);
-    font-size:.78rem;
-    text-transform:uppercase;
-    letter-spacing:.8px;
-    font-weight:700;
-  }
-  .compare thead th[data-accent]{color:var(--accent);}
-  .compare tbody th{
-    font-weight:700;
-    color:var(--muted);
-    font-size:.78rem;
-    text-transform:uppercase;
-    letter-spacing:.7px;
-    white-space:nowrap;
-    background:var(--card-2);
-    position:sticky;
-    left:0;
-    z-index:1;
-    border-right:1px solid var(--border);
-  }
-  .compare tbody tr:last-child th,
-  .compare tbody tr:last-child td{border-bottom:none;}
-  .compare tbody tr:hover td{background:color-mix(in srgb,var(--bg) 60%,transparent);}
-  .compare td{color:var(--text);}
-  .compare td strong{color:var(--text);}
-  .compare td .sanskrit{font-size:.78rem;opacity:.7;display:block;margin-top:2px;}
-
-  /* ✅ FIX: missing rule that hides columns when a filter is active */
-  .compare .col-hidden{display:none !important;}
-
-  /* ---------- SCHOOL CARDS ---------- */
-  .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));}
-
-  .card{
-    position:relative;
-    background:linear-gradient(160deg,var(--card),var(--card-2));
-    border-radius:20px;padding:28px 24px 24px;
-    border:1px solid var(--border);
-    transition:transform .25s ease,box-shadow .25s ease,border-color .25s,opacity .3s;
-    overflow:hidden;
-  }
-  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--accent,#888);}
-  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--accent,#888);}
-  .card.hidden{display:none;}
-
-  .card .school-num{
-    position:absolute; top:16px; right:22px;
-    font-size:1.8rem; font-weight:900; line-height:1;
-    color:var(--accent); opacity:.15;
-    user-select:none; pointer-events:none;
-  }
-  .card h3{
-    font-size:1.3rem;margin-bottom:6px;color:var(--accent,#fff);
-    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-    padding-right:40px;
-  }
-  .card h3 .sanskrit{font-size:.9rem;font-weight:500;opacity:.8;display:none;}
-  body.show-sanskrit .card h3 .sanskrit{display:inline;}
-  .card .tag{
-    font-size:.75rem;font-weight:700;text-transform:uppercase;
-    letter-spacing:.7px;color:var(--accent);margin-bottom:14px;display:block;
-  }
-  .card .tagline{
-    font-size:1rem; font-weight:600; color:var(--text);
-    margin-bottom:12px; font-style:italic; opacity:.9;
-  }
-  .card p{font-size:.94rem;color:var(--text);opacity:.88;margin-bottom:16px;}
-
-  .key-teaching{
-    background:color-mix(in srgb,var(--accent) 8%,transparent);
-    border-left:3px solid var(--accent);
-    padding:12px 16px;
-    border-radius:0 8px 8px 0;
-    margin-bottom:16px;
-  }
-  .key-teaching .label{
-    font-size:.68rem;font-weight:800;text-transform:uppercase;
-    letter-spacing:.8px;color:var(--accent);margin-bottom:4px;display:block;
-  }
-  .key-teaching p{font-size:.9rem;margin:0;font-weight:500;}
-
-  .facts{display:grid;gap:8px;margin-top:14px;padding-top:14px;border-top:1px dashed var(--border-strong);}
-  .fact{display:grid;grid-template-columns:100px 1fr;gap:10px;font-size:.85rem;align-items:baseline;}
-  .fact dt{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);}
-  .fact dd{color:var(--text);}
-
-  .advaita-card{--accent:var(--advaita);}
-  .vishisht-card{--accent:var(--vishishtadvaita);}
-  .dvaita-card{--accent:var(--dvaita);}
-
-  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
-  .chip{font-size:.75rem;padding:4px 10px;border-radius:20px;background:var(--chip-bg);color:var(--muted);border:1px solid var(--chip-border);}
-  .chip.theme-tag{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,transparent);}
-
-  /* Spectrum visual */
-  .spectrum{
-    display:flex; align-items:center; gap:0;
-    max-width:900px; margin:0 auto 40px;
-    padding:20px;
-    background:var(--card); border:1px solid var(--border);
-    border-radius:16px;
-    overflow-x:auto;
-  }
-  .spectrum-point{
-    flex:1; text-align:center; min-width:140px;
-    position:relative; padding:10px 8px;
-  }
-  .spectrum-point::before{
-    content:""; position:absolute; top:30px; left:0; right:0; height:2px;
-    background:var(--border-strong); z-index:0;
-  }
-  .spectrum-point:first-child::before{left:50%;}
-  .spectrum-point:last-child::before{right:50%;}
-  .spectrum-dot{
-    width:20px; height:20px; border-radius:50%;
-    margin:0 auto 10px; position:relative; z-index:1;
-    border:3px solid var(--bg);
-    box-shadow:0 0 0 2px var(--dot-color);
-    background:var(--dot-color);
-  }
-  .spectrum-label{font-size:.85rem;font-weight:700;color:var(--dot-color);}
-  .spectrum-sub{font-size:.72rem;color:var(--muted);margin-top:2px;}
-
-  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:60px;}
-
-  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important;}}
-  @media (max-width:680px){
-    body{padding-top:130px;}
-    .controls{gap:8px;}
-    .search-wrap{max-width:none;flex:1 1 100%;order:5;}
-    .ctrl-btn{padding:6px 10px;font-size:.8rem;}
-    .size-btn{width:30px;height:30px;}
-    .fact{grid-template-columns:1fr;}
-    .fact dt{margin-top:2px;}
-    .spectrum{flex-direction:column;gap:16px;}
-    .spectrum-point::before{display:none;}
-  }
-
-  /* ---------- SITE NAV (home button + footer links) ---------- */
-  .home-btn{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:7px 14px;border-radius:999px;
-    background:var(--card);color:var(--text);
-    border:1px solid var(--border-strong,var(--border));
-    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
-    white-space:nowrap;transition:transform .2s,border-color .2s;
-  }
-  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
-  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
-  .site-nav{
-    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
-    max-width:980px;margin:26px auto 4px;padding-top:20px;
-    border-top:1px solid var(--border);
-  }
-  .site-nav a{
-    display:inline-flex;align-items:center;gap:5px;
-    padding:6px 12px;border-radius:999px;
-    font-size:.8rem;font-weight:600;text-decoration:none;
-    color:var(--muted);background:var(--card);
-    border:1px solid var(--border);
-    transition:color .2s,border-color .2s,transform .2s;
-  }
-  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
-  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
-  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
-  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
-</style>
 </head>
 <body>
-
-<div class="controls" role="toolbar" aria-label="Map controls">
+<div class="controls" role="toolbar" aria-label="Page controls">
   <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
@@ -335,7 +25,7 @@
   </div>
   <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
     <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
-    <button class="ctrl-btn" id="langSa" aria-pressed="false">संस्कृतम्</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">संस्कृतम्</button>
   </div>
   <div class="ctrl-group" role="group" aria-label="Text size">
     <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
@@ -347,217 +37,65 @@
     <span id="toggleLabel">Light</span>
   </button>
 </div>
-
 <header>
   <h1>The Three Vedantas</h1>
   <p>Three great commentators on the Upanishads, three radically different visions of reality. All accept the same scriptures — yet they disagree on the most fundamental question: are we one with God, part of God, or eternally distinct from God?</p>
-  <div class="legend">
-    <span><i class="dot" style="background:var(--advaita)"></i>Advaita (Non-dual)</span>
-    <span><i class="dot" style="background:var(--vishishtadvaita)"></i>Vishishtadvaita (Qualified Non-dual)</span>
-    <span><i class="dot" style="background:var(--dvaita)"></i>Dvaita (Dual)</span>
-  </div>
+  <div class="legend"><span><i class="dot" style="background:var(--advaita)"></i>Advaita (Non-dual)</span><span><i class="dot" style="background:var(--vishishtadvaita)"></i>Vishishtadvaita (Qualified Non-dual)</span><span><i class="dot" style="background:var(--dvaita)"></i>Dvaita (Dual)</span></div>
 </header>
-
-<div class="filters" role="group" aria-label="Filter schools">
-  <button class="filter-chip active" data-filter="all" style="--fc:var(--vishishtadvaita)">All Three</button>
-  <button class="filter-chip" data-filter="advaita" style="--fc:var(--advaita)">Advaita</button>
-  <button class="filter-chip" data-filter="vishishtadvaita" style="--fc:var(--vishishtadvaita)">Vishishtadvaita</button>
-  <button class="filter-chip" data-filter="dvaita" style="--fc:var(--dvaita)">Dvaita</button>
+<div class="large-cards">
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--vishishtadvaita)">All Three</button>
+  <button class="filter-chip" data-filter="advaita" aria-pressed="false" style="--fc:var(--advaita)">Advaita</button>
+  <button class="filter-chip" data-filter="vishishtadvaita" aria-pressed="false" style="--fc:var(--vishishtadvaita)">Vishishtadvaita</button>
+  <button class="filter-chip" data-filter="dvaita" aria-pressed="false" style="--fc:var(--dvaita)">Dvaita</button>
 </div>
-
-<!-- SPECTRUM VISUAL -->
 <section>
   <h2 class="section-title" style="color:var(--vishishtadvaita)">📊 The Spectrum of Unity</h2>
-  <div class="spectrum">
-    <div class="spectrum-point" style="--dot-color:var(--advaita)">
-      <div class="spectrum-dot"></div>
-      <div class="spectrum-label">Advaita</div>
-      <div class="spectrum-sub">Complete unity</div>
-    </div>
-    <div class="spectrum-point" style="--dot-color:var(--vishishtadvaita)">
-      <div class="spectrum-dot"></div>
-      <div class="spectrum-label">Vishishtadvaita</div>
-      <div class="spectrum-sub">Unity in diversity</div>
-    </div>
-    <div class="spectrum-point" style="--dot-color:var(--dvaita)">
-      <div class="spectrum-dot"></div>
-      <div class="spectrum-label">Dvaita</div>
-      <div class="spectrum-sub">Eternal distinction</div>
-    </div>
-  </div>
+  <div class="spectrum"><div class="spectrum-point" style="--dot-color:var(--advaita)"><div class="spectrum-dot"></div><div class="spectrum-label">Advaita</div><div class="spectrum-sub">Complete unity</div></div><div class="spectrum-point" style="--dot-color:var(--vishishtadvaita)"><div class="spectrum-dot"></div><div class="spectrum-label">Vishishtadvaita</div><div class="spectrum-sub">Unity in diversity</div></div><div class="spectrum-point" style="--dot-color:var(--dvaita)"><div class="spectrum-dot"></div><div class="spectrum-label">Dvaita</div><div class="spectrum-sub">Eternal distinction</div></div></div>
 </section>
-
-<!-- ========== COMPARISON TABLE ========== -->
 <section>
   <h2 class="section-title" style="color:var(--vishishtadvaita)">⚖️ Side-by-Side Comparison</h2>
-  <p style="color:var(--muted);margin-bottom:18px;max-width:760px;font-size:.95rem">Scroll horizontally to see all three columns. The filter chips above can narrow the table to a single school.</p>
-
+  <p class="section-intro">Scroll horizontally to see all three columns. The filter chips above can narrow the table to a single school.</p>
   <div class="compare-scroll">
-    <table class="compare">
-      <thead>
-        <tr>
-          <th scope="col">Criterion</th>
-          <th scope="col" data-accent style="--accent:var(--advaita)" data-col="advaita">Advaita</th>
-          <th scope="col" data-accent style="--accent:var(--vishishtadvaita)" data-col="vishishtadvaita">Vishishtadvaita</th>
-          <th scope="col" data-accent style="--accent:var(--dvaita)" data-col="dvaita">Dvaita</th>
-        </tr>
-      </thead>
+    <table class="compare" style="min-width:820px">
+      <thead><tr><th scope="col">Criterion</th><th scope="col" data-col="advaita" style="--accent:var(--advaita)">Advaita</th><th scope="col" data-col="vishishtadvaita" style="--accent:var(--vishishtadvaita)">Vishishtadvaita</th><th scope="col" data-col="dvaita" style="--accent:var(--dvaita)">Dvaita</th></tr></thead>
       <tbody>
-        <tr>
-          <th scope="row">Sanskrit Name</th>
-          <td data-col="advaita">अद्वैत<span class="sanskrit">Advaita</span></td>
-          <td data-col="vishishtadvaita">विशिष्टाद्वैत<span class="sanskrit">Viśiṣṭādvaita</span></td>
-          <td data-col="dvaita">द्वैत<span class="sanskrit">Dvaita</span></td>
-        </tr>
-        <tr>
-          <th scope="row">Meaning</th>
-          <td data-col="advaita">"Not two" — absolute non-duality</td>
-          <td data-col="vishishtadvaita">"Qualified non-duality"</td>
-          <td data-col="dvaita">"Dualism" — eternal distinction</td>
-        </tr>
-        <tr>
-          <th scope="row">Chief Acharya</th>
-          <td data-col="advaita"><strong>Adi Shankara</strong> (c. 788–820 CE)</td>
-          <td data-col="vishishtadvaita"><strong>Ramanuja</strong> (c. 1017–1137 CE)</td>
-          <td data-col="dvaita"><strong>Madhvacharya</strong> (c. 1238–1317 CE)</td>
-        </tr>
-        <tr>
-          <th scope="row">Core Text</th>
-          <td data-col="advaita">Brahma Sutra Bhashya</td>
-          <td data-col="vishishtadvaita">Sri Bhashya</td>
-          <td data-col="dvaita">Brahma Sutra Bhashya</td>
-        </tr>
-        <tr>
-          <th scope="row">Brahman (God)</th>
-          <td data-col="advaita">Nirguna Brahman — without attributes. The only reality. God with form is a lower, preparatory truth.</td>
-          <td data-col="vishishtadvaita">Saguna Brahman — with infinite auspicious qualities. Personal God (Vishnu) is the supreme reality.</td>
-          <td data-col="dvaita">Personal God (Vishnu/Hari) — supremely real, with infinite perfections, eternally distinct from all else.</td>
-        </tr>
-        <tr>
-          <th scope="row">The Soul (Jiva)</th>
-          <td data-col="advaita">In essence, identical with Brahman. Individuality is due to ignorance (avidya); it is not ultimately real.</td>
-          <td data-col="vishishtadvaita">Real, eternal, distinct from Brahman, yet inseparably related as body to soul. Souls are modes (prakara) of Brahman.</td>
-          <td data-col="dvaita">Real, eternal, distinct from God. Souls are many, with innate differences in capacity and destiny.</td>
-        </tr>
-        <tr>
-          <th scope="row">The World (Jagat)</th>
-          <td data-col="advaita">Maya — empirically real but ultimately illusory. It has no independent existence apart from Brahman.</td>
-          <td data-col="vishishtadvaita">Real. The world is the body of God, created and sustained by Him. It is not illusion.</td>
-          <td data-col="dvaita">Real. The world is eternally distinct from God, created by Him but never identical with Him.</td>
-        </tr>
-        <tr>
-          <th scope="row">Relationship</th>
-          <td data-col="advaita"><strong>Identity</strong> — Atman IS Brahman. "Tat Tvam Asi" (Thou art That).</td>
-          <td data-col="vishishtadvaita"><strong>Body-Soul</strong> — Souls and world are the body of Brahman, inseparably united yet distinct.</td>
-          <td data-col="dvaita"><strong>Difference</strong> — God, souls, and world are eternally and really distinct. "Hari is supreme".</td>
-        </tr>
-        <tr>
-          <th scope="row">Moksha (Liberation)</th>
-          <td data-col="advaita">Merger into Brahman. Individuality dissolves like a river into the ocean. Bliss of pure consciousness.</td>
-          <td data-col="vishishtadvaita">Eternal service and enjoyment of God's presence. Souls retain individuality; they do not merge but dwell in blissful communion.</td>
-          <td data-col="dvaita">Eternal service of God in a heavenly realm. Souls retain distinct identities and experience graded levels of bliss according to their nature.</td>
-        </tr>
-        <tr>
-          <th scope="row">Path to Liberation</th>
-          <td data-col="advaita"><strong>Jnana</strong> — knowledge of the Self. Realization that one was never bound. Renunciation and inquiry.</td>
-          <td data-col="vishishtadvaita"><strong>Bhakti &amp; Prapatti</strong> — devotion and surrender to God. Grace is essential.</td>
-          <td data-col="dvaita"><strong>Bhakti</strong> — intense devotion to Vishnu, combined with correct knowledge and action. Grace of God.</td>
-        </tr>
-        <tr>
-          <th scope="row">Maya (Illusion)</th>
-          <td data-col="advaita">Central. The world-appearance is due to maya, beginningless ignorance superimposed on Brahman.</td>
-          <td data-col="vishishtadvaita">Not illusion. The world is real, though its reality is dependent on God.</td>
-          <td data-col="dvaita">Rejected. The world is real; maya is not a cosmic illusion but refers to God's creative power.</td>
-        </tr>
-        <tr>
-          <th scope="row">God's Grace</th>
-          <td data-col="advaita">Essential for knowledge, but ultimately the soul realizes its own nature.</td>
-          <td data-col="vishishtadvaita">Supremely important. Liberation is attained through God's grace responding to surrender.</td>
-          <td data-col="dvaita">Absolutely essential. Without Vishnu's grace, liberation is impossible.</td>
-        </tr>
-        <tr>
-          <th scope="row">Famous Saying</th>
-          <td data-col="advaita">"Brahma satyam jagan mithya" — Brahman is real, the world is appearance.</td>
-          <td data-col="vishishtadvaita">"Sarvaṃ khalv idaṃ brahma" — All this is Brahman (read as: the world is His body).</td>
-          <td data-col="dvaita">"Harih sarvottamah" — Hari (Vishnu) is supreme.</td>
-        </tr>
+        <tr><th scope="row">Sanskrit Name</th><td data-col="advaita">अद्वैत<span class="sanskrit">Advaita</span></td><td data-col="vishishtadvaita">विशिष्टाद्वैत<span class="sanskrit">Viśiṣṭādvaita</span></td><td data-col="dvaita">द्वैत<span class="sanskrit">Dvaita</span></td></tr>
+        <tr><th scope="row">Meaning</th><td data-col="advaita">"Not two" — absolute non-duality</td><td data-col="vishishtadvaita">"Qualified non-duality"</td><td data-col="dvaita">"Dualism" — eternal distinction</td></tr>
+        <tr><th scope="row">Chief Acharya</th><td data-col="advaita"><strong>Adi Shankara</strong> (c. 788–820 CE)</td><td data-col="vishishtadvaita"><strong>Ramanuja</strong> (c. 1017–1137 CE)</td><td data-col="dvaita"><strong>Madhvacharya</strong> (c. 1238–1317 CE)</td></tr>
+        <tr><th scope="row">Core Text</th><td data-col="advaita">Brahma Sutra Bhashya</td><td data-col="vishishtadvaita">Sri Bhashya</td><td data-col="dvaita">Brahma Sutra Bhashya</td></tr>
+        <tr><th scope="row">Brahman (God)</th><td data-col="advaita">Nirguna Brahman — without attributes. The only reality. God with form is a lower, preparatory truth.</td><td data-col="vishishtadvaita">Saguna Brahman — with infinite auspicious qualities. Personal God (Vishnu) is the supreme reality.</td><td data-col="dvaita">Personal God (Vishnu/Hari) — supremely real, with infinite perfections, eternally distinct from all else.</td></tr>
+        <tr><th scope="row">The Soul (Jiva)</th><td data-col="advaita">In essence, identical with Brahman. Individuality is due to ignorance (avidya); it is not ultimately real.</td><td data-col="vishishtadvaita">Real, eternal, distinct from Brahman, yet inseparably related as body to soul. Souls are modes (prakara) of Brahman.</td><td data-col="dvaita">Real, eternal, distinct from God. Souls are many, with innate differences in capacity and destiny.</td></tr>
+        <tr><th scope="row">The World (Jagat)</th><td data-col="advaita">Maya — empirically real but ultimately illusory. It has no independent existence apart from Brahman.</td><td data-col="vishishtadvaita">Real. The world is the body of God, created and sustained by Him. It is not illusion.</td><td data-col="dvaita">Real. The world is eternally distinct from God, created by Him but never identical with Him.</td></tr>
+        <tr><th scope="row">Relationship</th><td data-col="advaita"><strong>Identity</strong> — Atman IS Brahman. "Tat Tvam Asi" (Thou art That).</td><td data-col="vishishtadvaita"><strong>Body-Soul</strong> — Souls and world are the body of Brahman, inseparably united yet distinct.</td><td data-col="dvaita"><strong>Difference</strong> — God, souls, and world are eternally and really distinct. "Hari is supreme".</td></tr>
+        <tr><th scope="row">Moksha (Liberation)</th><td data-col="advaita">Merger into Brahman. Individuality dissolves like a river into the ocean. Bliss of pure consciousness.</td><td data-col="vishishtadvaita">Eternal service and enjoyment of God's presence. Souls retain individuality; they do not merge but dwell in blissful communion.</td><td data-col="dvaita">Eternal service of God in a heavenly realm. Souls retain distinct identities and experience graded levels of bliss according to their nature.</td></tr>
+        <tr><th scope="row">Path to Liberation</th><td data-col="advaita"><strong>Jnana</strong> — knowledge of the Self. Realization that one was never bound. Renunciation and inquiry.</td><td data-col="vishishtadvaita"><strong>Bhakti &amp; Prapatti</strong> — devotion and surrender to God. Grace is essential.</td><td data-col="dvaita"><strong>Bhakti</strong> — intense devotion to Vishnu, combined with correct knowledge and action. Grace of God.</td></tr>
+        <tr><th scope="row">Maya (Illusion)</th><td data-col="advaita">Central. The world-appearance is due to maya, beginningless ignorance superimposed on Brahman.</td><td data-col="vishishtadvaita">Not illusion. The world is real, though its reality is dependent on God.</td><td data-col="dvaita">Rejected. The world is real; maya is not a cosmic illusion but refers to God's creative power.</td></tr>
+        <tr><th scope="row">God&#39;s Grace</th><td data-col="advaita">Essential for knowledge, but ultimately the soul realizes its own nature.</td><td data-col="vishishtadvaita">Supremely important. Liberation is attained through God's grace responding to surrender.</td><td data-col="dvaita">Absolutely essential. Without Vishnu's grace, liberation is impossible.</td></tr>
+        <tr><th scope="row">Famous Saying</th><td data-col="advaita">"Brahma satyam jagan mithya" — Brahman is real, the world is appearance.</td><td data-col="vishishtadvaita">"Sarvaṃ khalv idaṃ brahma" — All this is Brahman (read as: the world is His body).</td><td data-col="dvaita">"Harih sarvottamah" — Hari (Vishnu) is supreme.</td></tr>
       </tbody>
     </table>
   </div>
 </section>
-
-<!-- ========== SCHOOL CARDS ========== -->
-<section>
+<section data-block>
   <h2 class="section-title" style="color:var(--vishishtadvaita)">📖 The Three Schools in Detail</h2>
   <div class="grid">
-
-    <article class="card advaita-card" data-tags="advaita" data-id="advaita">
-      <span class="school-num">1</span>
-      <h3>Advaita <span class="sanskrit">अद्वैत</span></h3>
-      <span class="tag">Absolute Non-dualism</span>
-      <div class="tagline">"There is only one reality — and you are That."</div>
-      <p>Adi Shankara's Advaita is the most radical of the three. It argues that the seeming multiplicity of the world — you, me, God, the universe — is a superimposition on the single, undivided reality of Brahman. Liberation is not attaining something new but realizing what was always true: you were never separate from the infinite.</p>
-      <div class="key-teaching">
-        <span class="label">Key Teaching</span>
-        <p><strong>Atman = Brahman.</strong> The individual self and ultimate reality are identical. The sense of being a separate person is the root ignorance (avidya).</p>
-      </div>
-      <dl class="facts">
-        <div class="fact"><dt>Acharya</dt><dd>Adi Shankara (788–820 CE)</dd></div>
-        <div class="fact"><dt>Core text</dt><dd>Brahma Sutra Bhashya + commentaries on 10 Upanishads and the Gita</dd></div>
-        <div class="fact"><dt>Key work</dt><dd>Upadeśasāhasrī (the Vivekachudamani is traditionally attributed to him)</dd></div>
-        <div class="fact"><dt>God</dt><dd>Nirguna Brahman — ultimately without form or attributes</dd></div>
-        <div class="fact"><dt>Liberation</dt><dd>Merger — realization of identity</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🧠 Jnana</span><span class="chip">Maya</span><span class="chip">Non-dual</span></div>
-    </article>
-
-    <article class="card vishisht-card" data-tags="vishishtadvaita" data-id="vishishtadvaita">
-      <span class="school-num">2</span>
-      <h3>Vishishtadvaita <span class="sanskrit">विशिष्टाद्वैत</span></h3>
-      <span class="tag">Qualified Non-dualism</span>
-      <div class="tagline">"One reality — but with real parts. You are part of God, not God."</div>
-      <p>Ramanuja rejected Shankara's maya, insisting that the world and souls are real. But they are not separate from God either: they are His body, inseparably related to Him as attributes to a substance. This is unity without identity — a middle path between merger and dualism.</p>
-      <div class="key-teaching">
-        <span class="label">Key Teaching</span>
-        <p><strong>Unity in diversity.</strong> Brahman is the soul of the universe; individual souls and matter are its body. They are distinct yet inseparable — like the body and its indwelling self.</p>
-      </div>
-      <dl class="facts">
-        <div class="fact"><dt>Acharya</dt><dd>Ramanuja (1017–1137 CE)</dd></div>
-        <div class="fact"><dt>Core text</dt><dd>Sri Bhashya (commentary on Brahma Sutra)</dd></div>
-        <div class="fact"><dt>Key work</dt><dd>Gita Bhashya, Vedarthasamgraha</dd></div>
-        <div class="fact"><dt>God</dt><dd>Saguna Brahman — Vishnu with infinite auspicious qualities</dd></div>
-        <div class="fact"><dt>Liberation</dt><dd>Eternal communion — souls retain individuality in God's presence</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🙏 Bhakti</span><span class="chip">Prapatti</span><span class="chip">Real world</span></div>
-    </article>
-
-    <article class="card dvaita-card" data-tags="dvaita" data-id="dvaita">
-      <span class="school-num">3</span>
-      <h3>Dvaita <span class="sanskrit">द्वैत</span></h3>
-      <span class="tag">Dualism</span>
-      <div class="tagline">"God is God. You are you. And that difference is eternal."</div>
-      <p>Madhvacharya's Dvaita is the most emphatically theistic of the three. It insists that the distinction between God, souls, and the world is real and never overcome — even in liberation. God is supremely independent; everything else depends on Him utterly. The soul's joy lies in eternal service, not in becoming God.</p>
-      <div class="key-teaching">
-        <span class="label">Key Teaching</span>
-        <p><strong>Eternal distinction.</strong> God (Vishnu), souls, and the material world are three eternally distinct realities. Liberation is eternal service, not merger.</p>
-      </div>
-      <dl class="facts">
-        <div class="fact"><dt>Acharya</dt><dd>Madhvacharya (1238–1317 CE)</dd></div>
-        <div class="fact"><dt>Core text</dt><dd>Brahma Sutra Bhashya</dd></div>
-        <div class="fact"><dt>Key work</dt><dd>Anuvyakhyana, Vishnu-tattva-vinirnaya</dd></div>
-        <div class="fact"><dt>God</dt><dd>Vishnu — personal, supreme, with infinite perfections</dd></div>
-        <div class="fact"><dt>Liberation</dt><dd>Eternal service — graded bliss according to the soul's nature</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🙏 Bhakti</span><span class="chip">Real difference</span><span class="chip">Theism</span></div>
-    </article>
-
+  <article class="card has-corner" data-item data-id="advaita" data-tags="advaita" style="--accent:var(--advaita)"><span class="ch-num">1</span>
+  <h3>Advaita <span class="native">अद्वैत</span></h3><span class="tag">Absolute Non-dualism</span><div class="tagline">&#34;There is only one reality — and you are That.&#34;</div><p>Adi Shankara's Advaita is the most radical of the three. It argues that the seeming multiplicity of the world — you, me, God, the universe — is a superimposition on the single, undivided reality of Brahman. Liberation is not attaining something new but realizing what was always true: you were never separate from the infinite.</p><div class="key-teaching"><span class="label">Key Teaching</span><p><strong>Atman = Brahman.</strong> The individual self and ultimate reality are identical. The sense of being a separate person is the root ignorance (avidya).</p></div><dl class="facts"><div class="fact"><dt>Acharya</dt><dd>Adi Shankara (788–820 CE)</dd></div><div class="fact"><dt>Core text</dt><dd>Brahma Sutra Bhashya + commentaries on 10 Upanishads and the Gita</dd></div><div class="fact"><dt>Key work</dt><dd>Upadeśasāhasrī (the Vivekachudamani is traditionally attributed to him)</dd></div><div class="fact"><dt>God</dt><dd>Nirguna Brahman — ultimately without form or attributes</dd></div><div class="fact"><dt>Liberation</dt><dd>Merger — realization of identity</dd></div></dl><div class="chips"><span class="chip theme-tag">🧠 Jnana</span><span class="chip">Maya</span><span class="chip">Non-dual</span></div>
+</article>
+  <article class="card has-corner" data-item data-id="vishishtadvaita" data-tags="vishishtadvaita" style="--accent:var(--vishishtadvaita)"><span class="ch-num">2</span>
+  <h3>Vishishtadvaita <span class="native">विशिष्टाद्वैत</span></h3><span class="tag">Qualified Non-dualism</span><div class="tagline">&#34;One reality — but with real parts. You are part of God, not God.&#34;</div><p>Ramanuja rejected Shankara's maya, insisting that the world and souls are real. But they are not separate from God either: they are His body, inseparably related to Him as attributes to a substance. This is unity without identity — a middle path between merger and dualism.</p><div class="key-teaching"><span class="label">Key Teaching</span><p><strong>Unity in diversity.</strong> Brahman is the soul of the universe; individual souls and matter are its body. They are distinct yet inseparable — like the body and its indwelling self.</p></div><dl class="facts"><div class="fact"><dt>Acharya</dt><dd>Ramanuja (1017–1137 CE)</dd></div><div class="fact"><dt>Core text</dt><dd>Sri Bhashya (commentary on Brahma Sutra)</dd></div><div class="fact"><dt>Key work</dt><dd>Gita Bhashya, Vedarthasamgraha</dd></div><div class="fact"><dt>God</dt><dd>Saguna Brahman — Vishnu with infinite auspicious qualities</dd></div><div class="fact"><dt>Liberation</dt><dd>Eternal communion — souls retain individuality in God's presence</dd></div></dl><div class="chips"><span class="chip theme-tag">🙏 Bhakti</span><span class="chip">Prapatti</span><span class="chip">Real world</span></div>
+</article>
+  <article class="card has-corner" data-item data-id="dvaita" data-tags="dvaita" style="--accent:var(--dvaita)"><span class="ch-num">3</span>
+  <h3>Dvaita <span class="native">द्वैत</span></h3><span class="tag">Dualism</span><div class="tagline">&#34;God is God. You are you. And that difference is eternal.&#34;</div><p>Madhvacharya's Dvaita is the most emphatically theistic of the three. It insists that the distinction between God, souls, and the world is real and never overcome — even in liberation. God is supremely independent; everything else depends on Him utterly. The soul's joy lies in eternal service, not in becoming God.</p><div class="key-teaching"><span class="label">Key Teaching</span><p><strong>Eternal distinction.</strong> God (Vishnu), souls, and the material world are three eternally distinct realities. Liberation is eternal service, not merger.</p></div><dl class="facts"><div class="fact"><dt>Acharya</dt><dd>Madhvacharya (1238–1317 CE)</dd></div><div class="fact"><dt>Core text</dt><dd>Brahma Sutra Bhashya</dd></div><div class="fact"><dt>Key work</dt><dd>Anuvyakhyana, Vishnu-tattva-vinirnaya</dd></div><div class="fact"><dt>God</dt><dd>Vishnu — personal, supreme, with infinite perfections</dd></div><div class="fact"><dt>Liberation</dt><dd>Eternal service — graded bliss according to the soul's nature</dd></div></dl><div class="chips"><span class="chip theme-tag">🙏 Bhakti</span><span class="chip">Real difference</span><span class="chip">Theism</span></div>
+</article>
   </div>
 </section>
-
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
+</div>
 <footer>
   <p>🪷 A comparison map of the three great Vedanta schools · All three accept the Upanishads, Brahma Sutra, and Bhagavad Gita as authoritative</p>
-  <p style="margin-top:6px">Dates are approximate. Each school has developed rich sub-traditions and internal debates.</p>
-
+  <p>Dates are approximate. Each school has developed rich sub-traditions and internal debates.</p>
   <nav class="site-nav" aria-label="All Sanatana maps">
     <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
     <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
@@ -572,129 +110,12 @@
     <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
     <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
     <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
   </nav>
   <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
-
-<script>
-(function(){
-  "use strict";
-  var root = document.documentElement;
-  var body = document.body;
-
-  /* ---------- THEME ---------- */
-  var themeBtn = document.getElementById('themeToggle');
-  var knob = document.getElementById('knob');
-  var toggleLabel = document.getElementById('toggleLabel');
-  function applyTheme(t){
-    root.setAttribute('data-theme', t);
-    localStorage.setItem('vedanta-theme', t);
-    var isLight = t === 'light';
-    knob.textContent = isLight ? '☀️' : '🌙';
-    toggleLabel.textContent = isLight ? 'Dark' : 'Light';
-    themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-  }
-  themeBtn.addEventListener('click', function(){
-    applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-  });
-
-  /* ---------- TEXT SIZE ---------- */
-  var sizes = [0.85, 1, 1.15, 1.3, 1.5];
-  var sizeIdx = parseInt(localStorage.getItem('vedanta-size-idx') || '1', 10);
-  var sizeVal = document.getElementById('sizeVal');
-  function applySize(i){
-    sizeIdx = Math.max(0, Math.min(sizes.length - 1, i));
-    var scale = sizes[sizeIdx];
-    root.style.setProperty('--scale', scale);
-    localStorage.setItem('vedanta-size', scale);
-    localStorage.setItem('vedanta-size-idx', sizeIdx);
-    sizeVal.textContent = Math.round(scale * 100) + '%';
-  }
-  document.getElementById('sizeUp').addEventListener('click', function(){ applySize(sizeIdx + 1); });
-  document.getElementById('sizeDown').addEventListener('click', function(){ applySize(sizeIdx - 1); });
-
-  /* ---------- LANGUAGE ---------- */
-  var langEn = document.getElementById('langEn');
-  var langSa = document.getElementById('langSa');
-  function setLang(showSanskrit){
-    body.classList.toggle('show-sanskrit', showSanskrit);
-    langEn.classList.toggle('active', !showSanskrit);
-    langSa.classList.toggle('active', showSanskrit);
-    langEn.setAttribute('aria-pressed', String(!showSanskrit));
-    langSa.setAttribute('aria-pressed', String(showSanskrit));
-    localStorage.setItem('vedanta-lang', showSanskrit ? 'sa' : 'en');
-  }
-  langEn.addEventListener('click', function(){ setLang(false); });
-  langSa.addEventListener('click', function(){ setLang(true); });
-
-  /* ---------- SEARCH + FILTER ---------- */
-  var searchInput = document.getElementById('searchInput');
-  var activeFilter = 'all';
-  var filterChips = document.querySelectorAll('.filter-chip');
-
-  filterChips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      activeFilter = chip.getAttribute('data-filter');
-      filterChips.forEach(function(c){ c.classList.toggle('active', c === chip); });
-      applyFilters();
-    });
-  });
-  searchInput.addEventListener('input', function(){ applyFilters(); });
-
-  function matches(el){
-    var q = searchInput.value.trim().toLowerCase();
-    var tags = (el.getAttribute('data-tags') || '').toLowerCase();
-    var text = el.textContent.toLowerCase();
-    if(activeFilter !== 'all' && tags.indexOf(activeFilter) === -1) return false;
-    if(q && text.indexOf(q) === -1) return false;
-    return true;
-  }
-
-  function applyFilters(){
-    // 1) Card visibility
-    document.querySelectorAll('.card[data-tags]').forEach(function(card){
-      card.classList.toggle('hidden', !matches(card));
-    });
-
-    // 2) Table column visibility — only hide when a specific school is chosen
-    document.querySelectorAll('.compare [data-col]').forEach(function(cell){
-      var col = cell.getAttribute('data-col');
-      var hide = (activeFilter !== 'all' && col !== activeFilter);
-      cell.classList.toggle('col-hidden', hide);
-    });
-  }
-
-  /* ---------- BOOT SEQUENCE (runs LAST) ---------- */
-  try { applyTheme(root.getAttribute('data-theme') || 'dark'); }
-  catch(e){ console.error('theme init failed:', e); }
-
-  try { applySize(sizeIdx); }
-  catch(e){ console.error('size init failed:', e); }
-
-  try { setLang(localStorage.getItem('vedanta-lang') === 'sa'); }
-  catch(e){ console.error('lang init failed:', e); }
-
-  try { applyFilters(); }
-  catch(e){ console.error('filters init failed:', e); }
-
-})();
-</script>
-
-<script>
-/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
-(function(){
-  function fit(){
-    var bar = document.querySelector('.controls');
-    if(!bar) return;
-    document.body.style.paddingTop = '';
-    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
-    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
-    if(need > base) document.body.style.paddingTop = need + 'px';
-  }
-  window.addEventListener('resize', fit);
-  window.addEventListener('load', fit);
-  fit();
-})();
-</script>
+<script src="assets/site.js?v=420f3627"></script>
 </body>
 </html>

@@ -5,339 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Shanmata — Six Major Traditions of Hinduism</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕉️</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=420f3627">
+<style>:root,[data-theme="dark"]{--shaiva:#fc5c65; --vaishnava:#45aaf2; --shakta:#f7b731; --ganapatya:#ff9f43; --saura:#fdcb6e; --kaumara:#26de81;} [data-theme="light"]{--shaiva:#c43a3a; --vaishnava:#1a6fc4; --shakta:#c98a00; --ganapatya:#d97706; --saura:#b8860b; --kaumara:#12995a;} :root{--primary:var(--shakta); --grad-h:linear-gradient(90deg,var(--shaiva),var(--vaishnava),var(--shakta),var(--ganapatya),var(--saura),var(--kaumara)); --grad-v:linear-gradient(var(--shaiva),var(--vaishnava),var(--shakta),var(--ganapatya),var(--saura),var(--kaumara));}</style>
 <script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
   (function(){
-    var savedTheme = localStorage.getItem('shanmata-theme');
-    var theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
-    var savedSize = localStorage.getItem('shanmata-size') || '1';
-    document.documentElement.style.setProperty('--scale', savedSize);
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
   })();
 </script>
-<style>
-  :root,[data-theme="dark"]{
-    --bg:#0e0b1a; --bg-grad:#1b1435;
-    --card:#241d40; --card-2:#161129;
-    --border:rgba(255,255,255,.06); --border-strong:rgba(255,255,255,.14);
-    --chip-bg:rgba(255,255,255,.06); --chip-border:rgba(255,255,255,.08);
-    --text:#eae6f7; --muted:#a29ac2;
-    --shadow:0 14px 34px rgba(0,0,0,.5);
-    /* Six tradition colors */
-    --shaiva:#fc5c65;      /* red — Shiva */
-    --vaishnava:#45aaf2;   /* blue — Vishnu */
-    --shakta:#f7b731;      /* gold — Devi */
-    --ganapatya:#ff9f43;   /* orange — Ganesha */
-    --saura:#fdcb6e;       /* yellow — Surya */
-    --kaumara:#26de81;     /* green — Muruga */
-    --root-text:#1a0f24;
-  }
-  [data-theme="light"]{
-    --bg:#fdf9f3; --bg-grad:#fff4e6;
-    --card:#ffffff; --card-2:#fffaf2;
-    --border:rgba(60,40,20,.10); --border-strong:rgba(60,40,20,.22);
-    --chip-bg:rgba(120,80,30,.07); --chip-border:rgba(120,80,30,.14);
-    --text:#2a1f14; --muted:#6b5c4a;
-    --shadow:0 14px 34px rgba(90,60,20,.15);
-    --shaiva:#c43a3a; --vaishnava:#1a6fc4; --shakta:#c98a00;
-    --ganapatya:#d97706; --saura:#b8860b; --kaumara:#12995a;
-    --root-text:#3a1a08;
-  }
-
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  :root{ --scale:1; }
-
-  body{
-    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    background:radial-gradient(circle at top,var(--bg-grad) 0%,var(--bg) 60%);
-    color:var(--text);
-    min-height:100vh;
-    padding:90px 20px 80px;
-    line-height:1.6;
-    font-size:calc(17px * var(--scale));
-    transition:background .35s ease,color .35s ease;
-  }
-
-  /* CONTROL BAR */
-  .controls{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
-    padding:12px 16px;
-    background:color-mix(in srgb,var(--bg) 88%,transparent);
-    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border-strong);
-  }
-  .ctrl-group{
-    display:flex; align-items:center; gap:6px;
-    background:var(--card); border:1px solid var(--border-strong);
-    border-radius:50px; padding:5px;
-  }
-  .ctrl-btn{
-    font-family:inherit; font-size:.85rem; font-weight:600;
-    color:var(--text); background:transparent; border:none; border-radius:40px;
-    padding:7px 13px; cursor:pointer; display:flex; align-items:center; gap:6px;
-    transition:background .2s,color .2s; white-space:nowrap;
-  }
-  .ctrl-btn:hover{background:var(--chip-bg);}
-  .ctrl-btn:focus-visible{outline:2px solid var(--shakta);outline-offset:2px;}
-  .ctrl-btn.active{background:var(--chip-bg);box-shadow:inset 0 0 0 1px var(--border-strong);}
-
-  .theme-toggle{padding:5px 12px 5px 6px;}
-  .toggle-track{position:relative;width:44px;height:24px;border-radius:20px;background:var(--chip-bg);border:1px solid var(--border-strong);flex-shrink:0;transition:background .3s;}
-  .toggle-knob{position:absolute;top:1px;left:1px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#ffcf6b,#ff9f43);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .3s cubic-bezier(.4,1.6,.5,1);box-shadow:0 2px 6px rgba(0,0,0,.3);}
-  [data-theme="light"] .toggle-knob{transform:translateX(20px);}
-
-  .size-btn{width:34px;height:34px;justify-content:center;padding:0;font-size:.9rem;font-weight:800;border-radius:50%;}
-  .size-val{min-width:40px;text-align:center;font-size:.8rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;}
-
-  .search-wrap{
-    display:flex;align-items:center;gap:8px;
-    background:var(--card);border:1px solid var(--border-strong);
-    border-radius:50px;padding:6px 14px;flex:1 1 180px;max-width:320px;
-  }
-  .search-wrap:focus-within{border-color:var(--shakta);}
-  .search-wrap input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:inherit;font-size:.9rem;min-width:0;}
-  .search-wrap input::placeholder{color:var(--muted);}
-
-  .lang-toggle .ctrl-btn.active{color:var(--shaiva);}
-
-  /* FILTERS */
-  .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:1100px;margin:0 auto 30px;}
-  .filter-chip{
-    font-family:inherit;font-size:.82rem;font-weight:600;
-    padding:7px 15px;border-radius:30px;cursor:pointer;
-    background:var(--card);color:var(--muted);
-    border:1px solid var(--border-strong);transition:all .2s;
-  }
-  .filter-chip:hover{border-color:var(--muted);transform:translateY(-1px);}
-  .filter-chip:focus-visible{outline:2px solid var(--shakta);outline-offset:2px;}
-  .filter-chip.active{background:var(--fc,var(--shakta));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--fc,var(--shakta)) 40%,transparent);}
-
-  /* LAYOUT */
-  header{text-align:center;max-width:900px;margin:0 auto 34px;}
-  header h1{
-    font-size:clamp(1.6rem,4vw,2.6rem);
-    background:linear-gradient(90deg,var(--shaiva),var(--vaishnava),var(--shakta),var(--ganapatya),var(--saura),var(--kaumara));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    font-weight:800;letter-spacing:.5px;margin-bottom:12px;
-  }
-  header p{color:var(--muted);font-size:1.05rem;max-width:720px;margin:0 auto;}
-
-  .legend{display:flex;flex-wrap:wrap;gap:12px 18px;justify-content:center;margin-top:22px;}
-  .legend span{display:flex;align-items:center;gap:7px;font-size:.85rem;color:var(--muted);}
-  .dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex-shrink:0;}
-
-  section{margin:50px auto;max-width:1280px;}
-  .section-title{font-size:1.4rem;font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:12px;}
-  .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,currentColor,transparent);opacity:.4;}
-
-  /* ---------- COMPARISON TABLE ---------- */
-  .compare-scroll{
-    overflow-x:auto;
-    border-radius:20px;
-    border:1px solid var(--border);
-    background:var(--card);
-    box-shadow:var(--shadow);
-    margin-bottom:30px;
-  }
-  .compare{
-    width:100%;
-    border-collapse:collapse;
-    min-width:1100px;
-    font-size:.88rem;
-  }
-  .compare th, .compare td{
-    padding:14px 16px;
-    text-align:left;
-    vertical-align:top;
-    border-bottom:1px solid var(--border);
-  }
-  .compare thead th{
-    position:sticky;
-    top:0;
-    background:linear-gradient(160deg,var(--card),var(--card-2));
-    font-size:.95rem;
-    font-weight:800;
-    letter-spacing:.3px;
-    z-index:2;
-    border-bottom:2px solid var(--border-strong);
-    white-space:nowrap;
-  }
-  .compare thead th:first-child{
-    color:var(--muted);
-    font-size:.78rem;
-    text-transform:uppercase;
-    letter-spacing:.8px;
-    font-weight:700;
-  }
-  .compare thead th[data-accent]{color:var(--accent);}
-  .compare tbody th{
-    font-weight:700;
-    color:var(--muted);
-    font-size:.78rem;
-    text-transform:uppercase;
-    letter-spacing:.7px;
-    white-space:nowrap;
-    background:var(--card-2);
-    position:sticky;
-    left:0;
-    z-index:1;
-    border-right:1px solid var(--border);
-  }
-  .compare tbody tr:last-child th,
-  .compare tbody tr:last-child td{border-bottom:none;}
-  .compare tbody tr:hover td{background:color-mix(in srgb,var(--bg) 60%,transparent);}
-  .compare td{color:var(--text);}
-  .compare td strong{color:var(--text);}
-  .compare td .sanskrit{font-size:.78rem;opacity:.7;display:block;margin-top:2px;}
-  body.show-sanskrit .compare td .sanskrit{display:block;}
-
-  /* Hides columns when a filter is active */
-  .compare .col-hidden{display:none !important;}
-
-  /* ---------- TRADITION CARDS ---------- */
-  .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));}
-
-  .card{
-    position:relative;
-    background:linear-gradient(160deg,var(--card),var(--card-2));
-    border-radius:20px;padding:28px 24px 24px;
-    border:1px solid var(--border);
-    transition:transform .25s ease,box-shadow .25s ease,border-color .25s,opacity .3s;
-    overflow:hidden;
-  }
-  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--accent,#888);}
-  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--accent,#888);}
-  .card.hidden{display:none;}
-
-  .card .deity-icon{
-    position:absolute; top:16px; right:20px;
-    font-size:2.6rem; line-height:1;
-    opacity:.18;
-    user-select:none; pointer-events:none;
-    filter:grayscale(.2);
-  }
-  .card h3{
-    font-size:1.3rem;margin-bottom:6px;color:var(--accent,#fff);
-    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-    padding-right:60px;
-  }
-  .card h3 .sanskrit{font-size:.9rem;font-weight:500;opacity:.8;display:none;}
-  body.show-sanskrit .card h3 .sanskrit{display:inline;}
-  .card .tag{
-    font-size:.75rem;font-weight:700;text-transform:uppercase;
-    letter-spacing:.7px;color:var(--accent);margin-bottom:14px;display:block;
-  }
-  .card .deity-line{
-    font-size:1rem; font-weight:600; color:var(--text);
-    margin-bottom:12px; opacity:.9;
-  }
-  .card .deity-line .big-emoji{font-size:1.1rem; margin-right:4px;}
-  .card p{font-size:.94rem;color:var(--text);opacity:.88;margin-bottom:16px;}
-
-  .key-teaching{
-    background:color-mix(in srgb,var(--accent) 8%,transparent);
-    border-left:3px solid var(--accent);
-    padding:12px 16px;
-    border-radius:0 8px 8px 0;
-    margin-bottom:16px;
-  }
-  .key-teaching .label{
-    font-size:.68rem;font-weight:800;text-transform:uppercase;
-    letter-spacing:.8px;color:var(--accent);margin-bottom:4px;display:block;
-  }
-  .key-teaching p{font-size:.9rem;margin:0;font-weight:500;}
-
-  .facts{display:grid;gap:8px;margin-top:14px;padding-top:14px;border-top:1px dashed var(--border-strong);}
-  .fact{display:grid;grid-template-columns:110px 1fr;gap:10px;font-size:.85rem;align-items:baseline;}
-  .fact dt{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);}
-  .fact dd{color:var(--text);}
-
-  .shaiva-card{--accent:var(--shaiva);}
-  .vaishnava-card{--accent:var(--vaishnava);}
-  .shakta-card{--accent:var(--shakta);}
-  .ganapatya-card{--accent:var(--ganapatya);}
-  .saura-card{--accent:var(--saura);}
-  .kaumara-card{--accent:var(--kaumara);}
-
-  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
-  .chip{font-size:.75rem;padding:4px 10px;border-radius:20px;background:var(--chip-bg);color:var(--muted);border:1px solid var(--chip-border);}
-  .chip.theme-tag{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,transparent);}
-
-  /* Hexagon visual — six traditions radiating from center */
-  .hex-wrap{
-    display:flex; justify-content:center; align-items:center;
-    max-width:800px; margin:0 auto 50px;
-    padding:30px 20px;
-  }
-  .hex{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    grid-template-rows:repeat(2, 1fr);
-    gap:14px;
-    max-width:640px; width:100%;
-  }
-  .hex-cell{
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:6px; padding:20px 14px;
-    border-radius:16px;
-    background:var(--card); border:1px solid var(--border);
-    border-top:4px solid var(--c);
-    text-align:center;
-    transition:transform .2s, border-color .2s;
-  }
-  .hex-cell:hover{transform:translateY(-4px); border-color:var(--c);}
-  .hex-cell .hex-emoji{font-size:1.8rem; line-height:1;}
-  .hex-cell .hex-name{font-size:.82rem; font-weight:800; color:var(--c); letter-spacing:.3px;}
-  .hex-cell .hex-deity{font-size:.72rem; color:var(--muted);}
-
-  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:60px;}
-
-  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important;}}
-  @media (max-width:680px){
-    body{padding-top:130px;}
-    .controls{gap:8px;}
-    .search-wrap{max-width:none;flex:1 1 100%;order:5;}
-    .ctrl-btn{padding:6px 10px;font-size:.8rem;}
-    .size-btn{width:30px;height:30px;}
-    .fact{grid-template-columns:1fr;}
-    .fact dt{margin-top:2px;}
-    .hex{grid-template-columns:repeat(2, 1fr);}
-  }
-
-  /* ---------- SITE NAV (home button + footer links) ---------- */
-  .home-btn{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:7px 14px;border-radius:999px;
-    background:var(--card);color:var(--text);
-    border:1px solid var(--border-strong,var(--border));
-    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
-    white-space:nowrap;transition:transform .2s,border-color .2s;
-  }
-  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
-  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
-  .site-nav{
-    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
-    max-width:980px;margin:26px auto 4px;padding-top:20px;
-    border-top:1px solid var(--border);
-  }
-  .site-nav a{
-    display:inline-flex;align-items:center;gap:5px;
-    padding:6px 12px;border-radius:999px;
-    font-size:.8rem;font-weight:600;text-decoration:none;
-    color:var(--muted);background:var(--card);
-    border:1px solid var(--border);
-    transition:color .2s,border-color .2s,transform .2s;
-  }
-  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
-  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
-  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
-  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
-</style>
 </head>
 <body>
-
-<div class="controls" role="toolbar" aria-label="Map controls">
+<div class="controls" role="toolbar" aria-label="Page controls">
   <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
@@ -345,7 +25,7 @@
   </div>
   <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
     <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
-    <button class="ctrl-btn" id="langSa" aria-pressed="false">संस्कृतम्</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">संस्कृतम्</button>
   </div>
   <div class="ctrl-group" role="group" aria-label="Text size">
     <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
@@ -357,315 +37,74 @@
     <span id="toggleLabel">Light</span>
   </button>
 </div>
-
 <header>
   <h1>The Shanmata</h1>
   <p>Six major sectarian traditions of Hinduism, each centered on a primary deity and a body of scripture. Traditionally attributed to Adi Shankara as a framework of worship — six paths, one ultimate reality. Not to be confused with the six <em>darshanas</em> (philosophical schools).</p>
-  <div class="legend">
-    <span><i class="dot" style="background:var(--shaiva)"></i>Shaiva</span>
-    <span><i class="dot" style="background:var(--vaishnava)"></i>Vaishnava</span>
-    <span><i class="dot" style="background:var(--shakta)"></i>Shakta</span>
-    <span><i class="dot" style="background:var(--ganapatya)"></i>Ganapatya</span>
-    <span><i class="dot" style="background:var(--saura)"></i>Saura</span>
-    <span><i class="dot" style="background:var(--kaumara)"></i>Kaumara</span>
-  </div>
+  <div class="legend"><span><i class="dot" style="background:var(--shaiva)"></i>Shaiva</span><span><i class="dot" style="background:var(--vaishnava)"></i>Vaishnava</span><span><i class="dot" style="background:var(--shakta)"></i>Shakta</span><span><i class="dot" style="background:var(--ganapatya)"></i>Ganapatya</span><span><i class="dot" style="background:var(--saura)"></i>Saura</span><span><i class="dot" style="background:var(--kaumara)"></i>Kaumara</span></div>
 </header>
-
-<!-- Hexagonal / grid visual -->
+<div class="large-cards">
 <section>
   <h2 class="section-title" style="color:var(--shakta)">🔷 The Six Traditions at a Glance</h2>
-  <div class="hex-wrap">
-    <div class="hex">
-      <div class="hex-cell" style="--c:var(--shaiva)">
-        <div class="hex-emoji">🔱</div>
-        <div class="hex-name">Shaiva</div>
-        <div class="hex-deity">Shiva</div>
-      </div>
-      <div class="hex-cell" style="--c:var(--vaishnava)">
-        <div class="hex-emoji">🪷</div>
-        <div class="hex-name">Vaishnava</div>
-        <div class="hex-deity">Vishnu</div>
-      </div>
-      <div class="hex-cell" style="--c:var(--shakta)">
-        <div class="hex-emoji">🌺</div>
-        <div class="hex-name">Shakta</div>
-        <div class="hex-deity">Devi</div>
-      </div>
-      <div class="hex-cell" style="--c:var(--ganapatya)">
-        <div class="hex-emoji">🐘</div>
-        <div class="hex-name">Ganapatya</div>
-        <div class="hex-deity">Ganesha</div>
-      </div>
-      <div class="hex-cell" style="--c:var(--saura)">
-        <div class="hex-emoji">☀️</div>
-        <div class="hex-name">Saura</div>
-        <div class="hex-deity">Surya</div>
-      </div>
-      <div class="hex-cell" style="--c:var(--kaumara)">
-        <div class="hex-emoji">🦚</div>
-        <div class="hex-name">Kaumara</div>
-        <div class="hex-deity">Muruga</div>
-      </div>
-    </div>
-  </div>
+  <div class="glance"><div class="glance-cell" style="--c:var(--shaiva)"><div class="g-emoji">🔱</div><div class="g-name">Shaiva</div><div class="g-sub">Shiva</div></div><div class="glance-cell" style="--c:var(--vaishnava)"><div class="g-emoji">🪷</div><div class="g-name">Vaishnava</div><div class="g-sub">Vishnu</div></div><div class="glance-cell" style="--c:var(--shakta)"><div class="g-emoji">🌺</div><div class="g-name">Shakta</div><div class="g-sub">Devi</div></div><div class="glance-cell" style="--c:var(--ganapatya)"><div class="g-emoji">🐘</div><div class="g-name">Ganapatya</div><div class="g-sub">Ganesha</div></div><div class="glance-cell" style="--c:var(--saura)"><div class="g-emoji">☀️</div><div class="g-name">Saura</div><div class="g-sub">Surya</div></div><div class="glance-cell" style="--c:var(--kaumara)"><div class="g-emoji">🦚</div><div class="g-name">Kaumara</div><div class="g-sub">Muruga</div></div></div>
 </section>
-
-<div class="filters" role="group" aria-label="Filter traditions">
-  <button class="filter-chip active" data-filter="all" style="--fc:var(--shakta)">All Six</button>
-  <button class="filter-chip" data-filter="shaiva" style="--fc:var(--shaiva)">🔱 Shaiva</button>
-  <button class="filter-chip" data-filter="vaishnava" style="--fc:var(--vaishnava)">🪷 Vaishnava</button>
-  <button class="filter-chip" data-filter="shakta" style="--fc:var(--shakta)">🌺 Shakta</button>
-  <button class="filter-chip" data-filter="ganapatya" style="--fc:var(--ganapatya)">🐘 Ganapatya</button>
-  <button class="filter-chip" data-filter="saura" style="--fc:var(--saura)">☀️ Saura</button>
-  <button class="filter-chip" data-filter="kaumara" style="--fc:var(--kaumara)">🦚 Kaumara</button>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--shakta)">All Six</button>
+  <button class="filter-chip" data-filter="shaiva" aria-pressed="false" style="--fc:var(--shaiva)">🔱 Shaiva</button>
+  <button class="filter-chip" data-filter="vaishnava" aria-pressed="false" style="--fc:var(--vaishnava)">🪷 Vaishnava</button>
+  <button class="filter-chip" data-filter="shakta" aria-pressed="false" style="--fc:var(--shakta)">🌺 Shakta</button>
+  <button class="filter-chip" data-filter="ganapatya" aria-pressed="false" style="--fc:var(--ganapatya)">🐘 Ganapatya</button>
+  <button class="filter-chip" data-filter="saura" aria-pressed="false" style="--fc:var(--saura)">☀️ Saura</button>
+  <button class="filter-chip" data-filter="kaumara" aria-pressed="false" style="--fc:var(--kaumara)">🦚 Kaumara</button>
 </div>
-
-<!-- ========== COMPARISON TABLE ========== -->
 <section>
   <h2 class="section-title" style="color:var(--shakta)">⚖️ Side-by-Side Comparison</h2>
-  <p style="color:var(--muted);margin-bottom:18px;max-width:800px;font-size:.95rem">Scroll horizontally to see all six columns. The filter chips above can narrow the table to a single tradition.</p>
-
+  <p class="section-intro">Scroll horizontally to see all six columns. The filter chips above can narrow the table to a single tradition.</p>
   <div class="compare-scroll">
-    <table class="compare">
-      <thead>
-        <tr>
-          <th scope="col">Criterion</th>
-          <th scope="col" data-accent style="--accent:var(--shaiva)" data-col="shaiva">Shaiva</th>
-          <th scope="col" data-accent style="--accent:var(--vaishnava)" data-col="vaishnava">Vaishnava</th>
-          <th scope="col" data-accent style="--accent:var(--shakta)" data-col="shakta">Shakta</th>
-          <th scope="col" data-accent style="--accent:var(--ganapatya)" data-col="ganapatya">Ganapatya</th>
-          <th scope="col" data-accent style="--accent:var(--saura)" data-col="saura">Saura</th>
-          <th scope="col" data-accent style="--accent:var(--kaumara)" data-col="kaumara">Kaumara</th>
-        </tr>
-      </thead>
+    <table class="compare" style="min-width:1100px">
+      <thead><tr><th scope="col">Criterion</th><th scope="col" data-col="shaiva" style="--accent:var(--shaiva)">Shaiva</th><th scope="col" data-col="vaishnava" style="--accent:var(--vaishnava)">Vaishnava</th><th scope="col" data-col="shakta" style="--accent:var(--shakta)">Shakta</th><th scope="col" data-col="ganapatya" style="--accent:var(--ganapatya)">Ganapatya</th><th scope="col" data-col="saura" style="--accent:var(--saura)">Saura</th><th scope="col" data-col="kaumara" style="--accent:var(--kaumara)">Kaumara</th></tr></thead>
       <tbody>
-        <tr>
-          <th scope="row">Sanskrit Name</th>
-          <td data-col="shaiva">शैव<span class="sanskrit">Śaiva</span></td>
-          <td data-col="vaishnava">वैष्णव<span class="sanskrit">Vaiṣṇava</span></td>
-          <td data-col="shakta">शाक्त<span class="sanskrit">Śākta</span></td>
-          <td data-col="ganapatya">गाणपत्य<span class="sanskrit">Gāṇapatya</span></td>
-          <td data-col="saura">सौर<span class="sanskrit">Saura</span></td>
-          <td data-col="kaumara">कौमार<span class="sanskrit">Kaumāra</span></td>
-        </tr>
-        <tr>
-          <th scope="row">Primary Deity</th>
-          <td data-col="shaiva"><strong>Shiva</strong> — the auspicious, the destroyer-transformer</td>
-          <td data-col="vaishnava"><strong>Vishnu</strong> — the preserver, with his avatars (Rama, Krishna)</td>
-          <td data-col="shakta"><strong>Devi</strong> — the Goddess in her many forms (Durga, Lakshmi, Kali, Saraswati)</td>
-          <td data-col="ganapatya"><strong>Ganesha</strong> — the remover of obstacles, lord of beginnings</td>
-          <td data-col="saura"><strong>Surya</strong> — the Sun, visible manifestation of the divine</td>
-          <td data-col="kaumara"><strong>Muruga</strong> (Skanda/Kartikeya) — the youthful commander</td>
-        </tr>
-        <tr>
-          <th scope="row">Consort / Śakti</th>
-          <td data-col="shaiva">Parvati (Umā)</td>
-          <td data-col="vaishnava">Lakshmi (Śrī)</td>
-          <td data-col="shakta">The Goddess is herself supreme; consort varies</td>
-          <td data-col="ganapatya">Buddhi and Siddhi</td>
-          <td data-col="saura">Sanjñā, Chāyā</td>
-          <td data-col="kaumara">Deivanai and Valli</td>
-        </tr>
-        <tr>
-          <th scope="row">Core Scriptures</th>
-          <td data-col="shaiva">Śiva Purāṇa, Liṅga Purāṇa, Śiva Āgamas, Tirumurai</td>
-          <td data-col="vaishnava">Viṣṇu Purāṇa, Bhāgavata Purāṇa, Nālāyira Divya Prabandham</td>
-          <td data-col="shakta">Devī Māhātmya, Devī Bhāgavata Purāṇa, Tantras, Lalitā Sahasranāma</td>
-          <td data-col="ganapatya">Gaṇeśa Purāṇa, Mudgala Purāṇa, Gaṇeśa Gītā</td>
-          <td data-col="saura">Sūrya Upaniṣad, Āditya Hṛdayam, Sāmba Purāṇa, Sūrya Śataka</td>
-          <td data-col="kaumara">Skanda Purāṇa, Kanda Shashti Kavasam, Tiruppugal, Thirumurugatruppadai</td>
-        </tr>
-        <tr>
-          <th scope="row">Key Acharyas</th>
-          <td data-col="shaiva">Nayanmars, Abhinavagupta, Basava, Appayya Dikshita</td>
-          <td data-col="vaishnava">Azhwars, Ramanuja, Madhvacharya, Vallabha, Chaitanya</td>
-          <td data-col="shakta">Ramakrishna, Bhaskararaya, Abhinavagupta, Krishnananda</td>
-          <td data-col="ganapatya">Morya Gosavi, Chintamani Dev, the Mudgala lineage</td>
-          <td data-col="saura">Samba, Mayūra, the Maga Brahmin tradition</td>
-          <td data-col="kaumara">Arunagirinathar, Nakkirar, the Sangam poets</td>
-        </tr>
-        <tr>
-          <th scope="row">Central Practice</th>
-          <td data-col="shaiva">Liṅga worship, abhisheka, meditation, yoga, pilgrimage to 12 Jyotirlingas</td>
-          <td data-col="vaishnava">Bhakti, puja, recitation of divine names, temple worship, pilgrimage to 108 Divya Desams</td>
-          <td data-col="shakta">Sri Yantra meditation, tantric ritual, Navaratri, Kumari puja</td>
-          <td data-col="ganapatya">Ganesha Chaturthi, modaka offering, chanting of Om Gam Ganapataye Namaha</td>
-          <td data-col="saura">Surya Namaskara, sunrise worship, Aditya Hridayam recitation</td>
-          <td data-col="kaumara">Skanda Sashti, Thaipusam, kavadi offering, recitation of Tiruppugal</td>
-        </tr>
-        <tr>
-          <th scope="row">Major Festivals</th>
-          <td data-col="shaiva">Maha Shivaratri, Pradosha, Karthigai Deepam</td>
-          <td data-col="vaishnava">Vaikuntha Ekadashi, Rama Navami, Janmashtami, Onam</td>
-          <td data-col="shakta">Navaratri, Durga Puja, Diwali (Lakshmi Puja), Kali Puja</td>
-          <td data-col="ganapatya">Ganesha Chaturthi, Sankashti Chaturthi</td>
-          <td data-col="saura">Makara Sankranti, Ratha Saptami, Chhath Puja</td>
-          <td data-col="kaumara">Skanda Sashti, Thaipusam, Panguni Uthiram</td>
-        </tr>
-        <tr>
-          <th scope="row">Geographic Heartland</th>
-          <td data-col="shaiva">Kashmir, Tamil Nadu, Karnataka, Nepal, Bali</td>
-          <td data-col="vaishnava">Tamil Nadu, Uttar Pradesh, Gujarat, Bengal, Odisha</td>
-          <td data-col="shakta">Bengal, Assam (Kamakhya), Kerala, Kashmir</td>
-          <td data-col="ganapatya">Maharashtra (Ashtavinayaka), Tamil Nadu</td>
-          <td data-col="saura">Odisha (Konark), Bihar, Gujarat</td>
-          <td data-col="kaumara">Tamil Nadu, Sri Lanka, Kerala</td>
-        </tr>
-        <tr>
-          <th scope="row">Primary Mantra</th>
-          <td data-col="shaiva">Om Namah Śivāya</td>
-          <td data-col="vaishnava">Om Namo Nārāyaṇāya / Hare Krishna</td>
-          <td data-col="shakta">Om Aim Hrīṃ Klīṃ Chāmuṇḍāyai Vicce</td>
-          <td data-col="ganapatya">Om Gaṃ Gaṇapataye Namaḥ</td>
-          <td data-col="saura">Om Sūryāya Namaḥ / Gāyatrī Mantra</td>
-          <td data-col="kaumara">Om Saravaṇabhavāya Namaḥ</td>
-        </tr>
-        <tr>
-          <th scope="row">Famous Saying</th>
-          <td data-col="shaiva">"Śivam advaitam" — Shiva is non-dual auspiciousness</td>
-          <td data-col="vaishnava">"Harih sarvottamah" — Hari is supreme</td>
-          <td data-col="shakta">"Śrī Mātā" — the Mother is the source and support</td>
-          <td data-col="ganapatya">"Śrī Gaṇeśāya Namaḥ" — salutations to Ganesha</td>
-          <td data-col="saura">"Āditya Hṛdayaṃ" — the heart of the Sun</td>
-          <td data-col="kaumara">"Vetrivel Veeravel" — the spear, the victory</td>
-        </tr>
+        <tr><th scope="row">Sanskrit Name</th><td data-col="shaiva">शैव<span class="sanskrit">Śaiva</span></td><td data-col="vaishnava">वैष्णव<span class="sanskrit">Vaiṣṇava</span></td><td data-col="shakta">शाक्त<span class="sanskrit">Śākta</span></td><td data-col="ganapatya">गाणपत्य<span class="sanskrit">Gāṇapatya</span></td><td data-col="saura">सौर<span class="sanskrit">Saura</span></td><td data-col="kaumara">कौमार<span class="sanskrit">Kaumāra</span></td></tr>
+        <tr><th scope="row">Primary Deity</th><td data-col="shaiva"><strong>Shiva</strong> — the auspicious, the destroyer-transformer</td><td data-col="vaishnava"><strong>Vishnu</strong> — the preserver, with his avatars (Rama, Krishna)</td><td data-col="shakta"><strong>Devi</strong> — the Goddess in her many forms (Durga, Lakshmi, Kali, Saraswati)</td><td data-col="ganapatya"><strong>Ganesha</strong> — the remover of obstacles, lord of beginnings</td><td data-col="saura"><strong>Surya</strong> — the Sun, visible manifestation of the divine</td><td data-col="kaumara"><strong>Muruga</strong> (Skanda/Kartikeya) — the youthful commander</td></tr>
+        <tr><th scope="row">Consort / Śakti</th><td data-col="shaiva">Parvati (Umā)</td><td data-col="vaishnava">Lakshmi (Śrī)</td><td data-col="shakta">The Goddess is herself supreme; consort varies</td><td data-col="ganapatya">Buddhi and Siddhi</td><td data-col="saura">Sanjñā, Chāyā</td><td data-col="kaumara">Deivanai and Valli</td></tr>
+        <tr><th scope="row">Core Scriptures</th><td data-col="shaiva">Śiva Purāṇa, Liṅga Purāṇa, Śiva Āgamas, Tirumurai</td><td data-col="vaishnava">Viṣṇu Purāṇa, Bhāgavata Purāṇa, Nālāyira Divya Prabandham</td><td data-col="shakta">Devī Māhātmya, Devī Bhāgavata Purāṇa, Tantras, Lalitā Sahasranāma</td><td data-col="ganapatya">Gaṇeśa Purāṇa, Mudgala Purāṇa, Gaṇeśa Gītā</td><td data-col="saura">Sūrya Upaniṣad, Āditya Hṛdayam, Sāmba Purāṇa, Sūrya Śataka</td><td data-col="kaumara">Skanda Purāṇa, Kanda Shashti Kavasam, Tiruppugal, Thirumurugatruppadai</td></tr>
+        <tr><th scope="row">Key Acharyas</th><td data-col="shaiva">Nayanmars, Abhinavagupta, Basava, Appayya Dikshita</td><td data-col="vaishnava">Azhwars, Ramanuja, Madhvacharya, Vallabha, Chaitanya</td><td data-col="shakta">Ramakrishna, Bhaskararaya, Abhinavagupta, Krishnananda</td><td data-col="ganapatya">Morya Gosavi, Chintamani Dev, the Mudgala lineage</td><td data-col="saura">Samba, Mayūra, the Maga Brahmin tradition</td><td data-col="kaumara">Arunagirinathar, Nakkirar, the Sangam poets</td></tr>
+        <tr><th scope="row">Central Practice</th><td data-col="shaiva">Liṅga worship, abhisheka, meditation, yoga, pilgrimage to 12 Jyotirlingas</td><td data-col="vaishnava">Bhakti, puja, recitation of divine names, temple worship, pilgrimage to 108 Divya Desams</td><td data-col="shakta">Sri Yantra meditation, tantric ritual, Navaratri, Kumari puja</td><td data-col="ganapatya">Ganesha Chaturthi, modaka offering, chanting of Om Gam Ganapataye Namaha</td><td data-col="saura">Surya Namaskara, sunrise worship, Aditya Hridayam recitation</td><td data-col="kaumara">Skanda Sashti, Thaipusam, kavadi offering, recitation of Tiruppugal</td></tr>
+        <tr><th scope="row">Major Festivals</th><td data-col="shaiva">Maha Shivaratri, Pradosha, Karthigai Deepam</td><td data-col="vaishnava">Vaikuntha Ekadashi, Rama Navami, Janmashtami, Onam</td><td data-col="shakta">Navaratri, Durga Puja, Diwali (Lakshmi Puja), Kali Puja</td><td data-col="ganapatya">Ganesha Chaturthi, Sankashti Chaturthi</td><td data-col="saura">Makara Sankranti, Ratha Saptami, Chhath Puja</td><td data-col="kaumara">Skanda Sashti, Thaipusam, Panguni Uthiram</td></tr>
+        <tr><th scope="row">Geographic Heartland</th><td data-col="shaiva">Kashmir, Tamil Nadu, Karnataka, Nepal, Bali</td><td data-col="vaishnava">Tamil Nadu, Uttar Pradesh, Gujarat, Bengal, Odisha</td><td data-col="shakta">Bengal, Assam (Kamakhya), Kerala, Kashmir</td><td data-col="ganapatya">Maharashtra (Ashtavinayaka), Tamil Nadu</td><td data-col="saura">Odisha (Konark), Bihar, Gujarat</td><td data-col="kaumara">Tamil Nadu, Sri Lanka, Kerala</td></tr>
+        <tr><th scope="row">Primary Mantra</th><td data-col="shaiva">Om Namah Śivāya</td><td data-col="vaishnava">Om Namo Nārāyaṇāya / Hare Krishna</td><td data-col="shakta">Om Aim Hrīṃ Klīṃ Chāmuṇḍāyai Vicce</td><td data-col="ganapatya">Om Gaṃ Gaṇapataye Namaḥ</td><td data-col="saura">Om Sūryāya Namaḥ / Gāyatrī Mantra</td><td data-col="kaumara">Om Saravaṇabhavāya Namaḥ</td></tr>
+        <tr><th scope="row">Famous Saying</th><td data-col="shaiva">"Śivam advaitam" — Shiva is non-dual auspiciousness</td><td data-col="vaishnava">"Harih sarvottamah" — Hari is supreme</td><td data-col="shakta">"Śrī Mātā" — the Mother is the source and support</td><td data-col="ganapatya">"Śrī Gaṇeśāya Namaḥ" — salutations to Ganesha</td><td data-col="saura">"Āditya Hṛdayaṃ" — the heart of the Sun</td><td data-col="kaumara">"Vetrivel Veeravel" — the spear, the victory</td></tr>
       </tbody>
     </table>
   </div>
 </section>
-
-<!-- ========== TRADITION CARDS ========== -->
-<section>
+<section data-block>
   <h2 class="section-title" style="color:var(--shakta)">📖 The Six Traditions in Detail</h2>
   <div class="grid">
-
-    <article class="card shaiva-card" data-tags="shaiva" data-id="shaiva">
-      <span class="deity-icon">🔱</span>
-      <h3>Shaiva <span class="sanskrit">शैव</span></h3>
-      <span class="tag">The Tradition of Shiva</span>
-      <div class="deity-line"><span class="big-emoji">🔱</span> Primary deity: <strong>Shiva</strong></div>
-      <p>Shaivism is one of the largest and oldest Hindu traditions, worshipping Shiva as the supreme being — simultaneously destroyer and transformer, ascetic and householder. It spans a remarkable range: from the fierce Tamil bhakti of the Nayanmars to the sophisticated Kashmir Shaivism of Abhinavagupta, from the Virashaiva movement of Basava to the temple traditions of the 12 Jyotirlingas.</p>
-      <div class="key-teaching">
-        <span class="label">Key Teaching</span>
-        <p><strong>Shiva as the ground of being.</strong> The Liṅga represents the formless infinite; the mantra <em>Om Namah Śivāya</em> is the five-syllable surrender to the auspicious one.</p>
-      </div>
-      <dl class="facts">
-        <div class="fact"><dt>Deity</dt><dd>Shiva (with Parvati)</dd></div>
-        <div class="fact"><dt>Texts</dt><dd>Śiva Purāṇa, Liṅga Purāṇa, Śiva Āgamas, Tirumurai</dd></div>
-        <div class="fact"><dt>Acharyas</dt><dd>Nayanmars, Abhinavagupta, Basava, Appayya Dikshita</dd></div>
-        <div class="fact"><dt>Festival</dt><dd>Maha Shivaratri, Pradosha, Karthigai Deepam</dd></div>
-        <div class="fact"><dt>Mantra</dt><dd>Om Namah Śivāya</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🔱 Shiva</span><span class="chip">Jyotirlingas</span><span class="chip">Āgamas</span></div>
-    </article>
-
-    <article class="card vaishnava-card" data-tags="vaishnava" data-id="vaishnava">
-      <span class="deity-icon">🪷</span>
-      <h3>Vaishnava <span class="sanskrit">वैष्णव</span></h3>
-      <span class="tag">The Tradition of Vishnu</span>
-      <div class="deity-line"><span class="big-emoji">🪷</span> Primary deity: <strong>Vishnu</strong> (and his avatars)</div>
-      <p>Vaishnavism is the largest sectarian tradition within Hinduism, centred on Vishnu and his incarnations — most beloved among them Rama and Krishna. Its devotional intensity finds expression in the Tamil hymns of the Azhwars, the Bengali ecstasy of Chaitanya, the philosophical rigor of Ramanuja and Madhva, and the childlike joy of the Bhagavata Purana.</p>
-      <div class="key-teaching">
-        <span class="label">Key Teaching</span>
-        <p><strong>Descent for the sake of dharma.</strong> Vishnu takes birth whenever righteousness declines. The paths are bhakti (devotion), prapatti (surrender), and the chanting of the divine names.</p>
-      </div>
-      <dl class="facts">
-        <div class="fact"><dt>Deity</dt><dd>Vishnu (with Lakshmi) — Rama, Krishna as avatars</dd></div>
-        <div class="fact"><dt>Texts</dt><dd>Viṣṇu Purāṇa, Bhāgavata Purāṇa, Nālāyira Divya Prabandham</dd></div>
-        <div class="fact"><dt>Acharyas</dt><dd>Azhwars, Ramanuja, Madhvacharya, Vallabha, Chaitanya</dd></div>
-        <div class="fact"><dt>Festival</dt><dd>Vaikuntha Ekadashi, Rama Navami, Janmashtami</dd></div>
-        <div class="fact"><dt>Mantra</dt><dd>Om Namo Nārāyaṇāya / Hare Krishna</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🪷 Vishnu</span><span class="chip">108 Divya Desams</span><span class="chip">Bhakti</span></div>
-    </article>
-
-    <article class="card shakta-card" data-tags="shakta" data-id="shakta">
-      <span class="deity-icon">🌺</span>
-      <h3>Shakta <span class="sanskrit">शाक्त</span></h3>
-      <span class="tag">The Tradition of the Goddess</span>
-      <div class="deity-line"><span class="big-emoji">🌺</span> Primary deity: <strong>Devi</strong> (the Goddess)</div>
-      <p>Shaktism worships the Divine as feminine — as Durga, Kali, Lakshmi, Saraswati, and countless other forms. It is the most ritually elaborate of the six traditions, with tantric practices, Sri Yantra meditation, and the great festival of Navaratri at its heart. The Devi Mahatmya celebrates her victory over the buffalo demon, and the Shakta Tantras elaborate her worship in extraordinary detail.</p>
-      <div class="key-teaching">
-        <span class="label">Key Teaching</span>
-        <p><strong>The Goddess is ultimate reality.</strong> Śakti — divine power — is not subordinate to any god but is the very energy of the cosmos. She is both fierce and nurturing, both Kali and Lakshmi.</p>
-      </div>
-      <dl class="facts">
-        <div class="fact"><dt>Deity</dt><dd>Devi — Durga, Kali, Lakshmi, Saraswati, and more</dd></div>
-        <div class="fact"><dt>Texts</dt><dd>Devī Māhātmya, Devī Bhāgavata Purāṇa, Tantras, Lalitā Sahasranāma</dd></div>
-        <div class="fact"><dt>Acharyas</dt><dd>Ramakrishna, Bhaskararaya, Abhinavagupta, Krishnananda</dd></div>
-        <div class="fact"><dt>Festival</dt><dd>Navaratri, Durga Puja, Diwali (Lakshmi Puja), Kali Puja</dd></div>
-        <div class="fact"><dt>Mantra</dt><dd>Om Aim Hrīṃ Klīṃ Chāmuṇḍāyai Vicce</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🌺 Devi</span><span class="chip">Tantra</span><span class="chip">Sri Yantra</span></div>
-    </article>
-
-    <article class="card ganapatya-card" data-tags="ganapatya" data-id="ganapatya">
-      <span class="deity-icon">🐘</span>
-      <h3>Ganapatya <span class="sanskrit">गाणपत्य</span></h3>
-      <span class="tag">The Tradition of Ganesha</span>
-      <div class="deity-line"><span class="big-emoji">🐘</span> Primary deity: <strong>Ganesha</strong></div>
-      <p>Ganapatya worship centers on Ganesha — the elephant-headed remover of obstacles, lord of beginnings, patron of arts and sciences. Though widely beloved across all Hindu traditions as the deity invoked first, the Ganapatya tradition elevates him to the supreme godhead. Its heartland is Maharashtra, where the eight Ashtavinayaka temples form a sacred circuit.</p>
-      <div class="key-teaching">
-        <span class="label">Key Teaching</span>
-        <p><strong>Ganesha as the supreme.</strong> He is both the obstacle and its remover — the divine threshold. The Mudgala Purana narrates his eight incarnations, each overcoming a different inner demon.</p>
-      </div>
-      <dl class="facts">
-        <div class="fact"><dt>Deity</dt><dd>Ganesha (with Buddhi and Siddhi)</dd></div>
-        <div class="fact"><dt>Texts</dt><dd>Gaṇeśa Purāṇa, Mudgala Purāṇa, Gaṇeśa Gītā</dd></div>
-        <div class="fact"><dt>Acharyas</dt><dd>Morya Gosavi, Chintamani Dev, the Mudgala lineage</dd></div>
-        <div class="fact"><dt>Festival</dt><dd>Ganesha Chaturthi, Sankashti Chaturthi</dd></div>
-        <div class="fact"><dt>Mantra</dt><dd>Om Gaṃ Gaṇapataye Namaḥ</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🐘 Ganesha</span><span class="chip">Ashtavinayaka</span><span class="chip">Maharashtra</span></div>
-    </article>
-
-    <article class="card saura-card" data-tags="saura" data-id="saura">
-      <span class="deity-icon">☀️</span>
-      <h3>Saura <span class="sanskrit">सौर</span></h3>
-      <span class="tag">The Tradition of the Sun</span>
-      <div class="deity-line"><span class="big-emoji">☀️</span> Primary deity: <strong>Surya</strong></div>
-      <p>Saura worship venerates Surya, the Sun, as the visible manifestation of the divine — the source of all life and light. Though fewer dedicated temples survive today, the tradition is ancient and widespread: the Konark Sun Temple, the Aditya Hridayam recited in the Ramayana, and the daily Surya Namaskara practiced across traditions all carry its imprint. Surya is invoked in the Gayatri Mantra, perhaps the most recited Vedic prayer.</p>
-      <div class="key-teaching">
-        <span class="label">Key Teaching</span>
-        <p><strong>The visible divine.</strong> Surya is the light that sustains the world and the symbol of inner illumination. The Gayatri Mantra — the heart of Vedic prayer — is addressed to the solar light.</p>
-      </div>
-      <dl class="facts">
-        <div class="fact"><dt>Deity</dt><dd>Surya (with Sanjñā and Chāyā)</dd></div>
-        <div class="fact"><dt>Texts</dt><dd>Sūrya Upaniṣad, Āditya Hṛdayam, Sāmba Purāṇa, Sūrya Śataka</dd></div>
-        <div class="fact"><dt>Acharyas</dt><dd>Samba, Mayūra, the Maga Brahmin tradition</dd></div>
-        <div class="fact"><dt>Festival</dt><dd>Makara Sankranti, Ratha Saptami, Chhath Puja</dd></div>
-        <div class="fact"><dt>Mantra</dt><dd>Om Sūryāya Namaḥ / Gāyatrī Mantra</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">☀️ Surya</span><span class="chip">Konark</span><span class="chip">Gayatri</span></div>
-    </article>
-
-    <article class="card kaumara-card" data-tags="kaumara" data-id="kaumara">
-      <span class="deity-icon">🦚</span>
-      <h3>Kaumara <span class="sanskrit">कौमार</span></h3>
-      <span class="tag">The Tradition of Muruga</span>
-      <div class="deity-line"><span class="big-emoji">🦚</span> Primary deity: <strong>Muruga</strong> (Skanda/Kartikeya)</div>
-      <p>Kaumara worship is devoted to Muruga (also called Skanda, Kartikeya, Subrahmanya), the youthful son of Shiva and Parvati who commands the divine army and destroys evil. Its heartland is Tamil Nadu, where the six Arupadai Veedu temples trace his life, along with Sri Lanka and the Tamil diaspora, where the Tamil hymn traditions — Tiruppugal, Kanda Shashti Kavasam — sing his praises with extraordinary devotion.</p>
-      <div class="key-teaching">
-        <span class="label">Key Teaching</span>
-        <p><strong>The divine commander.</strong> Muruga wields the vel (spear) of divine wisdom, which pierces ignorance and vanquishes darkness. He is both warrior and guru — the child who teaches the meaning of Om.</p>
-      </div>
-      <dl class="facts">
-        <div class="fact"><dt>Deity</dt><dd>Muruga (with Deivanai and Valli)</dd></div>
-        <div class="fact"><dt>Texts</dt><dd>Skanda Purāṇa, Kanda Shashti Kavasam, Tiruppugal, Thirumurugatruppadai</dd></div>
-        <div class="fact"><dt>Acharyas</dt><dd>Arunagirinathar, Nakkirar, the Sangam poets</dd></div>
-        <div class="fact"><dt>Festival</dt><dd>Skanda Sashti, Thaipusam, Panguni Uthiram</dd></div>
-        <div class="fact"><dt>Mantra</dt><dd>Om Saravaṇabhavāya Namaḥ</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🦚 Muruga</span><span class="chip">Arupadai Veedu</span><span class="chip">Tamil Bhakti</span></div>
-    </article>
-
+  <article class="card has-corner" data-item data-id="shaiva" data-tags="shaiva" style="--accent:var(--shaiva)"><span class="corner-icon" aria-hidden="true">🔱</span>
+  <h3>Shaiva <span class="native">शैव</span></h3><span class="tag">The Tradition of Shiva</span><div class="deity-line"><span class="big-emoji">🔱</span> Primary deity: <strong>Shiva</strong></div><p>Shaivism is one of the largest and oldest Hindu traditions, worshipping Shiva as the supreme being — simultaneously destroyer and transformer, ascetic and householder. It spans a remarkable range: from the fierce Tamil bhakti of the Nayanmars to the sophisticated Kashmir Shaivism of Abhinavagupta, from the Virashaiva movement of Basava to the temple traditions of the 12 Jyotirlingas.</p><div class="key-teaching"><span class="label">Key Teaching</span><p><strong>Shiva as the ground of being.</strong> The Liṅga represents the formless infinite; the mantra <em>Om Namah Śivāya</em> is the five-syllable surrender to the auspicious one.</p></div><dl class="facts"><div class="fact"><dt>Deity</dt><dd>Shiva (with Parvati)</dd></div><div class="fact"><dt>Texts</dt><dd>Śiva Purāṇa, Liṅga Purāṇa, Śiva Āgamas, Tirumurai</dd></div><div class="fact"><dt>Acharyas</dt><dd>Nayanmars, Abhinavagupta, Basava, Appayya Dikshita</dd></div><div class="fact"><dt>Festival</dt><dd>Maha Shivaratri, Pradosha, Karthigai Deepam</dd></div><div class="fact"><dt>Mantra</dt><dd>Om Namah Śivāya</dd></div></dl><div class="chips"><span class="chip theme-tag">🔱 Shiva</span><span class="chip">Jyotirlingas</span><span class="chip">Āgamas</span><a class="chip" href="pancha-bhoota.html">Pancha Bhoota Sthalams →</a></div>
+</article>
+  <article class="card has-corner" data-item data-id="vaishnava" data-tags="vaishnava" style="--accent:var(--vaishnava)"><span class="corner-icon" aria-hidden="true">🪷</span>
+  <h3>Vaishnava <span class="native">वैष्णव</span></h3><span class="tag">The Tradition of Vishnu</span><div class="deity-line"><span class="big-emoji">🪷</span> Primary deity: <strong>Vishnu</strong> (and his avatars)</div><p>Vaishnavism is the largest sectarian tradition within Hinduism, centred on Vishnu and his incarnations — most beloved among them Rama and Krishna. Its devotional intensity finds expression in the Tamil hymns of the Azhwars, the Bengali ecstasy of Chaitanya, the philosophical rigor of Ramanuja and Madhva, and the childlike joy of the Bhagavata Purana.</p><div class="key-teaching"><span class="label">Key Teaching</span><p><strong>Descent for the sake of dharma.</strong> Vishnu takes birth whenever righteousness declines. The paths are bhakti (devotion), prapatti (surrender), and the chanting of the divine names.</p></div><dl class="facts"><div class="fact"><dt>Deity</dt><dd>Vishnu (with Lakshmi) — Rama, Krishna as avatars</dd></div><div class="fact"><dt>Texts</dt><dd>Viṣṇu Purāṇa, Bhāgavata Purāṇa, Nālāyira Divya Prabandham</dd></div><div class="fact"><dt>Acharyas</dt><dd>Azhwars, Ramanuja, Madhvacharya, Vallabha, Chaitanya</dd></div><div class="fact"><dt>Festival</dt><dd>Vaikuntha Ekadashi, Rama Navami, Janmashtami</dd></div><div class="fact"><dt>Mantra</dt><dd>Om Namo Nārāyaṇāya / Hare Krishna</dd></div></dl><div class="chips"><span class="chip theme-tag">🪷 Vishnu</span><span class="chip">108 Divya Desams</span><span class="chip">Bhakti</span></div>
+</article>
+  <article class="card has-corner" data-item data-id="shakta" data-tags="shakta" style="--accent:var(--shakta)"><span class="corner-icon" aria-hidden="true">🌺</span>
+  <h3>Shakta <span class="native">शाक्त</span></h3><span class="tag">The Tradition of the Goddess</span><div class="deity-line"><span class="big-emoji">🌺</span> Primary deity: <strong>Devi</strong> (the Goddess)</div><p>Shaktism worships the Divine as feminine — as Durga, Kali, Lakshmi, Saraswati, and countless other forms. It is the most ritually elaborate of the six traditions, with tantric practices, Sri Yantra meditation, and the great festival of Navaratri at its heart. The Devi Mahatmya celebrates her victory over the buffalo demon, and the Shakta Tantras elaborate her worship in extraordinary detail.</p><div class="key-teaching"><span class="label">Key Teaching</span><p><strong>The Goddess is ultimate reality.</strong> Śakti — divine power — is not subordinate to any god but is the very energy of the cosmos. She is both fierce and nurturing, both Kali and Lakshmi.</p></div><dl class="facts"><div class="fact"><dt>Deity</dt><dd>Devi — Durga, Kali, Lakshmi, Saraswati, and more</dd></div><div class="fact"><dt>Texts</dt><dd>Devī Māhātmya, Devī Bhāgavata Purāṇa, Tantras, Lalitā Sahasranāma</dd></div><div class="fact"><dt>Acharyas</dt><dd>Ramakrishna, Bhaskararaya, Abhinavagupta, Krishnananda</dd></div><div class="fact"><dt>Festival</dt><dd>Navaratri, Durga Puja, Diwali (Lakshmi Puja), Kali Puja</dd></div><div class="fact"><dt>Mantra</dt><dd>Om Aim Hrīṃ Klīṃ Chāmuṇḍāyai Vicce</dd></div></dl><div class="chips"><span class="chip theme-tag">🌺 Devi</span><span class="chip">Tantra</span><span class="chip">Sri Yantra</span><a class="chip" href="shakti-peethas.html">Shakti Peethas →</a></div>
+</article>
+  <article class="card has-corner" data-item data-id="ganapatya" data-tags="ganapatya" style="--accent:var(--ganapatya)"><span class="corner-icon" aria-hidden="true">🐘</span>
+  <h3>Ganapatya <span class="native">गाणपत्य</span></h3><span class="tag">The Tradition of Ganesha</span><div class="deity-line"><span class="big-emoji">🐘</span> Primary deity: <strong>Ganesha</strong></div><p>Ganapatya worship centers on Ganesha — the elephant-headed remover of obstacles, lord of beginnings, patron of arts and sciences. Though widely beloved across all Hindu traditions as the deity invoked first, the Ganapatya tradition elevates him to the supreme godhead. Its heartland is Maharashtra, where the eight Ashtavinayaka temples form a sacred circuit.</p><div class="key-teaching"><span class="label">Key Teaching</span><p><strong>Ganesha as the supreme.</strong> He is both the obstacle and its remover — the divine threshold. The Mudgala Purana narrates his eight incarnations, each overcoming a different inner demon.</p></div><dl class="facts"><div class="fact"><dt>Deity</dt><dd>Ganesha (with Buddhi and Siddhi)</dd></div><div class="fact"><dt>Texts</dt><dd>Gaṇeśa Purāṇa, Mudgala Purāṇa, Gaṇeśa Gītā</dd></div><div class="fact"><dt>Acharyas</dt><dd>Morya Gosavi, Chintamani Dev, the Mudgala lineage</dd></div><div class="fact"><dt>Festival</dt><dd>Ganesha Chaturthi, Sankashti Chaturthi</dd></div><div class="fact"><dt>Mantra</dt><dd>Om Gaṃ Gaṇapataye Namaḥ</dd></div></dl><div class="chips"><span class="chip theme-tag">🐘 Ganesha</span><span class="chip">Ashtavinayaka</span><span class="chip">Maharashtra</span></div>
+</article>
+  <article class="card has-corner" data-item data-id="saura" data-tags="saura" style="--accent:var(--saura)"><span class="corner-icon" aria-hidden="true">☀️</span>
+  <h3>Saura <span class="native">सौर</span></h3><span class="tag">The Tradition of the Sun</span><div class="deity-line"><span class="big-emoji">☀️</span> Primary deity: <strong>Surya</strong></div><p>Saura worship venerates Surya, the Sun, as the visible manifestation of the divine — the source of all life and light. Though fewer dedicated temples survive today, the tradition is ancient and widespread: the Konark Sun Temple, the Aditya Hridayam recited in the Ramayana, and the daily Surya Namaskara practiced across traditions all carry its imprint. Surya is invoked in the Gayatri Mantra, perhaps the most recited Vedic prayer.</p><div class="key-teaching"><span class="label">Key Teaching</span><p><strong>The visible divine.</strong> Surya is the light that sustains the world and the symbol of inner illumination. The Gayatri Mantra — the heart of Vedic prayer — is addressed to the solar light.</p></div><dl class="facts"><div class="fact"><dt>Deity</dt><dd>Surya (with Sanjñā and Chāyā)</dd></div><div class="fact"><dt>Texts</dt><dd>Sūrya Upaniṣad, Āditya Hṛdayam, Sāmba Purāṇa, Sūrya Śataka</dd></div><div class="fact"><dt>Acharyas</dt><dd>Samba, Mayūra, the Maga Brahmin tradition</dd></div><div class="fact"><dt>Festival</dt><dd>Makara Sankranti, Ratha Saptami, Chhath Puja</dd></div><div class="fact"><dt>Mantra</dt><dd>Om Sūryāya Namaḥ / Gāyatrī Mantra</dd></div></dl><div class="chips"><span class="chip theme-tag">☀️ Surya</span><span class="chip">Konark</span><span class="chip">Gayatri</span></div>
+</article>
+  <article class="card has-corner" data-item data-id="kaumara" data-tags="kaumara" style="--accent:var(--kaumara)"><span class="corner-icon" aria-hidden="true">🦚</span>
+  <h3>Kaumara <span class="native">कौमार</span></h3><span class="tag">The Tradition of Muruga</span><div class="deity-line"><span class="big-emoji">🦚</span> Primary deity: <strong>Muruga</strong> (Skanda/Kartikeya)</div><p>Kaumara worship is devoted to Muruga (also called Skanda, Kartikeya, Subrahmanya), the youthful son of Shiva and Parvati who commands the divine army and destroys evil. Its heartland is Tamil Nadu, where the six Arupadai Veedu temples trace his life, along with Sri Lanka and the Tamil diaspora, where the Tamil hymn traditions — Tiruppugal, Kanda Shashti Kavasam — sing his praises with extraordinary devotion.</p><div class="key-teaching"><span class="label">Key Teaching</span><p><strong>The divine commander.</strong> Muruga wields the vel (spear) of divine wisdom, which pierces ignorance and vanquishes darkness. He is both warrior and guru — the child who teaches the meaning of Om.</p></div><dl class="facts"><div class="fact"><dt>Deity</dt><dd>Muruga (with Deivanai and Valli)</dd></div><div class="fact"><dt>Texts</dt><dd>Skanda Purāṇa, Kanda Shashti Kavasam, Tiruppugal, Thirumurugatruppadai</dd></div><div class="fact"><dt>Acharyas</dt><dd>Arunagirinathar, Nakkirar, the Sangam poets</dd></div><div class="fact"><dt>Festival</dt><dd>Skanda Sashti, Thaipusam, Panguni Uthiram</dd></div><div class="fact"><dt>Mantra</dt><dd>Om Saravaṇabhavāya Namaḥ</dd></div></dl><div class="chips"><span class="chip theme-tag">🦚 Muruga</span><span class="chip">Arupadai Veedu</span><span class="chip">Tamil Bhakti</span></div>
+</article>
   </div>
 </section>
-
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
+</div>
 <footer>
   <p>🕉️ A comparison map of the Shanmata — the six major sectarian traditions of Hinduism · Not to be confused with the six <em>darshanas</em> (philosophical schools)</p>
-  <p style="margin-top:6px">Each tradition has vast internal diversity, sub-sects, and regional variations.</p>
-
+  <p>Each tradition has vast internal diversity, sub-sects, and regional variations.</p>
   <nav class="site-nav" aria-label="All Sanatana maps">
     <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
     <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
@@ -680,129 +119,12 @@
     <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
     <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
     <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
   </nav>
   <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
-
-<script>
-(function(){
-  "use strict";
-  var root = document.documentElement;
-  var body = document.body;
-
-  /* ---------- THEME ---------- */
-  var themeBtn = document.getElementById('themeToggle');
-  var knob = document.getElementById('knob');
-  var toggleLabel = document.getElementById('toggleLabel');
-  function applyTheme(t){
-    root.setAttribute('data-theme', t);
-    localStorage.setItem('shanmata-theme', t);
-    var isLight = t === 'light';
-    knob.textContent = isLight ? '☀️' : '🌙';
-    toggleLabel.textContent = isLight ? 'Dark' : 'Light';
-    themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-  }
-  themeBtn.addEventListener('click', function(){
-    applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-  });
-
-  /* ---------- TEXT SIZE ---------- */
-  var sizes = [0.85, 1, 1.15, 1.3, 1.5];
-  var sizeIdx = parseInt(localStorage.getItem('shanmata-size-idx') || '1', 10);
-  var sizeVal = document.getElementById('sizeVal');
-  function applySize(i){
-    sizeIdx = Math.max(0, Math.min(sizes.length - 1, i));
-    var scale = sizes[sizeIdx];
-    root.style.setProperty('--scale', scale);
-    localStorage.setItem('shanmata-size', scale);
-    localStorage.setItem('shanmata-size-idx', sizeIdx);
-    sizeVal.textContent = Math.round(scale * 100) + '%';
-  }
-  document.getElementById('sizeUp').addEventListener('click', function(){ applySize(sizeIdx + 1); });
-  document.getElementById('sizeDown').addEventListener('click', function(){ applySize(sizeIdx - 1); });
-
-  /* ---------- LANGUAGE ---------- */
-  var langEn = document.getElementById('langEn');
-  var langSa = document.getElementById('langSa');
-  function setLang(showSanskrit){
-    body.classList.toggle('show-sanskrit', showSanskrit);
-    langEn.classList.toggle('active', !showSanskrit);
-    langSa.classList.toggle('active', showSanskrit);
-    langEn.setAttribute('aria-pressed', String(!showSanskrit));
-    langSa.setAttribute('aria-pressed', String(showSanskrit));
-    localStorage.setItem('shanmata-lang', showSanskrit ? 'sa' : 'en');
-  }
-  langEn.addEventListener('click', function(){ setLang(false); });
-  langSa.addEventListener('click', function(){ setLang(true); });
-
-  /* ---------- SEARCH + FILTER ---------- */
-  var searchInput = document.getElementById('searchInput');
-  var activeFilter = 'all';
-  var filterChips = document.querySelectorAll('.filter-chip');
-
-  filterChips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      activeFilter = chip.getAttribute('data-filter');
-      filterChips.forEach(function(c){ c.classList.toggle('active', c === chip); });
-      applyFilters();
-    });
-  });
-  searchInput.addEventListener('input', function(){ applyFilters(); });
-
-  function matches(el){
-    var q = searchInput.value.trim().toLowerCase();
-    var tags = (el.getAttribute('data-tags') || '').toLowerCase();
-    var text = el.textContent.toLowerCase();
-    if(activeFilter !== 'all' && tags.indexOf(activeFilter) === -1) return false;
-    if(q && text.indexOf(q) === -1) return false;
-    return true;
-  }
-
-  function applyFilters(){
-    // 1) Card visibility
-    document.querySelectorAll('.card[data-tags]').forEach(function(card){
-      card.classList.toggle('hidden', !matches(card));
-    });
-
-    // 2) Table column visibility — only hide when a specific tradition is chosen
-    document.querySelectorAll('.compare [data-col]').forEach(function(cell){
-      var col = cell.getAttribute('data-col');
-      var hide = (activeFilter !== 'all' && col !== activeFilter);
-      cell.classList.toggle('col-hidden', hide);
-    });
-  }
-
-  /* ---------- BOOT SEQUENCE (runs LAST) ---------- */
-  try { applyTheme(root.getAttribute('data-theme') || 'dark'); }
-  catch(e){ console.error('theme init failed:', e); }
-
-  try { applySize(sizeIdx); }
-  catch(e){ console.error('size init failed:', e); }
-
-  try { setLang(localStorage.getItem('shanmata-lang') === 'sa'); }
-  catch(e){ console.error('lang init failed:', e); }
-
-  try { applyFilters(); }
-  catch(e){ console.error('filters init failed:', e); }
-
-})();
-</script>
-
-<script>
-/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
-(function(){
-  function fit(){
-    var bar = document.querySelector('.controls');
-    if(!bar) return;
-    document.body.style.paddingTop = '';
-    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
-    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
-    if(need > base) document.body.style.paddingTop = need + 'px';
-  }
-  window.addEventListener('resize', fit);
-  window.addEventListener('load', fit);
-  fit();
-})();
-</script>
+<script src="assets/site.js?v=420f3627"></script>
 </body>
 </html>

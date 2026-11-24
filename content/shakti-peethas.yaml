@@ -1,0 +1,462 @@
+page:
+  file: shakti-peethas.html
+  layout: page
+  title: Shakti Peethas — Where Sati Fell
+  description: Interactive map of the 18 Maha Shakti Peethas and the four Adi Shakti Peethas, with the legend of
+    Sati and Daksha's sacrifice.
+  favicon: 🌺
+  search: Search goddesses, places, body parts…
+  native: sa
+  palette:
+    muruga: ['#fd79a8', '#c2185b']
+    muruga-2: ['#f0932b', '#c0631a']
+  gradient: [muruga, muruga-2]
+  primary: muruga
+  h1: Shakti Peethas
+  intro: The seats of the Goddess, each marking where a part of Sati's body — or one of her ornaments — is said
+    to have fallen. This map follows the eighteen Maha Shakti Peethas of the hymn traditionally attributed to Adi
+    Shankara, from Sri Lanka to Kashmir, and adds the four Adi ("first") Peethas.
+  legend:
+  - {label: 18 Maha Shakti Peethas, color: '#e84393'}
+  - {label: Adi Shakti Peethas, color: '#f0932b'}
+  filters:
+  - {value: all, label: All, color: muruga}
+  - {value: maha, label: 🌺 18 Maha Peethas, color: '#e84393'}
+  - {value: adi, label: 🔶 4 Adi Peethas, color: '#f0932b'}
+  - {value: south, label: South, color: '#6c5ce7'}
+  - {value: west, label: West & Central, color: '#00b894'}
+  - {value: east, label: East, color: '#0984e3'}
+  - {value: north, label: North, color: '#d63031'}
+  footer: ['🌺 A visual map of the Shakti Peethas · Lists, locations and attributions vary between texts and regions',
+    Map data © OpenStreetMap contributors · Coordinates are approximate]
+blocks:
+- type: story
+  title: The legend of Sati
+  paragraphs: ['Daksha Prajapati held a great sacrifice and pointedly left out his daughter Sati and her husband
+      Shiva. Sati went anyway, was insulted by her father before the assembly, and gave up her body — in some tellings
+      by entering the sacrificial fire, in others through yogic power. Shiva, in fury, sent Virabhadra to destroy
+      the sacrifice.', 'Grief-stricken, Shiva wandered the cosmos carrying Sati''s body. In one version Vishnu cut
+      it into pieces with his Sudarshana Chakra; in another the limbs and ornaments simply fell as Shiva walked.
+      Wherever a part came to rest, the Goddess is worshipped — usually alongside a guardian form of Shiva called
+      Bhairava.']
+- type: counts
+  label: How many Shakti Peethas?
+  items:
+  - {n: '4', label: Adi (first) Peethas}
+  - {n: '18', label: Maha Peethas · Shankara's hymn}
+  - {n: '51', label: Pithanirnaya · Mahabhagavata}
+  - {n: '52', label: a Bengal tradition}
+  - {n: '108', label: Devi Bhagavata Purana}
+- {type: callout, text: 'Different texts give different lists, and even the body part linked to a site varies. Body
+    parts here follow the eighteen-Peetha list as summarised on Wikipedia.'}
+- {type: filters}
+- {type: map, label: Map of the Shakti Peethas}
+- type: cards
+  cards:
+  - id: shankari
+    anchor: true
+    title: Shankari
+    native: शाङ्करी
+    subtitle: Trincomalee, Sri Lanka
+    num: '1'
+    accent: '#e84393'
+    tags: maha south
+    body: The first name in the stotra, "Lankayam Shankari Devi". The original site is historically unknown; modern
+      tradition places it at the clifftop Koneswaram temple in Trincomalee, destroyed by the Portuguese in the 17th
+      century and rebuilt in the 20th.
+    facts:
+    - [Goddess, Shankari]
+    - [Body part, Groin]
+    - [Place, 'Trincomalee, Sri Lanka']
+    chips:
+    - {text: Sri Lanka, style: event}
+    - Site uncertain
+    map: {lat: 8.5833, lng: 81.2453, popup: 'Groin · Trincomalee, Sri Lanka', name: Shankari — Trincomalee}
+  - id: kamakshi
+    anchor: true
+    title: Kamakshi
+    native: कामाक्षी
+    subtitle: Kanchipuram, Tamil Nadu
+    num: '2'
+    accent: '#e84393'
+    tags: maha south
+    body: The Kamakoti Pitham, one of the great Devi temples of the south, where the goddess sits in a yogic posture.
+      Kanchipuram also holds the earth temple of the <a href="pancha-bhoota.html">Pancha Bhoota Sthalams</a>, whose
+      legend has Kamakshi embracing Shiva's sand lingam.
+    facts:
+    - [Goddess, Kamakshi]
+    - [Body part, Part of the abdomen]
+    - [Place, 'Kanchipuram, Tamil Nadu']
+    chips:
+    - {text: Tamil Nadu, style: event}
+    - Kamakoti Pitham
+    map: {lat: 12.8408, lng: 79.7031, popup: 'Part of the abdomen · Kanchipuram, Tamil Nadu', name: Kamakshi — Kanchipuram}
+  - id: shrinkhala
+    anchor: true
+    title: Shrinkhala
+    native: शृङ्खला
+    subtitle: Pandua, Hooghly district, West Bengal
+    num: '3'
+    accent: '#e84393'
+    tags: maha east
+    body: The least certain of the eighteen. The stotra places Shrinkhala at "Pradyumna"; most lists identify this
+      with Pandua in Hooghly district, but the original shrine and its exact site are debated.
+    facts:
+    - [Goddess, Shrinkhala]
+    - [Body part, Part of the stomach]
+    - [Place, 'Pandua, Hooghly district, West Bengal']
+    chips:
+    - {text: West Bengal, style: event}
+    - Site debated
+    map: {lat: 23.08, lng: 88.2783, popup: 'Part of the stomach · Pandua, Hooghly district, West Bengal', name: Shrinkhala
+        — Pandua}
+  - id: chamundeshwari
+    anchor: true
+    title: Chamundeshwari
+    native: चामुण्डेश्वरी
+    subtitle: Chamundi Hills, Mysuru, Karnataka
+    num: '4'
+    accent: '#e84393'
+    tags: maha south
+    body: The hilltop temple of the goddess who slew Mahishasura, the buffalo demon from whom Mysuru (Mahishuru)
+      takes its name. She was the family deity of the Wodeyar kings and is the centre of the city's Dasara festival.
+    facts:
+    - [Goddess, Chamundeshwari]
+    - [Body part, Hair]
+    - [Place, 'Chamundi Hills, Mysuru, Karnataka']
+    chips:
+    - {text: Karnataka, style: event}
+    - Mysuru Dasara
+    map: {lat: 12.2724, lng: 76.6705, popup: 'Hair · Chamundi Hills, Mysuru, Karnataka', name: Chamundeshwari —
+        Chamundi Hills}
+  - id: jogulamba
+    anchor: true
+    title: Jogulamba
+    native: जोगुलाम्बा
+    subtitle: Alampur, Telangana
+    num: '5'
+    accent: '#e84393'
+    tags: maha south
+    body: At Alampur, near the meeting of the Tungabhadra and Krishna, beside the Navabrahma temples built by the
+      Badami Chalukyas in the 7th–8th centuries. The temple was rebuilt on its old site in 2005 and the original
+      image reinstalled.
+    facts:
+    - [Goddess, Jogulamba]
+    - [Body part, Teeth]
+    - [Place, 'Alampur, Telangana']
+    chips:
+    - {text: Telangana, style: event}
+    - Navabrahma temples
+    map: {lat: 15.877, lng: 78.132, popup: 'Teeth · Alampur, Telangana', name: Jogulamba — Alampur}
+  - id: bhramaramba
+    anchor: true
+    title: Bhramaramba
+    native: भ्रमराम्बा
+    subtitle: Srisailam, Andhra Pradesh
+    num: '6'
+    accent: '#e84393'
+    tags: maha south
+    body: On the Nallamala hills above the Krishna, Srisailam is both a Shakti Peetha and one of the twelve Jyotirlingas
+      (Mallikarjuna) — see the <a href="geography.html">Sacred Geography</a> map. The goddess is named for the bee
+      (<em>bhramara</em>) form she took to destroy a demon.
+    facts:
+    - [Goddess, Bhramaramba]
+    - [Body part, Neck]
+    - [Place, 'Srisailam, Andhra Pradesh']
+    chips:
+    - {text: Andhra Pradesh, style: event}
+    - Also a Jyotirlinga
+    map: {lat: 16.0742, lng: 78.8682, popup: 'Neck · Srisailam, Andhra Pradesh', name: Bhramaramba — Srisailam}
+  - id: mahalakshmi
+    anchor: true
+    title: Mahalakshmi
+    native: महालक्ष्मी
+    subtitle: Kolhapur, Maharashtra
+    num: '7'
+    accent: '#e84393'
+    tags: maha west
+    body: Known locally as Ambabai, the goddess of the Karvir or Shri Pitham. On a few days each year the setting
+      sun's rays reach her image through the temple doors (Kiranotsav). One of the "three and a half" Shakti Peethas
+      of Maharashtra.
+    facts:
+    - [Goddess, Mahalakshmi]
+    - [Body part, Eye]
+    - [Place, 'Kolhapur, Maharashtra']
+    chips:
+    - {text: Maharashtra, style: event}
+    - Kiranotsav
+    map: {lat: 16.695, lng: 74.2236, popup: 'Eye · Kolhapur, Maharashtra', name: Mahalakshmi — Kolhapur}
+  - id: renuka
+    anchor: true
+    title: Renuka (Ekaveera)
+    native: रेणुका
+    subtitle: Mahur, Nanded district, Maharashtra
+    num: '8'
+    accent: '#e84393'
+    tags: maha west
+    body: A hill temple to Renuka, mother of Parashurama, in a town also sacred to Dattatreya. The Devi Gita names
+      it Matripura. It too is one of Maharashtra's "three and a half" Shakti Peethas.
+    facts:
+    - [Goddess, Renuka (Ekaveera)]
+    - [Body part, Left hand]
+    - [Place, 'Mahur, Nanded district, Maharashtra']
+    chips:
+    - {text: Maharashtra, style: event}
+    - Mother of Parashurama
+    map: {lat: 19.8478, lng: 77.9239, popup: 'Left hand · Mahur, Nanded district, Maharashtra', name: Renuka (Ekaveera)
+        — Mahur}
+  - id: mahakali
+    anchor: true
+    title: Mahakali
+    native: महाकाली
+    subtitle: Ujjain, Madhya Pradesh
+    num: '9'
+    accent: '#e84393'
+    tags: maha west
+    body: Ujjain, city of the Mahakaleshwar Jyotirlinga, holds the Ujjaini Pitham. Local tradition identifies the
+      shrine with either the Gadkalika or the Harsiddhi temple; the marker shows the old city.
+    facts:
+    - [Goddess, Mahakali]
+    - [Body part, Upper lip]
+    - [Place, 'Ujjain, Madhya Pradesh']
+    chips:
+    - {text: Madhya Pradesh, style: event}
+    - City of Mahakaleshwar
+    map: {lat: 23.1825, lng: 75.7669, popup: 'Upper lip · Ujjain, Madhya Pradesh', name: Mahakali — Ujjain}
+  - id: puruhutika
+    anchor: true
+    title: Puruhutika
+    native: पुरुहूतिका
+    subtitle: Pithapuram, Kakinada district, Andhra Pradesh
+    num: '10'
+    accent: '#e84393'
+    tags: maha south
+    body: Her shrine stands inside the Kukkuteswara temple complex. The name means "she who was worshipped by Indra
+      (Puruhuta)". Pithapuram is also a Pada Gaya kshetra for ancestral rites and the birthplace of Sripada Sri
+      Vallabha.
+    facts:
+    - [Goddess, Puruhutika]
+    - [Body part, 'Back (some traditions: left hand)']
+    - [Place, 'Pithapuram, Kakinada district, Andhra Pradesh']
+    chips:
+    - {text: Andhra Pradesh, style: event}
+    - Kukkuteswara temple
+    map: {lat: 17.1068, lng: 82.2433, popup: 'Back (some traditions: left hand) · Pithapuram, Kakinada district,
+        Andhra Pradesh', name: Puruhutika — Pithapuram}
+  - id: biraja
+    anchor: true
+    title: Biraja (Girija)
+    native: बिरजा
+    subtitle: Jajpur, Odisha
+    num: '11'
+    accent: '#e84393'
+    tags: maha east
+    body: The Oddiyana Pitham. Jajpur is also called Viraja Kshetra and Nabhi Gaya, and pilgrims perform ancestral
+      rites here. The goddess is shown as Durga slaying Mahishasura.
+    facts:
+    - [Goddess, Biraja (Girija)]
+    - [Body part, Navel]
+    - [Place, 'Jajpur, Odisha']
+    chips:
+    - {text: Odisha, style: event}
+    - Nabhi Gaya
+    map: {lat: 20.8542, lng: 86.331, popup: 'Navel · Jajpur, Odisha', name: Biraja (Girija) — Jajpur}
+  - id: manikyamba
+    anchor: true
+    title: Manikyamba
+    native: माणिक्याम्बा
+    subtitle: Draksharamam, Konaseema district, Andhra Pradesh
+    num: '12'
+    accent: '#e84393'
+    tags: maha south
+    body: Her shrine lies within the Bhimeswara temple, one of the five Pancharama temples of Shiva, built by the
+      Eastern Chalukya king Bhima around 900 CE. The town's name recalls Daksha, whose sacrifice began the whole
+      story.
+    facts:
+    - [Goddess, Manikyamba]
+    - [Body part, Left cheek]
+    - [Place, 'Draksharamam, Konaseema district, Andhra Pradesh']
+    chips:
+    - {text: Andhra Pradesh, style: event}
+    - Pancharama
+    map: {lat: 16.792, lng: 82.0633, popup: 'Left cheek · Draksharamam, Konaseema district, Andhra Pradesh', name: Manikyamba
+        — Draksharamam}
+  - id: kamakhya
+    anchor: true
+    title: Kamakhya
+    native: कामाख्या
+    subtitle: Nilachal hill, Guwahati, Assam
+    num: '13'
+    accent: '#e84393'
+    tags: maha east adi
+    body: 'There is no image: the goddess is worshipped as a natural cleft in the rock, kept moist by an underground
+      spring. The temple closes for the Ambubachi Mela each June. Kamakhya is counted among both the eighteen Maha
+      and the four Adi Shakti Peethas.'
+    facts:
+    - [Goddess, Kamakhya]
+    - [Body part, Yoni]
+    - [Place, 'Nilachal hill, Guwahati, Assam']
+    chips:
+    - {text: Assam, style: event}
+    - Also an Adi Peetha
+    - Ambubachi Mela
+    map: {lat: 26.1664, lng: 91.7055, popup: 'Yoni · Nilachal hill, Guwahati, Assam', name: Kamakhya — Nilachal
+        hill}
+  - id: madhaveshwari
+    anchor: true
+    title: Madhaveshwari (Alopi Devi)
+    native: माधवेश्वरी
+    subtitle: Prayagraj, Uttar Pradesh
+    num: '14'
+    accent: '#e84393'
+    tags: maha north
+    body: 'Near the Triveni Sangam, the shrine has no image of the goddess: devotees worship a wooden swing or cradle
+      (<em>doli</em>) instead, and the name Alopi means "she who vanished".'
+    facts:
+    - [Goddess, Madhaveshwari (Alopi Devi)]
+    - [Body part, Fingers]
+    - [Place, 'Prayagraj, Uttar Pradesh']
+    chips:
+    - {text: Uttar Pradesh, style: event}
+    - Near the Sangam
+    map: {lat: 25.4442, lng: 81.8652, popup: 'Fingers · Prayagraj, Uttar Pradesh', name: Madhaveshwari (Alopi Devi)
+        — Prayagraj}
+  - id: jwalamukhi
+    anchor: true
+    title: Jwalamukhi
+    native: ज्वालामुखी
+    subtitle: Jwalamukhi, Kangra district, Himachal Pradesh
+    num: '15'
+    accent: '#e84393'
+    tags: maha north
+    body: Small natural flames burn continuously from fissures in the rock and are worshipped as the goddess herself;
+      there is no idol.
+    facts:
+    - [Goddess, Jwalamukhi]
+    - [Body part, Tongue]
+    - [Place, 'Jwalamukhi, Kangra district, Himachal Pradesh']
+    chips:
+    - {text: Himachal Pradesh, style: event}
+    - Eternal flames
+    map: {lat: 31.8758, lng: 76.3236, popup: 'Tongue · Jwalamukhi, Kangra district, Himachal Pradesh', name: Jwalamukhi
+        — Jwalamukhi}
+  - id: sarvamangala
+    anchor: true
+    title: Sarvamangala (Mangala Gauri)
+    native: सर्वमङ्गला
+    subtitle: Gaya, Bihar
+    num: '16'
+    accent: '#e84393'
+    tags: maha east
+    body: A hill shrine in Gaya, the great centre of <em>pinda daan</em> for the ancestors. Pilgrims who come for
+      the Gaya Shraddha often visit the goddess too — see <a href="samskaras.html">Cradle to Pyre</a> for Shraadha.
+    facts:
+    - [Goddess, Sarvamangala (Mangala Gauri)]
+    - [Body part, Breast]
+    - [Place, 'Gaya, Bihar']
+    chips:
+    - {text: Bihar, style: event}
+    - Gaya Shraddha
+    map: {lat: 24.7726, lng: 85.0065, popup: 'Breast · Gaya, Bihar', name: Sarvamangala (Mangala Gauri) — Gaya}
+  - id: vishalakshi
+    anchor: true
+    title: Vishalakshi
+    native: विशालाक्षी
+    subtitle: Varanasi, Uttar Pradesh
+    num: '17'
+    accent: '#e84393'
+    tags: maha north
+    body: Near Manikarnika Ghat — whose own name is read as "jewelled earring" — and a short walk from the Kashi
+      Vishwanath Jyotirlinga.
+    facts:
+    - [Goddess, Vishalakshi]
+    - [Body part, Earrings]
+    - [Place, 'Varanasi, Uttar Pradesh']
+    chips:
+    - {text: Uttar Pradesh, style: event}
+    - Manikarnika
+    map: {lat: 25.3093, lng: 83.0109, popup: 'Earrings · Varanasi, Uttar Pradesh', name: Vishalakshi — Varanasi}
+  - id: sharada
+    anchor: true
+    title: Sharada (Saraswati)
+    native: शारदा
+    subtitle: Sharda, Neelum valley, Pakistan-administered Kashmir
+    num: '18'
+    accent: '#e84393'
+    tags: maha north
+    body: Once a great centre of learning that gave its name to the Sharada script, the temple now stands in ruins.
+      In 2023 a new Sharada temple was consecrated at Teetwal in Kupwara, on the Indian side of the Line of Control.
+    facts:
+    - [Goddess, Sharada (Saraswati)]
+    - [Body part, Right hand]
+    - [Place, 'Sharda, Neelum valley, Pakistan-administered Kashmir']
+    chips:
+    - {text: Kashmir, style: event}
+    - In ruins
+    - Sharada script
+    map: {lat: 34.793, lng: 74.189, popup: 'Right hand · Sharda, Neelum valley, Pakistan-administered Kashmir',
+      name: Sharada (Saraswati) — Sharda}
+  - id: vimala
+    anchor: true
+    title: Vimala
+    native: विमला
+    subtitle: Jagannath temple, Puri, Odisha · Adi Shakti Peetha
+    num: A1
+    accent: '#f0932b'
+    tags: adi east
+    body: A shrine inside the Jagannath temple complex. Food offered to Jagannath becomes Mahaprasad only after
+      it has also been offered to Vimala.
+    facts:
+    - [Goddess, Vimala]
+    - [Body part, Feet]
+    - [Place, 'Jagannath temple, Puri, Odisha']
+    chips:
+    - {text: Odisha, style: event}
+    - Inside the Jagannath temple
+    map: {lat: 19.8048, lng: 85.818, popup: 'Adi Peetha · Jagannath temple, Puri, Odisha', name: Vimala — Jagannath
+        temple}
+  - id: taratarini
+    anchor: true
+    title: Tara Tarini
+    native: तारा तारिणी
+    subtitle: Ganjam district, Odisha · Adi Shakti Peetha
+    num: A2
+    accent: '#f0932b'
+    tags: adi east
+    body: A hilltop shrine above the Rushikulya river where twin goddesses, Tara and Tarini, are worshipped together.
+    facts:
+    - [Goddess, Tara Tarini]
+    - [Body part, Breasts]
+    - [Place, 'Ganjam district, Odisha']
+    chips:
+    - {text: Odisha, style: event}
+    - Twin goddesses
+    map: {lat: 19.487, lng: 84.889, popup: 'Adi Peetha · Ganjam district, Odisha', name: Tara Tarini — Ganjam district}
+  - id: kalighat
+    anchor: true
+    title: Kalika (Kalighat)
+    native: कालिका
+    subtitle: Kalighat, Kolkata, West Bengal · Adi Shakti Peetha
+    num: A3
+    accent: '#f0932b'
+    tags: adi east
+    body: The famous Kali temple on the old course of the Hooghly (Adi Ganga), where the goddess is shown with a
+      long golden tongue.
+    facts:
+    - [Goddess, Kalika (Kalighat)]
+    - [Body part, Toes of the right foot]
+    - [Place, 'Kalighat, Kolkata, West Bengal']
+    chips:
+    - {text: West Bengal, style: event}
+    - Kali
+    map: {lat: 22.5203, lng: 88.3423, popup: 'Adi Peetha · Kalighat, Kolkata, West Bengal', name: Kalika (Kalighat)
+        — Kalighat}
+  empty: No sites match your search. Try another name or clear the filter.
+- type: sources
+  items:
+  - {label: Shakti Peetha — Wikipedia, url: 'https://en.wikipedia.org/wiki/Shakti_Peetha'}
+  - {label: 'Jogulamba Temple, Alampur — Wikipedia', url: 'https://en.wikipedia.org/wiki/Jogulamba_Temple,_Alampur'}
+  - {label: 'Kukkuteswara Temple, Pithapuram — Wikipedia', url: 'https://en.wikipedia.org/wiki/Kukkuteswara_Temple'}
+  - {label: Draksharamam — Wikipedia, url: 'https://en.wikipedia.org/wiki/Draksharamam'}
+  - {label: 'Mahur, Maharashtra — Wikipedia', url: 'https://en.wikipedia.org/wiki/Mahur,_Maharashtra'}
+  - {label: Three and a half Shakti Peethas — Wikipedia, url: 'https://en.wikipedia.org/wiki/Three_and_a_half_Shakta_pithas'}

@@ -1,0 +1,172 @@
+page:
+  file: vedanta.html
+  layout: page
+  title: The Three Vedantas — Advaita, Vishishtadvaita, Dvaita
+  favicon: 🪷
+  search: Search concepts, acharyas, texts…
+  native: sa
+  palette:
+    advaita: ['#45aaf2', '#1f7fc4']
+    vishishtadvaita: ['#f7b731', '#c98a00']
+    dvaita: ['#fc5c65', '#d63c46']
+  gradient: [advaita, vishishtadvaita, dvaita]
+  primary: vishishtadvaita
+  h1: The Three Vedantas
+  intro: 'Three great commentators on the Upanishads, three radically different visions of reality. All accept the
+    same scriptures — yet they disagree on the most fundamental question: are we one with God, part of God, or eternally
+    distinct from God?'
+  legend:
+  - {label: Advaita (Non-dual), color: advaita}
+  - {label: Vishishtadvaita (Qualified Non-dual), color: vishishtadvaita}
+  - {label: Dvaita (Dual), color: dvaita}
+  filters:
+  - {value: all, label: All Three, color: vishishtadvaita}
+  - {value: advaita, label: Advaita, color: advaita}
+  - {value: vishishtadvaita, label: Vishishtadvaita, color: vishishtadvaita}
+  - {value: dvaita, label: Dvaita, color: dvaita}
+  footer: ['🪷 A comparison map of the three great Vedanta schools · All three accept the Upanishads, Brahma Sutra,
+      and Bhagavad Gita as authoritative', Dates are approximate. Each school has developed rich sub-traditions
+      and internal debates.]
+  large_cards: true
+blocks:
+- {type: filters}
+- type: spectrum
+  title: 📊 The Spectrum of Unity
+  color: vishishtadvaita
+  points:
+  - {label: Advaita, sub: Complete unity, color: advaita}
+  - {label: Vishishtadvaita, sub: Unity in diversity, color: vishishtadvaita}
+  - {label: Dvaita, sub: Eternal distinction, color: dvaita}
+- type: compare
+  title: ⚖️ Side-by-Side Comparison
+  color: vishishtadvaita
+  intro: Scroll horizontally to see all three columns. The filter chips above can narrow the table to a single school.
+  corner: Criterion
+  columns:
+  - {key: advaita, label: Advaita, color: advaita}
+  - {key: vishishtadvaita, label: Vishishtadvaita, color: vishishtadvaita}
+  - {key: dvaita, label: Dvaita, color: dvaita}
+  rows:
+  - label: Sanskrit Name
+    cells: [अद्वैत<span class="sanskrit">Advaita</span>, विशिष्टाद्वैत<span class="sanskrit">Viśiṣṭādvaita</span>,
+      द्वैत<span class="sanskrit">Dvaita</span>]
+  - label: Meaning
+    cells: ['"Not two" — absolute non-duality', '"Qualified non-duality"', '"Dualism" — eternal distinction']
+  - label: Chief Acharya
+    cells: [<strong>Adi Shankara</strong> (c. 788–820 CE), <strong>Ramanuja</strong> (c. 1017–1137 CE), <strong>Madhvacharya</strong>
+        (c. 1238–1317 CE)]
+  - label: Core Text
+    cells: [Brahma Sutra Bhashya, Sri Bhashya, Brahma Sutra Bhashya]
+  - label: Brahman (God)
+    cells: ['Nirguna Brahman — without attributes. The only reality. God with form is a lower, preparatory truth.',
+      Saguna Brahman — with infinite auspicious qualities. Personal God (Vishnu) is the supreme reality., 'Personal
+        God (Vishnu/Hari) — supremely real, with infinite perfections, eternally distinct from all else.']
+  - label: The Soul (Jiva)
+    cells: ['In essence, identical with Brahman. Individuality is due to ignorance (avidya); it is not ultimately
+        real.', 'Real, eternal, distinct from Brahman, yet inseparably related as body to soul. Souls are modes
+        (prakara) of Brahman.', 'Real, eternal, distinct from God. Souls are many, with innate differences in capacity
+        and destiny.']
+  - label: The World (Jagat)
+    cells: [Maya — empirically real but ultimately illusory. It has no independent existence apart from Brahman.,
+      'Real. The world is the body of God, created and sustained by Him. It is not illusion.', 'Real. The world
+        is eternally distinct from God, created by Him but never identical with Him.']
+  - label: Relationship
+    cells: [<strong>Identity</strong> — Atman IS Brahman. "Tat Tvam Asi" (Thou art That)., '<strong>Body-Soul</strong>
+        — Souls and world are the body of Brahman, inseparably united yet distinct.', '<strong>Difference</strong>
+        — God, souls, and world are eternally and really distinct. "Hari is supreme".']
+  - label: Moksha (Liberation)
+    cells: [Merger into Brahman. Individuality dissolves like a river into the ocean. Bliss of pure consciousness.,
+      Eternal service and enjoyment of God's presence. Souls retain individuality; they do not merge but dwell in
+        blissful communion., Eternal service of God in a heavenly realm. Souls retain distinct identities and experience
+        graded levels of bliss according to their nature.]
+  - label: Path to Liberation
+    cells: [<strong>Jnana</strong> — knowledge of the Self. Realization that one was never bound. Renunciation and
+        inquiry., <strong>Bhakti &amp; Prapatti</strong> — devotion and surrender to God. Grace is essential., '<strong>Bhakti</strong>
+        — intense devotion to Vishnu, combined with correct knowledge and action. Grace of God.']
+  - label: Maya (Illusion)
+    cells: ['Central. The world-appearance is due to maya, beginningless ignorance superimposed on Brahman.', 'Not
+        illusion. The world is real, though its reality is dependent on God.', Rejected. The world is real; maya
+        is not a cosmic illusion but refers to God's creative power.]
+  - label: God's Grace
+    cells: ['Essential for knowledge, but ultimately the soul realizes its own nature.', Supremely important. Liberation
+        is attained through God's grace responding to surrender., 'Absolutely essential. Without Vishnu''s grace,
+        liberation is impossible.']
+  - label: Famous Saying
+    cells: ['"Brahma satyam jagan mithya" — Brahman is real, the world is appearance.', '"Sarvaṃ khalv idaṃ brahma"
+        — All this is Brahman (read as: the world is His body).', '"Harih sarvottamah" — Hari (Vishnu) is supreme.']
+  min_width: 820
+- type: cards
+  title: 📖 The Three Schools in Detail
+  color: vishishtadvaita
+  cards:
+  - id: advaita
+    title: Advaita
+    native: अद्वैत
+    subtitle: Absolute Non-dualism
+    num: '1'
+    tagline: '"There is only one reality — and you are That."'
+    accent: advaita
+    tags: advaita
+    body: 'Adi Shankara''s Advaita is the most radical of the three. It argues that the seeming multiplicity of
+      the world — you, me, God, the universe — is a superimposition on the single, undivided reality of Brahman.
+      Liberation is not attaining something new but realizing what was always true: you were never separate from
+      the infinite.'
+    key_teaching: {label: Key Teaching, text: <strong>Atman = Brahman.</strong> The individual self and ultimate
+        reality are identical. The sense of being a separate person is the root ignorance (avidya).}
+    facts:
+    - [Acharya, Adi Shankara (788–820 CE)]
+    - [Core text, Brahma Sutra Bhashya + commentaries on 10 Upanishads and the Gita]
+    - [Key work, Upadeśasāhasrī (the Vivekachudamani is traditionally attributed to him)]
+    - [God, Nirguna Brahman — ultimately without form or attributes]
+    - [Liberation, Merger — realization of identity]
+    chips:
+    - {text: 🧠 Jnana, style: theme}
+    - Maya
+    - Non-dual
+  - id: vishishtadvaita
+    title: Vishishtadvaita
+    native: विशिष्टाद्वैत
+    subtitle: Qualified Non-dualism
+    num: '2'
+    tagline: '"One reality — but with real parts. You are part of God, not God."'
+    accent: vishishtadvaita
+    tags: vishishtadvaita
+    body: 'Ramanuja rejected Shankara''s maya, insisting that the world and souls are real. But they are not separate
+      from God either: they are His body, inseparably related to Him as attributes to a substance. This is unity
+      without identity — a middle path between merger and dualism.'
+    key_teaching: {label: Key Teaching, text: <strong>Unity in diversity.</strong> Brahman is the soul of the universe;
+        individual souls and matter are its body. They are distinct yet inseparable — like the body and its indwelling
+        self.}
+    facts:
+    - [Acharya, Ramanuja (1017–1137 CE)]
+    - [Core text, Sri Bhashya (commentary on Brahma Sutra)]
+    - [Key work, 'Gita Bhashya, Vedarthasamgraha']
+    - [God, Saguna Brahman — Vishnu with infinite auspicious qualities]
+    - [Liberation, Eternal communion — souls retain individuality in God's presence]
+    chips:
+    - {text: 🙏 Bhakti, style: theme}
+    - Prapatti
+    - Real world
+  - id: dvaita
+    title: Dvaita
+    native: द्वैत
+    subtitle: Dualism
+    num: '3'
+    tagline: '"God is God. You are you. And that difference is eternal."'
+    accent: dvaita
+    tags: dvaita
+    body: Madhvacharya's Dvaita is the most emphatically theistic of the three. It insists that the distinction
+      between God, souls, and the world is real and never overcome — even in liberation. God is supremely independent;
+      everything else depends on Him utterly. The soul's joy lies in eternal service, not in becoming God.
+    key_teaching: {label: Key Teaching, text: '<strong>Eternal distinction.</strong> God (Vishnu), souls, and the
+        material world are three eternally distinct realities. Liberation is eternal service, not merger.'}
+    facts:
+    - [Acharya, Madhvacharya (1238–1317 CE)]
+    - [Core text, Brahma Sutra Bhashya]
+    - [Key work, 'Anuvyakhyana, Vishnu-tattva-vinirnaya']
+    - [God, 'Vishnu — personal, supreme, with infinite perfections']
+    - [Liberation, Eternal service — graded bliss according to the soul's nature]
+    chips:
+    - {text: 🙏 Bhakti, style: theme}
+    - Real difference
+    - Theism

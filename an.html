@@ -3,203 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Azhwars & Nayanmars — Twin Streams of Tamil Bhakti</title>
+<title>Azhwars &amp; Nayanmars — Twin Streams of Tamil Bhakti</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪔</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=420f3627">
+<style>:root,[data-theme="dark"]{--vaishnava:#4a9eff; --saiva:#ff6b6b; --both:#c084fc;} [data-theme="light"]{--vaishnava:#1a6fc4; --saiva:#c43a3a; --both:#8b45d6;} :root{--primary:var(--both); --grad-h:linear-gradient(90deg,var(--vaishnava),var(--both),var(--saiva)); --grad-v:linear-gradient(var(--vaishnava),var(--both),var(--saiva));}</style>
 <script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
   (function(){
-    var savedTheme = localStorage.getItem('bhakti-theme');
-    var theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
-    var savedSize = localStorage.getItem('bhakti-size') || '1';
-    document.documentElement.style.setProperty('--scale', savedSize);
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
   })();
 </script>
-<style>
-  :root,[data-theme="dark"]{
-    --bg:#0e0b1a; --bg-grad:#1b1435;
-    --card:#241d40; --card-2:#161129;
-    --border:rgba(255,255,255,.06); --border-strong:rgba(255,255,255,.14);
-    --chip-bg:rgba(255,255,255,.06); --chip-border:rgba(255,255,255,.08);
-    --text:#eae6f7; --muted:#a29ac2;
-    --shadow:0 14px 34px rgba(0,0,0,.5);
-    --vaishnava:#4a9eff; --saiva:#ff6b6b; --both:#c084fc;
-    --root-text:#1a0f24;
-  }
-  [data-theme="light"]{
-    --bg:#fdf9f3; --bg-grad:#fff4e6;
-    --card:#ffffff; --card-2:#fffaf2;
-    --border:rgba(60,40,20,.10); --border-strong:rgba(60,40,20,.22);
-    --chip-bg:rgba(120,80,30,.07); --chip-border:rgba(120,80,30,.14);
-    --text:#2a1f14; --muted:#6b5c4a;
-    --shadow:0 14px 34px rgba(90,60,20,.15);
-    --vaishnava:#1a6fc4; --saiva:#c43a3a; --both:#8b45d6;
-    --root-text:#3a1a08;
-  }
-
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  :root{ --scale:1; }
-
-  body{
-    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    background:radial-gradient(circle at top,var(--bg-grad) 0%,var(--bg) 60%);
-    color:var(--text);
-    min-height:100vh;
-    padding:90px 20px 80px;
-    line-height:1.6;
-    font-size:calc(17px * var(--scale));
-    transition:background .35s ease,color .35s ease;
-  }
-
-  /* CONTROL BAR */
-  .controls{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
-    padding:12px 16px;
-    background:color-mix(in srgb,var(--bg) 88%,transparent);
-    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border-strong);
-  }
-  .ctrl-group{
-    display:flex; align-items:center; gap:6px;
-    background:var(--card); border:1px solid var(--border-strong);
-    border-radius:50px; padding:5px;
-  }
-  .ctrl-btn{
-    font-family:inherit; font-size:.85rem; font-weight:600;
-    color:var(--text); background:transparent; border:none; border-radius:40px;
-    padding:7px 13px; cursor:pointer; display:flex; align-items:center; gap:6px;
-    transition:background .2s,color .2s; white-space:nowrap;
-  }
-  .ctrl-btn:hover{background:var(--chip-bg);}
-  .ctrl-btn:focus-visible{outline:2px solid var(--both);outline-offset:2px;}
-  .ctrl-btn.active{background:var(--chip-bg);box-shadow:inset 0 0 0 1px var(--border-strong);}
-
-  .theme-toggle{padding:5px 12px 5px 6px;}
-  .toggle-track{position:relative;width:44px;height:24px;border-radius:20px;background:var(--chip-bg);border:1px solid var(--border-strong);flex-shrink:0;transition:background .3s;}
-  .toggle-knob{position:absolute;top:1px;left:1px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#ffcf6b,#ff9f43);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .3s cubic-bezier(.4,1.6,.5,1);box-shadow:0 2px 6px rgba(0,0,0,.3);}
-  [data-theme="light"] .toggle-knob{transform:translateX(20px);}
-
-  .size-btn{width:34px;height:34px;justify-content:center;padding:0;font-size:.9rem;font-weight:800;border-radius:50%;}
-  .size-val{min-width:40px;text-align:center;font-size:.8rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;}
-
-  .search-wrap{
-    display:flex;align-items:center;gap:8px;
-    background:var(--card);border:1px solid var(--border-strong);
-    border-radius:50px;padding:6px 14px;flex:1 1 180px;max-width:320px;
-  }
-  .search-wrap:focus-within{border-color:var(--both);}
-  .search-wrap input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:inherit;font-size:.9rem;min-width:0;}
-  .search-wrap input::placeholder{color:var(--muted);}
-
-  .lang-toggle .ctrl-btn.active{color:var(--vaishnava);}
-
-  /* FILTERS */
-  .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:1000px;margin:0 auto 30px;}
-  .filter-chip{
-    font-family:inherit;font-size:.82rem;font-weight:600;
-    padding:7px 15px;border-radius:30px;cursor:pointer;
-    background:var(--card);color:var(--muted);
-    border:1px solid var(--border-strong);transition:all .2s;
-  }
-  .filter-chip:hover{border-color:var(--muted);transform:translateY(-1px);}
-  .filter-chip:focus-visible{outline:2px solid var(--both);outline-offset:2px;}
-  .filter-chip.active{background:var(--fc,var(--vaishnava));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--fc,var(--vaishnava)) 40%,transparent);}
-
-  /* LAYOUT */
-  header{text-align:center;max-width:900px;margin:0 auto 34px;}
-  header h1{
-    font-size:clamp(1.6rem,4vw,2.6rem);
-    background:linear-gradient(90deg,var(--vaishnava),var(--both),var(--saiva));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    font-weight:800;letter-spacing:.5px;margin-bottom:12px;
-  }
-  header p{color:var(--muted);font-size:1.05rem;max-width:680px;margin:0 auto;}
-
-  .legend{display:flex;flex-wrap:wrap;gap:12px 18px;justify-content:center;margin-top:22px;}
-  .legend span{display:flex;align-items:center;gap:7px;font-size:.9rem;color:var(--muted);}
-  .dot{width:14px;height:14px;border-radius:50%;display:inline-block;flex-shrink:0;}
-
-  section{margin:50px auto;max-width:1200px;}
-  .section-title{font-size:1.4rem;font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:12px;}
-  .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,currentColor,transparent);opacity:.4;}
-
-  .grid{display:grid;gap:20px;}
-  .grid.v3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
-  .grid.v2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr));}
-
-  .card{
-    position:relative;
-    background:linear-gradient(160deg,var(--card),var(--card-2));
-    border-radius:18px;padding:22px 20px 20px;
-    border:1px solid var(--border);
-    transition:transform .25s ease,box-shadow .25s ease,border-color .25s,opacity .3s;
-    overflow:hidden;
-  }
-  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent,#888);}
-  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--accent,#888);}
-  .card.hidden{display:none;}
-
-  .card h3{font-size:1.14rem;margin-bottom:4px;color:var(--accent,#fff);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-  .card h3 .tamil{font-size:.82rem;font-weight:500;opacity:.85;display:none;}
-  body.show-tamil .card h3 .tamil{display:inline;}
-  .card .tag{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:9px;display:block;}
-  .card p{font-size:.94rem;color:var(--text);opacity:.9;}
-  .card .icon{font-size:1.25rem;}
-
-  .vaishnava-card{--accent:var(--vaishnava);}
-  .saiva-card{--accent:var(--saiva);}
-
-  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
-  .chip{font-size:.75rem;padding:4px 10px;border-radius:20px;background:var(--chip-bg);color:var(--muted);border:1px solid var(--chip-border);}
-  .chip.work{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,transparent);}
-
-  .era-badge{display:inline-block;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--chip-bg);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);margin-bottom:8px;}
-
-  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:60px;}
-
-  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important;}}
-  @media (max-width:680px){
-    body{padding-top:130px;}
-    .controls{gap:8px;}
-    .search-wrap{max-width:none;flex:1 1 100%;order:5;}
-    .ctrl-btn{padding:6px 10px;font-size:.8rem;}
-    .size-btn{width:30px;height:30px;}
-  }
-
-  /* ---------- SITE NAV (home button + footer links) ---------- */
-  .home-btn{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:7px 14px;border-radius:999px;
-    background:var(--card);color:var(--text);
-    border:1px solid var(--border-strong,var(--border));
-    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
-    white-space:nowrap;transition:transform .2s,border-color .2s;
-  }
-  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
-  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
-  .site-nav{
-    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
-    max-width:980px;margin:26px auto 4px;padding-top:20px;
-    border-top:1px solid var(--border);
-  }
-  .site-nav a{
-    display:inline-flex;align-items:center;gap:5px;
-    padding:6px 12px;border-radius:999px;
-    font-size:.8rem;font-weight:600;text-decoration:none;
-    color:var(--muted);background:var(--card);
-    border:1px solid var(--border);
-    transition:color .2s,border-color .2s,transform .2s;
-  }
-  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
-  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
-  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
-  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
-</style>
 </head>
 <body>
-
-<div class="controls" role="toolbar" aria-label="Map controls">
+<div class="controls" role="toolbar" aria-label="Page controls">
   <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
@@ -207,7 +25,7 @@
   </div>
   <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
     <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
-    <button class="ctrl-btn" id="langTamil" aria-pressed="false">தமிழ்</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">தமிழ்</button>
   </div>
   <div class="ctrl-group" role="group" aria-label="Text size">
     <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
@@ -219,210 +37,97 @@
     <span id="toggleLabel">Light</span>
   </button>
 </div>
-
 <header>
-  <h1>Azhwars & Nayanmars</h1>
+  <h1>Azhwars &amp; Nayanmars</h1>
   <p>Two parallel streams of Tamil Bhakti — the Vaishnava Azhwars immersed in love of Vishnu, and the Saiva Nayanmars devoted to Shiva. Together they shaped the devotional landscape of South India from the 6th to 9th centuries CE.</p>
-  <div class="legend">
-    <span><i class="dot" style="background:var(--vaishnava)"></i>Vaishnava (Azhwars)</span>
-    <span><i class="dot" style="background:var(--saiva)"></i>Saiva (Nayanmars)</span>
-  </div>
+  <div class="legend"><span><i class="dot" style="background:var(--vaishnava)"></i>Vaishnava (Azhwars)</span><span><i class="dot" style="background:var(--saiva)"></i>Saiva (Nayanmars)</span></div>
 </header>
-
-<div class="filters" role="group" aria-label="Filter by tradition">
-  <button class="filter-chip active" data-filter="all" style="--fc:var(--both)">All</button>
-  <button class="filter-chip" data-filter="vaishnava" style="--fc:var(--vaishnava)">🔵 Vaishnava</button>
-  <button class="filter-chip" data-filter="saiva" style="--fc:var(--saiva)">🔴 Saiva</button>
-  <button class="filter-chip" data-filter="woman" style="--fc:var(--both)">♀ Women Saints</button>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--both)">All</button>
+  <button class="filter-chip" data-filter="vaishnava" aria-pressed="false" style="--fc:var(--vaishnava)">🔵 Vaishnava</button>
+  <button class="filter-chip" data-filter="saiva" aria-pressed="false" style="--fc:var(--saiva)">🔴 Saiva</button>
+  <button class="filter-chip" data-filter="woman" aria-pressed="false" style="--fc:var(--both)">♀ Women Saints</button>
 </div>
-
-<!-- ========== THE TWELVE AZHWARS ========== -->
-<section>
+<section data-block>
   <h2 class="section-title" style="color:var(--vaishnava)">🔵 The Twelve Azhwars (Vaishnava)</h2>
-  <p style="color:var(--muted);margin-bottom:22px;max-width:720px">The Azhwars ("those immersed in God") sang in Tamil of their love for Vishnu. Their hymns were collected as the <em>Nalayira Divya Prabandham</em> (Four Thousand Divine Verses), revered by Sri Vaishnavas as the Tamil Veda.</p>
+  <p class="section-intro">The Azhwars ("those immersed in God") sang in Tamil of their love for Vishnu. Their hymns were collected as the <em>Nalayira Divya Prabandham</em> (Four Thousand Divine Verses), revered by Sri Vaishnavas as the Tamil Veda.</p>
   <div class="grid v3">
-
-    <article class="card vaishnava-card" data-tags="vaishnava" data-id="poigai">
-      <div class="era-badge">c. 7th century CE</div>
-      <h3>Poigai Azhwar <span class="tamil">பொய்கையாழ்வார்</span></h3>
-      <span class="tag">Incarnation of Vishnu's conch</span>
-      <p>One of the three earliest Azhwars, born in Kanchipuram. His <em>Mudhal Thiruvandhadhi</em> opens the Divya Prabandham canon.</p>
-      <div class="chips"><span class="chip work">Mudhal Thiruvandhadhi (100 verses)</span></div>
-    </article>
-
-    <article class="card vaishnava-card" data-tags="vaishnava" data-id="bhoothath">
-      <div class="era-badge">c. 7th century CE</div>
-      <h3>Bhoothath Azhwar <span class="tamil">பூதத்தாழ்வார்</span></h3>
-      <span class="tag">Incarnation of Vishnu's mace</span>
-      <p>Born in Mahabalipuram. His hymns express wonder at Vishnu's presence in all things, forming the second poem of the canon.</p>
-      <div class="chips"><span class="chip work">Irandam Thiruvandhadhi (100 verses)</span></div>
-    </article>
-
-    <article class="card vaishnava-card" data-tags="vaishnava" data-id="pey">
-      <div class="era-badge">c. 7th century CE</div>
-      <h3>Pey Azhwar <span class="tamil">பேயாழ்வார்</span></h3>
-      <span class="tag">Incarnation of Vishnu's sword</span>
-      <p>Born in Mylapore. Tradition says the three earliest Azhwars met miraculously, and their combined devotion lit a lamp that became the light of Vaishnavism.</p>
-      <div class="chips"><span class="chip work">Moondram Thiruvandhadhi (100 verses)</span></div>
-    </article>
-
-    <article class="card vaishnava-card" data-tags="vaishnava" data-id="thirumazhisai">
-      <div class="era-badge">c. 7th century CE</div>
-      <h3>Thirumazhisai Azhwar <span class="tamil">திருமழிசையாழ்வார்</span></h3>
-      <span class="tag">Incarnation of Vishnu's discus</span>
-      <p>A former Jain who converted to Vaishnavism. His works blend philosophical inquiry with devotional surrender.</p>
-      <div class="chips"><span class="chip work">Nanmugan Thiruvandhadhi (96)</span><span class="chip work">Thiruchanda Virutham (120)</span></div>
-    </article>
-
-    <article class="card vaishnava-card" data-tags="vaishnava" data-id="nammalvar">
-      <div class="era-badge">c. 8th century CE</div>
-      <h3>Nammalvar <span class="tamil">நம்மாழ்வார்</span></h3>
-      <span class="tag">The greatest of the Azhwars</span>
-      <p>Considered the most important Azhwar. His <em>Tiruvaymoli</em> is called the "Tamil Veda" and is praised as the essence of the Upanishads in Tamil.</p>
-      <div class="chips"><span class="chip work">Tiruvaymoli (1,102 verses)</span><span class="chip work">Tiruviruttam (100)</span></div>
-    </article>
-
-    <article class="card vaishnava-card" data-tags="vaishnava" data-id="madhurakavi">
-      <div class="era-badge">c. 8th century CE</div>
-      <h3>Madhurakavi Azhwar <span class="tamil">மதுரகவியாழ்வார்</span></h3>
-      <span class="tag">Disciple of Nammalvar</span>
-      <p>His entire surviving work is a hymn of devotion to his guru Nammalvar — a rare celebration of the teacher as the path to God.</p>
-      <div class="chips"><span class="chip work">Kanninun Siruthambu (11 verses)</span></div>
-    </article>
-
-    <article class="card vaishnava-card" data-tags="vaishnava" data-id="kulasekhara">
-      <div class="era-badge">c. 9th century CE</div>
-      <h3>Kulasekhara Azhwar <span class="tamil">குலசேகராழ்வார்</span></h3>
-      <span class="tag">A Chera king who became a saint</span>
-      <p>A ruling king who renounced his throne for devotion. His <em>Perumal Tirumoli</em> expresses the anguish of separation from Vishnu.</p>
-      <div class="chips"><span class="chip work">Perumal Tirumoli (105 verses)</span></div>
-    </article>
-
-    <article class="card vaishnava-card" data-tags="vaishnava" data-id="periyalvar">
-      <div class="era-badge">c. 8th century CE</div>
-      <h3>Periyalvar <span class="tamil">பெரியாழ்வார்</span></h3>
-      <span class="tag">Foster father of Andal</span>
-      <p>Worshipped Vishnu as a mother loves her child Krishna. He discovered the baby Andal in his tulsi garden and raised her in devotion.</p>
-      <div class="chips"><span class="chip work">Periyalvar Tirumoli (461 verses)</span><span class="chip work">Tiruppallandu (12)</span></div>
-    </article>
-
-    <article class="card vaishnava-card" data-tags="vaishnava woman" data-id="andal">
-      <div class="era-badge">c. 8th century CE</div>
-      <h3>Andal <span class="tamil">ஆண்டாள்</span> <span style="font-size:.8rem;color:var(--muted)">♀</span></h3>
-      <span class="tag">The only female Azhwar</span>
-      <p>Raised by Periyalvar, she refused all earthly marriage and merged with Vishnu at Srirangam. Her <em>Tiruppavai</em> is recited in Vaishnava homes every December.</p>
-      <div class="chips"><span class="chip work">Tiruppavai (30 verses)</span><span class="chip work">Nachiyar Tirumoli (143)</span></div>
-    </article>
-
-    <article class="card vaishnava-card" data-tags="vaishnava" data-id="thondaradippodi">
-      <div class="era-badge">c. 8th century CE</div>
-      <h3>Thondaradippodi Azhwar <span class="tamil">தொண்டரடிப்பொடியாழ்வார்</span></h3>
-      <span class="tag">The humble servant</span>
-      <p>A former pleasure-seeker who reformed through devotion. He expresses deep humility and the joy of service to Vishnu's devotees.</p>
-      <div class="chips"><span class="chip work">Tirumalai (45 verses)</span><span class="chip work">Tirupalliezhuchi (10)</span></div>
-    </article>
-
-    <article class="card vaishnava-card" data-tags="vaishnava" data-id="thiruppaan">
-      <div class="era-badge">c. 8th century CE</div>
-      <h3>Thiruppaan Azhwar <span class="tamil">திருப்பாணாழ்வார்</span></h3>
-      <span class="tag">From a marginalized community</span>
-      <p>A saint from a low-caste background whose devotion transcended social barriers. His ten verses on the beauty of Ranganatha are celebrated for their ecstatic vision.</p>
-      <div class="chips"><span class="chip work">Amalanadhipiran (10 verses)</span></div>
-    </article>
-
-    <article class="card vaishnava-card" data-tags="vaishnava" data-id="thirumangai">
-      <div class="era-badge">c. 8th century CE</div>
-      <h3>Thirumangai Azhwar <span class="tamil">திருமங்கையாழ்வார்</span></h3>
-      <span class="tag">The last of the twelve</span>
-      <p>A chieftain-turned-saint who composed the most verses after Nammalvar. His <em>Periya Tirumoli</em> is a vast tour of Vishnu's shrines across Tamil Nadu.</p>
-      <div class="chips"><span class="chip work">Periya Tirumoli (1,084 verses)</span><span class="chip work">Tirunedunthandakam (30)</span></div>
-    </article>
-
+  <article class="card" data-item data-id="poigai" data-tags="vaishnava" style="--accent:var(--vaishnava)"><div class="era-badge">c. 7th century CE</div>
+  <h3>Poigai Azhwar <span class="native">பொய்கையாழ்வார்</span></h3><span class="tag">Incarnation of Vishnu&#39;s conch</span><p>One of the three earliest Azhwars, born in Kanchipuram. His <em>Mudhal Thiruvandhadhi</em> opens the Divya Prabandham canon.</p><div class="chips"><span class="chip work">Mudhal Thiruvandhadhi (100 verses)</span></div>
+</article>
+  <article class="card" data-item data-id="bhoothath" data-tags="vaishnava" style="--accent:var(--vaishnava)"><div class="era-badge">c. 7th century CE</div>
+  <h3>Bhoothath Azhwar <span class="native">பூதத்தாழ்வார்</span></h3><span class="tag">Incarnation of Vishnu&#39;s mace</span><p>Born in Mahabalipuram. His hymns express wonder at Vishnu's presence in all things, forming the second poem of the canon.</p><div class="chips"><span class="chip work">Irandam Thiruvandhadhi (100 verses)</span></div>
+</article>
+  <article class="card" data-item data-id="pey" data-tags="vaishnava" style="--accent:var(--vaishnava)"><div class="era-badge">c. 7th century CE</div>
+  <h3>Pey Azhwar <span class="native">பேயாழ்வார்</span></h3><span class="tag">Incarnation of Vishnu&#39;s sword</span><p>Born in Mylapore. Tradition says the three earliest Azhwars met miraculously, and their combined devotion lit a lamp that became the light of Vaishnavism.</p><div class="chips"><span class="chip work">Moondram Thiruvandhadhi (100 verses)</span></div>
+</article>
+  <article class="card" data-item data-id="thirumazhisai" data-tags="vaishnava" style="--accent:var(--vaishnava)"><div class="era-badge">c. 7th century CE</div>
+  <h3>Thirumazhisai Azhwar <span class="native">திருமழிசையாழ்வார்</span></h3><span class="tag">Incarnation of Vishnu&#39;s discus</span><p>A former Jain who converted to Vaishnavism. His works blend philosophical inquiry with devotional surrender.</p><div class="chips"><span class="chip work">Nanmugan Thiruvandhadhi (96)</span><span class="chip work">Thiruchanda Virutham (120)</span></div>
+</article>
+  <article class="card" data-item data-id="nammalvar" data-tags="vaishnava" style="--accent:var(--vaishnava)"><div class="era-badge">c. 8th century CE</div>
+  <h3>Nammalvar <span class="native">நம்மாழ்வார்</span></h3><span class="tag">The greatest of the Azhwars</span><p>Considered the most important Azhwar. His <em>Tiruvaymoli</em> is called the "Tamil Veda" and is praised as the essence of the Upanishads in Tamil.</p><div class="chips"><span class="chip work">Tiruvaymoli (1,102 verses)</span><span class="chip work">Tiruviruttam (100)</span></div>
+</article>
+  <article class="card" data-item data-id="madhurakavi" data-tags="vaishnava" style="--accent:var(--vaishnava)"><div class="era-badge">c. 8th century CE</div>
+  <h3>Madhurakavi Azhwar <span class="native">மதுரகவியாழ்வார்</span></h3><span class="tag">Disciple of Nammalvar</span><p>His entire surviving work is a hymn of devotion to his guru Nammalvar — a rare celebration of the teacher as the path to God.</p><div class="chips"><span class="chip work">Kanninun Siruthambu (11 verses)</span></div>
+</article>
+  <article class="card" data-item data-id="kulasekhara" data-tags="vaishnava" style="--accent:var(--vaishnava)"><div class="era-badge">c. 9th century CE</div>
+  <h3>Kulasekhara Azhwar <span class="native">குலசேகராழ்வார்</span></h3><span class="tag">A Chera king who became a saint</span><p>A ruling king who renounced his throne for devotion. His <em>Perumal Tirumoli</em> expresses the anguish of separation from Vishnu.</p><div class="chips"><span class="chip work">Perumal Tirumoli (105 verses)</span></div>
+</article>
+  <article class="card" data-item data-id="periyalvar" data-tags="vaishnava" style="--accent:var(--vaishnava)"><div class="era-badge">c. 8th century CE</div>
+  <h3>Periyalvar <span class="native">பெரியாழ்வார்</span></h3><span class="tag">Foster father of Andal</span><p>Worshipped Vishnu as a mother loves her child Krishna. He discovered the baby Andal in his tulsi garden and raised her in devotion.</p><div class="chips"><span class="chip work">Periyalvar Tirumoli (461 verses)</span><span class="chip work">Tiruppallandu (12)</span></div>
+</article>
+  <article class="card" data-item data-id="andal" data-tags="vaishnava woman" style="--accent:var(--vaishnava)"><div class="era-badge">c. 8th century CE</div>
+  <h3>Andal <span class="native">ஆண்டாள்</span> <span class="mark">♀</span></h3><span class="tag">The only female Azhwar</span><p>Raised by Periyalvar, she refused all earthly marriage and merged with Vishnu at Srirangam. Her <em>Tiruppavai</em> is recited in Vaishnava homes every December.</p><div class="chips"><span class="chip work">Tiruppavai (30 verses)</span><span class="chip work">Nachiyar Tirumoli (143)</span></div>
+</article>
+  <article class="card" data-item data-id="thondaradippodi" data-tags="vaishnava" style="--accent:var(--vaishnava)"><div class="era-badge">c. 8th century CE</div>
+  <h3>Thondaradippodi Azhwar <span class="native">தொண்டரடிப்பொடியாழ்வார்</span></h3><span class="tag">The humble servant</span><p>A former pleasure-seeker who reformed through devotion. He expresses deep humility and the joy of service to Vishnu's devotees.</p><div class="chips"><span class="chip work">Tirumalai (45 verses)</span><span class="chip work">Tirupalliezhuchi (10)</span></div>
+</article>
+  <article class="card" data-item data-id="thiruppaan" data-tags="vaishnava" style="--accent:var(--vaishnava)"><div class="era-badge">c. 8th century CE</div>
+  <h3>Thiruppaan Azhwar <span class="native">திருப்பாணாழ்வார்</span></h3><span class="tag">From a marginalized community</span><p>A saint from a low-caste background whose devotion transcended social barriers. His ten verses on the beauty of Ranganatha are celebrated for their ecstatic vision.</p><div class="chips"><span class="chip work">Amalanadhipiran (10 verses)</span></div>
+</article>
+  <article class="card" data-item data-id="thirumangai" data-tags="vaishnava" style="--accent:var(--vaishnava)"><div class="era-badge">c. 8th century CE</div>
+  <h3>Thirumangai Azhwar <span class="native">திருமங்கையாழ்வார்</span></h3><span class="tag">The last of the twelve</span><p>A chieftain-turned-saint who composed the most verses after Nammalvar. His <em>Periya Tirumoli</em> is a vast tour of Vishnu's shrines across Tamil Nadu.</p><div class="chips"><span class="chip work">Periya Tirumoli (1,084 verses)</span><span class="chip work">Tirunedunthandakam (30)</span></div>
+</article>
   </div>
 </section>
-
-<!-- ========== KEY NAYANMARS ========== -->
-<section>
+<section data-block>
   <h2 class="section-title" style="color:var(--saiva)">🔴 Key Nayanmars (Saiva)</h2>
-  <p style="color:var(--muted);margin-bottom:22px;max-width:720px">The Nayanmars ("servants of Shiva") number 63. The list begins with Sundarar's <em>Tiruthondar Thogai</em>, was elaborated by Nambiyandar Nambi, and was told in full in Sekkizhar's <em>Periya Puranam</em>. The four most prominent — Appar, Sambandar, Sundarar and Manikkavacakar — are called the <em>Nalvar</em>, and their hymns form the core of the <em>Tirumurai</em>.</p>
+  <p class="section-intro">The Nayanmars ("servants of Shiva") number 63. The list begins with Sundarar's <em>Tiruthondar Thogai</em>, was elaborated by Nambiyandar Nambi, and was told in full in Sekkizhar's <em>Periya Puranam</em>. The four most prominent — Appar, Sambandar, Sundarar and Manikkavacakar — are called the <em>Nalvar</em>, and their hymns form the core of the <em>Tirumurai</em>.</p>
   <div class="grid v2">
-
-    <article class="card saiva-card" data-tags="saiva" data-id="appar">
-      <div class="era-badge">c. 580–661 CE</div>
-      <h3>Appar (Thirunavukkarasar) <span class="tamil">அப்பர்</span></h3>
-      <span class="tag">One of the Nalvar</span>
-      <p>Originally a Jain who converted back to Saivism through his sister's influence. He travelled tirelessly to Shiva temples, and his hymns (over 3,000 verses) are among the earliest in the Tevaram.</p>
-      <div class="chips"><span class="chip work">Tevaram (Books 4–6)</span></div>
-    </article>
-
-    <article class="card saiva-card" data-tags="saiva" data-id="sambandar">
-      <div class="era-badge">c. 635–651 CE</div>
-      <h3>Sambandar (Thirugnanasambandar) <span class="tamil">சம்பந்தர்</span></h3>
-      <span class="tag">Child saint of the Nalvar</span>
-      <p>A Brahmin child prodigy who began singing Shiva's praises at age three. His intense, joyful hymns form the first three books of the Tevaram and are considered the foundation of Tamil Saiva devotion.</p>
-      <div class="chips"><span class="chip work">Tevaram (Books 1–3)</span></div>
-    </article>
-
-    <article class="card saiva-card" data-tags="saiva" data-id="sundarar">
-      <div class="era-badge">c. 8th century CE</div>
-      <h3>Sundarar (Sundaramurti) <span class="tamil">சுந்தரர்</span></h3>
-      <span class="tag">The third of the Nalvar</span>
-      <p>A friend of Shiva who sang with startling intimacy — treating the Lord as a companion and even demanding favors. His <em>Tiruthondar Thogai</em> is the earliest list of the 63 Nayanmars.</p>
-      <div class="chips"><span class="chip work">Tevaram (Book 7)</span><span class="chip work">Tiruthondar Thogai</span></div>
-    </article>
-
-    <article class="card saiva-card" data-tags="saiva" data-id="manikkavacakar">
-      <div class="era-badge">c. 9th century CE</div>
-      <h3>Manikkavacakar <span class="tamil">மாணிக்கவாசகர்</span></h3>
-      <span class="tag">The fourth of the Nalvar</span>
-      <p>A minister who became a saint. His <em>Tiruvachakam</em> is considered the most emotionally profound Saiva text, exploring the soul's longing and surrender to Shiva. He is not counted among the 63 Nayanmars, but is revered as one of the Nalvar.</p>
-      <div class="chips"><span class="chip work">Tiruvachakam (Book 8)</span></div>
-    </article>
-
-    <article class="card saiva-card" data-tags="saiva woman" data-id="karaikkal">
-      <div class="era-badge">c. 6th century CE</div>
-      <h3>Karaikkal Ammaiyar <span class="tamil">காரைக்கால் அம்மையார்</span> <span style="font-size:.8rem;color:var(--muted)">♀</span></h3>
-      <span class="tag">The earliest woman Nayanmar</span>
-      <p>One of the earliest Saiva saints and one of the three women among the 63 Nayanmars (with Mangayarkkarasiyar and Isaignaniyar). She prayed to become a ghost so she could serve Shiva without worldly attachments, and her hymns are fierce and otherworldly.</p>
-      <div class="chips"><span class="chip work">Tirumurai (Book 11)</span></div>
-    </article>
-
-    <article class="card saiva-card" data-tags="saiva" data-id="kannappa">
-      <div class="era-badge">Date uncertain (legendary)</div>
-      <h3>Kannappa Nayanar <span class="tamil">கண்ணப்பர்</span></h3>
-      <span class="tag">The hunter-devotee</span>
-      <p>A tribal hunter whose love for Shiva was so pure that he offered his own eyes to stop the deity's bleeding. His story embodies the Nayanmar ideal: devotion beyond ritual purity.</p>
-      <div class="chips"><span class="chip work">Periya Puranam</span></div>
-    </article>
-
+  <article class="card" data-item data-id="appar" data-tags="saiva" style="--accent:var(--saiva)"><div class="era-badge">c. 580–661 CE</div>
+  <h3>Appar (Thirunavukkarasar) <span class="native">அப்பர்</span></h3><span class="tag">One of the Nalvar</span><p>Originally a Jain who converted back to Saivism through his sister's influence. He travelled tirelessly to Shiva temples, and his hymns (over 3,000 verses) are among the earliest in the Tevaram.</p><div class="chips"><span class="chip work">Tevaram (Books 4–6)</span></div>
+</article>
+  <article class="card" data-item data-id="sambandar" data-tags="saiva" style="--accent:var(--saiva)"><div class="era-badge">c. 635–651 CE</div>
+  <h3>Sambandar (Thirugnanasambandar) <span class="native">சம்பந்தர்</span></h3><span class="tag">Child saint of the Nalvar</span><p>A Brahmin child prodigy who began singing Shiva's praises at age three. His intense, joyful hymns form the first three books of the Tevaram and are considered the foundation of Tamil Saiva devotion.</p><div class="chips"><span class="chip work">Tevaram (Books 1–3)</span></div>
+</article>
+  <article class="card" data-item data-id="sundarar" data-tags="saiva" style="--accent:var(--saiva)"><div class="era-badge">c. 8th century CE</div>
+  <h3>Sundarar (Sundaramurti) <span class="native">சுந்தரர்</span></h3><span class="tag">The third of the Nalvar</span><p>A friend of Shiva who sang with startling intimacy — treating the Lord as a companion and even demanding favors. His <em>Tiruthondar Thogai</em> is the earliest list of the 63 Nayanmars.</p><div class="chips"><span class="chip work">Tevaram (Book 7)</span><span class="chip work">Tiruthondar Thogai</span></div>
+</article>
+  <article class="card" data-item data-id="manikkavacakar" data-tags="saiva" style="--accent:var(--saiva)"><div class="era-badge">c. 9th century CE</div>
+  <h3>Manikkavacakar <span class="native">மாணிக்கவாசகர்</span></h3><span class="tag">The fourth of the Nalvar</span><p>A minister who became a saint. His <em>Tiruvachakam</em> is considered the most emotionally profound Saiva text, exploring the soul's longing and surrender to Shiva. He is not counted among the 63 Nayanmars, but is revered as one of the Nalvar.</p><div class="chips"><span class="chip work">Tiruvachakam (Book 8)</span></div>
+</article>
+  <article class="card" data-item data-id="karaikkal" data-tags="saiva woman" style="--accent:var(--saiva)"><div class="era-badge">c. 6th century CE</div>
+  <h3>Karaikkal Ammaiyar <span class="native">காரைக்கால் அம்மையார்</span> <span class="mark">♀</span></h3><span class="tag">The earliest woman Nayanmar</span><p>One of the earliest Saiva saints and one of the three women among the 63 Nayanmars (with Mangayarkkarasiyar and Isaignaniyar). She prayed to become a ghost so she could serve Shiva without worldly attachments, and her hymns are fierce and otherworldly.</p><div class="chips"><span class="chip work">Tirumurai (Book 11)</span></div>
+</article>
+  <article class="card" data-item data-id="kannappa" data-tags="saiva" style="--accent:var(--saiva)"><div class="era-badge">Date uncertain (legendary)</div>
+  <h3>Kannappa Nayanar <span class="native">கண்ணப்பர்</span></h3><span class="tag">The hunter-devotee</span><p>A tribal hunter whose love for Shiva was so pure that he offered his own eyes to stop the deity's bleeding. His story embodies the Nayanmar ideal: devotion beyond ritual purity.</p><div class="chips"><span class="chip work">Periya Puranam</span></div>
+</article>
   </div>
 </section>
-
-<!-- ========== THE CANONICAL COLLECTIONS ========== -->
-<section>
+<section data-block>
   <h2 class="section-title" style="color:var(--both)">📚 The Two Canons</h2>
   <div class="grid v2">
-
-    <article class="card" style="--accent:var(--vaishnava)">
-      <h3>Nalayira Divya Prabandham</h3>
-      <span class="tag">The Vaishnava Canon</span>
-      <p>Four thousand Tamil verses by the twelve Azhwars, compiled by Nathamuni in the 9th century. Revered as the "Tamil Veda" by Sri Vaishnavas, it is recited in temples and homes to this day.</p>
-      <div class="chips"><span class="chip work">4,000 verses</span><span class="chip work">12 Azhwars</span></div>
-    </article>
-
-    <article class="card" style="--accent:var(--saiva)">
-      <h3>Tirumurai</h3>
-      <span class="tag">The Saiva Canon</span>
-      <p>Twelve books of Tamil Saiva hymns. Nambiyandar Nambi compiled the first eleven, traditionally under Raja Raja Chola I; Sekkizhar's <em>Periya Puranam</em> was added later as the twelfth. The first seven books contain the Tevaram hymns of Appar, Sambandar and Sundarar.</p>
-      <div class="chips"><span class="chip work">12 volumes</span><span class="chip work">Tevaram core</span></div>
-    </article>
-
+  <article class="card" data-item style="--accent:var(--vaishnava)">
+  <h3>Nalayira Divya Prabandham</h3><span class="tag">The Vaishnava Canon</span><p>Four thousand Tamil verses by the twelve Azhwars, compiled by Nathamuni in the 9th century. Revered as the "Tamil Veda" by Sri Vaishnavas, it is recited in temples and homes to this day.</p><div class="chips"><span class="chip work">4,000 verses</span><span class="chip work">12 Azhwars</span></div>
+</article>
+  <article class="card" data-item style="--accent:var(--saiva)">
+  <h3>Tirumurai</h3><span class="tag">The Saiva Canon</span><p>Twelve books of Tamil Saiva hymns. Nambiyandar Nambi compiled the first eleven, traditionally under Raja Raja Chola I; Sekkizhar's <em>Periya Puranam</em> was added later as the twelfth. The first seven books contain the Tevaram hymns of Appar, Sambandar and Sundarar.</p><div class="chips"><span class="chip work">12 volumes</span><span class="chip work">Tevaram core</span></div>
+</article>
   </div>
 </section>
-
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
 <footer>
   <p>🪔 A visual map of Tamil Bhakti · Dates are approximate · Azhwars and Nayanmars, c. 6th–9th century CE</p>
-
   <nav class="site-nav" aria-label="All Sanatana maps">
     <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
     <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
@@ -437,132 +142,12 @@
     <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
     <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
     <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
   </nav>
   <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
-
-<script>
-(function(){
-  "use strict";
-  var root = document.documentElement;
-  var body = document.body;
-
-  /* ---------- THEME ---------- */
-  var themeBtn = document.getElementById('themeToggle');
-  var knob = document.getElementById('knob');
-  var toggleLabel = document.getElementById('toggleLabel');
-  function applyTheme(t){
-    root.setAttribute('data-theme', t);
-    localStorage.setItem('bhakti-theme', t);
-    var isLight = t === 'light';
-    knob.textContent = isLight ? '☀️' : '🌙';
-    toggleLabel.textContent = isLight ? 'Dark' : 'Light';
-    themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-  }
-  themeBtn.addEventListener('click', function(){
-    applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-  });
-
-  /* ---------- TEXT SIZE ---------- */
-  var sizes = [0.85, 1, 1.15, 1.3, 1.5];
-  var sizeIdx = parseInt(localStorage.getItem('bhakti-size-idx') || '1', 10);
-  var sizeVal = document.getElementById('sizeVal');
-  function applySize(i){
-    sizeIdx = Math.max(0, Math.min(sizes.length - 1, i));
-    var scale = sizes[sizeIdx];
-    root.style.setProperty('--scale', scale);
-    localStorage.setItem('bhakti-size', scale);
-    localStorage.setItem('bhakti-size-idx', sizeIdx);
-    sizeVal.textContent = Math.round(scale * 100) + '%';
-  }
-  document.getElementById('sizeUp').addEventListener('click', function(){ applySize(sizeIdx + 1); });
-  document.getElementById('sizeDown').addEventListener('click', function(){ applySize(sizeIdx - 1); });
-
-  /* ---------- LANGUAGE ---------- */
-  var langEn = document.getElementById('langEn');
-  var langTa = document.getElementById('langTamil');
-  function setLang(showTamil){
-    body.classList.toggle('show-tamil', showTamil);
-    langEn.classList.toggle('active', !showTamil);
-    langTa.classList.toggle('active', showTamil);
-    langEn.setAttribute('aria-pressed', String(!showTamil));
-    langTa.setAttribute('aria-pressed', String(showTamil));
-    localStorage.setItem('bhakti-lang', showTamil ? 'ta' : 'en');
-  }
-  langEn.addEventListener('click', function(){ setLang(false); });
-  langTa.addEventListener('click', function(){ setLang(true); });
-
-  /* ---------- SEARCH + FILTER ---------- */
-  var searchInput = document.getElementById('searchInput');
-  var activeFilter = 'all';
-  var filterChips = document.querySelectorAll('.filter-chip');
-
-  filterChips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      activeFilter = chip.getAttribute('data-filter');
-      filterChips.forEach(function(c){ c.classList.toggle('active', c === chip); });
-      applyFilters();
-    });
-  });
-  searchInput.addEventListener('input', function(){ applyFilters(); });
-
-  function matches(el){
-    var q = searchInput.value.trim().toLowerCase();
-    var tags = (el.getAttribute('data-tags') || '').toLowerCase();
-    var text = el.textContent.toLowerCase();
-    if(activeFilter !== 'all' && tags.indexOf(activeFilter) === -1) return false;
-    if(q && text.indexOf(q) === -1) return false;
-    return true;
-  }
-
-  function applyFilters(){
-    var anyVisible = false;
-    document.querySelectorAll('.card[data-tags]').forEach(function(card){
-      var ok = matches(card);
-      card.classList.toggle('hidden', !ok);
-      if(ok) anyVisible = true;
-    });
-    // Hide a section if all its cards are hidden
-    document.querySelectorAll('section').forEach(function(sec){
-      var cards = sec.querySelectorAll('.card[data-tags]');
-      if(!cards.length) return;
-      var visible = false;
-      cards.forEach(function(c){ if(!c.classList.contains('hidden')) visible = true; });
-      sec.style.display = visible ? '' : 'none';
-    });
-  }
-
-  /* ---------- BOOT SEQUENCE (runs LAST) ---------- */
-  try { applyTheme(root.getAttribute('data-theme') || 'dark'); }
-  catch(e){ console.error('theme init failed:', e); }
-
-  try { applySize(sizeIdx); }
-  catch(e){ console.error('size init failed:', e); }
-
-  try { setLang(localStorage.getItem('bhakti-lang') === 'ta'); }
-  catch(e){ console.error('lang init failed:', e); }
-
-  try { applyFilters(); }
-  catch(e){ console.error('filters init failed:', e); }
-
-})();
-</script>
-
-<script>
-/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
-(function(){
-  function fit(){
-    var bar = document.querySelector('.controls');
-    if(!bar) return;
-    document.body.style.paddingTop = '';
-    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
-    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
-    if(need > base) document.body.style.paddingTop = need + 'px';
-  }
-  window.addEventListener('resize', fit);
-  window.addEventListener('load', fit);
-  fit();
-})();
-</script>
+<script src="assets/site.js?v=420f3627"></script>
 </body>
 </html>

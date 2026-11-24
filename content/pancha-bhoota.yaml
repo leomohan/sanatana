@@ -1,0 +1,168 @@
+page:
+  file: pancha-bhoota.html
+  layout: page
+  title: Pancha Bhoota Sthalams — Shiva as the Five Elements
+  description: Interactive map of the five Pancha Bhoota Sthalams — Shiva temples for earth, water, fire, air and
+    space at Kanchipuram, Thiruvanaikaval, Tiruvannamalai, Srikalahasti and Chidambaram.
+  favicon: 🔥
+  search: Search elements, temples, legends…
+  native: ta
+  palette:
+    muruga: ['#ff9f43', '#b9770e']
+    muruga-2: ['#a55eea', '#5f27cd']
+  gradient: [muruga, muruga-2]
+  primary: muruga
+  h1: Pancha Bhoota Sthalams
+  intro: 'Five Shiva temples in South India, each worshipped as one of the five elements (<em>pancha bhuta</em>)
+    from which the world is made: earth, water, fire, air and space. Four are in Tamil Nadu; the air temple, Srikalahasti,
+    is in Andhra Pradesh.'
+  legend:
+  - {label: Earth, color: '#b9770e'}
+  - {label: Water, color: '#2e86de'}
+  - {label: Fire, color: '#ee5253'}
+  - {label: Air, color: '#10ac84'}
+  - {label: Space, color: '#5f27cd'}
+  filters:
+  - {value: all, label: All Five, color: muruga}
+  - {value: earth, label: 🌍 Earth, color: '#b9770e'}
+  - {value: water, label: 💧 Water, color: '#2e86de'}
+  - {value: fire, label: 🔥 Fire, color: '#ee5253'}
+  - {value: air, label: 🌬️ Air, color: '#10ac84'}
+  - {value: space, label: ✨ Space, color: '#5f27cd'}
+  footer: [🔥 A visual map of the Pancha Bhoota Sthalams · Legends follow temple tradition, Map data © OpenStreetMap
+      contributors · Coordinates are approximate]
+blocks:
+- {type: filters}
+- {type: map, label: Map of the five Pancha Bhoota Sthalams}
+- type: cards
+  cards:
+  - id: prithvi
+    anchor: true
+    title: Earth · Ekambareswarar
+    native: நிலம் · ஏகாம்பரேஸ்வரர், காஞ்சிபுரம்
+    subtitle: Prithvi Lingam — Kanchipuram
+    num: '1'
+    accent: '#b9770e'
+    tags: earth
+    body: Parvati is said to have shaped a lingam of sand under a mango tree on the banks of the Vegavati and, when
+      the river flooded, held it in her embrace to protect it. Shiva appeared as Ekambareswarar, "Lord of the mango
+      tree". Because the lingam is of earth, the usual water abhishekam is not performed on it. The temple's ancient
+      mango tree has four branches said to stand for the four Vedas, and the complex even holds a Divya Desam of
+      Vishnu.
+    facts:
+    - [Shiva as, Ekambareswarar (Ekambaranathar)]
+    - [Goddess, 'Parvati, worshipped in the legend as Kamakshi']
+    - [Place, 'Kanchipuram, Tamil Nadu']
+    chips:
+    - {text: 🌍 Earth, style: event}
+    - Sand lingam
+    - Sacred mango tree
+    journey: {label: 🌍 Earth, sub: Kanchipuram}
+    map: {lat: 12.8466, lng: 79.6973, popup: Earth (Prithvi) · Kanchipuram, name: 'Ekambareswarar, Kanchipuram —
+        Earth'}
+  - id: appu
+    anchor: true
+    title: Water · Jambukeswarar
+    native: நீர் · ஜம்புகேஸ்வரர், திருவானைக்காவல்
+    subtitle: Appu Lingam — Thiruvanaikaval, Tiruchirappalli
+    num: '2'
+    accent: '#2e86de'
+    tags: water
+    body: An underground spring keeps the lingam in the low sanctum partly under water. Akilandeswari is said to
+      have fashioned it from Kaveri water under a jambu (naval) tree. The temple's name recalls an elephant (<em>aanai</em>)
+      that bathed the lingam each day and a spider that spun a web to shade it; tradition holds the spider was reborn
+      as the Chola king Kochengat, credited with building the shrine. It stands just across the river from Srirangam.
+    facts:
+    - [Shiva as, Jambukeswarar]
+    - [Goddess, Akilandeswari]
+    - [Place, 'Thiruvanaikaval, Tiruchirappalli, Tamil Nadu']
+    chips:
+    - {text: 💧 Water, style: event}
+    - Underground spring
+    - Elephant &amp; spider
+    journey: {label: 💧 Water, sub: Thiruvanaikaval}
+    map: {lat: 10.8533, lng: 78.7056, popup: Water (Appu) · Thiruvanaikaval, name: 'Jambukeswarar, Thiruvanaikaval
+        — Water'}
+  - id: agni
+    anchor: true
+    title: Fire · Annamalaiyar
+    native: நெருப்பு · அண்ணாமலையார், திருவண்ணாமலை
+    subtitle: Agni Lingam — Tiruvannamalai
+    num: '3'
+    accent: '#ee5253'
+    tags: fire
+    body: Shiva once appeared as an endless column of fire whose top and bottom Brahma and Vishnu could not find;
+      the red hill of Arunachala behind the temple is worshipped as that pillar, and as Shiva himself. On Karthigai
+      Deepam a great beacon is lit on the summit, and on every full moon pilgrims walk the roughly 14 km path around
+      the hill (girivalam).
+    facts:
+    - [Shiva as, Annamalaiyar (Arunachaleswarar)]
+    - [Goddess, Unnamulai Amman]
+    - [Place, 'Tiruvannamalai, Tamil Nadu']
+    chips:
+    - {text: 🔥 Fire, style: event}
+    - Arunachala hill
+    - Karthigai Deepam
+    journey: {label: 🔥 Fire, sub: Tiruvannamalai}
+    map: {lat: 12.2316, lng: 79.0672, popup: Fire (Agni) · Tiruvannamalai, name: 'Annamalaiyar, Tiruvannamalai —
+        Fire'}
+  - id: vayu
+    anchor: true
+    title: Air · Srikalahasteeswara
+    native: காற்று · காளத்திநாதர், திருக்காளத்தி
+    subtitle: Vayu Lingam — Srikalahasti, Andhra Pradesh
+    num: '4'
+    accent: '#10ac84'
+    tags: air
+    body: A lamp in the sanctum is seen to flicker constantly though no breeze enters — taken as the presence of
+      Vayu. The town's name joins Sri (spider), Kala (serpent) and Hasti (elephant), three creatures said to have
+      worshipped the lingam. It is also where the hunter <a href="an.html">Kannappa Nayanar</a> offered his own
+      eyes to Shiva, and it is visited as a Rahu–Ketu kshetra.
+    facts:
+    - [Shiva as, Srikalahasteeswara]
+    - [Goddess, Gnana Prasunambika]
+    - [Place, 'Srikalahasti, Tirupati district, Andhra Pradesh · on the Swarnamukhi river']
+    chips:
+    - {text: 🌬️ Air, style: event}
+    - Flickering lamp
+    - Kannappa
+    journey: {label: 🌬️ Air, sub: Srikalahasti}
+    map: {lat: 13.7494, lng: 79.6983, popup: Air (Vayu) · Srikalahasti, name: 'Srikalahasteeswara, Srikalahasti
+        — Air'}
+  - id: akasha
+    anchor: true
+    title: Space · Nataraja
+    native: ஆகாயம் · நடராஜர், சிதம்பரம் (தில்லை)
+    subtitle: Akasha Lingam — Chidambaram
+    num: '5'
+    accent: '#5f27cd'
+    tags: space
+    body: 'Here Shiva is worshipped chiefly as Nataraja, performing the Ananda Tandava, rather than as a lingam.
+      Beside him, behind a curtain, hangs a garland of golden bilva leaves before what appears to be empty space:
+      the Chidambara Rahasyam, the "secret of Chidambaram", which represents Shiva as formless space. For Tamil
+      Saivas this is simply <em>Koil</em>, "the temple".'
+    facts:
+    - [Shiva as, Nataraja (Sabhanayaka)]
+    - [Goddess, Sivakami]
+    - [Place, 'Chidambaram, Cuddalore district, Tamil Nadu']
+    chips:
+    - {text: ✨ Space, style: event}
+    - Chidambara Rahasyam
+    - Ananda Tandava
+    journey: {label: ✨ Space, sub: Chidambaram}
+    map: {lat: 11.3994, lng: 79.6933, popup: Space (Akasha) · Chidambaram, name: 'Nataraja, Chidambaram — Space'}
+  empty: No sites match your search. Try another name or clear the filter.
+- type: story
+  title: A curious alignment
+  paragraphs: ['Three of the five — Srikalahasti (air), Kanchipuram (earth) and Chidambaram (space) — lie within
+      about a hundredth of a degree of the same longitude, close to 79.7°E, across some 260 km from north to south.
+      Visitors often remark on it; the texts that praise these temples do not mention it.', 'All five are also Paadal
+      Petra Sthalams, sung by the Nayanmars in the Tevaram — see the <a href="an.html">Azhwars &amp; Nayanmars</a>
+      and <a href="shiva-muruga.html">Shiva &amp; Muruga</a> pages.']
+- type: sources
+  items:
+  - {label: 'Ekambareswarar Temple, Kanchipuram — Wikipedia', url: 'https://en.wikipedia.org/wiki/Ekambareswarar_Temple'}
+  - {label: 'Jambukeswarar Temple, Thiruvanaikaval — Wikipedia', url: 'https://en.wikipedia.org/wiki/Jambukeswarar_Temple,_Thiruvanaikaval'}
+  - {label: Arunachalesvara (Annamalaiyar) Temple — Wikipedia, url: 'https://en.wikipedia.org/wiki/Annamalaiyar_Temple'}
+  - {label: Srikalahasteeswara Temple — Wikipedia, url: 'https://en.wikipedia.org/wiki/Srikalahasteeswara_temple'}
+  - {label: 'Nataraja Temple, Chidambaram — Wikipedia', url: 'https://en.wikipedia.org/wiki/Nataraja_Temple,_Chidambaram'}

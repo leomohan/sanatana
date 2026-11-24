@@ -3,266 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jyotisha — Grahas, Rashis, Nakshatras, Panchanga & Samvatsaras</title>
+<title>Jyotisha — Grahas, Rashis, Nakshatras, Panchanga &amp; Samvatsaras</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌌</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=420f3627">
+<style>:root,[data-theme="dark"]{--graha:#f7b731; --rashi:#45aaf2; --nakshatra:#a55eea; --panchanga:#26de81; --samvatsara:#fc5c65;} [data-theme="light"]{--graha:#c98a00; --rashi:#1f7fc4; --nakshatra:#8b45d6; --panchanga:#12995a; --samvatsara:#d63c46;} :root{--primary:var(--nakshatra); --grad-h:linear-gradient(90deg,var(--graha),var(--rashi),var(--nakshatra),var(--panchanga),var(--samvatsara)); --grad-v:linear-gradient(var(--graha),var(--rashi),var(--nakshatra),var(--panchanga),var(--samvatsara));}</style>
 <script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
   (function(){
-    var savedTheme = localStorage.getItem('jyotisha-theme');
-    var theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
-    var savedSize = localStorage.getItem('jyotisha-size') || '1';
-    document.documentElement.style.setProperty('--scale', savedSize);
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
   })();
 </script>
-<style>
-  :root,[data-theme="dark"]{
-    --bg:#0e0b1a; --bg-grad:#1b1435;
-    --card:#241d40; --card-2:#161129;
-    --border:rgba(255,255,255,.06); --border-strong:rgba(255,255,255,.14);
-    --chip-bg:rgba(255,255,255,.06); --chip-border:rgba(255,255,255,.08);
-    --text:#eae6f7; --muted:#a29ac2;
-    --shadow:0 14px 34px rgba(0,0,0,.5);
-    --graha:#f7b731; --rashi:#45aaf2; --nakshatra:#a55eea;
-    --panchanga:#26de81; --samvatsara:#fc5c65;
-    --root-text:#1a0f24;
-  }
-  [data-theme="light"]{
-    --bg:#fdf9f3; --bg-grad:#fff4e6;
-    --card:#ffffff; --card-2:#fffaf2;
-    --border:rgba(60,40,20,.10); --border-strong:rgba(60,40,20,.22);
-    --chip-bg:rgba(120,80,30,.07); --chip-border:rgba(120,80,30,.14);
-    --text:#2a1f14; --muted:#6b5c4a;
-    --shadow:0 14px 34px rgba(90,60,20,.15);
-    --graha:#c98a00; --rashi:#1f7fc4; --nakshatra:#8b45d6;
-    --panchanga:#12995a; --samvatsara:#d63c46;
-    --root-text:#3a1a08;
-  }
-
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  :root{ --scale:1; }
-
-  body{
-    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    background:radial-gradient(circle at top,var(--bg-grad) 0%,var(--bg) 60%);
-    color:var(--text);
-    min-height:100vh;
-    padding:90px 20px 80px;
-    line-height:1.6;
-    font-size:calc(17px * var(--scale));
-    transition:background .35s ease,color .35s ease;
-  }
-
-  /* CONTROL BAR */
-  .controls{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
-    padding:12px 16px;
-    background:color-mix(in srgb,var(--bg) 88%,transparent);
-    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border-strong);
-  }
-  .ctrl-group{
-    display:flex; align-items:center; gap:6px;
-    background:var(--card); border:1px solid var(--border-strong);
-    border-radius:50px; padding:5px;
-  }
-  .ctrl-btn{
-    font-family:inherit; font-size:.85rem; font-weight:600;
-    color:var(--text); background:transparent; border:none; border-radius:40px;
-    padding:7px 13px; cursor:pointer; display:flex; align-items:center; gap:6px;
-    transition:background .2s,color .2s; white-space:nowrap;
-  }
-  .ctrl-btn:hover{background:var(--chip-bg);}
-  .ctrl-btn:focus-visible{outline:2px solid var(--nakshatra);outline-offset:2px;}
-  .ctrl-btn.active{background:var(--chip-bg);box-shadow:inset 0 0 0 1px var(--border-strong);}
-
-  .theme-toggle{padding:5px 12px 5px 6px;}
-  .toggle-track{position:relative;width:44px;height:24px;border-radius:20px;background:var(--chip-bg);border:1px solid var(--border-strong);flex-shrink:0;transition:background .3s;}
-  .toggle-knob{position:absolute;top:1px;left:1px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#ffcf6b,#ff9f43);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .3s cubic-bezier(.4,1.6,.5,1);box-shadow:0 2px 6px rgba(0,0,0,.3);}
-  [data-theme="light"] .toggle-knob{transform:translateX(20px);}
-
-  .size-btn{width:34px;height:34px;justify-content:center;padding:0;font-size:.9rem;font-weight:800;border-radius:50%;}
-  .size-val{min-width:40px;text-align:center;font-size:.8rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;}
-
-  .search-wrap{
-    display:flex;align-items:center;gap:8px;
-    background:var(--card);border:1px solid var(--border-strong);
-    border-radius:50px;padding:6px 14px;flex:1 1 180px;max-width:320px;
-  }
-  .search-wrap:focus-within{border-color:var(--nakshatra);}
-  .search-wrap input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:inherit;font-size:.9rem;min-width:0;}
-  .search-wrap input::placeholder{color:var(--muted);}
-
-  .lang-toggle .ctrl-btn.active{color:var(--graha);}
-
-  /* FILTERS */
-  .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:1100px;margin:0 auto 30px;}
-  .filter-chip{
-    font-family:inherit;font-size:.82rem;font-weight:600;
-    padding:7px 15px;border-radius:30px;cursor:pointer;
-    background:var(--card);color:var(--muted);
-    border:1px solid var(--border-strong);transition:all .2s;
-  }
-  .filter-chip:hover{border-color:var(--muted);transform:translateY(-1px);}
-  .filter-chip:focus-visible{outline:2px solid var(--nakshatra);outline-offset:2px;}
-  .filter-chip.active{background:var(--fc,var(--graha));color:#fff;border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--fc,var(--graha)) 40%,transparent);}
-
-  /* LAYOUT */
-  header{text-align:center;max-width:900px;margin:0 auto 34px;}
-  header h1{
-    font-size:clamp(1.6rem,4vw,2.6rem);
-    background:linear-gradient(90deg,var(--graha),var(--rashi),var(--nakshatra),var(--panchanga),var(--samvatsara));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    font-weight:800;letter-spacing:.5px;margin-bottom:12px;
-  }
-  header p{color:var(--muted);font-size:1.05rem;max-width:720px;margin:0 auto;}
-
-  .legend{display:flex;flex-wrap:wrap;gap:12px 18px;justify-content:center;margin-top:22px;}
-  .legend span{display:flex;align-items:center;gap:7px;font-size:.85rem;color:var(--muted);}
-  .dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex-shrink:0;}
-
-  section{margin:50px auto;max-width:1280px;}
-  .section-title{font-size:1.4rem;font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:12px;}
-  .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,currentColor,transparent);opacity:.4;}
-
-  /* CARDS */
-  .grid{display:grid;gap:20px;}
-  .grid.v3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
-  .grid.v4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
-
-  .card{
-    position:relative;
-    background:linear-gradient(160deg,var(--card),var(--card-2));
-    border-radius:18px;padding:22px 20px 20px;
-    border:1px solid var(--border);
-    transition:transform .25s ease,box-shadow .25s ease,border-color .25s,opacity .3s;
-    overflow:hidden;
-  }
-  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent,#888);}
-  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--accent,#888);}
-  .card.hidden{display:none;}
-
-  .card h3{font-size:1.1rem;margin-bottom:4px;color:var(--accent,#fff);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-  .card h3 .sanskrit{font-size:.8rem;font-weight:500;opacity:.8;display:none;}
-  body.show-sanskrit .card h3 .sanskrit{display:inline;}
-  .card .tag{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:8px;display:block;}
-  .card p{font-size:.9rem;color:var(--text);opacity:.9;}
-
-  .facts{display:grid;gap:6px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--border-strong);}
-  .fact{display:grid;grid-template-columns:80px 1fr;gap:8px;font-size:.82rem;align-items:baseline;}
-  .fact dt{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);}
-  .fact dd{color:var(--text);}
-
-  .graha-card{--accent:var(--graha);}
-  .rashi-card{--accent:var(--rashi);}
-  .nak-card{--accent:var(--nakshatra);}
-  .panch-card{--accent:var(--panchanga);}
-
-  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
-  .chip{font-size:.72rem;padding:3px 9px;border-radius:20px;background:var(--chip-bg);color:var(--muted);border:1px solid var(--chip-border);}
-  .chip.theme-tag{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,transparent);}
-
-  /* NAKSHATRA TABLE */
-  .table-wrap{
-    overflow-x:auto;
-    border-radius:18px;
-    border:1px solid var(--border);
-    background:var(--card);
-    box-shadow:var(--shadow);
-  }
-  .nak-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:720px;
-    font-size:.85rem;
-  }
-  .nak-table th, .nak-table td{
-    padding:11px 14px;
-    text-align:left;
-    vertical-align:top;
-    border-bottom:1px solid var(--border);
-  }
-  .nak-table thead th{
-    position:sticky;top:0;
-    background:linear-gradient(160deg,var(--card),var(--card-2));
-    font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;
-    color:var(--nakshatra);
-    border-bottom:2px solid var(--border-strong);
-    white-space:nowrap;
-  }
-  .nak-table tbody tr:last-child td{border-bottom:none;}
-  .nak-table tbody tr:hover td{background:color-mix(in srgb,var(--bg) 60%,transparent);}
-  .nak-table td:first-child{font-weight:700;color:var(--nakshatra);white-space:nowrap;}
-
-  /* SAMVATSARA GRID */
-  .sam-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-    gap:8px;
-  }
-  .sam-cell{
-    display:flex; align-items:center; gap:8px;
-    background:var(--card); border:1px solid var(--border);
-    border-radius:10px; padding:8px 10px;
-    font-size:.8rem;
-    transition:border-color .2s;
-  }
-  .sam-cell:hover{border-color:var(--samvatsara);}
-  .sam-cell .num{
-    font-size:.65rem; font-weight:800; color:var(--samvatsara);
-    background:var(--chip-bg); border-radius:6px;
-    padding:2px 6px; flex-shrink:0;
-  }
-  .sam-cell .name{font-weight:600; color:var(--text);}
-
-  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:60px;}
-
-  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important;}}
-  @media (max-width:680px){
-    body{padding-top:130px;}
-    .controls{gap:8px;}
-    .search-wrap{max-width:none;flex:1 1 100%;order:5;}
-    .ctrl-btn{padding:6px 10px;font-size:.8rem;}
-    .size-btn{width:30px;height:30px;}
-    .fact{grid-template-columns:1fr;}
-    .fact dt{margin-top:2px;}
-    .sam-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr));}
-  }
-
-  /* ---------- SITE NAV (home button + footer links) ---------- */
-  .home-btn{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:7px 14px;border-radius:999px;
-    background:var(--card);color:var(--text);
-    border:1px solid var(--border-strong,var(--border));
-    font:inherit;font-size:.85rem;font-weight:700;text-decoration:none;
-    white-space:nowrap;transition:transform .2s,border-color .2s;
-  }
-  .home-btn:hover{transform:translateY(-1px);border-color:var(--muted);}
-  .home-btn:focus-visible{outline:2px solid var(--muted);outline-offset:2px;}
-  .site-nav{
-    display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;
-    max-width:980px;margin:26px auto 4px;padding-top:20px;
-    border-top:1px solid var(--border);
-  }
-  .site-nav a{
-    display:inline-flex;align-items:center;gap:5px;
-    padding:6px 12px;border-radius:999px;
-    font-size:.8rem;font-weight:600;text-decoration:none;
-    color:var(--muted);background:var(--card);
-    border:1px solid var(--border);
-    transition:color .2s,border-color .2s,transform .2s;
-  }
-  .site-nav a:hover{color:var(--text);border-color:var(--muted);transform:translateY(-1px);}
-  .site-nav a[aria-current="page"]{color:var(--text);border-color:var(--text);pointer-events:none;}
-  .site-copy{margin-top:14px;font-size:.78rem;color:var(--muted);text-align:center;}
-  @media (max-width:680px){ .home-btn .home-label{display:none;} .home-btn{padding:7px 11px;} }
-</style>
 </head>
 <body>
-
-<div class="controls" role="toolbar" aria-label="Map controls">
+<div class="controls" role="toolbar" aria-label="Page controls">
   <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
   <div class="search-wrap">
     <span aria-hidden="true">🔍</span>
@@ -270,7 +25,7 @@
   </div>
   <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
     <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
-    <button class="ctrl-btn" id="langSa" aria-pressed="false">संस्कृतम्</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">संस्कृतम्</button>
   </div>
   <div class="ctrl-group" role="group" aria-label="Text size">
     <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
@@ -282,389 +37,132 @@
     <span id="toggleLabel">Light</span>
   </button>
 </div>
-
 <header>
   <h1>Jyotisha</h1>
   <p>The architecture of Vedic time and sky — the nine Grahas that rule, the twelve Rashis and twenty-seven Nakshatras they govern, the five limbs of the Panchanga that organise daily life, and the sixty-year Samvatsara cycle that turns the long wheel.</p>
-  <div class="legend">
-    <span><i class="dot" style="background:var(--graha)"></i>9 Grahas</span>
-    <span><i class="dot" style="background:var(--rashi)"></i>12 Rashis</span>
-    <span><i class="dot" style="background:var(--nakshatra)"></i>27 Nakshatras</span>
-    <span><i class="dot" style="background:var(--panchanga)"></i>Panchanga</span>
-    <span><i class="dot" style="background:var(--samvatsara)"></i>60 Samvatsaras</span>
-  </div>
+  <div class="legend"><span><i class="dot" style="background:var(--graha)"></i>9 Grahas</span><span><i class="dot" style="background:var(--rashi)"></i>12 Rashis</span><span><i class="dot" style="background:var(--nakshatra)"></i>27 Nakshatras</span><span><i class="dot" style="background:var(--panchanga)"></i>Panchanga</span><span><i class="dot" style="background:var(--samvatsara)"></i>60 Samvatsaras</span></div>
 </header>
-
-<div class="filters" role="group" aria-label="Jump to section">
-  <button class="filter-chip active" data-filter="all" style="--fc:var(--graha)">All Sections</button>
-  <button class="filter-chip" data-filter="graha" style="--fc:var(--graha)">🪐 Grahas</button>
-  <button class="filter-chip" data-filter="rashi" style="--fc:var(--rashi)">♈ Rashis</button>
-  <button class="filter-chip" data-filter="nakshatra" style="--fc:var(--nakshatra)">✨ Nakshatras</button>
-  <button class="filter-chip" data-filter="panchanga" style="--fc:var(--panchanga)">📅 Panchanga</button>
-  <button class="filter-chip" data-filter="samvatsara" style="--fc:var(--samvatsara)">🔄 Samvatsaras</button>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--graha)">All Sections</button>
+  <button class="filter-chip" data-filter="graha" aria-pressed="false" style="--fc:var(--graha)">🪐 Grahas</button>
+  <button class="filter-chip" data-filter="rashi" aria-pressed="false" style="--fc:var(--rashi)">♈ Rashis</button>
+  <button class="filter-chip" data-filter="nakshatra" aria-pressed="false" style="--fc:var(--nakshatra)">✨ Nakshatras</button>
+  <button class="filter-chip" data-filter="panchanga" aria-pressed="false" style="--fc:var(--panchanga)">📅 Panchanga</button>
+  <button class="filter-chip" data-filter="samvatsara" aria-pressed="false" style="--fc:var(--samvatsara)">🔄 Samvatsaras</button>
 </div>
-
-<!-- ========== 1. THE NINE GRAHAS ========== -->
-<section data-section="graha">
+<section data-block data-section="graha">
   <h2 class="section-title" style="color:var(--graha)">🪐 The Nine Grahas (Planetary Rulers)</h2>
-  <p style="color:var(--muted);margin-bottom:22px;max-width:760px;font-size:.95rem">The Navagraha are the governors of the sky — every Rashi and Nakshatra is ruled by one of them. They are worshipped as deities and their positions shape the birth chart (Kundali). </p>
+  <p class="section-intro">The Navagraha are the governors of the sky — every Rashi and Nakshatra is ruled by one of them. They are worshipped as deities and their positions shape the birth chart (Kundali). Each Graha has its own temple in the Kaveri delta — see the <a href="navagraha.html" style="color:var(--graha);font-weight:600">Navagraha Temples</a> map.</p>
   <div class="grid v3">
-
-    <article class="card graha-card" data-tags="graha" data-id="surya">
-      <h3>Surya <span class="sanskrit">सूर्य</span></h3>
-      <span class="tag">Sun</span>
-      <p>The head of the Navagrahas. Rules the soul, vitality, authority, and the father. Exalted in Mesha (Aries).</p>
-      <dl class="facts">
-        <div class="fact"><dt>Rules</dt><dd>Simha (Leo)</dd></div>
-        <div class="fact"><dt>Nature</dt><dd>Malefic (mildly)</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">☀️ Sun</span></div>
-    </article>
-
-    <article class="card graha-card" data-tags="graha" data-id="chandra">
-      <h3>Chandra <span class="sanskrit">चन्द्र</span></h3>
-      <span class="tag">Moon</span>
-      <p>Rules the mind, emotions, and the mother. The Moon's position defines the Rashi (Janma Rashi) and the Nakshatra of birth.</p>
-      <dl class="facts">
-        <div class="fact"><dt>Rules</dt><dd>Karka (Cancer)</dd></div>
-        <div class="fact"><dt>Nature</dt><dd>Benefic</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🌙 Moon</span></div>
-    </article>
-
-    <article class="card graha-card" data-tags="graha" data-id="mangala">
-      <h3>Mangala <span class="sanskrit">मङ्गल</span></h3>
-      <span class="tag">Mars</span>
-      <p>Rules courage, energy, conflict, and the siblings. Exalted in Makara (Capricorn).</p>
-      <dl class="facts">
-        <div class="fact"><dt>Rules</dt><dd>Mesha, Vrischika</dd></div>
-        <div class="fact"><dt>Nature</dt><dd>Malefic</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🔴 Mars</span></div>
-    </article>
-
-    <article class="card graha-card" data-tags="graha" data-id="budha">
-      <h3>Budha <span class="sanskrit">बुध</span></h3>
-      <span class="tag">Mercury</span>
-      <p>Rules intellect, communication, and commerce. Exalted in Kanya (Virgo).</p>
-      <dl class="facts">
-        <div class="fact"><dt>Rules</dt><dd>Mithuna, Kanya</dd></div>
-        <div class="fact"><dt>Nature</dt><dd>Benefic (with benefics)</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🟢 Mercury</span></div>
-    </article>
-
-    <article class="card graha-card" data-tags="graha" data-id="guru">
-      <h3>Guru (Brihaspati) <span class="sanskrit">गुरु</span></h3>
-      <span class="tag">Jupiter</span>
-      <p>The teacher of the gods. Rules wisdom, dharma, expansion, and fortune. Exalted in Karka (Cancer).</p>
-      <dl class="facts">
-        <div class="fact"><dt>Rules</dt><dd>Dhanus, Meena</dd></div>
-        <div class="fact"><dt>Nature</dt><dd>Benefic</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🟡 Jupiter</span></div>
-    </article>
-
-    <article class="card graha-card" data-tags="graha" data-id="shukra">
-      <h3>Shukra <span class="sanskrit">शुक्र</span></h3>
-      <span class="tag">Venus</span>
-      <p>Rules love, beauty, art, and pleasure. Exalted in Meena (Pisces).</p>
-      <dl class="facts">
-        <div class="fact"><dt>Rules</dt><dd>Vrishabha, Tula</dd></div>
-        <div class="fact"><dt>Nature</dt><dd>Benefic</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">💎 Venus</span></div>
-    </article>
-
-    <article class="card graha-card" data-tags="graha" data-id="shani">
-      <h3>Shani <span class="sanskrit">शनि</span></h3>
-      <span class="tag">Saturn</span>
-      <p>Rules discipline, karma, delay, and endurance. Exalted in Tula (Libra). The great teacher through hardship.</p>
-      <dl class="facts">
-        <div class="fact"><dt>Rules</dt><dd>Makara, Kumbha</dd></div>
-        <div class="fact"><dt>Nature</dt><dd>Malefic</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🔵 Saturn</span></div>
-    </article>
-
-    <article class="card graha-card" data-tags="graha" data-id="rahu">
-      <h3>Rahu <span class="sanskrit">राहु</span></h3>
-      <span class="tag">North Lunar Node</span>
-      <p>The eclipse-causing node. Rules illusion, ambition, and the unconventional. Always retrograde.</p>
-      <dl class="facts">
-        <div class="fact"><dt>Rules</dt><dd>Kumbha (co-ruler)</dd></div>
-        <div class="fact"><dt>Nature</dt><dd>Malefic</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">🐍 Rahu</span></div>
-    </article>
-
-    <article class="card graha-card" data-tags="graha" data-id="ketu">
-      <h3>Ketu <span class="sanskrit">केतु</span></h3>
-      <span class="tag">South Lunar Node</span>
-      <p>Rules detachment, spirituality, and liberation. The headless node that points toward moksha.</p>
-      <dl class="facts">
-        <div class="fact"><dt>Rules</dt><dd>Vrischika (co-ruler)</dd></div>
-        <div class="fact"><dt>Nature</dt><dd>Malefic</dd></div>
-      </dl>
-      <div class="chips"><span class="chip theme-tag">☄️ Ketu</span></div>
-    </article>
-
+  <article class="card" data-item data-id="surya" data-tags="graha" style="--accent:var(--graha)">
+  <h3>Surya <span class="native">सूर्य</span></h3><span class="tag">Sun</span><p>The head of the Navagrahas. Rules the soul, vitality, authority, and the father. Exalted in Mesha (Aries).</p><dl class="facts"><div class="fact"><dt>Rules</dt><dd>Simha (Leo)</dd></div><div class="fact"><dt>Nature</dt><dd>Malefic (mildly)</dd></div><div class="fact"><dt>Temple</dt><dd><a href="navagraha.html#surya" style="color:inherit;font-weight:600">🛕 Suryanar Kovil →</a></dd></div></dl><div class="chips"><span class="chip theme-tag">☀️ Sun</span></div>
+</article>
+  <article class="card" data-item data-id="chandra" data-tags="graha" style="--accent:var(--graha)">
+  <h3>Chandra <span class="native">चन्द्र</span></h3><span class="tag">Moon</span><p>Rules the mind, emotions, and the mother. The Moon's position defines the Rashi (Janma Rashi) and the Nakshatra of birth.</p><dl class="facts"><div class="fact"><dt>Rules</dt><dd>Karka (Cancer)</dd></div><div class="fact"><dt>Nature</dt><dd>Benefic</dd></div><div class="fact"><dt>Temple</dt><dd><a href="navagraha.html#chandra" style="color:inherit;font-weight:600">🛕 Thingalur →</a></dd></div></dl><div class="chips"><span class="chip theme-tag">🌙 Moon</span></div>
+</article>
+  <article class="card" data-item data-id="mangala" data-tags="graha" style="--accent:var(--graha)">
+  <h3>Mangala <span class="native">मङ्गल</span></h3><span class="tag">Mars</span><p>Rules courage, energy, conflict, and the siblings. Exalted in Makara (Capricorn).</p><dl class="facts"><div class="fact"><dt>Rules</dt><dd>Mesha, Vrischika</dd></div><div class="fact"><dt>Nature</dt><dd>Malefic</dd></div><div class="fact"><dt>Temple</dt><dd><a href="navagraha.html#mangala" style="color:inherit;font-weight:600">🛕 Vaitheeswaran Koil →</a></dd></div></dl><div class="chips"><span class="chip theme-tag">🔴 Mars</span></div>
+</article>
+  <article class="card" data-item data-id="budha" data-tags="graha" style="--accent:var(--graha)">
+  <h3>Budha <span class="native">बुध</span></h3><span class="tag">Mercury</span><p>Rules intellect, communication, and commerce. Exalted in Kanya (Virgo).</p><dl class="facts"><div class="fact"><dt>Rules</dt><dd>Mithuna, Kanya</dd></div><div class="fact"><dt>Nature</dt><dd>Benefic (with benefics)</dd></div><div class="fact"><dt>Temple</dt><dd><a href="navagraha.html#budha" style="color:inherit;font-weight:600">🛕 Thiruvenkadu →</a></dd></div></dl><div class="chips"><span class="chip theme-tag">🟢 Mercury</span></div>
+</article>
+  <article class="card" data-item data-id="guru" data-tags="graha" style="--accent:var(--graha)">
+  <h3>Guru (Brihaspati) <span class="native">गुरु</span></h3><span class="tag">Jupiter</span><p>The teacher of the gods. Rules wisdom, dharma, expansion, and fortune. Exalted in Karka (Cancer).</p><dl class="facts"><div class="fact"><dt>Rules</dt><dd>Dhanus, Meena</dd></div><div class="fact"><dt>Nature</dt><dd>Benefic</dd></div><div class="fact"><dt>Temple</dt><dd><a href="navagraha.html#guru" style="color:inherit;font-weight:600">🛕 Alangudi →</a></dd></div></dl><div class="chips"><span class="chip theme-tag">🟡 Jupiter</span></div>
+</article>
+  <article class="card" data-item data-id="shukra" data-tags="graha" style="--accent:var(--graha)">
+  <h3>Shukra <span class="native">शुक्र</span></h3><span class="tag">Venus</span><p>Rules love, beauty, art, and pleasure. Exalted in Meena (Pisces).</p><dl class="facts"><div class="fact"><dt>Rules</dt><dd>Vrishabha, Tula</dd></div><div class="fact"><dt>Nature</dt><dd>Benefic</dd></div><div class="fact"><dt>Temple</dt><dd><a href="navagraha.html#shukra" style="color:inherit;font-weight:600">🛕 Kanjanur →</a></dd></div></dl><div class="chips"><span class="chip theme-tag">💎 Venus</span></div>
+</article>
+  <article class="card" data-item data-id="shani" data-tags="graha" style="--accent:var(--graha)">
+  <h3>Shani <span class="native">शनि</span></h3><span class="tag">Saturn</span><p>Rules discipline, karma, delay, and endurance. Exalted in Tula (Libra). The great teacher through hardship.</p><dl class="facts"><div class="fact"><dt>Rules</dt><dd>Makara, Kumbha</dd></div><div class="fact"><dt>Nature</dt><dd>Malefic</dd></div><div class="fact"><dt>Temple</dt><dd><a href="navagraha.html#shani" style="color:inherit;font-weight:600">🛕 Thirunallar →</a></dd></div></dl><div class="chips"><span class="chip theme-tag">🔵 Saturn</span></div>
+</article>
+  <article class="card" data-item data-id="rahu" data-tags="graha" style="--accent:var(--graha)">
+  <h3>Rahu <span class="native">राहु</span></h3><span class="tag">North Lunar Node</span><p>The eclipse-causing node. Rules illusion, ambition, and the unconventional. Always retrograde.</p><dl class="facts"><div class="fact"><dt>Rules</dt><dd>Kumbha (co-ruler)</dd></div><div class="fact"><dt>Nature</dt><dd>Malefic</dd></div><div class="fact"><dt>Temple</dt><dd><a href="navagraha.html#rahu" style="color:inherit;font-weight:600">🛕 Thirunageswaram →</a></dd></div></dl><div class="chips"><span class="chip theme-tag">🐍 Rahu</span></div>
+</article>
+  <article class="card" data-item data-id="ketu" data-tags="graha" style="--accent:var(--graha)">
+  <h3>Ketu <span class="native">केतु</span></h3><span class="tag">South Lunar Node</span><p>Rules detachment, spirituality, and liberation. The headless node that points toward moksha.</p><dl class="facts"><div class="fact"><dt>Rules</dt><dd>Vrischika (co-ruler)</dd></div><div class="fact"><dt>Nature</dt><dd>Malefic</dd></div><div class="fact"><dt>Temple</dt><dd><a href="navagraha.html#ketu" style="color:inherit;font-weight:600">🛕 Keezhperumpallam →</a></dd></div></dl><div class="chips"><span class="chip theme-tag">☄️ Ketu</span></div>
+</article>
   </div>
 </section>
-
-<!-- ========== 2. THE TWELVE RASHIS ========== -->
-<section data-section="rashi">
+<section data-block data-section="rashi">
   <h2 class="section-title" style="color:var(--rashi)">♈ The Twelve Rashis (Zodiac Signs)</h2>
-  <p style="color:var(--muted);margin-bottom:22px;max-width:760px;font-size:.95rem">The sidereal zodiac is a 360° belt divided into 12 equal parts of 30°, each called a Rashi. Your Janma Rashi is determined by the Moon's position at birth, not the Sun.</p>
+  <p class="section-intro">The sidereal zodiac is a 360° belt divided into 12 equal parts of 30°, each called a Rashi. Your Janma Rashi is determined by the Moon's position at birth, not the Sun.</p>
   <div class="grid v4">
-
-    <article class="card rashi-card" data-tags="rashi" data-id="mesha">
-      <h3>Mesha <span class="sanskrit">मेष</span></h3>
-      <span class="tag">Aries · Ram</span>
-      <p>Ruled by Mangala (Mars). Element: Fire. Quality: Chara (Movable).</p>
-      <div class="chips"><span class="chip theme-tag">🔥 Fire</span><span class="chip">Mars</span></div>
-    </article>
-
-    <article class="card rashi-card" data-tags="rashi" data-id="vrishabha">
-      <h3>Vrishabha <span class="sanskrit">वृषभ</span></h3>
-      <span class="tag">Taurus · Bull</span>
-      <p>Ruled by Shukra (Venus). Element: Earth. Quality: Sthira (Fixed).</p>
-      <div class="chips"><span class="chip theme-tag">🌍 Earth</span><span class="chip">Venus</span></div>
-    </article>
-
-    <article class="card rashi-card" data-tags="rashi" data-id="mithuna">
-      <h3>Mithuna <span class="sanskrit">मिथुन</span></h3>
-      <span class="tag">Gemini · Twins</span>
-      <p>Ruled by Budha (Mercury). Element: Air. Quality: Dvisvabhava (Dual).</p>
-      <div class="chips"><span class="chip theme-tag">💨 Air</span><span class="chip">Mercury</span></div>
-    </article>
-
-    <article class="card rashi-card" data-tags="rashi" data-id="karka">
-      <h3>Karka <span class="sanskrit">कर्क</span></h3>
-      <span class="tag">Cancer · Crab</span>
-      <p>Ruled by Chandra (Moon). Element: Water. Quality: Chara (Movable).</p>
-      <div class="chips"><span class="chip theme-tag">💧 Water</span><span class="chip">Moon</span></div>
-    </article>
-
-    <article class="card rashi-card" data-tags="rashi" data-id="simha">
-      <h3>Simha <span class="sanskrit">सिंह</span></h3>
-      <span class="tag">Leo · Lion</span>
-      <p>Ruled by Surya (Sun). Element: Fire. Quality: Sthira (Fixed).</p>
-      <div class="chips"><span class="chip theme-tag">🔥 Fire</span><span class="chip">Sun</span></div>
-    </article>
-
-    <article class="card rashi-card" data-tags="rashi" data-id="kanya">
-      <h3>Kanya <span class="sanskrit">कन्या</span></h3>
-      <span class="tag">Virgo · Maiden</span>
-      <p>Ruled by Budha (Mercury). Element: Earth. Quality: Dvisvabhava (Dual).</p>
-      <div class="chips"><span class="chip theme-tag">🌍 Earth</span><span class="chip">Mercury</span></div>
-    </article>
-
-    <article class="card rashi-card" data-tags="rashi" data-id="tula">
-      <h3>Tula <span class="sanskrit">तुला</span></h3>
-      <span class="tag">Libra · Balance</span>
-      <p>Ruled by Shukra (Venus). Element: Air. Quality: Chara (Movable).</p>
-      <div class="chips"><span class="chip theme-tag">💨 Air</span><span class="chip">Venus</span></div>
-    </article>
-
-    <article class="card rashi-card" data-tags="rashi" data-id="vrischika">
-      <h3>Vrischika <span class="sanskrit">वृश्चिक</span></h3>
-      <span class="tag">Scorpio · Scorpion</span>
-      <p>Ruled by Mangala (Mars). Element: Water. Quality: Sthira (Fixed).</p>
-      <div class="chips"><span class="chip theme-tag">💧 Water</span><span class="chip">Mars</span></div>
-    </article>
-
-    <article class="card rashi-card" data-tags="rashi" data-id="dhanus">
-      <h3>Dhanus <span class="sanskrit">धनुस्</span></h3>
-      <span class="tag">Sagittarius · Archer</span>
-      <p>Ruled by Guru (Jupiter). Element: Fire. Quality: Dvisvabhava (Dual).</p>
-      <div class="chips"><span class="chip theme-tag">🔥 Fire</span><span class="chip">Jupiter</span></div>
-    </article>
-
-    <article class="card rashi-card" data-tags="rashi" data-id="makara">
-      <h3>Makara <span class="sanskrit">मकर</span></h3>
-      <span class="tag">Capricorn · Crocodile</span>
-      <p>Ruled by Shani (Saturn). Element: Earth. Quality: Chara (Movable).</p>
-      <div class="chips"><span class="chip theme-tag">🌍 Earth</span><span class="chip">Saturn</span></div>
-    </article>
-
-    <article class="card rashi-card" data-tags="rashi" data-id="kumbha">
-      <h3>Kumbha <span class="sanskrit">कुम्भ</span></h3>
-      <span class="tag">Aquarius · Water-Pot</span>
-      <p>Ruled by Shani (Saturn) and Rahu. Element: Air. Quality: Sthira (Fixed).</p>
-      <div class="chips"><span class="chip theme-tag">💨 Air</span><span class="chip">Saturn / Rahu</span></div>
-    </article>
-
-    <article class="card rashi-card" data-tags="rashi" data-id="meena">
-      <h3>Meena <span class="sanskrit">मीन</span></h3>
-      <span class="tag">Pisces · Fishes</span>
-      <p>Ruled by Guru (Jupiter). Element: Water. Quality: Dvisvabhava (Dual).</p>
-      <div class="chips"><span class="chip theme-tag">💧 Water</span><span class="chip">Jupiter</span></div>
-    </article>
-
+  <article class="card" data-item data-id="mesha" data-tags="rashi" style="--accent:var(--rashi)">
+  <h3>Mesha <span class="native">मेष</span></h3><span class="tag">Aries · Ram</span><p>Ruled by Mangala (Mars). Element: Fire. Quality: Chara (Movable).</p><div class="chips"><span class="chip theme-tag">🔥 Fire</span><span class="chip">Mars</span></div>
+</article>
+  <article class="card" data-item data-id="vrishabha" data-tags="rashi" style="--accent:var(--rashi)">
+  <h3>Vrishabha <span class="native">वृषभ</span></h3><span class="tag">Taurus · Bull</span><p>Ruled by Shukra (Venus). Element: Earth. Quality: Sthira (Fixed).</p><div class="chips"><span class="chip theme-tag">🌍 Earth</span><span class="chip">Venus</span></div>
+</article>
+  <article class="card" data-item data-id="mithuna" data-tags="rashi" style="--accent:var(--rashi)">
+  <h3>Mithuna <span class="native">मिथुन</span></h3><span class="tag">Gemini · Twins</span><p>Ruled by Budha (Mercury). Element: Air. Quality: Dvisvabhava (Dual).</p><div class="chips"><span class="chip theme-tag">💨 Air</span><span class="chip">Mercury</span></div>
+</article>
+  <article class="card" data-item data-id="karka" data-tags="rashi" style="--accent:var(--rashi)">
+  <h3>Karka <span class="native">कर्क</span></h3><span class="tag">Cancer · Crab</span><p>Ruled by Chandra (Moon). Element: Water. Quality: Chara (Movable).</p><div class="chips"><span class="chip theme-tag">💧 Water</span><span class="chip">Moon</span></div>
+</article>
+  <article class="card" data-item data-id="simha" data-tags="rashi" style="--accent:var(--rashi)">
+  <h3>Simha <span class="native">सिंह</span></h3><span class="tag">Leo · Lion</span><p>Ruled by Surya (Sun). Element: Fire. Quality: Sthira (Fixed).</p><div class="chips"><span class="chip theme-tag">🔥 Fire</span><span class="chip">Sun</span></div>
+</article>
+  <article class="card" data-item data-id="kanya" data-tags="rashi" style="--accent:var(--rashi)">
+  <h3>Kanya <span class="native">कन्या</span></h3><span class="tag">Virgo · Maiden</span><p>Ruled by Budha (Mercury). Element: Earth. Quality: Dvisvabhava (Dual).</p><div class="chips"><span class="chip theme-tag">🌍 Earth</span><span class="chip">Mercury</span></div>
+</article>
+  <article class="card" data-item data-id="tula" data-tags="rashi" style="--accent:var(--rashi)">
+  <h3>Tula <span class="native">तुला</span></h3><span class="tag">Libra · Balance</span><p>Ruled by Shukra (Venus). Element: Air. Quality: Chara (Movable).</p><div class="chips"><span class="chip theme-tag">💨 Air</span><span class="chip">Venus</span></div>
+</article>
+  <article class="card" data-item data-id="vrischika" data-tags="rashi" style="--accent:var(--rashi)">
+  <h3>Vrischika <span class="native">वृश्चिक</span></h3><span class="tag">Scorpio · Scorpion</span><p>Ruled by Mangala (Mars). Element: Water. Quality: Sthira (Fixed).</p><div class="chips"><span class="chip theme-tag">💧 Water</span><span class="chip">Mars</span></div>
+</article>
+  <article class="card" data-item data-id="dhanus" data-tags="rashi" style="--accent:var(--rashi)">
+  <h3>Dhanus <span class="native">धनुस्</span></h3><span class="tag">Sagittarius · Archer</span><p>Ruled by Guru (Jupiter). Element: Fire. Quality: Dvisvabhava (Dual).</p><div class="chips"><span class="chip theme-tag">🔥 Fire</span><span class="chip">Jupiter</span></div>
+</article>
+  <article class="card" data-item data-id="makara" data-tags="rashi" style="--accent:var(--rashi)">
+  <h3>Makara <span class="native">मकर</span></h3><span class="tag">Capricorn · Crocodile</span><p>Ruled by Shani (Saturn). Element: Earth. Quality: Chara (Movable).</p><div class="chips"><span class="chip theme-tag">🌍 Earth</span><span class="chip">Saturn</span></div>
+</article>
+  <article class="card" data-item data-id="kumbha" data-tags="rashi" style="--accent:var(--rashi)">
+  <h3>Kumbha <span class="native">कुम्भ</span></h3><span class="tag">Aquarius · Water-Pot</span><p>Ruled by Shani (Saturn) and Rahu. Element: Air. Quality: Sthira (Fixed).</p><div class="chips"><span class="chip theme-tag">💨 Air</span><span class="chip">Saturn / Rahu</span></div>
+</article>
+  <article class="card" data-item data-id="meena" data-tags="rashi" style="--accent:var(--rashi)">
+  <h3>Meena <span class="native">मीन</span></h3><span class="tag">Pisces · Fishes</span><p>Ruled by Guru (Jupiter). Element: Water. Quality: Dvisvabhava (Dual).</p><div class="chips"><span class="chip theme-tag">💧 Water</span><span class="chip">Jupiter</span></div>
+</article>
   </div>
 </section>
-
-<!-- ========== 3. THE TWENTY-SEVEN NAKSHATRAS ========== -->
-<section data-section="nakshatra">
+<section data-block data-section="nakshatra" style="--tc:var(--nakshatra)">
   <h2 class="section-title" style="color:var(--nakshatra)">✨ The Twenty-Seven Nakshatras (Lunar Mansions)</h2>
-  <p style="color:var(--muted);margin-bottom:18px;max-width:760px;font-size:.95rem">The Moon passes through 27 lunar mansions, each spanning 13°20′ of the ecliptic. Every Nakshatra has a ruling planet, a presiding deity, and a symbol. </p>
-
-  <div class="table-wrap">
-    <table class="nak-table">
-      <thead>
-        <tr>
-          <th>Nakshatra</th>
-          <th>Ruling Planet</th>
-          <th>Presiding Deity</th>
-          <th>Symbol</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Ashwini</td><td>Ketu</td><td>Ashwini Kumaras</td><td>Horse's head</td></tr>
-        <tr><td>Bharani</td><td>Shukra (Venus)</td><td>Yama</td><td>Yoni</td></tr>
-        <tr><td>Krittika</td><td>Surya (Sun)</td><td>Agni</td><td>Knife</td></tr>
-        <tr><td>Rohini</td><td>Chandra (Moon)</td><td>Brahma</td><td>Cart, temple</td></tr>
-        <tr><td>Mrigashira</td><td>Mangala (Mars)</td><td>Soma</td><td>Deer's head</td></tr>
-        <tr><td>Ardra</td><td>Rahu</td><td>Rudra</td><td>Teardrop</td></tr>
-        <tr><td>Punarvasu</td><td>Guru (Jupiter)</td><td>Aditi</td><td>Bow and quiver</td></tr>
-        <tr><td>Pushya</td><td>Shani (Saturn)</td><td>Brihaspati</td><td>Cow's udder, lotus</td></tr>
-        <tr><td>Ashlesha</td><td>Budha (Mercury)</td><td>Nagas</td><td>Serpent</td></tr>
-        <tr><td>Magha</td><td>Ketu</td><td>Pitris</td><td>Royal throne</td></tr>
-        <tr><td>Purva Phalguni</td><td>Shukra (Venus)</td><td>Bhaga</td><td>Front legs of bed</td></tr>
-        <tr><td>Uttara Phalguni</td><td>Surya (Sun)</td><td>Aryaman</td><td>Back legs of bed</td></tr>
-        <tr><td>Hasta</td><td>Chandra (Moon)</td><td>Savitr</td><td>Hand</td></tr>
-        <tr><td>Chitra</td><td>Mangala (Mars)</td><td>Vishwakarma</td><td>Bright jewel</td></tr>
-        <tr><td>Swati</td><td>Rahu</td><td>Vayu</td><td>Shoot of plant</td></tr>
-        <tr><td>Vishakha</td><td>Guru (Jupiter)</td><td>Indra-Agni</td><td>Triumphal arch</td></tr>
-        <tr><td>Anuradha</td><td>Shani (Saturn)</td><td>Mitra</td><td>Lotus</td></tr>
-        <tr><td>Jyeshtha</td><td>Budha (Mercury)</td><td>Indra</td><td>Circular amulet</td></tr>
-        <tr><td>Mula</td><td>Ketu</td><td>Nirriti</td><td>Bunch of roots</td></tr>
-        <tr><td>Purva Ashadha</td><td>Shukra (Venus)</td><td>Apas</td><td>Elephant tusk</td></tr>
-        <tr><td>Uttara Ashadha</td><td>Surya (Sun)</td><td>Vishvedevas</td><td>Elephant tusk</td></tr>
-        <tr><td>Shravana</td><td>Chandra (Moon)</td><td>Vishnu</td><td>Ear, three footprints</td></tr>
-        <tr><td>Dhanishtha</td><td>Mangala (Mars)</td><td>Eight Vasus</td><td>Drum</td></tr>
-        <tr><td>Shatabhisha</td><td>Rahu</td><td>Varuna</td><td>Empty circle</td></tr>
-        <tr><td>Purva Bhadrapada</td><td>Guru (Jupiter)</td><td>Aja Ekapada</td><td>Swords</td></tr>
-        <tr><td>Uttara Bhadrapada</td><td>Shani (Saturn)</td><td>Ahir Budhnya</td><td>Twins, snake</td></tr>
-        <tr><td>Revati</td><td>Budha (Mercury)</td><td>Pushan</td><td>Pair of fish</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <p class="section-intro">The Moon passes through 27 lunar mansions, each spanning 13°20′ of the ecliptic. Every Nakshatra has a ruling planet, a presiding deity, and a symbol.</p>
+  <div class="table-wrap"><table class="data-table">
+    <thead><tr><th>Nakshatra</th><th>Ruling Planet</th><th>Presiding Deity</th><th>Symbol</th></tr></thead>
+    <tbody><tr data-item><td>Ashwini</td><td>Ketu</td><td>Ashwini Kumaras</td><td>Horse's head</td></tr><tr data-item><td>Bharani</td><td>Shukra (Venus)</td><td>Yama</td><td>Yoni</td></tr><tr data-item><td>Krittika</td><td>Surya (Sun)</td><td>Agni</td><td>Knife</td></tr><tr data-item><td>Rohini</td><td>Chandra (Moon)</td><td>Brahma</td><td>Cart, temple</td></tr><tr data-item><td>Mrigashira</td><td>Mangala (Mars)</td><td>Soma</td><td>Deer's head</td></tr><tr data-item><td>Ardra</td><td>Rahu</td><td>Rudra</td><td>Teardrop</td></tr><tr data-item><td>Punarvasu</td><td>Guru (Jupiter)</td><td>Aditi</td><td>Bow and quiver</td></tr><tr data-item><td>Pushya</td><td>Shani (Saturn)</td><td>Brihaspati</td><td>Cow's udder, lotus</td></tr><tr data-item><td>Ashlesha</td><td>Budha (Mercury)</td><td>Nagas</td><td>Serpent</td></tr><tr data-item><td>Magha</td><td>Ketu</td><td>Pitris</td><td>Royal throne</td></tr><tr data-item><td>Purva Phalguni</td><td>Shukra (Venus)</td><td>Bhaga</td><td>Front legs of bed</td></tr><tr data-item><td>Uttara Phalguni</td><td>Surya (Sun)</td><td>Aryaman</td><td>Back legs of bed</td></tr><tr data-item><td>Hasta</td><td>Chandra (Moon)</td><td>Savitr</td><td>Hand</td></tr><tr data-item><td>Chitra</td><td>Mangala (Mars)</td><td>Vishwakarma</td><td>Bright jewel</td></tr><tr data-item><td>Swati</td><td>Rahu</td><td>Vayu</td><td>Shoot of plant</td></tr><tr data-item><td>Vishakha</td><td>Guru (Jupiter)</td><td>Indra-Agni</td><td>Triumphal arch</td></tr><tr data-item><td>Anuradha</td><td>Shani (Saturn)</td><td>Mitra</td><td>Lotus</td></tr><tr data-item><td>Jyeshtha</td><td>Budha (Mercury)</td><td>Indra</td><td>Circular amulet</td></tr><tr data-item><td>Mula</td><td>Ketu</td><td>Nirriti</td><td>Bunch of roots</td></tr><tr data-item><td>Purva Ashadha</td><td>Shukra (Venus)</td><td>Apas</td><td>Elephant tusk</td></tr><tr data-item><td>Uttara Ashadha</td><td>Surya (Sun)</td><td>Vishvedevas</td><td>Elephant tusk</td></tr><tr data-item><td>Shravana</td><td>Chandra (Moon)</td><td>Vishnu</td><td>Ear, three footprints</td></tr><tr data-item><td>Dhanishtha</td><td>Mangala (Mars)</td><td>Eight Vasus</td><td>Drum</td></tr><tr data-item><td>Shatabhisha</td><td>Rahu</td><td>Varuna</td><td>Empty circle</td></tr><tr data-item><td>Purva Bhadrapada</td><td>Guru (Jupiter)</td><td>Aja Ekapada</td><td>Swords</td></tr><tr data-item><td>Uttara Bhadrapada</td><td>Shani (Saturn)</td><td>Ahir Budhnya</td><td>Twins, snake</td></tr><tr data-item><td>Revati</td><td>Budha (Mercury)</td><td>Pushan</td><td>Pair of fish</td></tr></tbody>
+  </table></div>
 </section>
-
-<!-- ========== 4. THE PANCHANGA ========== -->
-<section data-section="panchanga">
+<section data-block data-section="panchanga">
   <h2 class="section-title" style="color:var(--panchanga)">📅 The Panchanga (Five Limbs of Time)</h2>
-  <p style="color:var(--muted);margin-bottom:22px;max-width:760px;font-size:.95rem">The Panchanga is the traditional Hindu almanac — its name means "five limbs" because it tracks five aspects of time based on the Moon's motion. Nakshatra is one of the five; the others are how people use the sky every day.</p>
+  <p class="section-intro">The Panchanga is the traditional Hindu almanac — its name means "five limbs" because it tracks five aspects of time based on the Moon's motion. Nakshatra is one of the five; the others are how people use the sky every day.</p>
   <div class="grid v3">
-
-    <article class="card panch-card" data-tags="panchanga" data-id="tithi">
-      <h3>Tithi <span class="sanskrit">तिथि</span></h3>
-      <span class="tag">Lunar Day</span>
-      <p>The time for the Moon-Sun longitude gap to grow by 12°. There are 30 Tithis in a lunar month, divided into Shukla Paksha (waxing) and Krishna Paksha (waning).</p>
-    </article>
-
-    <article class="card panch-card" data-tags="panchanga" data-id="vara">
-      <h3>Vara <span class="sanskrit">वार</span></h3>
-      <span class="tag">Weekday</span>
-      <p>The seven days of the week, each ruled by a Graha: Ravi (Sun), Soma (Moon), Mangala (Mars), Budha (Mercury), Guru (Jupiter), Shukra (Venus), Shani (Saturn).</p>
-    </article>
-
-    <article class="card panch-card" data-tags="panchanga" data-id="nakshatra">
-      <h3>Nakshatra <span class="sanskrit">नक्षत्र</span></h3>
-      <span class="tag">Lunar Mansion</span>
-      <p>The Moon's transit through one of the 27 lunar mansions on a given day. Used for naming children, scheduling ceremonies, and matching compatibility.</p>
-    </article>
-
-    <article class="card panch-card" data-tags="panchanga" data-id="yoga">
-      <h3>Yoga <span class="sanskrit">योग</span></h3>
-      <span class="tag">Sun-Moon Combination</span>
-      <p>A calculation based on the sum of the Sun and Moon's longitudes. There are 27 Yogas; some are considered auspicious and others inauspicious for specific activities.</p>
-    </article>
-
-    <article class="card panch-card" data-tags="panchanga" data-id="karana">
-      <h3>Karana <span class="sanskrit">करण</span></h3>
-      <span class="tag">Half-Tithi</span>
-      <p>Half of a lunar day; two Karanas per Tithi. There are 11 Karanas in total. The Vishti (Bhadra) Karana is avoided for auspicious ceremonies.</p>
-    </article>
-
+  <article class="card" data-item data-id="tithi" data-tags="panchanga" style="--accent:var(--panchanga)">
+  <h3>Tithi <span class="native">तिथि</span></h3><span class="tag">Lunar Day</span><p>The time for the Moon-Sun longitude gap to grow by 12°. There are 30 Tithis in a lunar month, divided into Shukla Paksha (waxing) and Krishna Paksha (waning).</p>
+</article>
+  <article class="card" data-item data-id="vara" data-tags="panchanga" style="--accent:var(--panchanga)">
+  <h3>Vara <span class="native">वार</span></h3><span class="tag">Weekday</span><p>The seven days of the week, each ruled by a Graha: Ravi (Sun), Soma (Moon), Mangala (Mars), Budha (Mercury), Guru (Jupiter), Shukra (Venus), Shani (Saturn).</p>
+</article>
+  <article class="card" data-item data-id="nakshatra" data-tags="panchanga" style="--accent:var(--panchanga)">
+  <h3>Nakshatra <span class="native">नक्षत्र</span></h3><span class="tag">Lunar Mansion</span><p>The Moon's transit through one of the 27 lunar mansions on a given day. Used for naming children, scheduling ceremonies, and matching compatibility.</p>
+</article>
+  <article class="card" data-item data-id="yoga" data-tags="panchanga" style="--accent:var(--panchanga)">
+  <h3>Yoga <span class="native">योग</span></h3><span class="tag">Sun-Moon Combination</span><p>A calculation based on the sum of the Sun and Moon's longitudes. There are 27 Yogas; some are considered auspicious and others inauspicious for specific activities.</p>
+</article>
+  <article class="card" data-item data-id="karana" data-tags="panchanga" style="--accent:var(--panchanga)">
+  <h3>Karana <span class="native">करण</span></h3><span class="tag">Half-Tithi</span><p>Half of a lunar day; two Karanas per Tithi. There are 11 Karanas in total. The Vishti (Bhadra) Karana is avoided for auspicious ceremonies.</p>
+</article>
   </div>
 </section>
-
-<!-- ========== 5. THE SIXTY SAMVATSARAS ========== -->
-<section data-section="samvatsara">
+<section data-block data-section="samvatsara" style="--tc:var(--samvatsara)">
   <h2 class="section-title" style="color:var(--samvatsara)">🔄 The Sixty Samvatsaras (Jovian Year Cycle)</h2>
-  <p style="color:var(--muted);margin-bottom:18px;max-width:760px;font-size:.95rem">A cycle of 60 named years, traditionally linked to Jupiter's movement (in South Indian calendars it simply runs with the solar or lunar year). The names repeat every 60 years, divided into three groups of 20 attributed to Brahma, Vishnu, and Shiva. Regional lists vary slightly in spelling.</p>
-
-  <div class="sam-grid">
-    <div class="sam-cell"><span class="num">1</span><span class="name">Prabhava</span></div>
-    <div class="sam-cell"><span class="num">2</span><span class="name">Vibhava</span></div>
-    <div class="sam-cell"><span class="num">3</span><span class="name">Shukla</span></div>
-    <div class="sam-cell"><span class="num">4</span><span class="name">Pramoda</span></div>
-    <div class="sam-cell"><span class="num">5</span><span class="name">Prajapati</span></div>
-    <div class="sam-cell"><span class="num">6</span><span class="name">Angirasa</span></div>
-    <div class="sam-cell"><span class="num">7</span><span class="name">Shrimukha</span></div>
-    <div class="sam-cell"><span class="num">8</span><span class="name">Bhava</span></div>
-    <div class="sam-cell"><span class="num">9</span><span class="name">Yuvan</span></div>
-    <div class="sam-cell"><span class="num">10</span><span class="name">Dhatri</span></div>
-    <div class="sam-cell"><span class="num">11</span><span class="name">Ishvara</span></div>
-    <div class="sam-cell"><span class="num">12</span><span class="name">Bahudhanya</span></div>
-    <div class="sam-cell"><span class="num">13</span><span class="name">Pramathin</span></div>
-    <div class="sam-cell"><span class="num">14</span><span class="name">Vikrama</span></div>
-    <div class="sam-cell"><span class="num">15</span><span class="name">Vrisha</span></div>
-    <div class="sam-cell"><span class="num">16</span><span class="name">Chitrabhanu</span></div>
-    <div class="sam-cell"><span class="num">17</span><span class="name">Svabhanu</span></div>
-    <div class="sam-cell"><span class="num">18</span><span class="name">Tarana</span></div>
-    <div class="sam-cell"><span class="num">19</span><span class="name">Parthiva</span></div>
-    <div class="sam-cell"><span class="num">20</span><span class="name">Vyaya</span></div>
-    <div class="sam-cell"><span class="num">21</span><span class="name">Sarvajit</span></div>
-    <div class="sam-cell"><span class="num">22</span><span class="name">Sarvadharin</span></div>
-    <div class="sam-cell"><span class="num">23</span><span class="name">Virodhin</span></div>
-    <div class="sam-cell"><span class="num">24</span><span class="name">Vikrita</span></div>
-    <div class="sam-cell"><span class="num">25</span><span class="name">Khara</span></div>
-    <div class="sam-cell"><span class="num">26</span><span class="name">Nandana</span></div>
-    <div class="sam-cell"><span class="num">27</span><span class="name">Vijaya</span></div>
-    <div class="sam-cell"><span class="num">28</span><span class="name">Jaya</span></div>
-    <div class="sam-cell"><span class="num">29</span><span class="name">Manmatha</span></div>
-    <div class="sam-cell"><span class="num">30</span><span class="name">Durmukha</span></div>
-    <div class="sam-cell"><span class="num">31</span><span class="name">Hemalambin</span></div>
-    <div class="sam-cell"><span class="num">32</span><span class="name">Vilambin</span></div>
-    <div class="sam-cell"><span class="num">33</span><span class="name">Vikarin</span></div>
-    <div class="sam-cell"><span class="num">34</span><span class="name">Sharvari</span></div>
-    <div class="sam-cell"><span class="num">35</span><span class="name">Plava</span></div>
-    <div class="sam-cell"><span class="num">36</span><span class="name">Shubhakrit</span></div>
-    <div class="sam-cell"><span class="num">37</span><span class="name">Shobhana</span></div>
-    <div class="sam-cell"><span class="num">38</span><span class="name">Krodhin</span></div>
-    <div class="sam-cell"><span class="num">39</span><span class="name">Vishvavasu</span></div>
-    <div class="sam-cell"><span class="num">40</span><span class="name">Parabhava</span></div>
-    <div class="sam-cell"><span class="num">41</span><span class="name">Plavanga</span></div>
-    <div class="sam-cell"><span class="num">42</span><span class="name">Kilaka</span></div>
-    <div class="sam-cell"><span class="num">43</span><span class="name">Saumya</span></div>
-    <div class="sam-cell"><span class="num">44</span><span class="name">Sadharaṇa</span></div>
-    <div class="sam-cell"><span class="num">45</span><span class="name">Virodhikrit</span></div>
-    <div class="sam-cell"><span class="num">46</span><span class="name">Paritapin</span></div>
-    <div class="sam-cell"><span class="num">47</span><span class="name">Pramadin</span></div>
-    <div class="sam-cell"><span class="num">48</span><span class="name">Ananda</span></div>
-    <div class="sam-cell"><span class="num">49</span><span class="name">Rakshasa</span></div>
-    <div class="sam-cell"><span class="num">50</span><span class="name">Anala</span></div>
-    <div class="sam-cell"><span class="num">51</span><span class="name">Pingala</span></div>
-    <div class="sam-cell"><span class="num">52</span><span class="name">Kalayukti</span></div>
-    <div class="sam-cell"><span class="num">53</span><span class="name">Siddharthin</span></div>
-    <div class="sam-cell"><span class="num">54</span><span class="name">Raudra</span></div>
-    <div class="sam-cell"><span class="num">55</span><span class="name">Durmati</span></div>
-    <div class="sam-cell"><span class="num">56</span><span class="name">Dundubhi</span></div>
-    <div class="sam-cell"><span class="num">57</span><span class="name">Rudhirodgarin</span></div>
-    <div class="sam-cell"><span class="num">58</span><span class="name">Raktaksha</span></div>
-    <div class="sam-cell"><span class="num">59</span><span class="name">Krodhana</span></div>
-    <div class="sam-cell"><span class="num">60</span><span class="name">Akshaya</span></div>
-  </div>
+  <p class="section-intro">A cycle of 60 named years, traditionally linked to Jupiter's movement (in South Indian calendars it simply runs with the solar or lunar year). The names repeat every 60 years, divided into three groups of 20 attributed to Brahma, Vishnu, and Shiva. Regional lists vary slightly in spelling.</p>
+  <div class="numgrid"><div class="num-cell" data-item><span class="num">1</span><span class="name">Prabhava</span></div><div class="num-cell" data-item><span class="num">2</span><span class="name">Vibhava</span></div><div class="num-cell" data-item><span class="num">3</span><span class="name">Shukla</span></div><div class="num-cell" data-item><span class="num">4</span><span class="name">Pramoda</span></div><div class="num-cell" data-item><span class="num">5</span><span class="name">Prajapati</span></div><div class="num-cell" data-item><span class="num">6</span><span class="name">Angirasa</span></div><div class="num-cell" data-item><span class="num">7</span><span class="name">Shrimukha</span></div><div class="num-cell" data-item><span class="num">8</span><span class="name">Bhava</span></div><div class="num-cell" data-item><span class="num">9</span><span class="name">Yuvan</span></div><div class="num-cell" data-item><span class="num">10</span><span class="name">Dhatri</span></div><div class="num-cell" data-item><span class="num">11</span><span class="name">Ishvara</span></div><div class="num-cell" data-item><span class="num">12</span><span class="name">Bahudhanya</span></div><div class="num-cell" data-item><span class="num">13</span><span class="name">Pramathin</span></div><div class="num-cell" data-item><span class="num">14</span><span class="name">Vikrama</span></div><div class="num-cell" data-item><span class="num">15</span><span class="name">Vrisha</span></div><div class="num-cell" data-item><span class="num">16</span><span class="name">Chitrabhanu</span></div><div class="num-cell" data-item><span class="num">17</span><span class="name">Svabhanu</span></div><div class="num-cell" data-item><span class="num">18</span><span class="name">Tarana</span></div><div class="num-cell" data-item><span class="num">19</span><span class="name">Parthiva</span></div><div class="num-cell" data-item><span class="num">20</span><span class="name">Vyaya</span></div><div class="num-cell" data-item><span class="num">21</span><span class="name">Sarvajit</span></div><div class="num-cell" data-item><span class="num">22</span><span class="name">Sarvadharin</span></div><div class="num-cell" data-item><span class="num">23</span><span class="name">Virodhin</span></div><div class="num-cell" data-item><span class="num">24</span><span class="name">Vikrita</span></div><div class="num-cell" data-item><span class="num">25</span><span class="name">Khara</span></div><div class="num-cell" data-item><span class="num">26</span><span class="name">Nandana</span></div><div class="num-cell" data-item><span class="num">27</span><span class="name">Vijaya</span></div><div class="num-cell" data-item><span class="num">28</span><span class="name">Jaya</span></div><div class="num-cell" data-item><span class="num">29</span><span class="name">Manmatha</span></div><div class="num-cell" data-item><span class="num">30</span><span class="name">Durmukha</span></div><div class="num-cell" data-item><span class="num">31</span><span class="name">Hemalambin</span></div><div class="num-cell" data-item><span class="num">32</span><span class="name">Vilambin</span></div><div class="num-cell" data-item><span class="num">33</span><span class="name">Vikarin</span></div><div class="num-cell" data-item><span class="num">34</span><span class="name">Sharvari</span></div><div class="num-cell" data-item><span class="num">35</span><span class="name">Plava</span></div><div class="num-cell" data-item><span class="num">36</span><span class="name">Shubhakrit</span></div><div class="num-cell" data-item><span class="num">37</span><span class="name">Shobhana</span></div><div class="num-cell" data-item><span class="num">38</span><span class="name">Krodhin</span></div><div class="num-cell" data-item><span class="num">39</span><span class="name">Vishvavasu</span></div><div class="num-cell" data-item><span class="num">40</span><span class="name">Parabhava</span></div><div class="num-cell" data-item><span class="num">41</span><span class="name">Plavanga</span></div><div class="num-cell" data-item><span class="num">42</span><span class="name">Kilaka</span></div><div class="num-cell" data-item><span class="num">43</span><span class="name">Saumya</span></div><div class="num-cell" data-item><span class="num">44</span><span class="name">Sadharaṇa</span></div><div class="num-cell" data-item><span class="num">45</span><span class="name">Virodhikrit</span></div><div class="num-cell" data-item><span class="num">46</span><span class="name">Paritapin</span></div><div class="num-cell" data-item><span class="num">47</span><span class="name">Pramadin</span></div><div class="num-cell" data-item><span class="num">48</span><span class="name">Ananda</span></div><div class="num-cell" data-item><span class="num">49</span><span class="name">Rakshasa</span></div><div class="num-cell" data-item><span class="num">50</span><span class="name">Anala</span></div><div class="num-cell" data-item><span class="num">51</span><span class="name">Pingala</span></div><div class="num-cell" data-item><span class="num">52</span><span class="name">Kalayukti</span></div><div class="num-cell" data-item><span class="num">53</span><span class="name">Siddharthin</span></div><div class="num-cell" data-item><span class="num">54</span><span class="name">Raudra</span></div><div class="num-cell" data-item><span class="num">55</span><span class="name">Durmati</span></div><div class="num-cell" data-item><span class="num">56</span><span class="name">Dundubhi</span></div><div class="num-cell" data-item><span class="num">57</span><span class="name">Rudhirodgarin</span></div><div class="num-cell" data-item><span class="num">58</span><span class="name">Raktaksha</span></div><div class="num-cell" data-item><span class="num">59</span><span class="name">Krodhana</span></div><div class="num-cell" data-item><span class="num">60</span><span class="name">Akshaya</span></div></div>
 </section>
-
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
 <footer>
-  <p>🌌 A visual map of Jyotisha · Grahas, Rashis, Nakshatras, Panchanga & Samvatsaras · Data is traditional and approximate</p>
-  <p style="margin-top:6px">Regional traditions vary in spelling and some details. This map is for study and orientation, not as an astronomical almanac.</p>
-
+  <p>🌌 A visual map of Jyotisha · Grahas, Rashis, Nakshatras, Panchanga &amp; Samvatsaras · Data is traditional and approximate</p>
+  <p>Regional traditions vary in spelling and some details. This map is for study and orientation, not as an astronomical almanac.</p>
   <nav class="site-nav" aria-label="All Sanatana maps">
     <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
     <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
@@ -679,140 +177,12 @@
     <a href="jyotisha.html" aria-current="page"><span aria-hidden="true">🌌</span>Jyotisha</a>
     <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
     <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
   </nav>
   <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
-
-<script>
-(function(){
-  "use strict";
-  var root = document.documentElement;
-  var body = document.body;
-
-  /* ---------- THEME ---------- */
-  var themeBtn = document.getElementById('themeToggle');
-  var knob = document.getElementById('knob');
-  var toggleLabel = document.getElementById('toggleLabel');
-  function applyTheme(t){
-    root.setAttribute('data-theme', t);
-    localStorage.setItem('jyotisha-theme', t);
-    var isLight = t === 'light';
-    knob.textContent = isLight ? '☀️' : '🌙';
-    toggleLabel.textContent = isLight ? 'Dark' : 'Light';
-    themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-  }
-  themeBtn.addEventListener('click', function(){
-    applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-  });
-
-  /* ---------- TEXT SIZE ---------- */
-  var sizes = [0.85, 1, 1.15, 1.3, 1.5];
-  var sizeIdx = parseInt(localStorage.getItem('jyotisha-size-idx') || '1', 10);
-  var sizeVal = document.getElementById('sizeVal');
-  function applySize(i){
-    sizeIdx = Math.max(0, Math.min(sizes.length - 1, i));
-    var scale = sizes[sizeIdx];
-    root.style.setProperty('--scale', scale);
-    localStorage.setItem('jyotisha-size', scale);
-    localStorage.setItem('jyotisha-size-idx', sizeIdx);
-    sizeVal.textContent = Math.round(scale * 100) + '%';
-  }
-  document.getElementById('sizeUp').addEventListener('click', function(){ applySize(sizeIdx + 1); });
-  document.getElementById('sizeDown').addEventListener('click', function(){ applySize(sizeIdx - 1); });
-
-  /* ---------- LANGUAGE ---------- */
-  var langEn = document.getElementById('langEn');
-  var langSa = document.getElementById('langSa');
-  function setLang(showSanskrit){
-    body.classList.toggle('show-sanskrit', showSanskrit);
-    langEn.classList.toggle('active', !showSanskrit);
-    langSa.classList.toggle('active', showSanskrit);
-    langEn.setAttribute('aria-pressed', String(!showSanskrit));
-    langSa.setAttribute('aria-pressed', String(showSanskrit));
-    localStorage.setItem('jyotisha-lang', showSanskrit ? 'sa' : 'en');
-  }
-  langEn.addEventListener('click', function(){ setLang(false); });
-  langSa.addEventListener('click', function(){ setLang(true); });
-
-  /* ---------- SEARCH + FILTER ---------- */
-  var searchInput = document.getElementById('searchInput');
-  var activeFilter = 'all';
-  var filterChips = document.querySelectorAll('.filter-chip');
-
-  filterChips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      activeFilter = chip.getAttribute('data-filter');
-      filterChips.forEach(function(c){ c.classList.toggle('active', c === chip); });
-      applyFilters();
-    });
-  });
-  searchInput.addEventListener('input', function(){ applyFilters(); });
-
-  function matches(el){
-    var q = searchInput.value.trim().toLowerCase();
-    var tags = (el.getAttribute('data-tags') || '').toLowerCase();
-    var text = el.textContent.toLowerCase();
-    if(activeFilter !== 'all' && tags.indexOf(activeFilter) === -1) return false;
-    if(q && text.indexOf(q) === -1) return false;
-    return true;
-  }
-
-  function applyFilters(){
-    var q = searchInput.value.trim().toLowerCase();
-    function textMatch(el){ return !q || el.textContent.toLowerCase().indexOf(q) !== -1; }
-
-    // Cards (Grahas, Rashis, Panchanga)
-    document.querySelectorAll('.card[data-tags]').forEach(function(card){
-      card.classList.toggle('hidden', !matches(card));
-    });
-    // Nakshatra table rows and Samvatsara cells respond to search
-    document.querySelectorAll('.nak-table tbody tr, .sam-cell').forEach(function(el){
-      el.style.display = textMatch(el) ? '' : 'none';
-    });
-
-    // Each section is shown only when its chip (or "All") is active
-    // and it still contains at least one visible item.
-    document.querySelectorAll('section[data-section]').forEach(function(sec){
-      var inFilter = activeFilter === 'all' || sec.getAttribute('data-section') === activeFilter;
-      var items = sec.querySelectorAll('.card[data-tags], .nak-table tbody tr, .sam-cell');
-      var hasMatch = !items.length || Array.prototype.some.call(items, function(el){
-        return !el.classList.contains('hidden') && el.style.display !== 'none';
-      });
-      sec.style.display = (inFilter && hasMatch) ? '' : 'none';
-    });
-  }
-
-  /* ---------- BOOT SEQUENCE ---------- */
-  try { applyTheme(root.getAttribute('data-theme') || 'dark'); }
-  catch(e){ console.error('theme init failed:', e); }
-
-  try { applySize(sizeIdx); }
-  catch(e){ console.error('size init failed:', e); }
-
-  try { setLang(localStorage.getItem('jyotisha-lang') === 'sa'); }
-  catch(e){ console.error('lang init failed:', e); }
-
-  try { applyFilters(); }
-  catch(e){ console.error('filters init failed:', e); }
-
-})();
-</script>
-
-<script>
-/* Keep page content clear of the fixed toolbar when it wraps onto extra rows */
-(function(){
-  function fit(){
-    var bar = document.querySelector('.controls');
-    if(!bar) return;
-    document.body.style.paddingTop = '';
-    var base = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
-    var need = Math.ceil(bar.getBoundingClientRect().height) + 16;
-    if(need > base) document.body.style.paddingTop = need + 'px';
-  }
-  window.addEventListener('resize', fit);
-  window.addEventListener('load', fit);
-  fit();
-})();
-</script>
+<script src="assets/site.js?v=420f3627"></script>
 </body>
 </html>

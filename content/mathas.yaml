@@ -1,0 +1,235 @@
+page:
+  file: mathas.html
+  layout: page
+  title: The Mathas — Lineages of Adi Shankara & Madhvacharya
+  favicon: 🛕
+  search: Search mathas, founders, locations…
+  native: sa
+  palette:
+    shankara: ['#45aaf2', '#1f7fc4']
+    madhva: ['#f7b731', '#c98a00']
+  gradient: [shankara, madhva]
+  primary: madhva
+  h1: The Mathas
+  intro: 'Two great lineages of monastic institutions: the four Amnaya Peethams established by Adi Shankara for
+    Advaita Vedanta, and the eight Ashta Mathas established by Madhvacharya for Dvaita Vedanta at Udupi.'
+  legend:
+  - {label: Adi Shankara (Advaita), color: shankara}
+  - {label: Madhvacharya (Dvaita), color: madhva}
+  filters:
+  - {value: all, label: All Mathas, color: madhva}
+  - {value: shankara, label: 🔵 Shankara's Four, color: shankara}
+  - {value: madhva, label: 🟡 Madhva's Eight, color: madhva}
+  footer: [🛕 A lineage map of the Amnaya Peethams and Ashta Mathas · Lineages are approximate and have developed
+      sub-traditions over centuries, The four Amnaya Peethams are attributed to Adi Shankara; the Ashta Mathas to
+      Madhvacharya and his direct disciples.]
+blocks:
+- {type: filters}
+- type: lineage
+  title: 🔵 The Four Amnaya Peethams
+  color: shankara
+  section: shankara
+  root: {title: Adi Shankara, sub: c. 788–820 CE · Established four cardinal mathas for Advaita Vedanta}
+  branches:
+  - {dir: South, name: Sringeri Sharada Peetham, note: 'First Acharya: Sureshwaracharya', color: shankara}
+  - {dir: West, name: Dwaraka Sharada Peetham, note: 'First Acharya: Hastamalakacharya', color: shankara}
+  - {dir: East, name: Puri Govardhana Peetham, note: 'First Acharya: Padmapadacharya', color: shankara}
+  - {dir: North, name: Jyotir Math (Badrinath), note: 'First Acharya: Totakacharya', color: shankara}
+- type: cards
+  section: shankara
+  grid: two
+  cards:
+  - id: sringeri
+    title: Sringeri Sharada Peetham
+    native: शृंगेरी शारदा पीठम्
+    subtitle: Dakshinamnaya · South
+    accent: shankara
+    tags: shankara
+    body: The southern seat, located on the banks of the Tunga River in Karnataka. Dedicated to Goddess Sharadamba,
+      it is the most prominent of the four Peethams and has an unbroken lineage from Sureshwaracharya to the present
+      day.
+    facts:
+    - [Location, 'Sringeri, Karnataka']
+    - [First Acharya, Sureshwaracharya]
+    - [Presiding Deity, Sharadamba (Saraswati)]
+    - [Mahāvākya, '"Aham Brahmāsmi" — I am Brahman']
+    chips:
+    - {text: 🔵 Advaita, style: theme}
+    - Karnataka
+  - id: dwaraka
+    title: Dwaraka Sharada Peetham
+    native: द्वारका शारदा पीठम्
+    subtitle: Paschimamnaya · West
+    accent: shankara
+    tags: shankara
+    body: The western seat, located in the sacred city of Dwarka in Gujarat. Also known as the Kalika Matha, it
+      stands in Krishna's city. The matha's own lineage begins with Hastamalakacharya (Sringeri's account names
+      Padmapadacharya instead).
+    facts:
+    - [Location, 'Dwarka, Gujarat']
+    - [First Acharya, Hastamalakacharya]
+    - [Presiding Deity, Siddheshwara &amp; Bhadrakali (per the Mathamnaya)]
+    - [Mahāvākya, '"Tat Tvam Asi" — Thou art That']
+    chips:
+    - {text: 🔵 Advaita, style: theme}
+    - Gujarat
+  - id: puri
+    title: Puri Govardhana Peetham
+    native: पुरी गोवर्धन पीठम्
+    subtitle: Poorvamnaya · East
+    accent: shankara
+    tags: shankara
+    body: The eastern seat, located in the coastal temple town of Puri in Odisha, home of the Jagannatha temple.
+      The matha's own lineage begins with Padmapadacharya (Sringeri's account names Hastamalakacharya instead).
+    facts:
+    - [Location, 'Puri, Odisha']
+    - [First Acharya, Padmapadacharya]
+    - [Presiding Deity, Jagannatha]
+    - [Mahāvākya, '"Prajñānam Brahma" — Consciousness is Brahman']
+    chips:
+    - {text: 🔵 Advaita, style: theme}
+    - Odisha
+  - id: jyotir
+    title: Jyotir Math
+    native: ज्योतिर् मठ
+    subtitle: Uttaramnaya · North
+    accent: shankara
+    tags: shankara
+    body: The northern seat, located in Joshimath (near Badrinath) in Uttarakhand. The lineage descends from Totakacharya.
+      The current headship has been the subject of some dispute in recent years.
+    facts:
+    - [Location, 'Joshimath, Uttarakhand']
+    - [First Acharya, Totakacharya]
+    - [Presiding Deity, Badrinarayana]
+    - [Mahāvākya, '"Ayam Ātmā Brahma" — This Atman is Brahman']
+    chips:
+    - {text: 🔵 Advaita, style: theme}
+    - Uttarakhand
+- type: cards
+  title: 🟡 The Ashta Mathas of Udupi
+  color: madhva
+  section: madhva
+  intro: Eight mathas established by Madhvacharya and his direct disciples to administer the Udupi Krishna Temple
+    and propagate Dvaita philosophy. They rotate the privilege of presiding over the temple through the Paryaya
+    system — each matha takes its turn for two years.
+  cards:
+  - id: pejavara
+    title: Pejavara Matha
+    native: ಪೇಜಾವರ ಮಠ
+    subtitle: 'First Pontiff: Adhokshaja Teertha'
+    accent: madhva
+    tags: madhva
+    body: 'Presiding deity: Vitthala with consorts Sri and Bhudevi. Paired with Kaniyooru Matha as a Dwandva (dual
+      pair).'
+    facts:
+    - [Presiding, Vitthala with Sri and Bhudevi]
+    - [Dwandva, Kaniyooru]
+    chips:
+    - {text: 🟡 Dvaita, style: theme}
+    - Udupi
+  - id: palimaru
+    title: Palimaru Matha
+    native: ಪಲಿಮಾರು ಮಠ
+    subtitle: 'First Pontiff: Hrishikesha Teertha'
+    accent: madhva
+    tags: madhva
+    body: 'Presiding deity: Kodanda Rama with consort Sita and brother Lakshmana. Paired with Adamaru Matha.'
+    facts:
+    - [Presiding, Kodanda Rama]
+    - [Dwandva, Adamaru]
+    chips:
+    - {text: 🟡 Dvaita, style: theme}
+    - Udupi
+  - id: adamaru
+    title: Adamaru Matha
+    native: ಅಡಮಾರು ಮಠ
+    subtitle: 'First Pontiff: Narasimha Teertha'
+    accent: madhva
+    tags: madhva
+    body: 'Presiding deity: Kaliyamardana Krishna with four arms, and Katyayani Devi. Paired with Palimaru Matha.'
+    facts:
+    - [Presiding, Kaliyamardana Krishna]
+    - [Dwandva, Palimaru]
+    chips:
+    - {text: 🟡 Dvaita, style: theme}
+    - Udupi
+  - id: puttige
+    title: Puttige Matha
+    native: ಪುತ್ತಿಗೆ ಮಠ
+    subtitle: 'First Pontiff: Upendra Teertha'
+    accent: madhva
+    tags: madhva
+    body: 'Presiding deity: Vitthala with consorts Rukmini and Satyabhama. Paired with Krishnapura Matha. The current
+      pontiff is Sri Sugunendra Teertha.'
+    facts:
+    - [Presiding, Vitthala with Rukmini &amp; Satyabhama]
+    - [Dwandva, Krishnapura]
+    chips:
+    - {text: 🟡 Dvaita, style: theme}
+    - Udupi
+  - id: sodhe
+    title: Sodhe Matha
+    native: ಸೋದೆ ಮಠ
+    subtitle: 'First Pontiff: Vishnu Teertha'
+    accent: madhva
+    tags: madhva
+    body: 'Presiding deity: Bhuvaraha (the boar avatar of Vishnu). Paired with Shirur Matha.'
+    facts:
+    - [Presiding, Bhuvaraha]
+    - [Dwandva, Shirur]
+    chips:
+    - {text: 🟡 Dvaita, style: theme}
+    - Udupi
+  - id: kaniyooru
+    title: Kaniyooru Matha
+    native: ಕನಿಯೂರು ಮಠ
+    subtitle: 'First Pontiff: Rama Teertha'
+    accent: madhva
+    tags: madhva
+    body: 'Presiding deity: Yoga-Narasimha. Paired with Pejavara Matha.'
+    facts:
+    - [Presiding, Yoga-Narasimha]
+    - [Dwandva, Pejavara]
+    chips:
+    - {text: 🟡 Dvaita, style: theme}
+    - Udupi
+  - id: shirur
+    title: Shirur Matha
+    native: ಶಿರೂರು ಮಠ
+    subtitle: 'First Pontiff: Vamana Teertha'
+    accent: madhva
+    tags: madhva
+    body: 'Presiding deity: Vitthala (called "Vamana Vitthala" to distinguish from Pejavara''s icon) with consorts
+      Sri and Bhudevi. Paired with Sodhe Matha.'
+    facts:
+    - [Presiding, Vamana Vitthala]
+    - [Dwandva, Sodhe]
+    chips:
+    - {text: 🟡 Dvaita, style: theme}
+    - Udupi
+  - id: krishnapura
+    title: Krishnapura Matha
+    native: ಕೃಷ್ಣಾಪುರ ಮಠ
+    subtitle: 'First Pontiff: Janardhana Teertha'
+    accent: madhva
+    tags: madhva
+    body: 'Presiding deity: Kaliyamardana Krishna. Paired with Puttige Matha.'
+    facts:
+    - [Presiding, Kaliyamardana Krishna]
+    - [Dwandva, Puttige]
+    chips:
+    - {text: 🟡 Dvaita, style: theme}
+    - Udupi
+- type: panel
+  title: 🔄 The Paryaya System
+  color: madhva
+  section: madhva
+  accent: madhva
+  text: The eight Ashta Mathas do not each run the Udupi Krishna Temple independently. Instead, they rotate the
+    responsibility through a system called <strong>Paryaya</strong> — each matha takes its turn as the temple's
+    administrator for a period of two years. The handover ceremony takes place on 18 January of even-numbered years
+    and is a major festival in Udupi.
+  chips:
+  - {text: 2-year rotation, style: theme}
+  - Udupi Krishna Temple
+  - 'Handover: 18 January'

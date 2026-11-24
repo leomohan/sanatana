@@ -1,0 +1,269 @@
+page:
+  file: shanmata.html
+  layout: page
+  title: The Shanmata — Six Major Traditions of Hinduism
+  favicon: 🕉️
+  search: Search deities, texts, acharyas…
+  native: sa
+  palette:
+    shaiva: ['#fc5c65', '#c43a3a']
+    vaishnava: ['#45aaf2', '#1a6fc4']
+    shakta: ['#f7b731', '#c98a00']
+    ganapatya: ['#ff9f43', '#d97706']
+    saura: ['#fdcb6e', '#b8860b']
+    kaumara: ['#26de81', '#12995a']
+  gradient: [shaiva, vaishnava, shakta, ganapatya, saura, kaumara]
+  primary: shakta
+  h1: The Shanmata
+  intro: Six major sectarian traditions of Hinduism, each centered on a primary deity and a body of scripture. Traditionally
+    attributed to Adi Shankara as a framework of worship — six paths, one ultimate reality. Not to be confused with
+    the six <em>darshanas</em> (philosophical schools).
+  legend:
+  - {label: Shaiva, color: shaiva}
+  - {label: Vaishnava, color: vaishnava}
+  - {label: Shakta, color: shakta}
+  - {label: Ganapatya, color: ganapatya}
+  - {label: Saura, color: saura}
+  - {label: Kaumara, color: kaumara}
+  filters:
+  - {value: all, label: All Six, color: shakta}
+  - {value: shaiva, label: 🔱 Shaiva, color: shaiva}
+  - {value: vaishnava, label: 🪷 Vaishnava, color: vaishnava}
+  - {value: shakta, label: 🌺 Shakta, color: shakta}
+  - {value: ganapatya, label: 🐘 Ganapatya, color: ganapatya}
+  - {value: saura, label: ☀️ Saura, color: saura}
+  - {value: kaumara, label: 🦚 Kaumara, color: kaumara}
+  footer: [🕉️ A comparison map of the Shanmata — the six major sectarian traditions of Hinduism · Not to be confused
+      with the six <em>darshanas</em> (philosophical schools), 'Each tradition has vast internal diversity, sub-sects,
+      and regional variations.']
+  large_cards: true
+blocks:
+- type: glance
+  title: 🔷 The Six Traditions at a Glance
+  color: shakta
+  items:
+  - {emoji: 🔱, name: Shaiva, sub: Shiva, color: shaiva}
+  - {emoji: 🪷, name: Vaishnava, sub: Vishnu, color: vaishnava}
+  - {emoji: 🌺, name: Shakta, sub: Devi, color: shakta}
+  - {emoji: 🐘, name: Ganapatya, sub: Ganesha, color: ganapatya}
+  - {emoji: ☀️, name: Saura, sub: Surya, color: saura}
+  - {emoji: 🦚, name: Kaumara, sub: Muruga, color: kaumara}
+- {type: filters}
+- type: compare
+  title: ⚖️ Side-by-Side Comparison
+  color: shakta
+  intro: Scroll horizontally to see all six columns. The filter chips above can narrow the table to a single tradition.
+  corner: Criterion
+  columns:
+  - {key: shaiva, label: Shaiva, color: shaiva}
+  - {key: vaishnava, label: Vaishnava, color: vaishnava}
+  - {key: shakta, label: Shakta, color: shakta}
+  - {key: ganapatya, label: Ganapatya, color: ganapatya}
+  - {key: saura, label: Saura, color: saura}
+  - {key: kaumara, label: Kaumara, color: kaumara}
+  rows:
+  - label: Sanskrit Name
+    cells: [शैव<span class="sanskrit">Śaiva</span>, वैष्णव<span class="sanskrit">Vaiṣṇava</span>, शाक्त<span class="sanskrit">Śākta</span>,
+      गाणपत्य<span class="sanskrit">Gāṇapatya</span>, सौर<span class="sanskrit">Saura</span>, कौमार<span class="sanskrit">Kaumāra</span>]
+  - label: Primary Deity
+    cells: ['<strong>Shiva</strong> — the auspicious, the destroyer-transformer', '<strong>Vishnu</strong> — the
+        preserver, with his avatars (Rama, Krishna)', '<strong>Devi</strong> — the Goddess in her many forms (Durga,
+        Lakshmi, Kali, Saraswati)', '<strong>Ganesha</strong> — the remover of obstacles, lord of beginnings', '<strong>Surya</strong>
+        — the Sun, visible manifestation of the divine', <strong>Muruga</strong> (Skanda/Kartikeya) — the youthful
+        commander]
+  - label: Consort / Śakti
+    cells: [Parvati (Umā), Lakshmi (Śrī), The Goddess is herself supreme; consort varies, Buddhi and Siddhi, 'Sanjñā,
+        Chāyā', Deivanai and Valli]
+  - label: Core Scriptures
+    cells: ['Śiva Purāṇa, Liṅga Purāṇa, Śiva Āgamas, Tirumurai', 'Viṣṇu Purāṇa, Bhāgavata Purāṇa, Nālāyira Divya
+        Prabandham', 'Devī Māhātmya, Devī Bhāgavata Purāṇa, Tantras, Lalitā Sahasranāma', 'Gaṇeśa Purāṇa, Mudgala
+        Purāṇa, Gaṇeśa Gītā', 'Sūrya Upaniṣad, Āditya Hṛdayam, Sāmba Purāṇa, Sūrya Śataka', 'Skanda Purāṇa, Kanda
+        Shashti Kavasam, Tiruppugal, Thirumurugatruppadai']
+  - label: Key Acharyas
+    cells: ['Nayanmars, Abhinavagupta, Basava, Appayya Dikshita', 'Azhwars, Ramanuja, Madhvacharya, Vallabha, Chaitanya',
+      'Ramakrishna, Bhaskararaya, Abhinavagupta, Krishnananda', 'Morya Gosavi, Chintamani Dev, the Mudgala lineage',
+      'Samba, Mayūra, the Maga Brahmin tradition', 'Arunagirinathar, Nakkirar, the Sangam poets']
+  - label: Central Practice
+    cells: ['Liṅga worship, abhisheka, meditation, yoga, pilgrimage to 12 Jyotirlingas', 'Bhakti, puja, recitation
+        of divine names, temple worship, pilgrimage to 108 Divya Desams', 'Sri Yantra meditation, tantric ritual,
+        Navaratri, Kumari puja', 'Ganesha Chaturthi, modaka offering, chanting of Om Gam Ganapataye Namaha', 'Surya
+        Namaskara, sunrise worship, Aditya Hridayam recitation', 'Skanda Sashti, Thaipusam, kavadi offering, recitation
+        of Tiruppugal']
+  - label: Major Festivals
+    cells: ['Maha Shivaratri, Pradosha, Karthigai Deepam', 'Vaikuntha Ekadashi, Rama Navami, Janmashtami, Onam',
+      'Navaratri, Durga Puja, Diwali (Lakshmi Puja), Kali Puja', 'Ganesha Chaturthi, Sankashti Chaturthi', 'Makara
+        Sankranti, Ratha Saptami, Chhath Puja', 'Skanda Sashti, Thaipusam, Panguni Uthiram']
+  - label: Geographic Heartland
+    cells: ['Kashmir, Tamil Nadu, Karnataka, Nepal, Bali', 'Tamil Nadu, Uttar Pradesh, Gujarat, Bengal, Odisha',
+      'Bengal, Assam (Kamakhya), Kerala, Kashmir', 'Maharashtra (Ashtavinayaka), Tamil Nadu', 'Odisha (Konark),
+        Bihar, Gujarat', 'Tamil Nadu, Sri Lanka, Kerala']
+  - label: Primary Mantra
+    cells: [Om Namah Śivāya, Om Namo Nārāyaṇāya / Hare Krishna, Om Aim Hrīṃ Klīṃ Chāmuṇḍāyai Vicce, Om Gaṃ Gaṇapataye
+        Namaḥ, Om Sūryāya Namaḥ / Gāyatrī Mantra, Om Saravaṇabhavāya Namaḥ]
+  - label: Famous Saying
+    cells: ['"Śivam advaitam" — Shiva is non-dual auspiciousness', '"Harih sarvottamah" — Hari is supreme', '"Śrī
+        Mātā" — the Mother is the source and support', '"Śrī Gaṇeśāya Namaḥ" — salutations to Ganesha', '"Āditya
+        Hṛdayaṃ" — the heart of the Sun', '"Vetrivel Veeravel" — the spear, the victory']
+  min_width: 1100
+- type: cards
+  title: 📖 The Six Traditions in Detail
+  color: shakta
+  cards:
+  - id: shaiva
+    title: Shaiva
+    native: शैव
+    subtitle: The Tradition of Shiva
+    corner_icon: 🔱
+    accent: shaiva
+    tags: shaiva
+    deity_emoji: 🔱
+    deity_line: 'Primary deity: <strong>Shiva</strong>'
+    body: 'Shaivism is one of the largest and oldest Hindu traditions, worshipping Shiva as the supreme being —
+      simultaneously destroyer and transformer, ascetic and householder. It spans a remarkable range: from the fierce
+      Tamil bhakti of the Nayanmars to the sophisticated Kashmir Shaivism of Abhinavagupta, from the Virashaiva
+      movement of Basava to the temple traditions of the 12 Jyotirlingas.'
+    key_teaching: {label: Key Teaching, text: <strong>Shiva as the ground of being.</strong> The Liṅga represents
+        the formless infinite; the mantra <em>Om Namah Śivāya</em> is the five-syllable surrender to the auspicious
+        one.}
+    facts:
+    - [Deity, Shiva (with Parvati)]
+    - [Texts, 'Śiva Purāṇa, Liṅga Purāṇa, Śiva Āgamas, Tirumurai']
+    - [Acharyas, 'Nayanmars, Abhinavagupta, Basava, Appayya Dikshita']
+    - [Festival, 'Maha Shivaratri, Pradosha, Karthigai Deepam']
+    - [Mantra, Om Namah Śivāya]
+    chips:
+    - {text: 🔱 Shiva, style: theme}
+    - Jyotirlingas
+    - Āgamas
+    - {text: Pancha Bhoota Sthalams →, href: pancha-bhoota.html}
+  - id: vaishnava
+    title: Vaishnava
+    native: वैष्णव
+    subtitle: The Tradition of Vishnu
+    corner_icon: 🪷
+    accent: vaishnava
+    tags: vaishnava
+    deity_emoji: 🪷
+    deity_line: 'Primary deity: <strong>Vishnu</strong> (and his avatars)'
+    body: Vaishnavism is the largest sectarian tradition within Hinduism, centred on Vishnu and his incarnations
+      — most beloved among them Rama and Krishna. Its devotional intensity finds expression in the Tamil hymns of
+      the Azhwars, the Bengali ecstasy of Chaitanya, the philosophical rigor of Ramanuja and Madhva, and the childlike
+      joy of the Bhagavata Purana.
+    key_teaching: {label: Key Teaching, text: '<strong>Descent for the sake of dharma.</strong> Vishnu takes birth
+        whenever righteousness declines. The paths are bhakti (devotion), prapatti (surrender), and the chanting
+        of the divine names.'}
+    facts:
+    - [Deity, 'Vishnu (with Lakshmi) — Rama, Krishna as avatars']
+    - [Texts, 'Viṣṇu Purāṇa, Bhāgavata Purāṇa, Nālāyira Divya Prabandham']
+    - [Acharyas, 'Azhwars, Ramanuja, Madhvacharya, Vallabha, Chaitanya']
+    - [Festival, 'Vaikuntha Ekadashi, Rama Navami, Janmashtami']
+    - [Mantra, Om Namo Nārāyaṇāya / Hare Krishna]
+    chips:
+    - {text: 🪷 Vishnu, style: theme}
+    - 108 Divya Desams
+    - Bhakti
+  - id: shakta
+    title: Shakta
+    native: शाक्त
+    subtitle: The Tradition of the Goddess
+    corner_icon: 🌺
+    accent: shakta
+    tags: shakta
+    deity_emoji: 🌺
+    deity_line: 'Primary deity: <strong>Devi</strong> (the Goddess)'
+    body: Shaktism worships the Divine as feminine — as Durga, Kali, Lakshmi, Saraswati, and countless other forms.
+      It is the most ritually elaborate of the six traditions, with tantric practices, Sri Yantra meditation, and
+      the great festival of Navaratri at its heart. The Devi Mahatmya celebrates her victory over the buffalo demon,
+      and the Shakta Tantras elaborate her worship in extraordinary detail.
+    key_teaching: {label: Key Teaching, text: '<strong>The Goddess is ultimate reality.</strong> Śakti — divine
+        power — is not subordinate to any god but is the very energy of the cosmos. She is both fierce and nurturing,
+        both Kali and Lakshmi.'}
+    facts:
+    - [Deity, 'Devi — Durga, Kali, Lakshmi, Saraswati, and more']
+    - [Texts, 'Devī Māhātmya, Devī Bhāgavata Purāṇa, Tantras, Lalitā Sahasranāma']
+    - [Acharyas, 'Ramakrishna, Bhaskararaya, Abhinavagupta, Krishnananda']
+    - [Festival, 'Navaratri, Durga Puja, Diwali (Lakshmi Puja), Kali Puja']
+    - [Mantra, Om Aim Hrīṃ Klīṃ Chāmuṇḍāyai Vicce]
+    chips:
+    - {text: 🌺 Devi, style: theme}
+    - Tantra
+    - Sri Yantra
+    - {text: Shakti Peethas →, href: shakti-peethas.html}
+  - id: ganapatya
+    title: Ganapatya
+    native: गाणपत्य
+    subtitle: The Tradition of Ganesha
+    corner_icon: 🐘
+    accent: ganapatya
+    tags: ganapatya
+    deity_emoji: 🐘
+    deity_line: 'Primary deity: <strong>Ganesha</strong>'
+    body: Ganapatya worship centers on Ganesha — the elephant-headed remover of obstacles, lord of beginnings, patron
+      of arts and sciences. Though widely beloved across all Hindu traditions as the deity invoked first, the Ganapatya
+      tradition elevates him to the supreme godhead. Its heartland is Maharashtra, where the eight Ashtavinayaka
+      temples form a sacred circuit.
+    key_teaching: {label: Key Teaching, text: '<strong>Ganesha as the supreme.</strong> He is both the obstacle
+        and its remover — the divine threshold. The Mudgala Purana narrates his eight incarnations, each overcoming
+        a different inner demon.'}
+    facts:
+    - [Deity, Ganesha (with Buddhi and Siddhi)]
+    - [Texts, 'Gaṇeśa Purāṇa, Mudgala Purāṇa, Gaṇeśa Gītā']
+    - [Acharyas, 'Morya Gosavi, Chintamani Dev, the Mudgala lineage']
+    - [Festival, 'Ganesha Chaturthi, Sankashti Chaturthi']
+    - [Mantra, Om Gaṃ Gaṇapataye Namaḥ]
+    chips:
+    - {text: 🐘 Ganesha, style: theme}
+    - Ashtavinayaka
+    - Maharashtra
+  - id: saura
+    title: Saura
+    native: सौर
+    subtitle: The Tradition of the Sun
+    corner_icon: ☀️
+    accent: saura
+    tags: saura
+    deity_emoji: ☀️
+    deity_line: 'Primary deity: <strong>Surya</strong>'
+    body: 'Saura worship venerates Surya, the Sun, as the visible manifestation of the divine — the source of all
+      life and light. Though fewer dedicated temples survive today, the tradition is ancient and widespread: the
+      Konark Sun Temple, the Aditya Hridayam recited in the Ramayana, and the daily Surya Namaskara practiced across
+      traditions all carry its imprint. Surya is invoked in the Gayatri Mantra, perhaps the most recited Vedic prayer.'
+    key_teaching: {label: Key Teaching, text: <strong>The visible divine.</strong> Surya is the light that sustains
+        the world and the symbol of inner illumination. The Gayatri Mantra — the heart of Vedic prayer — is addressed
+        to the solar light.}
+    facts:
+    - [Deity, Surya (with Sanjñā and Chāyā)]
+    - [Texts, 'Sūrya Upaniṣad, Āditya Hṛdayam, Sāmba Purāṇa, Sūrya Śataka']
+    - [Acharyas, 'Samba, Mayūra, the Maga Brahmin tradition']
+    - [Festival, 'Makara Sankranti, Ratha Saptami, Chhath Puja']
+    - [Mantra, Om Sūryāya Namaḥ / Gāyatrī Mantra]
+    chips:
+    - {text: ☀️ Surya, style: theme}
+    - Konark
+    - Gayatri
+  - id: kaumara
+    title: Kaumara
+    native: कौमार
+    subtitle: The Tradition of Muruga
+    corner_icon: 🦚
+    accent: kaumara
+    tags: kaumara
+    deity_emoji: 🦚
+    deity_line: 'Primary deity: <strong>Muruga</strong> (Skanda/Kartikeya)'
+    body: Kaumara worship is devoted to Muruga (also called Skanda, Kartikeya, Subrahmanya), the youthful son of
+      Shiva and Parvati who commands the divine army and destroys evil. Its heartland is Tamil Nadu, where the six
+      Arupadai Veedu temples trace his life, along with Sri Lanka and the Tamil diaspora, where the Tamil hymn traditions
+      — Tiruppugal, Kanda Shashti Kavasam — sing his praises with extraordinary devotion.
+    key_teaching: {label: Key Teaching, text: '<strong>The divine commander.</strong> Muruga wields the vel (spear)
+        of divine wisdom, which pierces ignorance and vanquishes darkness. He is both warrior and guru — the child
+        who teaches the meaning of Om.'}
+    facts:
+    - [Deity, Muruga (with Deivanai and Valli)]
+    - [Texts, 'Skanda Purāṇa, Kanda Shashti Kavasam, Tiruppugal, Thirumurugatruppadai']
+    - [Acharyas, 'Arunagirinathar, Nakkirar, the Sangam poets']
+    - [Festival, 'Skanda Sashti, Thaipusam, Panguni Uthiram']
+    - [Mantra, Om Saravaṇabhavāya Namaḥ]
+    chips:
+    - {text: 🦚 Muruga, style: theme}
+    - Arupadai Veedu
+    - Tamil Bhakti

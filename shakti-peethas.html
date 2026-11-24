@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shakti Peethas — Where Sati Fell</title>
+<meta name="description" content="Interactive map of the 18 Maha Shakti Peethas and the four Adi Shakti Peethas, with the legend of Sati and Daksha&#39;s sacrifice.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌺</text></svg>">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="assets/site.css?v=420f3627">
+<style>:root,[data-theme="dark"]{--muruga:#fd79a8; --muruga-2:#f0932b;} [data-theme="light"]{--muruga:#c2185b; --muruga-2:#c0631a;} :root{--primary:var(--muruga); --grad-h:linear-gradient(90deg,var(--muruga),var(--muruga-2)); --grad-v:linear-gradient(var(--muruga),var(--muruga-2));}</style>
+<script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
+  (function(){
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
+  })();
+</script>
+</head>
+<body>
+<div class="controls" role="toolbar" aria-label="Page controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
+  <div class="search-wrap">
+    <span aria-hidden="true">🔍</span>
+    <input type="search" id="searchInput" placeholder="Search goddesses, places, body parts…" aria-label="Search">
+  </div>
+  <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
+    <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">संस्कृतम्</button>
+  </div>
+  <div class="ctrl-group" role="group" aria-label="Text size">
+    <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
+    <span class="size-val" id="sizeVal">100%</span>
+    <button class="ctrl-btn size-btn" id="sizeUp" aria-label="Increase text size">A+</button>
+  </div>
+  <button class="ctrl-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+    <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+    <span id="toggleLabel">Light</span>
+  </button>
+</div>
+<header>
+  <h1>Shakti Peethas</h1>
+  <p>The seats of the Goddess, each marking where a part of Sati's body — or one of her ornaments — is said to have fallen. This map follows the eighteen Maha Shakti Peethas of the hymn traditionally attributed to Adi Shankara, from Sri Lanka to Kashmir, and adds the four Adi ("first") Peethas.</p>
+  <div class="legend"><span><i class="dot" style="background:#e84393"></i>18 Maha Shakti Peethas</span><span><i class="dot" style="background:#f0932b"></i>Adi Shakti Peethas</span></div>
+</header>
+<div class="story"><h2>The legend of Sati</h2><p>Daksha Prajapati held a great sacrifice and pointedly left out his daughter Sati and her husband Shiva. Sati went anyway, was insulted by her father before the assembly, and gave up her body — in some tellings by entering the sacrificial fire, in others through yogic power. Shiva, in fury, sent Virabhadra to destroy the sacrifice.</p><p>Grief-stricken, Shiva wandered the cosmos carrying Sati's body. In one version Vishnu cut it into pieces with his Sudarshana Chakra; in another the limbs and ornaments simply fell as Shiva walked. Wherever a part came to rest, the Goddess is worshipped — usually alongside a guardian form of Shiva called Bhairava.</p></div>
+<div class="counts" aria-label="How many Shakti Peethas?"><div><b>4</b><span>Adi (first) Peethas</span></div><div><b>18</b><span>Maha Peethas · Shankara&#39;s hymn</span></div><div><b>51</b><span>Pithanirnaya · Mahabhagavata</span></div><div><b>52</b><span>a Bengal tradition</span></div><div><b>108</b><span>Devi Bhagavata Purana</span></div></div>
+<div class="callout">Different texts give different lists, and even the body part linked to a site varies. Body parts here follow the eighteen-Peetha list as summarised on Wikipedia.</div>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--muruga)">All</button>
+  <button class="filter-chip" data-filter="maha" aria-pressed="false" style="--fc:#e84393">🌺 18 Maha Peethas</button>
+  <button class="filter-chip" data-filter="adi" aria-pressed="false" style="--fc:#f0932b">🔶 4 Adi Peethas</button>
+  <button class="filter-chip" data-filter="south" aria-pressed="false" style="--fc:#6c5ce7">South</button>
+  <button class="filter-chip" data-filter="west" aria-pressed="false" style="--fc:#00b894">West &amp; Central</button>
+  <button class="filter-chip" data-filter="east" aria-pressed="false" style="--fc:#0984e3">East</button>
+  <button class="filter-chip" data-filter="north" aria-pressed="false" style="--fc:#d63031">North</button>
+</div>
+<div id="map" role="application" aria-label="Map of the Shakti Peethas"></div>
+<section data-block>
+  <div class="grid">
+  <article class="card has-corner" id="shankari" data-item data-id="shankari" data-tags="maha south" style="--accent:#e84393"><span class="ch-num">1</span>
+  <h3>Shankari <span class="native">शाङ्करी</span></h3><span class="tag">Trincomalee, Sri Lanka</span><p>The first name in the stotra, "Lankayam Shankari Devi". The original site is historically unknown; modern tradition places it at the clifftop Koneswaram temple in Trincomalee, destroyed by the Portuguese in the 17th century and rebuilt in the 20th.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Shankari</dd></div><div class="fact"><dt>Body part</dt><dd>Groin</dd></div><div class="fact"><dt>Place</dt><dd>Trincomalee, Sri Lanka</dd></div></dl><div class="chips"><span class="chip event">Sri Lanka</span><span class="chip">Site uncertain</span></div><button class="map-link" data-id="shankari" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="kamakshi" data-item data-id="kamakshi" data-tags="maha south" style="--accent:#e84393"><span class="ch-num">2</span>
+  <h3>Kamakshi <span class="native">कामाक्षी</span></h3><span class="tag">Kanchipuram, Tamil Nadu</span><p>The Kamakoti Pitham, one of the great Devi temples of the south, where the goddess sits in a yogic posture. Kanchipuram also holds the earth temple of the <a href="pancha-bhoota.html">Pancha Bhoota Sthalams</a>, whose legend has Kamakshi embracing Shiva's sand lingam.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Kamakshi</dd></div><div class="fact"><dt>Body part</dt><dd>Part of the abdomen</dd></div><div class="fact"><dt>Place</dt><dd>Kanchipuram, Tamil Nadu</dd></div></dl><div class="chips"><span class="chip event">Tamil Nadu</span><span class="chip">Kamakoti Pitham</span></div><button class="map-link" data-id="kamakshi" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="shrinkhala" data-item data-id="shrinkhala" data-tags="maha east" style="--accent:#e84393"><span class="ch-num">3</span>
+  <h3>Shrinkhala <span class="native">शृङ्खला</span></h3><span class="tag">Pandua, Hooghly district, West Bengal</span><p>The least certain of the eighteen. The stotra places Shrinkhala at "Pradyumna"; most lists identify this with Pandua in Hooghly district, but the original shrine and its exact site are debated.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Shrinkhala</dd></div><div class="fact"><dt>Body part</dt><dd>Part of the stomach</dd></div><div class="fact"><dt>Place</dt><dd>Pandua, Hooghly district, West Bengal</dd></div></dl><div class="chips"><span class="chip event">West Bengal</span><span class="chip">Site debated</span></div><button class="map-link" data-id="shrinkhala" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="chamundeshwari" data-item data-id="chamundeshwari" data-tags="maha south" style="--accent:#e84393"><span class="ch-num">4</span>
+  <h3>Chamundeshwari <span class="native">चामुण्डेश्वरी</span></h3><span class="tag">Chamundi Hills, Mysuru, Karnataka</span><p>The hilltop temple of the goddess who slew Mahishasura, the buffalo demon from whom Mysuru (Mahishuru) takes its name. She was the family deity of the Wodeyar kings and is the centre of the city's Dasara festival.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Chamundeshwari</dd></div><div class="fact"><dt>Body part</dt><dd>Hair</dd></div><div class="fact"><dt>Place</dt><dd>Chamundi Hills, Mysuru, Karnataka</dd></div></dl><div class="chips"><span class="chip event">Karnataka</span><span class="chip">Mysuru Dasara</span></div><button class="map-link" data-id="chamundeshwari" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="jogulamba" data-item data-id="jogulamba" data-tags="maha south" style="--accent:#e84393"><span class="ch-num">5</span>
+  <h3>Jogulamba <span class="native">जोगुलाम्बा</span></h3><span class="tag">Alampur, Telangana</span><p>At Alampur, near the meeting of the Tungabhadra and Krishna, beside the Navabrahma temples built by the Badami Chalukyas in the 7th–8th centuries. The temple was rebuilt on its old site in 2005 and the original image reinstalled.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Jogulamba</dd></div><div class="fact"><dt>Body part</dt><dd>Teeth</dd></div><div class="fact"><dt>Place</dt><dd>Alampur, Telangana</dd></div></dl><div class="chips"><span class="chip event">Telangana</span><span class="chip">Navabrahma temples</span></div><button class="map-link" data-id="jogulamba" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="bhramaramba" data-item data-id="bhramaramba" data-tags="maha south" style="--accent:#e84393"><span class="ch-num">6</span>
+  <h3>Bhramaramba <span class="native">भ्रमराम्बा</span></h3><span class="tag">Srisailam, Andhra Pradesh</span><p>On the Nallamala hills above the Krishna, Srisailam is both a Shakti Peetha and one of the twelve Jyotirlingas (Mallikarjuna) — see the <a href="geography.html">Sacred Geography</a> map. The goddess is named for the bee (<em>bhramara</em>) form she took to destroy a demon.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Bhramaramba</dd></div><div class="fact"><dt>Body part</dt><dd>Neck</dd></div><div class="fact"><dt>Place</dt><dd>Srisailam, Andhra Pradesh</dd></div></dl><div class="chips"><span class="chip event">Andhra Pradesh</span><span class="chip">Also a Jyotirlinga</span></div><button class="map-link" data-id="bhramaramba" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="mahalakshmi" data-item data-id="mahalakshmi" data-tags="maha west" style="--accent:#e84393"><span class="ch-num">7</span>
+  <h3>Mahalakshmi <span class="native">महालक्ष्मी</span></h3><span class="tag">Kolhapur, Maharashtra</span><p>Known locally as Ambabai, the goddess of the Karvir or Shri Pitham. On a few days each year the setting sun's rays reach her image through the temple doors (Kiranotsav). One of the "three and a half" Shakti Peethas of Maharashtra.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Mahalakshmi</dd></div><div class="fact"><dt>Body part</dt><dd>Eye</dd></div><div class="fact"><dt>Place</dt><dd>Kolhapur, Maharashtra</dd></div></dl><div class="chips"><span class="chip event">Maharashtra</span><span class="chip">Kiranotsav</span></div><button class="map-link" data-id="mahalakshmi" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="renuka" data-item data-id="renuka" data-tags="maha west" style="--accent:#e84393"><span class="ch-num">8</span>
+  <h3>Renuka (Ekaveera) <span class="native">रेणुका</span></h3><span class="tag">Mahur, Nanded district, Maharashtra</span><p>A hill temple to Renuka, mother of Parashurama, in a town also sacred to Dattatreya. The Devi Gita names it Matripura. It too is one of Maharashtra's "three and a half" Shakti Peethas.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Renuka (Ekaveera)</dd></div><div class="fact"><dt>Body part</dt><dd>Left hand</dd></div><div class="fact"><dt>Place</dt><dd>Mahur, Nanded district, Maharashtra</dd></div></dl><div class="chips"><span class="chip event">Maharashtra</span><span class="chip">Mother of Parashurama</span></div><button class="map-link" data-id="renuka" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="mahakali" data-item data-id="mahakali" data-tags="maha west" style="--accent:#e84393"><span class="ch-num">9</span>
+  <h3>Mahakali <span class="native">महाकाली</span></h3><span class="tag">Ujjain, Madhya Pradesh</span><p>Ujjain, city of the Mahakaleshwar Jyotirlinga, holds the Ujjaini Pitham. Local tradition identifies the shrine with either the Gadkalika or the Harsiddhi temple; the marker shows the old city.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Mahakali</dd></div><div class="fact"><dt>Body part</dt><dd>Upper lip</dd></div><div class="fact"><dt>Place</dt><dd>Ujjain, Madhya Pradesh</dd></div></dl><div class="chips"><span class="chip event">Madhya Pradesh</span><span class="chip">City of Mahakaleshwar</span></div><button class="map-link" data-id="mahakali" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="puruhutika" data-item data-id="puruhutika" data-tags="maha south" style="--accent:#e84393"><span class="ch-num">10</span>
+  <h3>Puruhutika <span class="native">पुरुहूतिका</span></h3><span class="tag">Pithapuram, Kakinada district, Andhra Pradesh</span><p>Her shrine stands inside the Kukkuteswara temple complex. The name means "she who was worshipped by Indra (Puruhuta)". Pithapuram is also a Pada Gaya kshetra for ancestral rites and the birthplace of Sripada Sri Vallabha.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Puruhutika</dd></div><div class="fact"><dt>Body part</dt><dd>Back (some traditions: left hand)</dd></div><div class="fact"><dt>Place</dt><dd>Pithapuram, Kakinada district, Andhra Pradesh</dd></div></dl><div class="chips"><span class="chip event">Andhra Pradesh</span><span class="chip">Kukkuteswara temple</span></div><button class="map-link" data-id="puruhutika" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="biraja" data-item data-id="biraja" data-tags="maha east" style="--accent:#e84393"><span class="ch-num">11</span>
+  <h3>Biraja (Girija) <span class="native">बिरजा</span></h3><span class="tag">Jajpur, Odisha</span><p>The Oddiyana Pitham. Jajpur is also called Viraja Kshetra and Nabhi Gaya, and pilgrims perform ancestral rites here. The goddess is shown as Durga slaying Mahishasura.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Biraja (Girija)</dd></div><div class="fact"><dt>Body part</dt><dd>Navel</dd></div><div class="fact"><dt>Place</dt><dd>Jajpur, Odisha</dd></div></dl><div class="chips"><span class="chip event">Odisha</span><span class="chip">Nabhi Gaya</span></div><button class="map-link" data-id="biraja" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="manikyamba" data-item data-id="manikyamba" data-tags="maha south" style="--accent:#e84393"><span class="ch-num">12</span>
+  <h3>Manikyamba <span class="native">माणिक्याम्बा</span></h3><span class="tag">Draksharamam, Konaseema district, Andhra Pradesh</span><p>Her shrine lies within the Bhimeswara temple, one of the five Pancharama temples of Shiva, built by the Eastern Chalukya king Bhima around 900 CE. The town's name recalls Daksha, whose sacrifice began the whole story.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Manikyamba</dd></div><div class="fact"><dt>Body part</dt><dd>Left cheek</dd></div><div class="fact"><dt>Place</dt><dd>Draksharamam, Konaseema district, Andhra Pradesh</dd></div></dl><div class="chips"><span class="chip event">Andhra Pradesh</span><span class="chip">Pancharama</span></div><button class="map-link" data-id="manikyamba" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="kamakhya" data-item data-id="kamakhya" data-tags="maha east adi" style="--accent:#e84393"><span class="ch-num">13</span>
+  <h3>Kamakhya <span class="native">कामाख्या</span></h3><span class="tag">Nilachal hill, Guwahati, Assam</span><p>There is no image: the goddess is worshipped as a natural cleft in the rock, kept moist by an underground spring. The temple closes for the Ambubachi Mela each June. Kamakhya is counted among both the eighteen Maha and the four Adi Shakti Peethas.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Kamakhya</dd></div><div class="fact"><dt>Body part</dt><dd>Yoni</dd></div><div class="fact"><dt>Place</dt><dd>Nilachal hill, Guwahati, Assam</dd></div></dl><div class="chips"><span class="chip event">Assam</span><span class="chip">Also an Adi Peetha</span><span class="chip">Ambubachi Mela</span></div><button class="map-link" data-id="kamakhya" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="madhaveshwari" data-item data-id="madhaveshwari" data-tags="maha north" style="--accent:#e84393"><span class="ch-num">14</span>
+  <h3>Madhaveshwari (Alopi Devi) <span class="native">माधवेश्वरी</span></h3><span class="tag">Prayagraj, Uttar Pradesh</span><p>Near the Triveni Sangam, the shrine has no image of the goddess: devotees worship a wooden swing or cradle (<em>doli</em>) instead, and the name Alopi means "she who vanished".</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Madhaveshwari (Alopi Devi)</dd></div><div class="fact"><dt>Body part</dt><dd>Fingers</dd></div><div class="fact"><dt>Place</dt><dd>Prayagraj, Uttar Pradesh</dd></div></dl><div class="chips"><span class="chip event">Uttar Pradesh</span><span class="chip">Near the Sangam</span></div><button class="map-link" data-id="madhaveshwari" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="jwalamukhi" data-item data-id="jwalamukhi" data-tags="maha north" style="--accent:#e84393"><span class="ch-num">15</span>
+  <h3>Jwalamukhi <span class="native">ज्वालामुखी</span></h3><span class="tag">Jwalamukhi, Kangra district, Himachal Pradesh</span><p>Small natural flames burn continuously from fissures in the rock and are worshipped as the goddess herself; there is no idol.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Jwalamukhi</dd></div><div class="fact"><dt>Body part</dt><dd>Tongue</dd></div><div class="fact"><dt>Place</dt><dd>Jwalamukhi, Kangra district, Himachal Pradesh</dd></div></dl><div class="chips"><span class="chip event">Himachal Pradesh</span><span class="chip">Eternal flames</span></div><button class="map-link" data-id="jwalamukhi" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="sarvamangala" data-item data-id="sarvamangala" data-tags="maha east" style="--accent:#e84393"><span class="ch-num">16</span>
+  <h3>Sarvamangala (Mangala Gauri) <span class="native">सर्वमङ्गला</span></h3><span class="tag">Gaya, Bihar</span><p>A hill shrine in Gaya, the great centre of <em>pinda daan</em> for the ancestors. Pilgrims who come for the Gaya Shraddha often visit the goddess too — see <a href="samskaras.html">Cradle to Pyre</a> for Shraadha.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Sarvamangala (Mangala Gauri)</dd></div><div class="fact"><dt>Body part</dt><dd>Breast</dd></div><div class="fact"><dt>Place</dt><dd>Gaya, Bihar</dd></div></dl><div class="chips"><span class="chip event">Bihar</span><span class="chip">Gaya Shraddha</span></div><button class="map-link" data-id="sarvamangala" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="vishalakshi" data-item data-id="vishalakshi" data-tags="maha north" style="--accent:#e84393"><span class="ch-num">17</span>
+  <h3>Vishalakshi <span class="native">विशालाक्षी</span></h3><span class="tag">Varanasi, Uttar Pradesh</span><p>Near Manikarnika Ghat — whose own name is read as "jewelled earring" — and a short walk from the Kashi Vishwanath Jyotirlinga.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Vishalakshi</dd></div><div class="fact"><dt>Body part</dt><dd>Earrings</dd></div><div class="fact"><dt>Place</dt><dd>Varanasi, Uttar Pradesh</dd></div></dl><div class="chips"><span class="chip event">Uttar Pradesh</span><span class="chip">Manikarnika</span></div><button class="map-link" data-id="vishalakshi" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="sharada" data-item data-id="sharada" data-tags="maha north" style="--accent:#e84393"><span class="ch-num">18</span>
+  <h3>Sharada (Saraswati) <span class="native">शारदा</span></h3><span class="tag">Sharda, Neelum valley, Pakistan-administered Kashmir</span><p>Once a great centre of learning that gave its name to the Sharada script, the temple now stands in ruins. In 2023 a new Sharada temple was consecrated at Teetwal in Kupwara, on the Indian side of the Line of Control.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Sharada (Saraswati)</dd></div><div class="fact"><dt>Body part</dt><dd>Right hand</dd></div><div class="fact"><dt>Place</dt><dd>Sharda, Neelum valley, Pakistan-administered Kashmir</dd></div></dl><div class="chips"><span class="chip event">Kashmir</span><span class="chip">In ruins</span><span class="chip">Sharada script</span></div><button class="map-link" data-id="sharada" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="vimala" data-item data-id="vimala" data-tags="adi east" style="--accent:#f0932b"><span class="ch-num">A1</span>
+  <h3>Vimala <span class="native">विमला</span></h3><span class="tag">Jagannath temple, Puri, Odisha · Adi Shakti Peetha</span><p>A shrine inside the Jagannath temple complex. Food offered to Jagannath becomes Mahaprasad only after it has also been offered to Vimala.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Vimala</dd></div><div class="fact"><dt>Body part</dt><dd>Feet</dd></div><div class="fact"><dt>Place</dt><dd>Jagannath temple, Puri, Odisha</dd></div></dl><div class="chips"><span class="chip event">Odisha</span><span class="chip">Inside the Jagannath temple</span></div><button class="map-link" data-id="vimala" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="taratarini" data-item data-id="taratarini" data-tags="adi east" style="--accent:#f0932b"><span class="ch-num">A2</span>
+  <h3>Tara Tarini <span class="native">तारा तारिणी</span></h3><span class="tag">Ganjam district, Odisha · Adi Shakti Peetha</span><p>A hilltop shrine above the Rushikulya river where twin goddesses, Tara and Tarini, are worshipped together.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Tara Tarini</dd></div><div class="fact"><dt>Body part</dt><dd>Breasts</dd></div><div class="fact"><dt>Place</dt><dd>Ganjam district, Odisha</dd></div></dl><div class="chips"><span class="chip event">Odisha</span><span class="chip">Twin goddesses</span></div><button class="map-link" data-id="taratarini" type="button">📍 Show on map</button>
+</article>
+  <article class="card has-corner" id="kalighat" data-item data-id="kalighat" data-tags="adi east" style="--accent:#f0932b"><span class="ch-num">A3</span>
+  <h3>Kalika (Kalighat) <span class="native">कालिका</span></h3><span class="tag">Kalighat, Kolkata, West Bengal · Adi Shakti Peetha</span><p>The famous Kali temple on the old course of the Hooghly (Adi Ganga), where the goddess is shown with a long golden tongue.</p><dl class="facts"><div class="fact"><dt>Goddess</dt><dd>Kalika (Kalighat)</dd></div><div class="fact"><dt>Body part</dt><dd>Toes of the right foot</dd></div><div class="fact"><dt>Place</dt><dd>Kalighat, Kolkata, West Bengal</dd></div></dl><div class="chips"><span class="chip event">West Bengal</span><span class="chip">Kali</span></div><button class="map-link" data-id="kalighat" type="button">📍 Show on map</button>
+</article>
+  </div>
+</section>
+<p class="no-results">No sites match your search. Try another name or clear the filter.</p>
+<section class="sources"><h2>Sources</h2><ul><li><a href="https://en.wikipedia.org/wiki/Shakti_Peetha" target="_blank" rel="noopener">Shakti Peetha — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Jogulamba_Temple,_Alampur" target="_blank" rel="noopener">Jogulamba Temple, Alampur — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Kukkuteswara_Temple" target="_blank" rel="noopener">Kukkuteswara Temple, Pithapuram — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Draksharamam" target="_blank" rel="noopener">Draksharamam — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Mahur,_Maharashtra" target="_blank" rel="noopener">Mahur, Maharashtra — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Three_and_a_half_Shakta_pithas" target="_blank" rel="noopener">Three and a half Shakti Peethas — Wikipedia</a></li></ul></section>
+<footer>
+  <p>🌺 A visual map of the Shakti Peethas · Lists, locations and attributions vary between texts and regions</p>
+  <p>Map data © OpenStreetMap contributors · Coordinates are approximate</p>
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html" aria-current="page"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
+</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>window.SANATANA_SITES = [{"id": "shankari", "n": "1", "name": "Shankari — Trincomalee", "sub": "Groin · Trincomalee, Sri Lanka", "lat": 8.5833, "lng": 81.2453, "color": "#e84393"}, {"id": "kamakshi", "n": "2", "name": "Kamakshi — Kanchipuram", "sub": "Part of the abdomen · Kanchipuram, Tamil Nadu", "lat": 12.8408, "lng": 79.7031, "color": "#e84393"}, {"id": "shrinkhala", "n": "3", "name": "Shrinkhala — Pandua", "sub": "Part of the stomach · Pandua, Hooghly district, West Bengal", "lat": 23.08, "lng": 88.2783, "color": "#e84393"}, {"id": "chamundeshwari", "n": "4", "name": "Chamundeshwari — Chamundi Hills", "sub": "Hair · Chamundi Hills, Mysuru, Karnataka", "lat": 12.2724, "lng": 76.6705, "color": "#e84393"}, {"id": "jogulamba", "n": "5", "name": "Jogulamba — Alampur", "sub": "Teeth · Alampur, Telangana", "lat": 15.877, "lng": 78.132, "color": "#e84393"}, {"id": "bhramaramba", "n": "6", "name": "Bhramaramba — Srisailam", "sub": "Neck · Srisailam, Andhra Pradesh", "lat": 16.0742, "lng": 78.8682, "color": "#e84393"}, {"id": "mahalakshmi", "n": "7", "name": "Mahalakshmi — Kolhapur", "sub": "Eye · Kolhapur, Maharashtra", "lat": 16.695, "lng": 74.2236, "color": "#e84393"}, {"id": "renuka", "n": "8", "name": "Renuka (Ekaveera) — Mahur", "sub": "Left hand · Mahur, Nanded district, Maharashtra", "lat": 19.8478, "lng": 77.9239, "color": "#e84393"}, {"id": "mahakali", "n": "9", "name": "Mahakali — Ujjain", "sub": "Upper lip · Ujjain, Madhya Pradesh", "lat": 23.1825, "lng": 75.7669, "color": "#e84393"}, {"id": "puruhutika", "n": "10", "name": "Puruhutika — Pithapuram", "sub": "Back (some traditions: left hand) · Pithapuram, Kakinada district, Andhra Pradesh", "lat": 17.1068, "lng": 82.2433, "color": "#e84393"}, {"id": "biraja", "n": "11", "name": "Biraja (Girija) — Jajpur", "sub": "Navel · Jajpur, Odisha", "lat": 20.8542, "lng": 86.331, "color": "#e84393"}, {"id": "manikyamba", "n": "12", "name": "Manikyamba — Draksharamam", "sub": "Left cheek · Draksharamam, Konaseema district, Andhra Pradesh", "lat": 16.792, "lng": 82.0633, "color": "#e84393"}, {"id": "kamakhya", "n": "13", "name": "Kamakhya — Nilachal hill", "sub": "Yoni · Nilachal hill, Guwahati, Assam", "lat": 26.1664, "lng": 91.7055, "color": "#e84393"}, {"id": "madhaveshwari", "n": "14", "name": "Madhaveshwari (Alopi Devi) — Prayagraj", "sub": "Fingers · Prayagraj, Uttar Pradesh", "lat": 25.4442, "lng": 81.8652, "color": "#e84393"}, {"id": "jwalamukhi", "n": "15", "name": "Jwalamukhi — Jwalamukhi", "sub": "Tongue · Jwalamukhi, Kangra district, Himachal Pradesh", "lat": 31.8758, "lng": 76.3236, "color": "#e84393"}, {"id": "sarvamangala", "n": "16", "name": "Sarvamangala (Mangala Gauri) — Gaya", "sub": "Breast · Gaya, Bihar", "lat": 24.7726, "lng": 85.0065, "color": "#e84393"}, {"id": "vishalakshi", "n": "17", "name": "Vishalakshi — Varanasi", "sub": "Earrings · Varanasi, Uttar Pradesh", "lat": 25.3093, "lng": 83.0109, "color": "#e84393"}, {"id": "sharada", "n": "18", "name": "Sharada (Saraswati) — Sharda", "sub": "Right hand · Sharda, Neelum valley, Pakistan-administered Kashmir", "lat": 34.793, "lng": 74.189, "color": "#e84393"}, {"id": "vimala", "n": "A1", "name": "Vimala — Jagannath temple", "sub": "Adi Peetha · Jagannath temple, Puri, Odisha", "lat": 19.8048, "lng": 85.818, "color": "#f0932b"}, {"id": "taratarini", "n": "A2", "name": "Tara Tarini — Ganjam district", "sub": "Adi Peetha · Ganjam district, Odisha", "lat": 19.487, "lng": 84.889, "color": "#f0932b"}, {"id": "kalighat", "n": "A3", "name": "Kalika (Kalighat) — Kalighat", "sub": "Adi Peetha · Kalighat, Kolkata, West Bengal", "lat": 22.5203, "lng": 88.3423, "color": "#f0932b"}];</script>
+<script src="assets/site.js?v=420f3627"></script>
+</body>
+</html>
