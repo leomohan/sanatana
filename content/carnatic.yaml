@@ -37,9 +37,9 @@ blocks:
   - {n: '12', label: 'Chakras, six scales each'}
   - {n: '12', label: Notes to the octave}
 - type: callout
-  text: '🎡 <strong>Hear the scales.</strong> <a href="https://leomohan.github.io/Carnatic/" target="_blank" rel="noopener">Raga
-    Geometry</a> draws a raga''s ascent and descent on a twelve-note wheel and plays them. Try Shankarabharanam (No. 29)
-    after reading the chart below.'
+  text: '🎡 <strong>Hear the scales.</strong> <a href="raga-geometry.html">Raga Geometry</a> draws a raga''s ascent
+    and descent on a twelve-note wheel and plays them over a drone, with the Adi Talam cycle beside it. In the chart
+    below, ▶ marks the melakartas you can hear there.'
 - {type: filters}
 - type: lifespans
   title: Five centuries of composers
@@ -218,9 +218,10 @@ blocks:
     in the 17th century. The names used today, with complete scales, were standardised after him and are associated
     with Govindacharya.'
 - type: melakarta
+  anchor: melakartas
   title: The 72 Melakartas
   intro: Rows are the twelve chakras and columns the Da–Ni pairs. Every scale in a row shares Ri, Ga and Ma; every
-    scale in a column shares Da and Ni. ★ marks a few you will hear often. Hover over one to see why.
+    scale in a column shares Da and Ni. ★ marks a few you will hear often; hover over one to see why. ▶ opens the scale in Raga Geometry.
   color: mela
   halves: ['Shuddha Madhyama (M1) · Melakartas 1–36', 'Prati Madhyama (M2) · Melakartas 37–72']
   chakras: [Indu, Netra, Agni, Veda, Bana, Rutu, Rishi, Vasu, Brahma, Disi, Rudra, Aditya]
@@ -242,6 +243,7 @@ blocks:
     51: Kamavardhini — better known as Pantuvarali
     56: Shanmukhapriya — a favourite for lively kritis
     65: Mechakalyani — Kalyani, among the most loved ragas
+  play: {8: todi, 15: mayamalavagowla, 22: kharaharapriya, 29: shankarabharanam, 65: kalyani}
 - type: sources
   items:
   - {label: Melakarta — Wikipedia (full list of 72 with scales), url: 'https://en.wikipedia.org/wiki/Melakarta'}
@@ -252,4 +254,4 @@ blocks:
   - {label: Syama Sastri — Wikipedia, url: 'https://en.wikipedia.org/wiki/Syama_Sastri'}
   - {label: Arunachala Kavi — Wikipedia, url: 'https://en.wikipedia.org/wiki/Arunachala_Kavi'}
   - {label: M. Balamuralikrishna — Wikipedia, url: 'https://en.wikipedia.org/wiki/M._Balamuralikrishna'}
-  - {label: Raga Geometry — interactive raga and tala wheel, url: 'https://leomohan.github.io/Carnatic/'}
+  - {label: Raga Geometry — interactive raga and tala wheel (on this site), url: raga-geometry.html}

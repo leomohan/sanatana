@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raga Geometry — Carnatic Raga and Tala, Drawn to Scale</title>
+<meta name="description" content="An interactive raga wheel and Adi Talam wheel. Pick a raga, hear its ascent and descent over a drone, and watch both wheels move.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎡</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=d238aff6">
+<style>:root,[data-theme="dark"]{--aro:#ffb52e; --aro-ink:#ffc24d; --avaro:#ff4f9a; --laghu:#3db5f0; --dru1:#5fd12a; --dru2:#ff8a3d;} [data-theme="light"]{--aro:#e89a00; --aro-ink:#a86400; --avaro:#e0207a; --laghu:#0088c8; --dru1:#2f9e00; --dru2:#ee5f00;} :root{--primary:var(--aro); --grad-h:linear-gradient(90deg,var(--aro),var(--avaro),var(--laghu)); --grad-v:linear-gradient(var(--aro),var(--avaro),var(--laghu));}</style>
+<script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
+  (function(){
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
+  })();
+</script>
+</head>
+<body>
+<div class="controls" role="toolbar" aria-label="Page controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
+  <button class="ctrl-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+    <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+    <span id="toggleLabel">Light</span>
+  </button>
+</div>
+<header>
+  <h1>Raga Geometry</h1>
+  <p>Carnatic raga and tala, drawn to scale. Pick a raga, press play and watch both wheels move. The twelve notes of the octave sit around the circle with Sa at the top. Each raga's ascent and descent are traced as paths between them.</p>
+</header>
+<div class="callout">🎶 Every scale here comes from one of the <a href="carnatic.html#melakartas">72 melakartas</a>. The chart there links back to each raga you can hear on this page. The composers who made these ragas famous are on the <a href="carnatic.html">Carnatic music page</a>.</div>
+<div class="rg">
+  <div class="rg-picker">
+    <label for="rg-raga">Raga</label>
+    <select id="rg-raga"></select>
+  </div>
+  <div class="rg-main">
+    <section class="rg-panel" aria-labelledby="rg-wheel-title">
+      <div class="rg-phead">
+        <h2 id="rg-wheel-title">Shankarabharanam</h2>
+        <span class="rg-eyebrow">12 swarasthanas · Sa at the top</span>
+      </div>
+      <svg id="rg-wheel" viewBox="0 0 600 600" role="img" aria-label="Raga pitch wheel"></svg>
+      <div class="rg-legend">
+        <span><i class="rg-sw" style="background:var(--aro)"></i>Arohana (ascent): outer ring, clockwise</span>
+        <span><i class="rg-sw" style="background:var(--avaro)"></i>Avarohana (descent): inner ring, anticlockwise</span>
+        <span><i class="rg-dot" style="background:var(--text)"></i>Note used both ways</span>
+        <span><i class="rg-dot" style="background:var(--aro)"></i>Ascent only</span>
+        <span><i class="rg-dot" style="background:var(--avaro)"></i>Descent only</span>
+        <span><i class="rg-dot" style="background:var(--rg-dim)"></i>Not in this raga</span>
+      </div>
+    </section>
+    <div class="rg-side">
+      <section class="rg-panel" aria-labelledby="rg-facts-title">
+        <div class="rg-facts">
+          <div>
+            <span class="rg-eyebrow">Raga</span>
+            <h2 id="rg-facts-title">Shankarabharanam</h2>
+            <div class="rg-parent" id="rg-parent"></div>
+          </div>
+          <div class="rg-row"><span class="rg-eyebrow">Arohana</span><div class="rg-chips" id="rg-aro"></div></div>
+          <div class="rg-row"><span class="rg-eyebrow">Avarohana</span><div class="rg-chips" id="rg-avaro"></div></div>
+          <div class="rg-mood" id="rg-mood"></div>
+          <p class="rg-note" id="rg-note"></p>
+          <div class="rg-controls">
+            <button class="rg-play" id="rg-play" type="button">▶ Play ascent + descent</button>
+            <label class="rg-tempo" for="rg-bpm">Tempo <input id="rg-bpm" type="range" min="50" max="150" value="88"> <span id="rg-bpmv">88</span>/min</label>
+          </div>
+          <div class="rg-status" id="rg-status" aria-live="polite">Tap any note on the wheel to hear it.</div>
+        </div>
+      </section>
+      <section class="rg-panel" aria-labelledby="rg-tala-title">
+        <div class="rg-phead">
+          <h2 id="rg-tala-title">Adi Talam</h2>
+          <span class="rg-eyebrow">Chatusra jati Triputa</span>
+        </div>
+        <svg id="rg-tala" viewBox="0 0 460 400" role="img" aria-label="Adi Talam: 8 beats in groups of 4, 2 and 2"></svg>
+        <div class="rg-legend">
+          <span><i class="rg-sw" style="background:var(--laghu)"></i>Laghu, 4 beats</span>
+          <span><i class="rg-sw" style="background:var(--dru1)"></i>Drutam, 2 beats</span>
+          <span><i class="rg-sw" style="background:var(--dru2)"></i>Drutam, 2 beats</span>
+        </div>
+      </section>
+    </div>
+  </div><p class="rg-foot">In performance every raga also carries gamakas, the oscillations and slides between notes, which no scale drawing can show. Treat each wheel as the raga's skeleton. Your browser plays the sound itself, so turn the volume up and press play.</p>
+</div>
+<footer>
+  <p>🎡 Raga Geometry · pitches use just-intonation ratios with Sa set to C (261.6 Hz), over a Sa–Pa drone</p>
+  <p>Mood associations are traditional and vary between schools</p>
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
+    <a href="ramayana.html"><span aria-hidden="true">🏹</span>Ramayana Journey</a>
+    <a href="mahabharata.html"><span aria-hidden="true">⚔️</span>Mahabharata Family Tree</a>
+    <a href="dashavatara.html"><span aria-hidden="true">🐚</span>Dashavatara</a>
+    <a href="carnatic.html"><span aria-hidden="true">🎶</span>Carnatic Music</a>
+    <a href="raga-geometry.html" aria-current="page"><span aria-hidden="true">🎡</span>Raga Geometry</a>
+    <a href="sanskrit-poets.html"><span aria-hidden="true">✒️</span>Sanskrit Poets</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
+</footer>
+<script>window.SANATANA_DATA = {"ragas": [{"id": "shankarabharanam", "name": "Shankarabharanam", "tag": "MELA 29", "parent": "Melakarta 29 · Dheerashankarabharanam", "aro": ["S", "R2", "G3", "M1", "P", "D2", "N3", "S'"], "avaro": "reverse", "mood": "Majesty and grandeur", "note": "Same intervals as the Western major scale. A large-canvas raga, favoured for long alapanas and ragam–tanam–pallavi."}, {"id": "kalyani", "name": "Kalyani", "tag": "MELA 65", "parent": "Melakarta 65 · Mechakalyani", "aro": ["S", "R2", "G3", "M2", "P", "D2", "N3", "S'"], "avaro": "reverse", "mood": "Auspicious and uplifting", "note": "The only raga in this list with prati madhyamam (M2), the raised Ma. Every melakarta from 37 to 72 uses M2, and Kalyani is the best known of them."}, {"id": "todi", "name": "Todi", "tag": "MELA 8", "parent": "Melakarta 8 · Hanumatodi", "aro": ["S", "R1", "G2", "M1", "P", "D1", "N2", "S'"], "avaro": "reverse", "mood": "Pathos (karuna) and devotion", "note": "Todi lives in its heavy gamakas on G2 and D1, which a scale drawing cannot show. It is widely regarded as one of the most demanding ragas to render."}, {"id": "kharaharapriya", "name": "Kharaharapriya", "tag": "MELA 22", "parent": "Melakarta 22 · Kharaharapriya", "aro": ["S", "R2", "G2", "M1", "P", "D2", "N2", "S'"], "avaro": "reverse", "mood": "Compassion and devotion; calm and expansive", "note": "Parent scale of many popular janya ragas, including Madhyamavati, Abhogi and Sriranjani."}, {"id": "bhairavi", "name": "Bhairavi", "tag": "JANYA OF 20", "parent": "Janya of Melakarta 20 · Natabhairavi", "aro": ["S", "R2", "G2", "M1", "P", "D2", "N2", "S'"], "avaro": ["S'", "N2", "D1", "P", "M1", "G2", "R2", "S"], "mood": "Devotion, pathos and majesty", "note": "A bhashanga raga: it borrows D2 on the way up, while the parent's D1 returns on the way down. Look for the two different Da positions on the wheel."}, {"id": "kambhoji", "name": "Kambhoji", "tag": "JANYA OF 28", "parent": "Janya of Melakarta 28 · Harikambhoji", "aro": ["S", "R2", "G3", "M1", "P", "D2", "S'"], "avaro": ["S'", "N2", "D2", "P", "M1", "G3", "R2", "S"], "mood": "Heroism (vira), devotion and grandeur", "note": "Skips Ni going up (six notes up, seven down). Kakali nishadam (N3) also appears as a foreign note in phrases such as N3 P D S; this chart shows only the core scale."}, {"id": "mayamalavagowla", "name": "Mayamalavagowla", "tag": "MELA 15", "parent": "Melakarta 15 · Mayamalavagowla", "aro": ["S", "R1", "G3", "M1", "P", "D1", "N3", "S'"], "avaro": "reverse", "mood": "Devotional and serene; associated with early morning", "note": "The first raga a student learns: Purandara Dasa set the basic sarali varisai exercises in it. Note the wide gaps from R1 to G3 and from D1 to N3."}, {"id": "mohanam", "name": "Mohanam", "tag": "JANYA OF 28", "parent": "Janya of Melakarta 28 · Harikambhoji", "aro": ["S", "R2", "G3", "P", "D2", "S'"], "avaro": "reverse", "mood": "Joy and romance (shringara)", "note": "Five notes each way (audava), with no Ma or Ni. Same intervals as the major pentatonic heard in folk music around the world."}, {"id": "hamsadhwani", "name": "Hamsadhwani", "tag": "JANYA OF 29", "parent": "Janya of Melakarta 29 · Dheerashankarabharanam", "aro": ["S", "R2", "G3", "P", "N3", "S'"], "avaro": "reverse", "mood": "Bright and auspicious; a favourite concert opener", "note": "Created by Ramaswami Dikshitar. Vatapi Ganapatim, by his son Muthuswami Dikshitar, is the best-known composition in it."}, {"id": "madhyamavati", "name": "Madhyamavati", "tag": "JANYA OF 22", "parent": "Janya of Melakarta 22 · Kharaharapriya", "aro": ["S", "R2", "M1", "P", "N2", "S'"], "avaro": "reverse", "mood": "Auspicious; traditionally closes a concert", "note": "Five notes, with no Ga or Da. Concerts customarily end with a mangalam sung in this raga."}]};</script>
+<script src="assets/site.js?v=d238aff6"></script>
+<script src="assets/raga.js?v=d238aff6"></script>
+</body>
+</html>

@@ -128,6 +128,12 @@
 {%- if groups_json %}
 <script>window.SANATANA_GROUPS = {{ groups_json|safe }};</script>
 {%- endif %}
+{%- if data_json %}
+<script>window.SANATANA_DATA = {{ data_json|safe }};</script>
+{%- endif %}
 <script src="assets/site.js?v={{ asset_version }}"></script>
+{%- for js in page.scripts or [] %}
+<script src="assets/{{ js }}?v={{ asset_version }}"></script>
+{%- endfor %}
 </body>
 </html>

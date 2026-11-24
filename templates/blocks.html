@@ -263,7 +263,7 @@
 </section>
 
 {%- elif b.type == 'melakarta' %}
-<section class="mela" data-block style="--accent:{{ b.color|color }}">
+<section class="mela" data-block{% if b.anchor %} id="{{ b.anchor }}"{% endif %} style="--accent:{{ b.color|color }}">
   {{ title(b) }}
   {{ intro(b) }}
   {%- for half in [0, 1] %}
@@ -276,12 +276,70 @@
     <div class="mela-chakra"><b>{{ ck + 1 }}. {{ b.chakras[ck] }}</b><span>R{{ mela(ck * 6 + 1).r }} G{{ mela(ck * 6 + 1).g }}</span></div>
     {%- for col in range(6) %}
     {%- set n = ck * 6 + col + 1 %}{% set m = mela(n) %}{% set note = b.famous[n] %}
-    <div class="mela-cell{{ ' famous' if note }}" data-item{% if note %} title="{{ note }}"{% endif %}><span class="num">{{ n }}</span><span class="name{{ ' long' if b.names[n - 1]|length > 17 }}">{{ b.names[n - 1] }}</span><span class="sig">R{{ m.r }} G{{ m.g }} M{{ m.m }} D{{ m.d }} N{{ m.n }}</span>{% if note %}<span class="note">{{ note }}</span>{% endif %}</div>
+    <div class="mela-cell{{ ' famous' if note }}" data-item{% if note %} title="{{ note }}"{% endif %}><span class="num">{{ n }}</span><span class="name{{ ' long' if b.names[n - 1]|length > 17 }}">{{ b.names[n - 1] }}</span><span class="sig">R{{ m.r }} G{{ m.g }} M{{ m.m }} D{{ m.d }} N{{ m.n }}</span>{% if note %}<span class="note">{{ note }}</span>{% endif %}{% if b.play and b.play[n] %}<a class="play" href="raga-geometry.html#{{ b.play[n] }}" aria-label="Hear {{ b.names[n - 1] }} on Raga Geometry">▶ hear it</a>{% endif %}</div>
     {%- endfor %}
     {%- endfor %}
   </div>
   {%- endfor %}
 </section>
+
+{%- elif b.type == 'raga-geometry' %}
+<div class="rg">
+  <div class="rg-picker">
+    <label for="rg-raga">Raga</label>
+    <select id="rg-raga"></select>
+  </div>
+  <div class="rg-main">
+    <section class="rg-panel" aria-labelledby="rg-wheel-title">
+      <div class="rg-phead">
+        <h2 id="rg-wheel-title">{{ b.ragas[0].name }}</h2>
+        <span class="rg-eyebrow">12 swarasthanas · Sa at the top</span>
+      </div>
+      <svg id="rg-wheel" viewBox="0 0 600 600" role="img" aria-label="Raga pitch wheel"></svg>
+      <div class="rg-legend">
+        <span><i class="rg-sw" style="background:var(--aro)"></i>Arohana (ascent): outer ring, clockwise</span>
+        <span><i class="rg-sw" style="background:var(--avaro)"></i>Avarohana (descent): inner ring, anticlockwise</span>
+        <span><i class="rg-dot" style="background:var(--text)"></i>Note used both ways</span>
+        <span><i class="rg-dot" style="background:var(--aro)"></i>Ascent only</span>
+        <span><i class="rg-dot" style="background:var(--avaro)"></i>Descent only</span>
+        <span><i class="rg-dot" style="background:var(--rg-dim)"></i>Not in this raga</span>
+      </div>
+    </section>
+    <div class="rg-side">
+      <section class="rg-panel" aria-labelledby="rg-facts-title">
+        <div class="rg-facts">
+          <div>
+            <span class="rg-eyebrow">Raga</span>
+            <h2 id="rg-facts-title">{{ b.ragas[0].name }}</h2>
+            <div class="rg-parent" id="rg-parent"></div>
+          </div>
+          <div class="rg-row"><span class="rg-eyebrow">Arohana</span><div class="rg-chips" id="rg-aro"></div></div>
+          <div class="rg-row"><span class="rg-eyebrow">Avarohana</span><div class="rg-chips" id="rg-avaro"></div></div>
+          <div class="rg-mood" id="rg-mood"></div>
+          <p class="rg-note" id="rg-note"></p>
+          <div class="rg-controls">
+            <button class="rg-play" id="rg-play" type="button">▶ Play ascent + descent</button>
+            <label class="rg-tempo" for="rg-bpm">Tempo <input id="rg-bpm" type="range" min="50" max="150" value="88"> <span id="rg-bpmv">88</span>/min</label>
+          </div>
+          <div class="rg-status" id="rg-status" aria-live="polite">Tap any note on the wheel to hear it.</div>
+        </div>
+      </section>
+      <section class="rg-panel" aria-labelledby="rg-tala-title">
+        <div class="rg-phead">
+          <h2 id="rg-tala-title">Adi Talam</h2>
+          <span class="rg-eyebrow">Chatusra jati Triputa</span>
+        </div>
+        <svg id="rg-tala" viewBox="0 0 460 400" role="img" aria-label="Adi Talam: 8 beats in groups of 4, 2 and 2"></svg>
+        <div class="rg-legend">
+          <span><i class="rg-sw" style="background:var(--laghu)"></i>Laghu, 4 beats</span>
+          <span><i class="rg-sw" style="background:var(--dru1)"></i>Drutam, 2 beats</span>
+          <span><i class="rg-sw" style="background:var(--dru2)"></i>Drutam, 2 beats</span>
+        </div>
+      </section>
+    </div>
+  </div>
+  {%- if b.note %}<p class="rg-foot">{{ b.note|safe }}</p>{% endif %}
+</div>
 
 {%- endif %}
 {% endmacro %}

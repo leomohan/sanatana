@@ -162,6 +162,13 @@ blocks:
     text: Five centuries of composers on one timeline, the Trinity of Tiruvarur, and all 72 melakarta ragas laid out
       by their swaras.
     meta: [18 composers, 72 melakartas, Linked to Raga Geometry]
+  - title: Raga Geometry
+    accent: '#e89a00'
+    href: raga-geometry.html
+    emoji: 🎡
+    text: Carnatic raga and tala drawn to scale. Pick a raga, hear its ascent and descent over a drone, and follow
+      the beats of Adi Talam on a second wheel.
+    meta: [10 ragas, Plays in the browser, Adi Talam wheel]
   - title: Sanskrit Poets & Dramatists
     accent: '#a55eea'
     href: sanskrit-poets.html

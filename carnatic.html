@@ -6,7 +6,7 @@
 <title>Carnatic Music — The Trinity, the Composers and the 72 Melakartas</title>
 <meta name="description" content="Carnatic music&#39;s composers on one timeline, the Trinity of Tiruvarur, and all 72 melakarta ragas laid out by their swaras.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎶</text></svg>">
-<link rel="stylesheet" href="assets/site.css?v=2c724eb1">
+<link rel="stylesheet" href="assets/site.css?v=d238aff6">
 <style>:root,[data-theme="dark"]{--music:#ff9f43; --pioneer:#26de81; --trinity:#f7b731; --later:#4a9eff; --mela:#a55eea;} [data-theme="light"]{--music:#d9771a; --pioneer:#1e9e5c; --trinity:#b7861b; --later:#1a6fc4; --mela:#7b3fc4;} :root{--primary:var(--music); --grad-h:linear-gradient(90deg,var(--pioneer),var(--trinity),var(--later),var(--mela)); --grad-v:linear-gradient(var(--pioneer),var(--trinity),var(--later),var(--mela));}</style>
 <script>
   /* Apply saved theme and text size before the page paints (shared across the whole site). */
@@ -40,7 +40,7 @@
   <div class="legend"><span><i class="dot" style="background:var(--pioneer)"></i>Pioneers</span><span><i class="dot" style="background:var(--trinity)"></i>The Trinity</span><span><i class="dot" style="background:var(--later)"></i>After the Trinity</span></div>
 </header>
 <div class="counts"><div><b>3</b><span>Trinity, all born in Tiruvarur</span></div><div><b>72</b><span>Melakarta parent scales</span></div><div><b>12</b><span>Chakras, six scales each</span></div><div><b>12</b><span>Notes to the octave</span></div></div>
-<div class="callout">🎡 <strong>Hear the scales.</strong> <a href="https://leomohan.github.io/Carnatic/" target="_blank" rel="noopener">Raga Geometry</a> draws a raga's ascent and descent on a twelve-note wheel and plays them. Try Shankarabharanam (No. 29) after reading the chart below.</div>
+<div class="callout">🎡 <strong>Hear the scales.</strong> <a href="raga-geometry.html">Raga Geometry</a> draws a raga's ascent and descent on a twelve-note wheel and plays them over a drone, with the Adi Talam cycle beside it. In the chart below, ▶ marks the melakartas you can hear there.</div>
 <div class="filters" role="group" aria-label="Filter">
   <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--music)">All composers</button>
   <button class="filter-chip" data-filter="pioneer" aria-pressed="false" style="--fc:var(--pioneer)">🌱 Pioneers</button>
@@ -182,9 +182,9 @@
   <div class="pairs"><div class="pair" style="--a:var(--mela)"><h4>Sa and Pa are fixed</h4><p>The tonic Sa and the fifth Pa never change. Every scale keeps both.</p></div><div class="pair" style="--a:var(--mela)"><h4>Ri and Ga: six pairs</h4><p>Ri and Ga have three positions each but share pitches, so they can be paired six ways: R1 G1, R1 G2, R1 G3, R2 G2, R2 G3, R3 G3. These are the six rows of each half below.</p></div><div class="pair" style="--a:var(--mela)"><h4>Da and Ni: six pairs</h4><p>Da and Ni pair up the same six ways. These are the six columns.</p></div><div class="pair" style="--a:var(--mela)"><h4>Ma: two choices</h4><p>Shuddha Ma (M1) gives scales 1–36 and Prati Ma (M2) gives 37–72. So 6 × 6 × 2 = 72.</p></div></div>
 </section>
 <div class="callout">🔢 <strong>The number is in the name.</strong> Each name encodes its own number by the <em>katapayadi</em> system, which gives every consonant a digit. Take the first two syllables, read the digits, and reverse them. <em>Ha-ri</em>kambhoji gives 8 and 2, so 28. <em>Me-cha</em>kalyani gives 5 and 6, so 65. The scheme of 72 was worked out by Venkatamakhin in the 17th century. The names used today, with complete scales, were standardised after him and are associated with Govindacharya.</div>
-<section class="mela" data-block style="--accent:var(--mela)">
+<section class="mela" data-block id="melakartas" style="--accent:var(--mela)">
   <h2 class="section-title" style="color:var(--mela)">The 72 Melakartas</h2>
-  <p class="section-intro">Rows are the twelve chakras and columns the Da–Ni pairs. Every scale in a row shares Ri, Ga and Ma; every scale in a column shares Da and Ni. ★ marks a few you will hear often. Hover over one to see why.</p>
+  <p class="section-intro">Rows are the twelve chakras and columns the Da–Ni pairs. Every scale in a row shares Ri, Ga and Ma; every scale in a column shares Da and Ni. ★ marks a few you will hear often; hover over one to see why. ▶ opens the scale in Raga Geometry.</p>
   <h3 class="mela-half">Shuddha Madhyama (M1) · Melakartas 1–36</h3>
   <div class="mela-grid">
     <div class="mela-corner" aria-hidden="true">R · G ↓ &nbsp; D · N →</div><div class="mela-head" aria-hidden="true">D1 N1</div><div class="mela-head" aria-hidden="true">D1 N2</div><div class="mela-head" aria-hidden="true">D1 N3</div><div class="mela-head" aria-hidden="true">D2 N2</div><div class="mela-head" aria-hidden="true">D2 N3</div><div class="mela-head" aria-hidden="true">D3 N3</div>
@@ -197,7 +197,7 @@
     <div class="mela-cell" data-item><span class="num">6</span><span class="name">Tanarupi</span><span class="sig">R1 G1 M1 D3 N3</span></div>
     <div class="mela-chakra"><b>2. Netra</b><span>R1 G2</span></div>
     <div class="mela-cell" data-item><span class="num">7</span><span class="name">Senavati</span><span class="sig">R1 G2 M1 D1 N1</span></div>
-    <div class="mela-cell famous" data-item title="Todi — a vast, grave concert raga"><span class="num">8</span><span class="name">Hanumatodi</span><span class="sig">R1 G2 M1 D1 N2</span><span class="note">Todi — a vast, grave concert raga</span></div>
+    <div class="mela-cell famous" data-item title="Todi — a vast, grave concert raga"><span class="num">8</span><span class="name">Hanumatodi</span><span class="sig">R1 G2 M1 D1 N2</span><span class="note">Todi — a vast, grave concert raga</span><a class="play" href="raga-geometry.html#todi" aria-label="Hear Hanumatodi on Raga Geometry">▶ hear it</a></div>
     <div class="mela-cell" data-item><span class="num">9</span><span class="name">Dhenuka</span><span class="sig">R1 G2 M1 D1 N3</span></div>
     <div class="mela-cell" data-item><span class="num">10</span><span class="name">Natakapriya</span><span class="sig">R1 G2 M1 D2 N2</span></div>
     <div class="mela-cell" data-item><span class="num">11</span><span class="name">Kokilapriya</span><span class="sig">R1 G2 M1 D2 N3</span></div>
@@ -205,7 +205,7 @@
     <div class="mela-chakra"><b>3. Agni</b><span>R1 G3</span></div>
     <div class="mela-cell" data-item><span class="num">13</span><span class="name">Gayakapriya</span><span class="sig">R1 G3 M1 D1 N1</span></div>
     <div class="mela-cell" data-item><span class="num">14</span><span class="name">Vakulabharanam</span><span class="sig">R1 G3 M1 D1 N2</span></div>
-    <div class="mela-cell famous" data-item title="The scale of Purandara Dasa&#39;s first lessons"><span class="num">15</span><span class="name">Mayamalavagowla</span><span class="sig">R1 G3 M1 D1 N3</span><span class="note">The scale of Purandara Dasa&#39;s first lessons</span></div>
+    <div class="mela-cell famous" data-item title="The scale of Purandara Dasa&#39;s first lessons"><span class="num">15</span><span class="name">Mayamalavagowla</span><span class="sig">R1 G3 M1 D1 N3</span><span class="note">The scale of Purandara Dasa&#39;s first lessons</span><a class="play" href="raga-geometry.html#mayamalavagowla" aria-label="Hear Mayamalavagowla on Raga Geometry">▶ hear it</a></div>
     <div class="mela-cell" data-item><span class="num">16</span><span class="name">Chakravakam</span><span class="sig">R1 G3 M1 D2 N2</span></div>
     <div class="mela-cell" data-item><span class="num">17</span><span class="name">Suryakantam</span><span class="sig">R1 G3 M1 D2 N3</span></div>
     <div class="mela-cell" data-item><span class="num">18</span><span class="name">Hatakambari</span><span class="sig">R1 G3 M1 D3 N3</span></div>
@@ -213,7 +213,7 @@
     <div class="mela-cell" data-item><span class="num">19</span><span class="name">Jhankaradhvani</span><span class="sig">R2 G2 M1 D1 N1</span></div>
     <div class="mela-cell" data-item><span class="num">20</span><span class="name">Natabhairavi</span><span class="sig">R2 G2 M1 D1 N2</span></div>
     <div class="mela-cell famous" data-item title="Keeravani — the harmonic minor"><span class="num">21</span><span class="name">Keeravani</span><span class="sig">R2 G2 M1 D1 N3</span><span class="note">Keeravani — the harmonic minor</span></div>
-    <div class="mela-cell famous" data-item title="Kharaharapriya — Tyagaraja made it a concert mainstay"><span class="num">22</span><span class="name">Kharaharapriya</span><span class="sig">R2 G2 M1 D2 N2</span><span class="note">Kharaharapriya — Tyagaraja made it a concert mainstay</span></div>
+    <div class="mela-cell famous" data-item title="Kharaharapriya — Tyagaraja made it a concert mainstay"><span class="num">22</span><span class="name">Kharaharapriya</span><span class="sig">R2 G2 M1 D2 N2</span><span class="note">Kharaharapriya — Tyagaraja made it a concert mainstay</span><a class="play" href="raga-geometry.html#kharaharapriya" aria-label="Hear Kharaharapriya on Raga Geometry">▶ hear it</a></div>
     <div class="mela-cell" data-item><span class="num">23</span><span class="name">Gourimanohari</span><span class="sig">R2 G2 M1 D2 N3</span></div>
     <div class="mela-cell" data-item><span class="num">24</span><span class="name">Varunapriya</span><span class="sig">R2 G2 M1 D3 N3</span></div>
     <div class="mela-chakra"><b>5. Bana</b><span>R2 G3</span></div>
@@ -221,7 +221,7 @@
     <div class="mela-cell" data-item><span class="num">26</span><span class="name">Charukesi</span><span class="sig">R2 G3 M1 D1 N2</span></div>
     <div class="mela-cell" data-item><span class="num">27</span><span class="name">Sarasangi</span><span class="sig">R2 G3 M1 D1 N3</span></div>
     <div class="mela-cell famous" data-item title="Harikambhoji — parent of Mohanam and Kambhoji"><span class="num">28</span><span class="name">Harikambhoji</span><span class="sig">R2 G3 M1 D2 N2</span><span class="note">Harikambhoji — parent of Mohanam and Kambhoji</span></div>
-    <div class="mela-cell famous" data-item title="Shankarabharanam — same notes as the Western major scale"><span class="num">29</span><span class="name long">Dheerashankarabharanam</span><span class="sig">R2 G3 M1 D2 N3</span><span class="note">Shankarabharanam — same notes as the Western major scale</span></div>
+    <div class="mela-cell famous" data-item title="Shankarabharanam — same notes as the Western major scale"><span class="num">29</span><span class="name long">Dheerashankarabharanam</span><span class="sig">R2 G3 M1 D2 N3</span><span class="note">Shankarabharanam — same notes as the Western major scale</span><a class="play" href="raga-geometry.html#shankarabharanam" aria-label="Hear Dheerashankarabharanam on Raga Geometry">▶ hear it</a></div>
     <div class="mela-cell" data-item><span class="num">30</span><span class="name">Naganandini</span><span class="sig">R2 G3 M1 D3 N3</span></div>
     <div class="mela-chakra"><b>6. Rutu</b><span>R3 G3</span></div>
     <div class="mela-cell" data-item><span class="num">31</span><span class="name">Yagapriya</span><span class="sig">R3 G3 M1 D1 N1</span></div>
@@ -267,7 +267,7 @@
     <div class="mela-cell" data-item><span class="num">62</span><span class="name">Rishabhapriya</span><span class="sig">R2 G3 M2 D1 N2</span></div>
     <div class="mela-cell" data-item><span class="num">63</span><span class="name">Latangi</span><span class="sig">R2 G3 M2 D1 N3</span></div>
     <div class="mela-cell" data-item><span class="num">64</span><span class="name">Vachaspati</span><span class="sig">R2 G3 M2 D2 N2</span></div>
-    <div class="mela-cell famous" data-item title="Mechakalyani — Kalyani, among the most loved ragas"><span class="num">65</span><span class="name">Mechakalyani</span><span class="sig">R2 G3 M2 D2 N3</span><span class="note">Mechakalyani — Kalyani, among the most loved ragas</span></div>
+    <div class="mela-cell famous" data-item title="Mechakalyani — Kalyani, among the most loved ragas"><span class="num">65</span><span class="name">Mechakalyani</span><span class="sig">R2 G3 M2 D2 N3</span><span class="note">Mechakalyani — Kalyani, among the most loved ragas</span><a class="play" href="raga-geometry.html#kalyani" aria-label="Hear Mechakalyani on Raga Geometry">▶ hear it</a></div>
     <div class="mela-cell" data-item><span class="num">66</span><span class="name">Chitrambari</span><span class="sig">R2 G3 M2 D3 N3</span></div>
     <div class="mela-chakra"><b>12. Aditya</b><span>R3 G3</span></div>
     <div class="mela-cell" data-item><span class="num">67</span><span class="name">Sucharitra</span><span class="sig">R3 G3 M2 D1 N1</span></div>
@@ -278,7 +278,7 @@
     <div class="mela-cell" data-item><span class="num">72</span><span class="name">Rasikapriya</span><span class="sig">R3 G3 M2 D3 N3</span></div>
   </div>
 </section>
-<section class="sources"><h2>Sources</h2><ul><li><a href="https://en.wikipedia.org/wiki/Melakarta" target="_blank" rel="noopener">Melakarta — Wikipedia (full list of 72 with scales)</a></li><li><a href="https://en.wikipedia.org/wiki/Trinity_of_Carnatic_music" target="_blank" rel="noopener">Trinity of Carnatic music — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/List_of_Carnatic_composers" target="_blank" rel="noopener">List of Carnatic composers — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Tyagaraja" target="_blank" rel="noopener">Tyagaraja — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Muthuswami_Dikshitar" target="_blank" rel="noopener">Muthuswami Dikshitar — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Syama_Sastri" target="_blank" rel="noopener">Syama Sastri — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Arunachala_Kavi" target="_blank" rel="noopener">Arunachala Kavi — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/M._Balamuralikrishna" target="_blank" rel="noopener">M. Balamuralikrishna — Wikipedia</a></li><li><a href="https://leomohan.github.io/Carnatic/" target="_blank" rel="noopener">Raga Geometry — interactive raga and tala wheel</a></li></ul></section>
+<section class="sources"><h2>Sources</h2><ul><li><a href="https://en.wikipedia.org/wiki/Melakarta" target="_blank" rel="noopener">Melakarta — Wikipedia (full list of 72 with scales)</a></li><li><a href="https://en.wikipedia.org/wiki/Trinity_of_Carnatic_music" target="_blank" rel="noopener">Trinity of Carnatic music — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/List_of_Carnatic_composers" target="_blank" rel="noopener">List of Carnatic composers — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Tyagaraja" target="_blank" rel="noopener">Tyagaraja — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Muthuswami_Dikshitar" target="_blank" rel="noopener">Muthuswami Dikshitar — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Syama_Sastri" target="_blank" rel="noopener">Syama Sastri — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Arunachala_Kavi" target="_blank" rel="noopener">Arunachala Kavi — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/M._Balamuralikrishna" target="_blank" rel="noopener">M. Balamuralikrishna — Wikipedia</a></li><li><a href="raga-geometry.html" target="_blank" rel="noopener">Raga Geometry — interactive raga and tala wheel (on this site)</a></li></ul></section>
 <footer>
   <p>🎶 A visual map of Carnatic music · Composers' dates follow standard references; dotted bars mark uncertain dates</p>
   <p>The filters apply to composers. The melakarta chart stays in full view, and search works on it too.</p>
@@ -303,10 +303,11 @@
     <a href="mahabharata.html"><span aria-hidden="true">⚔️</span>Mahabharata Family Tree</a>
     <a href="dashavatara.html"><span aria-hidden="true">🐚</span>Dashavatara</a>
     <a href="carnatic.html" aria-current="page"><span aria-hidden="true">🎶</span>Carnatic Music</a>
+    <a href="raga-geometry.html"><span aria-hidden="true">🎡</span>Raga Geometry</a>
     <a href="sanskrit-poets.html"><span aria-hidden="true">✒️</span>Sanskrit Poets</a>
   </nav>
   <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
 </footer>
-<script src="assets/site.js?v=2c724eb1"></script>
+<script src="assets/site.js?v=d238aff6"></script>
 </body>
 </html>

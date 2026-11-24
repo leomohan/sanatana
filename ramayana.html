@@ -7,7 +7,7 @@
 <meta name="description" content="Interactive map of Rama&#39;s route from Ayodhya to Lanka and back, with notes on how Valmiki, Kamban and Tulsidas tell the key episodes.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏹</text></svg>">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-<link rel="stylesheet" href="assets/site.css?v=2c724eb1">
+<link rel="stylesheet" href="assets/site.css?v=d238aff6">
 <style>:root,[data-theme="dark"]{--rama:#4a9eff; --bala:#ff9f43; --ayodhya:#f7b731; --aranya:#26de81; --kishkindha:#2bcbba; --sundara:#ff6b81; --yuddha:#a55eea; --valmiki:#f7b731; --kamba:#ff6b6b; --tulsi:#4a9eff;} [data-theme="light"]{--rama:#1a6fc4; --bala:#d9771a; --ayodhya:#b7861b; --aranya:#1e9e5c; --kishkindha:#1a9488; --sundara:#d63c5a; --yuddha:#7b3fc4; --valmiki:#b7861b; --kamba:#c43a3a; --tulsi:#1a6fc4;} :root{--primary:var(--rama); --grad-h:linear-gradient(90deg,var(--bala),var(--aranya),var(--rama),var(--yuddha)); --grad-v:linear-gradient(var(--bala),var(--aranya),var(--rama),var(--yuddha));}</style>
 <script>
   /* Apply saved theme and text size before the page paints (shared across the whole site). */
@@ -152,6 +152,7 @@
     <a href="mahabharata.html"><span aria-hidden="true">⚔️</span>Mahabharata Family Tree</a>
     <a href="dashavatara.html"><span aria-hidden="true">🐚</span>Dashavatara</a>
     <a href="carnatic.html"><span aria-hidden="true">🎶</span>Carnatic Music</a>
+    <a href="raga-geometry.html"><span aria-hidden="true">🎡</span>Raga Geometry</a>
     <a href="sanskrit-poets.html"><span aria-hidden="true">✒️</span>Sanskrit Poets</a>
   </nav>
   <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
@@ -159,6 +160,6 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>window.SANATANA_SITES = [{"id": "ayodhya", "n": "1", "name": "1 · Ayodhya", "sub": "Bala Kanda · Ayodhya, Uttar Pradesh", "lat": 26.7922, "lng": 82.1998, "color": "var(--bala)"}, {"id": "siddhashrama", "n": "2", "name": "2 · Siddhashrama", "sub": "Bala Kanda · Buxar, Bihar (traditional)", "lat": 25.5647, "lng": 83.9777, "color": "var(--bala)"}, {"id": "ahalya", "n": "3", "name": "3 · Ahalya's hermitage", "sub": "Bala Kanda · Ahalya Sthan, Bihar (traditional)", "lat": 26.3125, "lng": 85.8145, "color": "var(--bala)"}, {"id": "mithila", "n": "4", "name": "4 · Mithila (Janakpur)", "sub": "Bala Kanda · Janakpur, Nepal", "lat": 26.7288, "lng": 85.9263, "color": "var(--bala)"}, {"id": "shringaverapura", "n": "5", "name": "5 · Shringaverapura", "sub": "Ayodhya Kanda · Shringverpur, near Prayagraj", "lat": 25.5873, "lng": 81.6418, "color": "var(--ayodhya)"}, {"id": "chitrakoot", "n": "6", "name": "6 · Chitrakoot", "sub": "Ayodhya Kanda · Chitrakoot", "lat": 25.1747, "lng": 80.8644, "color": "var(--ayodhya)"}, {"id": "panchavati", "n": "7", "name": "7 · Panchavati", "sub": "Aranya Kanda · Panchavati, Nashik", "lat": 20.0076, "lng": 73.7929, "color": "var(--aranya)"}, {"id": "pampa", "n": "8", "name": "8 · Pampa (Shabari)", "sub": "Aranya Kanda · Pampa Sarovar, near Hampi", "lat": 15.3561, "lng": 76.4847, "color": "var(--aranya)"}, {"id": "kishkindha", "n": "9", "name": "9 · Kishkindha", "sub": "Kishkindha Kanda · Anegundi–Hampi (traditional)", "lat": 15.3418, "lng": 76.4612, "color": "var(--kishkindha)"}, {"id": "ashoka-vatika", "n": "10", "name": "10 · Ashoka Vatika", "sub": "Sundara Kanda · Sita Eliya, Sri Lanka (tradition)", "lat": 6.9332, "lng": 80.8105, "color": "var(--sundara)"}, {"id": "rameswaram", "n": "11", "name": "11 · Rameswaram", "sub": "Yuddha Kanda · Rameswaram, Tamil Nadu", "lat": 9.2881, "lng": 79.3174, "color": "var(--yuddha)"}, {"id": "lanka", "n": "12", "name": "12 · Lanka", "sub": "Yuddha Kanda · Divurumpola, Sri Lanka (tradition)", "lat": 6.9208, "lng": 80.8822, "color": "var(--yuddha)"}, {"id": "return", "n": "13", "name": "13 · Nandigram", "sub": "Yuddha Kanda · Nandigram, near Ayodhya", "lat": 26.6699, "lng": 82.1496, "color": "var(--yuddha)"}];</script>
 <script>window.SANATANA_ROUTE = ["ayodhya", "siddhashrama", "ahalya", "mithila", "shringaverapura", "chitrakoot", "panchavati", "pampa", "kishkindha", "rameswaram", "lanka", "return"];</script>
-<script src="assets/site.js?v=2c724eb1"></script>
+<script src="assets/site.js?v=d238aff6"></script>
 </body>
 </html>

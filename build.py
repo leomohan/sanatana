@@ -128,7 +128,7 @@ def build(names=None):
     env.filters['combine'] = combine
     env.globals['mela'] = mela
     tpl = env.get_template('base.html')
-    version = hashlib.sha1((ASSETS / 'site.css').read_bytes() + (ASSETS / 'site.js').read_bytes()).hexdigest()[:8]
+    version = hashlib.sha1(b''.join(f.read_bytes() for f in sorted(ASSETS.glob('*.*')))).hexdigest()[:8]
 
     files = sorted(p for p in CONTENT.glob('*.yaml') if p.name != 'site.yaml' and not p.name.startswith('_'))
     if names:
@@ -144,6 +144,10 @@ def build(names=None):
         route = None
         if any(b['type'] == 'map' and b.get('route') for b in blocks):
             route = [c['id'] for c in cards if c.get('map') and c['map'].get('route', True)]
+        data = {}
+        for b in blocks:
+            if b['type'] == 'raga-geometry':
+                data['ragas'] = b['ragas']
         groups = None
         for b in blocks:
             if b['type'] == 'geo-map':
@@ -151,7 +155,7 @@ def build(names=None):
                            'sites': g['sites']} for g in b['groups']]
         html = tpl.render(site=site, page=page, blocks=group_blocks(blocks), all_cards=cards, palette_css=palette_css(page),
                           uses_map=bool(sites or groups), sites_json=to_js(sites) if sites else None, groups_json=to_js(groups) if groups else None, asset_version=version,
-                          route_json=to_js(route) if route else None,
+                          route_json=to_js(route) if route else None, data_json=to_js(data) if data else None,
                           has_empty=any(b.get('type') == 'empty' or b.get('empty') for b in blocks))
         html = '\n'.join(line.rstrip() for line in html.splitlines() if line.strip()) + '\n'
         (ROOT / page['file']).write_text(html, encoding='utf-8')

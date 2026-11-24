@@ -49,7 +49,8 @@ Each entry under `blocks:` has a `type`:
 | `table`, `numgrid` | Nakshatra table, Samvatsara grid |
 | `family` | left-to-right family tree; each person may have `with` (spouses), `note`, `tags` (house) and `children`; `side: true` draws a dashed box |
 | `lifespans` | horizontal lifetime bars on a year axis (`from`, `to`, `step`); `circa: true` gives a dotted bar |
-| `melakarta` | the 72-melakarta chart; swaras are computed by `build.py`, so only the names are listed |
+| `melakarta` | the 72-melakarta chart; swaras are computed by `build.py`, so only the names are listed; `play: {29: shankarabharanam}` adds a ▶ link to Raga Geometry |
+| `raga-geometry` | the interactive raga and Adi Talam wheels; the ragas are listed in the YAML (`avaro: reverse` = descent is the ascent reversed) and the page sets `scripts: [raga.js]` |
 | `life-timeline` | Samskaras timeline, grouped by life stage |
 | `story`, `callout`, `counts`, `panel` | text boxes |
 | `sources` | the Sources list at the bottom |
