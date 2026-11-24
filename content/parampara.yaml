@@ -265,6 +265,7 @@ blocks:
   - {name: Manavala Mamunigal, born: 1370, died: 1443, tags: srivaishnava, color: tenkalai}
 - type: lifespans
   section: madhva
+  anchor: madhva
   title: Madhva's pontiffs
   intro: Bars show the years as pontiff, except where a name is marked "life". The first six are the single line from
     Madhva to Jayatirtha. After Vidyadhiraja the seat divided, as the tree below shows.

@@ -256,7 +256,7 @@
 
 {%- elif b.type == 'lifespans' %}
 {%- set span = b.to - b['from'] %}
-<section class="lifespans-block" data-block{{ sect(b) }}>
+<section class="lifespans-block" data-block{{ sect(b) }}{% if b.anchor %} id="{{ b.anchor }}"{% endif %}>
   {{ title(b) }}
   {{ intro(b) }}
   <div class="lifespans">

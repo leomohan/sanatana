@@ -1,0 +1,645 @@
+page:
+  file: bhakti.html
+  layout: page
+  title: Bhakti Movements of India — Saint-Poets from Tamil Nadu to Assam
+  description: 'The pan-Indian wave of devotion on one map and timeline: 25 saint-poets from the Azhwars and Basavanna
+    to Jnaneshwar, Kabir, Mirabai, Nanak, Chaitanya and Tukaram.'
+  favicon: 🎶
+  search: Search saints, places, languages…
+  native: mixed
+  native_label: मूल · Original script
+  palette:
+    bhakti: ['#ff9f43', '#e07b1a']
+    south: ['#ff6b6b', '#c43a3a']
+    west: ['#f7b731', '#b7791f']
+    north: ['#4a9eff', '#1a6fc4']
+    east: ['#a55eea', '#7b3fc4']
+    shiva: ['#2ec4b6', '#1a8a80']
+    vishnu: ['#ff6b9d', '#c43a6e']
+    formless: ['#a0aec0', '#718096']
+    saguna: ['#ff6b9d', '#c43a6e']
+    nirguna: ['#a0aec0', '#718096']
+  gradient: [south, east]
+  primary: bhakti
+  h1: Bhakti Movements of India
+  intro: 'Devotion sung in the language of the people, not the Sanskrit of the priests. It began with the Tamil Azhwars
+    and Nayanmars, rose in Kannada and Marathi, and by the 15th and 16th centuries filled the north and east, from Kabir''s
+    Varanasi to Chaitanya''s Bengal and Sankardev''s Assam. Here are twenty-five of its voices, numbered in order of
+    time.'
+  legend:
+  - {label: South, color: south}
+  - {label: West, color: west}
+  - {label: North, color: north}
+  - {label: East, color: east}
+  filters:
+  - {value: all, label: All 25, color: bhakti}
+  - {value: south, label: 🌴 South, color: south}
+  - {value: west, label: 🚩 West, color: west}
+  - {value: north, label: 🏔️ North, color: north}
+  - {value: east, label: 🌊 East, color: east}
+  - {value: shiva, label: 🔱 Shiva, color: shiva}
+  - {value: vishnu, label: 🪷 Vishnu · Rama · Krishna, color: vishnu}
+  - {value: formless, label: ✨ The formless One, color: formless}
+  footer: ['🎶 A visual map of the Bhakti movements of India · Numbers follow the order of time · Many dates are traditional
+      and disputed', Map data © OpenStreetMap contributors · Markers show one place tied to each saint]
+blocks:
+- type: counts
+  items:
+  - {n: '25', label: Saint-poets on this map}
+  - {n: '1,000', label: 'Years, 7th to 17th century'}
+  - {n: '13', label: Languages they sang in}
+  - {n: '4', label: Women among them}
+- type: story
+  title: Bhakti tells her own story
+  paragraphs:
+  - 'A verse in the <em>Bhagavata Mahatmya</em> of the Padma Purana gives Bhakti herself a voice, and she describes
+    the very journey on this map:'
+  - '<span lang="sa">उत्पन्ना द्राविडे साहं वृद्धिं कर्णाटके गता ।<br>क्वचित्क्वचिन्महाराष्ट्रे गुर्जरे जीर्णतां
+    गता ॥</span><br><em>"I was born in the Dravida land and grew up in Karnataka. Here and there in Maharashtra I lived
+    on, and in Gujarat I grew old."</em> The verses that follow have her made young again in Vrindavan.'
+  - 'The Bhagavata itself (11.5.39) says that in the Kali age devotees of Narayana will appear "here and there, but
+    in great numbers in the Dravida lands, where the Tamraparni flows". Historians tell the same story in their own
+    terms: a devotional movement that began in the Tamil country between the 6th and 9th centuries and spread north
+    over the next eight hundred years.'
+- {type: filters}
+- {type: map, label: Map of the saint-poets of the Bhakti movements}
+- type: lifespans
+  title: The wave, century by century
+  intro: Each bar is a lifetime, coloured by region. Dotted bars are uncertain or traditional dates. Watch the colours
+    move from the south (red) to the west (gold), then the north (blue) and the east (purple). Click a name to jump to
+    the saint.
+  from: 500
+  to: 1700
+  step: 100
+  rows:
+  - {name: 1 · Appar, born: 580, died: 661, circa: true, tags: south shiva, color: south, href: '#appar-b'}
+  - {name: 2 · Andal, born: 740, died: 770, circa: true, label: 8th century, tags: south vishnu, color: south, href: '#andal-b'}
+  - {name: 3 · Basavanna, born: 1131, died: 1196, circa: true, tags: south shiva, color: south, href: '#basavanna'}
+  - {name: 4 · Allama Prabhu, born: 1110, died: 1170, circa: true, label: 12th century, tags: south shiva, color: south,
+    href: '#allama'}
+  - {name: 5 · Akka Mahadevi, born: 1130, died: 1160, circa: true, tags: south shiva, color: south, href: '#akka'}
+  - {name: 6 · Jayadeva, born: 1170, died: 1245, circa: true, tags: east vishnu, color: east, href: '#jayadeva'}
+  - {name: 7 · Namdev, born: 1270, died: 1350, circa: true, tags: west vishnu, color: west, href: '#namdev'}
+  - {name: 8 · Jnaneshwar, born: 1275, died: 1296, tags: west vishnu, color: west, href: '#jnaneshwar'}
+  - {name: 9 · Lal Ded, born: 1320, died: 1392, circa: true, tags: north shiva, color: north, href: '#lalded'}
+  - {name: 10 · Ramananda, born: 1366, died: 1467, circa: true, tags: north vishnu, color: north, href: '#ramananda'}
+  - {name: 11 · Kabir, born: 1440, died: 1518, circa: true, tags: north formless, color: north, href: '#kabir'}
+  - {name: 12 · Annamacharya, born: 1408, died: 1503, tags: south vishnu, color: south, href: '#annamacharya-b'}
+  - {name: 13 · Narsinh Mehta, born: 1414, died: 1481, circa: true, tags: west vishnu, color: west, href: '#narsinh'}
+  - {name: 14 · Sankardev, born: 1449, died: 1568, tags: east vishnu, color: east, href: '#sankardev'}
+  - {name: 15 · Ravidas, born: 1450, died: 1520, circa: true, tags: north formless, color: north, href: '#ravidas'}
+  - {name: 16 · Guru Nanak, born: 1469, died: 1539, tags: north formless, color: north, href: '#nanak'}
+  - {name: 17 · Surdas, born: 1478, died: 1583, circa: true, tags: north vishnu, color: north, href: '#surdas'}
+  - {name: 18 · Purandara Dasa, born: 1484, died: 1564, tags: south vishnu, color: south, href: '#purandara-b'}
+  - {name: 19 · Chaitanya, born: 1486, died: 1534, tags: east vishnu, color: east, href: '#chaitanya'}
+  - {name: 20 · Mirabai, born: 1498, died: 1547, circa: true, tags: north vishnu, color: north, href: '#mirabai'}
+  - {name: 21 · Kanaka Dasa, born: 1509, died: 1609, tags: south vishnu, color: south, href: '#kanaka'}
+  - {name: 22 · Tulsidas, born: 1532, died: 1623, circa: true, tags: north vishnu, color: north, href: '#tulsidas'}
+  - {name: 23 · Eknath, born: 1533, died: 1599, tags: west vishnu, color: west, href: '#eknath'}
+  - {name: 24 · Poonthanam, born: 1547, died: 1640, tags: south vishnu, color: south, href: '#poonthanam'}
+  - {name: 25 · Tukaram, born: 1608, died: 1650, tags: west vishnu, color: west, href: '#tukaram'}
+- type: cards
+  title: Twenty-five voices
+  intro: In order of time. The number on each card matches its marker on the map and its bar on the timeline.
+  empty: No saint matches your search. Try another name, place or language, or clear the filter.
+  cards:
+  - id: appar-b
+    anchor: true
+    num: '1'
+    title: Appar
+    native: அப்பர்
+    subtitle: Tamil · Shaiva · one of the four great Nayanmars
+    badge: c. 580–661 CE
+    accent: south
+    tags: south shiva
+    body: >-
+      Born a Shaiva, he became a Jain monk, then returned to Shiva and spent his life walking from temple to temple,
+      singing. His hymns fill three books of the <em>Tevaram</em>. With the Azhwars and the other Nayanmars he set
+      the pattern the whole movement would follow: songs in the spoken language, sung at named shrines, open to all.
+      The full Tamil story is on the <a href="an.html#appar">Azhwars &amp; Nayanmars</a> page.
+    facts:
+    - [Language, Tamil]
+    - [Worshipped, Shiva]
+    - [Work, 'Tevaram hymns (Thirumurai 4–6)']
+    map: {lat: 11.7745, lng: 79.5555, name: 1 · Appar, popup: 'Thiruvathigai, near Panruti · the shrine of his return to Shiva'}
+  - id: andal-b
+    anchor: true
+    num: '2'
+    title: Andal
+    native: ஆண்டாள்
+    mark: ♀
+    subtitle: Tamil · Vaishnava · the only woman among the Azhwars
+    badge: c. 8th century
+    accent: south
+    tags: south vishnu
+    body: >-
+      The foster daughter of the Azhwar Periyalvar, she would marry no one but Vishnu himself. Her <em>Tiruppavai</em>,
+      thirty verses of a girl waking her friends for a dawn vow, is sung in homes and temples across South India every
+      Margazhi. Her bridal longing for God is the first of many women's voices on this map. See the
+      <a href="an.html#andal">Azhwars &amp; Nayanmars</a> page.
+    facts:
+    - [Language, Tamil]
+    - [Worshipped, 'Vishnu as Ranganatha']
+    - [Works, 'Tiruppavai · Nachiyar Tirumozhi']
+    map: {lat: 9.5117, lng: 77.6333, name: 2 · Andal, popup: 'Srivilliputhur, Tamil Nadu'}
+  - id: basavanna
+    anchor: true
+    num: '3'
+    title: Basavanna
+    native: ಬಸವಣ್ಣ
+    subtitle: Kannada · Shaiva · the Lingayat reformer
+    badge: 12th century
+    accent: south
+    tags: south shiva
+    body: >-
+      Treasurer to the Kalachuri king Bijjala at Kalyana, he turned his house into a meeting place for poets of every
+      caste, the <em>Anubhava Mantapa</em> or hall of experience. He gave every devotee a personal linga to wear and
+      taught that honest work (<em>kayaka</em>) is worship. His short free-verse <em>vachanas</em>, signed
+      <em>Kudalasangamadeva</em>, mock the rich who build temples and call the devotee's own body the true shrine. An inter-caste marriage among his
+      followers set off a violent backlash, and the community scattered.
+    facts:
+    - [Language, Kannada]
+    - [Worshipped, 'Shiva, as the Ishtalinga']
+    - [Dates, '1131–1196 (Carl Olson) or 1106–1168 (A. K. Ramanujan)']
+    - [Places, 'Born Basavana Bagewadi · Kalyana (Basavakalyan) · died Kudalasangama']
+    map: {lat: 17.872, lng: 76.949, name: 3 · Basavanna, popup: 'Basavakalyan (old Kalyana), Karnataka · the Anubhava Mantapa'}
+  - id: allama
+    anchor: true
+    num: '4'
+    title: Allama Prabhu
+    native: ಅಲ್ಲಮಪ್ರಭು
+    subtitle: Kannada · Shaiva · the mystic of the circle
+    badge: 12th century
+    accent: south
+    tags: south shiva
+    body: >-
+      The most inward of the vachana poets. Where Basavanna argues with society, Allama speaks in riddles about the
+      emptiness at the heart of experience. Tradition makes him the presiding voice of the Anubhava Mantapa, testing
+      newcomers, Akka Mahadevi among them. His signature name is <em>Guheshvara</em>, "lord of caves".
+    facts:
+    - [Language, Kannada]
+    - [Worshipped, 'Shiva, beyond all form']
+    - [Place, 'Balligavi, Shivamogga district (birthplace by tradition)']
+    map: {lat: 14.398, lng: 75.226, name: 4 · Allama Prabhu, popup: 'Balligavi, Karnataka'}
+  - id: akka
+    anchor: true
+    num: '5'
+    title: Akka Mahadevi
+    native: ಅಕ್ಕಮಹಾದೇವಿ
+    mark: ♀
+    subtitle: Kannada · Shaiva · "elder sister"
+    badge: c. 1130–1160
+    accent: south
+    tags: south shiva
+    body: >-
+      She took Shiva as her only husband, left a king's palace, and wandered with nothing but her long hair for
+      clothing. At Kalyana she won the respect of Allama and Basavanna and the title <em>Akka</em>, elder sister. She
+      ended her life in the forests of Kadali near Srisailam, whose Shiva she called <em>Chennamallikarjuna</em>,
+      "Mallikarjuna the beautiful". About 350 vachanas carry her signature.
+    facts:
+    - [Language, Kannada]
+    - [Worshipped, 'Shiva as Chennamallikarjuna']
+    - [Places, 'Born Udutadi, Shivamogga district · Kalyana · Srisailam']
+    map: {lat: 16.0733, lng: 78.8681, name: 5 · Akka Mahadevi, popup: 'Srisailam, Andhra Pradesh · where her journey ended'}
+  - id: jayadeva
+    anchor: true
+    num: '6'
+    title: Jayadeva
+    native: जयदेव
+    subtitle: Sanskrit · Krishna · the poet of the Gita Govinda
+    badge: c. 1170–1245
+    accent: east
+    tags: east vishnu
+    body: >-
+      The one Sanskrit poet on this map, included because his <em>Gita Govinda</em>, twelve chapters of songs on the
+      love of Radha and Krishna, gave the eastern movements their language of longing. It is sung daily in the
+      Jagannath temple at Puri and lies behind Odissi dance. He names his birthplace Kindubilva. Odisha identifies
+      it with Kenduli Sasan near Puri; Bengal and Mithila claim villages of their own. Hymns attributed to him sit in
+      the Guru Granth Sahib.
+    facts:
+    - [Language, Sanskrit]
+    - [Worshipped, 'Krishna, with Radha']
+    - [Work, Gita Govinda]
+    map: {lat: 20.13, lng: 85.6, name: 6 · Jayadeva, popup: 'Kenduli Sasan, Odisha · one of three claimed birthplaces'}
+  - id: namdev
+    anchor: true
+    num: '7'
+    title: Namdev
+    native: नामदेव
+    subtitle: Marathi and Hindi · the Varkari who went north
+    badge: 1270–1350 (traditional)
+    accent: west
+    tags: west vishnu
+    body: >-
+      A tailor's son from Narsi who sang to Vithoba at Pandharpur, then carried his songs to the north. He is the first
+      bridge on this map: his Hindi hymns are in the Guru Granth Sahib, and Sikh tradition places his death at Ghuman
+      in Punjab, though Maharashtra holds he rests at Pandharpur's temple step. Scholars dispute his dates; some
+      place him a century later.
+    facts:
+    - [Languages, 'Marathi abhangs · Hindi hymns']
+    - [Worshipped, 'Vithoba (Vitthala) of Pandharpur']
+    - [Places, 'Born Narsi, Hingoli district · Pandharpur · Punjab']
+    map: {lat: 17.678, lng: 75.331, name: 7 · Namdev, popup: 'Pandharpur, Maharashtra · the Vithoba temple'}
+  - id: jnaneshwar
+    anchor: true
+    num: '8'
+    title: Jnaneshwar
+    native: ज्ञानेश्वर
+    subtitle: Marathi · the founder-saint of the Varkaris
+    badge: 1275–1296
+    accent: west
+    tags: west vishnu
+    body: >-
+      The son of an excommunicated Brahmin, he wrote the <em>Dnyaneshwari</em> in 1290, a Marathi commentary on the
+      <a href="gita.html">Bhagavad Gita</a> that brought its philosophy out of Sanskrit. He took living samadhi at
+      Alandi at about twenty-one. Every year, lakhs of Varkari pilgrims walk from Alandi to Pandharpur carrying his
+      sandals in a palanquin.
+    facts:
+    - [Language, Marathi]
+    - [Worshipped, 'Vithoba · guru: his elder brother Nivruttinath']
+    - [Works, 'Dnyaneshwari (1290) · Amritanubhav · Haripath']
+    map: {lat: 18.677, lng: 73.897, name: 8 · Jnaneshwar, popup: 'Alandi, near Pune · his samadhi'}
+  - id: lalded
+    anchor: true
+    num: '9'
+    title: Lal Ded
+    native: लल्लेश्वरी
+    mark: ♀
+    subtitle: Kashmiri · Shaiva · the wandering yogini
+    badge: c. 1320–1392
+    accent: north
+    tags: north shiva
+    body: >-
+      A Kashmiri Pandit woman who left an unhappy marriage to wander as a yogini. Her four-line <em>vakhs</em> are rooted
+      in Kashmir Shaivism and are still quoted in everyday Kashmiri speech. Hindus call her Lalleshwari, Muslims Lalla
+      Arifa, and the Sufi Nund Rishi counted her his inspiration.
+    facts:
+    - [Language, Kashmiri]
+    - [Worshipped, 'Shiva, within']
+    - [Place, 'Pandrethan, near Srinagar (by tradition)']
+    map: {lat: 34.07, lng: 74.87, name: 9 · Lal Ded, popup: 'Pandrethan, near Srinagar, Kashmir'}
+  - id: ramananda
+    anchor: true
+    num: '10'
+    title: Ramananda
+    native: रामानन्द
+    subtitle: Hindi · Rama · the teacher of Varanasi
+    badge: 14th–15th century
+    accent: north
+    tags: north vishnu
+    body: >-
+      The hinge of the whole story in northern tradition. His lineage traces its teaching back to the south, and in
+      Varanasi he took disciples of every caste and both sexes. Tradition names Kabir, Ravidas, Pipa, Sena and
+      Dhanna among them, though historians doubt some of these links. His Ramanandi order is today one of India's
+      largest. One hymn attributed to him is in the Guru Granth Sahib.
+    facts:
+    - [Language, 'Hindi (and Sanskrit)']
+    - [Worshipped, Rama and Sita]
+    - [Dates, '1366–1467 in one standard reference; others differ widely']
+    map: {lat: 25.3109, lng: 83.0107, name: 10 · Ramananda, popup: 'Panchganga Ghat, Varanasi'}
+  - id: kabir
+    anchor: true
+    num: '11'
+    title: Kabir
+    native: कबीर
+    subtitle: Hindi · the weaver of Varanasi · nirguna
+    badge: 1440–1518 or 1398–1448
+    accent: north
+    tags: north formless
+    body: >-
+      Raised in a family of Muslim weavers, he called God Ram but meant no idol and no temple, and he mocked pandit and
+      mullah alike. His two-line <em>dohas</em> are among the most quoted verses in Hindi. Hindus, Muslims and Sikhs all
+      claim him: his hymns are in the Guru Granth Sahib, and the Kabir Panth keeps his <em>Bijak</em>. He chose to die
+      at Maghar, a town said to bring a bad rebirth, to prove that place did not matter.
+    facts:
+    - [Language, 'Hindi (Sadhukkadi, the saints'' mixed speech)']
+    - [Worshipped, 'The formless One, named Ram']
+    - [Places, 'Varanasi · died Maghar']
+    map: {lat: 26.757, lng: 83.128, name: 11 · Kabir, popup: 'Maghar, Uttar Pradesh · his samadhi and tomb stand side by side'}
+  - id: annamacharya-b
+    anchor: true
+    num: '12'
+    title: Annamacharya
+    native: అన్నమాచార్య
+    subtitle: Telugu · Venkateswara · the first great composer
+    badge: 1408–1503
+    accent: south
+    tags: south vishnu
+    body: >-
+      The singer of Lord Venkateswara. By tradition he composed 32,000 Telugu <em>sankirtanas</em>; thousands survive,
+      engraved on copper plates kept at Tirumala. His songs are the oldest large body of compositions in what became
+      <a href="carnatic.html#annamacharya">Carnatic music</a>.
+    facts:
+    - [Language, Telugu]
+    - [Worshipped, 'Venkateswara of Tirumala']
+    - [Place, 'Born Tallapaka · Tirumala']
+    map: {lat: 13.6833, lng: 79.3472, name: 12 · Annamacharya, popup: 'Tirumala, Andhra Pradesh'}
+  - id: narsinh
+    anchor: true
+    num: '13'
+    title: Narsinh Mehta
+    native: નરસિંહ મહેતા
+    subtitle: Gujarati · Krishna · the first poet of Gujarat
+    badge: c. 1414–1481
+    accent: west
+    tags: west vishnu
+    body: >-
+      Gujarati literature's <em>Adi Kavi</em>, a poor Nagar Brahmin of Junagadh whose caste fellows scorned his singing
+      with people of every class. His <em>Vaishnav Jan To</em>, on the true devotee who "knows the pain of others", was
+      Mahatma Gandhi's favourite bhajan and became a song of the freedom movement.
+    facts:
+    - [Language, Gujarati]
+    - [Worshipped, Krishna]
+    - [Places, 'Born Talaja · Junagadh']
+    map: {lat: 21.5222, lng: 70.4579, name: 13 · Narsinh Mehta, popup: 'Junagadh, Gujarat'}
+  - id: sankardev
+    anchor: true
+    num: '14'
+    title: Srimanta Sankardev
+    native: শংকৰদেৱ
+    subtitle: Assamese · Krishna · saint, playwright and reformer
+    badge: 1449–1568
+    accent: east
+    tags: east vishnu
+    body: >-
+      The maker of Assam's devotional culture. His <em>Ekasarana Dharma</em>, "shelter in the One", asked for devotion
+      to Krishna alone, through his name, with no sacrifice and no caste bar. He wrote the first <em>Borgeet</em> songs on
+      a pilgrimage to Badrinath, invented the <em>Ankia Naat</em> plays and the dance now called Sattriya, and left the
+      village prayer halls (namghars) and monasteries (sattras) that still shape Assam.
+    facts:
+    - [Languages, 'Assamese · Brajavali']
+    - [Worshipped, Krishna]
+    - [Places, 'Born Bordowa (Batadrava), Nagaon · died Bheladonga, Cooch Behar']
+    map: {lat: 26.49, lng: 92.88, name: 14 · Sankardev, popup: 'Bordowa (Batadrava) Than, Nagaon, Assam'}
+  - id: ravidas
+    anchor: true
+    num: '15'
+    title: Ravidas
+    native: रविदास
+    subtitle: Hindi · the cobbler-saint · nirguna
+    badge: 15th–16th century
+    accent: north
+    tags: north formless
+    body: >-
+      Born to a family of leather-workers, then treated as untouchable, he sang of a formless God before whom caste
+      meant nothing. His <em>Begampura</em> hymn imagines a city "without sorrow", with no taxes and no second-class
+      citizens. Forty of his hymns and a couplet are in the Guru Granth Sahib, and the Ravidassia community reveres him
+      as its Guru. Some traditions name him Mirabai's teacher.
+    facts:
+    - [Language, Hindi]
+    - [Worshipped, The formless One]
+    - [Place, 'Seer Goverdhanpur, Varanasi (birthplace by tradition)']
+    map: {lat: 25.2566, lng: 82.9988, name: 15 · Ravidas, popup: 'Seer Goverdhanpur, Varanasi'}
+  - id: nanak
+    anchor: true
+    num: '16'
+    title: Guru Nanak
+    native: ਗੁਰੂ ਨਾਨਕ
+    subtitle: Punjabi · founder of Sikhism
+    badge: 1469–1539
+    accent: north
+    tags: north formless
+    body: >-
+      The first Sikh Guru travelled for years across India and beyond, then settled at Kartarpur, where his followers
+      farmed, prayed and ate together regardless of caste. Sikhs regard their faith as a revelation of its own, not a
+      branch of Bhakti. Historians place him beside the Sant poets because they share one formless God, the power of
+      the Name and a rejection of caste. In 1604 Guru Arjan compiled the Adi Granth, which holds the Gurus' hymns
+      together with those of Kabir, Namdev, Ravidas and other bhagats from across India.
+    facts:
+    - [Language, Punjabi]
+    - [Worshipped, 'Ik Onkar, the One']
+    - [Places, 'Born Talwandi (Nankana Sahib) · died Kartarpur, both now in Pakistan']
+    map: {lat: 32.0866, lng: 75.0156, name: 16 · Guru Nanak, popup: 'Kartarpur Sahib, Punjab (Pakistan)'}
+  - id: surdas
+    anchor: true
+    num: '17'
+    title: Surdas
+    native: सूरदास
+    subtitle: Braj Bhasha · the child Krishna
+    badge: c. 1478–1583 (Pushti Marg tradition)
+    accent: north
+    tags: north vishnu
+    body: >-
+      Remembered as a blind singer, he made the infant and boy Krishna of Braj live in Hindi: butter stolen, mothers
+      scolding, gopis pining. The <em>Sursagar</em> carries his name, though many of its poems are later. Pushti Marg
+      tradition makes him a disciple of Vallabhacharya and the foremost of eight poets of that sect; modern scholars
+      doubt the link. Another tradition dates him 1483–1563.
+    facts:
+    - [Language, Braj Bhasha]
+    - [Worshipped, Krishna as a child]
+    - [Places, 'Born Sihi or Runkata (both claimed) · died Parasoli, near Govardhan']
+    map: {lat: 27.49, lng: 77.46, name: 17 · Surdas, popup: 'Parasoli, near Govardhan, Braj'}
+  - id: purandara-b
+    anchor: true
+    num: '18'
+    title: Purandara Dasa
+    native: ಪುರಂದರದಾಸ
+    subtitle: Kannada · Haridasa · grandfather of Carnatic music
+    badge: 1484–1564
+    accent: south
+    tags: south vishnu
+    body: >-
+      A rich merchant who gave everything away to sing as a wandering Haridasa, a "servant of Hari". A disciple of
+      <a href="parampara.html#madhva">Vyasatirtha</a> at Vijayanagara, he signed his songs <em>Purandara Vittala</em>
+      and laid out the graded lessons every <a href="carnatic.html#purandara">Carnatic</a> student still begins with.
+    facts:
+    - [Language, Kannada]
+    - [Worshipped, Vittala (Krishna)]
+    - [Place, 'Hampi, the Vijayanagara capital']
+    map: {lat: 15.335, lng: 76.46, name: 18 · Purandara Dasa, popup: 'Hampi (Vijayanagara), Karnataka'}
+  - id: chaitanya
+    anchor: true
+    num: '19'
+    title: Chaitanya Mahaprabhu
+    native: চৈতন্য মহাপ্রভু
+    subtitle: Bengali · Krishna · the ecstatic of Nabadwip
+    badge: 1486–1534
+    accent: east
+    tags: east vishnu
+    body: >-
+      A Sanskrit scholar who turned to Krishna and led crowds through the streets of Nabadwip chanting the divine names
+      (<em>sankirtana</em>). He spent his last years at Puri, lost in the Gita Govinda and the Jagannath temple. His
+      Gaudiya Vaishnavism, set down by his followers the Goswamis at Vrindavan, is the root of today's ISKCON.
+    facts:
+    - [Languages, 'Bengali · Sanskrit']
+    - [Worshipped, 'Krishna, with Radha']
+    - [Places, 'Nabadwip · Vrindavan · Puri']
+    map: {lat: 23.4, lng: 88.37, name: 19 · Chaitanya, popup: 'Nabadwip, West Bengal'}
+  - id: mirabai
+    anchor: true
+    num: '20'
+    title: Mirabai
+    native: मीराबाई
+    mark: ♀
+    subtitle: Rajasthani and Braj · Krishna as Giridhar Gopal
+    badge: c. 1498–1547
+    accent: north
+    tags: north vishnu
+    body: >-
+      A Rathore princess of Merta who said she was already wedded to Krishna, the "mountain-lifter" Giridhar Gopal.
+      Married into Mewar's royal house, she sang and danced with sadhus of every caste, and legend tells of the poison
+      her in-laws sent her. She left for Vrindavan and ended her days at Dwarka. Few facts are certain, but her songs
+      are sung everywhere in India.
+    facts:
+    - [Languages, 'Rajasthani · Braj Bhasha']
+    - [Worshipped, 'Krishna as Giridhar Gopal']
+    - [Places, 'Born Kudki · Merta · Chittor · Vrindavan · Dwarka']
+    map: {lat: 26.649, lng: 74.034, name: 20 · Mirabai, popup: 'Merta, Rajasthan · her childhood home'}
+  - id: kanaka
+    anchor: true
+    num: '21'
+    title: Kanaka Dasa
+    native: ಕನಕದಾಸ
+    subtitle: Kannada · Haridasa · the shepherd-chieftain
+    badge: 1509–1609
+    accent: south
+    tags: south vishnu
+    body: >-
+      A Kuruba (shepherd) chieftain of Bada who became, like Purandara, a disciple of Vyasatirtha. Refused entry to the
+      Krishna temple at Udupi, he sang outside. Legend says the wall cracked and the image turned to face him; the
+      window there is still called <em>Kanakana Kindi</em>. His <em>Ramadhanya Charite</em> stages a debate between
+      ragi and rice that the poor man's grain wins.
+    facts:
+    - [Language, Kannada]
+    - [Worshipped, 'Krishna · Adikeshava of Kaginele']
+    - [Places, 'Bada (Haveri district) · Udupi · Kaginele']
+    map: {lat: 14.743, lng: 75.497, name: 21 · Kanaka Dasa, popup: 'Kaginele, Haveri district, Karnataka'}
+  - id: tulsidas
+    anchor: true
+    num: '22'
+    title: Tulsidas
+    native: तुलसीदास
+    subtitle: Awadhi · Rama · the poet of the Ramcharitmanas
+    badge: c. 1532–1623
+    accent: north
+    tags: north vishnu
+    body: >-
+      A Ramanandi monk who began the <em>Ramcharitmanas</em> at Ayodhya on Rama Navami in 1574 and finished it at
+      Varanasi. Written in Awadhi rather than Sanskrit, it became the Ramayana of the Hindi heartland and the script of
+      every village Ramlila. The <em>Hanuman Chalisa</em> is attributed to him. Popular tradition gives his birth as 1497;
+      most scholars prefer about 1532. His telling is compared with Valmiki's and Kamban's on the
+      <a href="ramayana.html">Ramayana Journey</a> page.
+    facts:
+    - [Language, Awadhi]
+    - [Worshipped, Rama]
+    - [Places, 'Born Rajapur, Chitrakoot (most likely) · Ayodhya · Varanasi']
+    map: {lat: 25.383, lng: 81.15, name: 22 · Tulsidas, popup: 'Rajapur, Chitrakoot district · his likely birthplace'}
+  - id: eknath
+    anchor: true
+    num: '23'
+    title: Eknath
+    native: एकनाथ
+    subtitle: Marathi · the scholar-householder of Paithan
+    badge: 1533–1599
+    accent: west
+    tags: west vishnu
+    body: >-
+      He carried the Varkari line between Jnaneshwar and Tukaram. Finding the <em>Dnyaneshwari</em> corrupted by
+      copyists, he edited the text that is still read. He wrote a Marathi <em>Bhagavata</em> and lively
+      <em>bharuds</em>, dramatic songs in the voices of ordinary people, to teach devotion and mock caste pride.
+    facts:
+    - [Language, Marathi]
+    - [Worshipped, Vithoba]
+    - [Works, 'Eknathi Bhagavat · Bhavartha Ramayana · bharuds']
+    map: {lat: 19.476, lng: 75.385, name: 23 · Eknath, popup: 'Paithan, on the Godavari, Maharashtra'}
+  - id: poonthanam
+    anchor: true
+    num: '24'
+    title: Poonthanam
+    native: പൂന്താനം
+    subtitle: Malayalam · Guruvayurappan
+    badge: 1547–1640
+    accent: south
+    tags: south vishnu
+    body: >-
+      A Namboodiri of Keezhattoor whose infant son died on the day of his first-rice feast. In his grief he turned
+      to Krishna at Guruvayur and wrote the <em>Jnanappana</em>, "the song of wisdom": 360 lines in a simple folk metre
+      on how quickly life passes. Legend says Guruvayurappan preferred his plain Malayalam to the learned Sanskrit of
+      his contemporary Melpathur.
+    facts:
+    - [Language, Malayalam]
+    - [Worshipped, 'Krishna as Guruvayurappan']
+    - [Work, Jnanappana]
+    map: {lat: 10.5946, lng: 76.0393, name: 24 · Poonthanam, popup: 'Guruvayur, Kerala'}
+  - id: tukaram
+    anchor: true
+    num: '25'
+    title: Tukaram
+    native: तुकाराम
+    subtitle: Marathi · the crown of the Varkaris
+    badge: 1608–1649/50
+    accent: west
+    tags: west vishnu
+    body: >-
+      A shopkeeper of Dehu ruined by famine, he gave himself to Vithoba and to song. Brahmins who objected made him sink
+      his notebooks in the Indrayani river; after thirteen days, the story goes, they floated back. His thousands of
+      <em>abhangs</em>, collected as the <em>Tukaram Gatha</em>, are the Varkari pilgrims' marching songs to this day.
+      He disappeared in 1649 or 1650.
+    facts:
+    - [Language, Marathi]
+    - [Worshipped, Vithoba of Pandharpur]
+    - [Place, 'Dehu, on the Indrayani, near Pune']
+    map: {lat: 18.718, lng: 73.766, name: 25 · Tukaram, popup: 'Dehu, near Pune · on the Indrayani river'}
+- type: compare
+  title: Two ways of loving God
+  intro: 'Scholars of North Indian bhakti sort its poets into two streams. The line is not hard: Namdev and Tulsidas both
+    sang of the Name, and Kabir called his formless God Ram.'
+  corner: ''
+  columns:
+  - {key: saguna, label: Saguna — God with form, color: saguna}
+  - {key: nirguna, label: Nirguna — God beyond form, color: nirguna}
+  rows:
+  - label: God is
+    cells: ['A person with a story: Rama, Krishna, Vithoba, Shiva', 'The One without qualities, found within; often still
+        called Ram or Hari']
+  - label: Worship
+    cells: ['Images, temples, pilgrimage, festivals, the deity''s lila', 'The Name, the true guru, inner listening; temples
+        and rituals often mocked']
+  - label: Feeling
+    cells: ['Love as servant, friend, parent or beloved', 'Union and awakening; love as longing for the hidden Beloved']
+  - label: Voices here
+    cells: ['Surdas, Mirabai, Tulsidas, Chaitanya, the Varkaris, the Haridasas', 'Kabir, Ravidas; Guru Nanak and the Sikh
+        Gurus stand close']
+- type: pairs
+  title: What they shared
+  items:
+  - {title: The mother tongue, color: bhakti, text: 'Tamil, Kannada, Marathi, Hindi, Bengali, Assamese: the songs left
+      Sanskrit behind so that anyone could sing them.'}
+  - {title: Saints of every caste, color: bhakti, text: 'A tailor (Namdev), a weaver (Kabir), a cobbler (Ravidas), a shepherd-chief
+      (Kanaka), a shopkeeper (Tukaram), beside Brahmins and princes.'}
+  - {title: Women's voices, color: bhakti, text: 'Andal, Akka Mahadevi, Lal Ded and Mirabai on this map, and many more,
+      like the Varkari servant Janabai.'}
+  - {title: Singing together, color: bhakti, text: 'Kirtan, bhajan, abhang, kirtana: devotion as group singing, often on
+      the road, as in the Varkari walk to Pandharpur.'}
+  - {title: The Name, color: bhakti, text: 'Repeating the divine name is enough, say saints as far apart as Chaitanya, Kabir,
+      Sankardev and Tukaram.'}
+  - {title: Love over ritual, color: bhakti, text: 'Most of them doubted sacrifice, caste purity and bookish learning,
+      and some said so sharply.'}
+- {type: callout, text: '📖 The <strong>Guru Granth Sahib</strong> (first compiled in 1604) is itself a map of the
+    wave: beside the Sikh Gurus it holds hymns by Jayadeva from the east, Namdev from Maharashtra, and Ramananda, Kabir
+    and Ravidas from Varanasi.'}
+- {type: callout, text: '🔗 More on this site: the Tamil beginnings on <a href="an.html">Azhwars &amp; Nayanmars</a>,
+    the singer-saints of the south on <a href="carnatic.html">Carnatic Music</a>, Tulsidas beside Valmiki and Kamban
+    on the <a href="ramayana.html">Ramayana Journey</a>, and Vyasatirtha''s line on <a href="parampara.html">Guru Parampara</a>.'}
+- type: sources
+  items:
+  - {label: Bhakti movement — Wikipedia, url: 'https://en.wikipedia.org/wiki/Bhakti_movement'}
+  - {label: Padma Purana 6.193 (Bhagavata Mahatmya) — Wisdom Library, url: 'https://de.wisdomlib.org/hinduism/book/padma-purana-sanskrit/d/doc476941.html'}
+  - {label: Bhagavata Purana 11.5.39 — Wisdom Library, url: 'https://de.wisdomlib.org/hinduism/book/bhagavata-purana-sanskrit/d/doc1252394.html'}
+  - {label: Basava — Wikipedia, url: 'https://en.wikipedia.org/wiki/Basava'}
+  - {label: Akka Mahadevi — Wikipedia, url: 'https://en.wikipedia.org/wiki/Akka_Mahadevi'}
+  - {label: Jayadeva birth controversy — Wikipedia, url: 'https://en.wikipedia.org/wiki/Jayadeva_birth_controversy'}
+  - {label: Dnyaneshwar — Wikipedia, url: 'https://en.wikipedia.org/wiki/Dnyaneshwar'}
+  - {label: Namdev — Britannica, url: 'https://www.britannica.com/biography/Namdev'}
+  - {label: Lalleshwari — Wikipedia, url: 'https://en.wikipedia.org/wiki/Lalleshwari'}
+  - {label: Ramananda — Wikipedia, url: 'https://en.wikipedia.org/wiki/Ramananda'}
+  - {label: Kabir — Britannica, url: 'https://www.britannica.com/biography/Kabir'}
+  - {label: Narsinh Mehta — Wikipedia, url: 'https://en.wikipedia.org/wiki/Narsinh_Mehta'}
+  - {label: Sankardev — Wikipedia, url: 'https://en.wikipedia.org/wiki/Sankardev'}
+  - {label: Ravidas — Wikipedia, url: 'https://en.wikipedia.org/wiki/Ravidas'}
+  - {label: Surdas — Wikipedia, url: 'https://en.wikipedia.org/wiki/Surdas'}
+  - {label: Mira Bai — Britannica, url: 'https://www.britannica.com/biography/Mira-Bai'}
+  - {label: Kanaka Dasa — Wikipedia, url: 'https://en.wikipedia.org/wiki/Kanaka_Dasa'}
+  - {label: Tulsidas — Britannica, url: 'https://www.britannica.com/biography/Tulsidas'}
+  - {label: Poonthanam Nambudiri — Wikipedia, url: 'https://en.wikipedia.org/wiki/Poonthanam_Nambudiri'}
+  - {label: Tukaram — UCLA South Asia, url: 'https://southasia.ucla.edu/religions/gurus-saints/tukaram'}

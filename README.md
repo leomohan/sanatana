@@ -50,7 +50,7 @@ Each entry under `blocks:` has a `type`:
 | `spectrum`, `glance`, `pairs` | Vedanta spectrum, Shanmata at-a-glance, Darshana pairs |
 | `table`, `numgrid` | Nakshatra table, Samvatsara grid |
 | `family` | left-to-right family tree; each person may have `with` (spouses), `note`, `tags` (house) and `children`; `side: true` draws a dashed box |
-| `lifespans` | horizontal lifetime bars on a year axis (`from`, `to`, `step`); `circa: true` gives a dotted bar; `label:` replaces the printed years (e.g. `1989–present`) |
+| `lifespans` | horizontal lifetime bars on a year axis (`from`, `to`, `step`); `circa: true` gives a dotted bar; `label:` replaces the printed years (e.g. `1989–present`); `anchor:` gives the block an id to link to |
 | `melakarta` | the 72-melakarta chart; swaras are computed by `build.py`, so only the names are listed; `play: {29: shankarabharanam}` adds a ▶ link to Raga Geometry |
 | `figures` | side-by-side labelled diagrams; each item names an SVG in `assets/figures/` (`svg: nagara.svg`) and is drawn inline so it follows the theme colours |
 | `festival-wheel` | the year as a lunar wheel: `ritus`, 12 amanta `months` (with `greg`), a `hub` and a `key`. Every card on the page with `wheel: {month, paksha, tithi}` becomes a numbered dot linking to it; `{angle, solar: true}` puts it on the outer solar ring, `approx: true` draws it dashed. Close dots move to an inner lane automatically |
@@ -61,7 +61,7 @@ Each entry under `blocks:` has a `type`:
 
 ## Shared settings
 
-Theme (light/dark), text size and the Sanskrit/Tamil toggle are saved once for the whole site, so a choice made on one page carries to every other page.
+Theme (light/dark), text size and the Sanskrit/Tamil toggle are saved once (a page can rename its toggle with `native_label:`, as the Bhakti page does for its many scripts) for the whole site, so a choice made on one page carries to every other page.
 
 ## Search engines, link previews and AI assistants
 

@@ -44,6 +44,13 @@ blocks:
     text: The twin streams of Tamil Bhakti — the twelve Vaishnava Azhwars and the Saiva Nayanmars — with their timelines,
       key works and the two great canons they gave us.
     meta: [2 traditions, 20 saints & canons, Women saints]
+  - title: Bhakti Movements of India
+    accent: shakta
+    href: bhakti.html
+    emoji: 🎶
+    text: The pan-Indian wave of devotion, from the Tamil saints through Basavanna and the Varkaris to Kabir, Mirabai,
+      Nanak, Chaitanya and Sankardev, on one map and timeline.
+    meta: [25 saint-poets, 13 languages, Map + Timeline]
   - title: The Six Darshanas
     accent: darshana
     href: darshanas.html

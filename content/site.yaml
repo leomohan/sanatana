@@ -16,6 +16,7 @@ nav:
   - {file: index.html, emoji: 🏠, label: Home}
   - {file: veda.html, emoji: 📜, label: Vedic Literature}
   - {file: an.html, emoji: 🪔, label: Azhwars & Nayanmars}
+  - {file: bhakti.html, emoji: 🎶, label: Bhakti Movements}
   - {file: darshanas.html, emoji: ⚖️, label: Six Darshanas}
   - {file: geography.html, emoji: 🗺️, label: Sacred Geography}
   - {file: gita.html, emoji: 🪷, label: Bhagavad Gita}

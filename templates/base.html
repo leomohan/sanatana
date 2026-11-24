@@ -95,7 +95,7 @@
   {%- if page.native %}
   <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
     <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
-    <button class="ctrl-btn" id="langNative" aria-pressed="false">{{ {'ta': 'தமிழ்', 'hi': 'हिन्दी'}.get(page.native, 'संस्कृतम्') }}</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">{{ page.native_label or {'ta': 'தமிழ்', 'hi': 'हिन्दी'}.get(page.native, 'संस्कृतम्') }}</button>
   </div>
   {%- endif %}
   {%- if page.search %}
