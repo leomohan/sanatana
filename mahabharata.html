@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Mahabharata Family Tree — Kurus, Pandavas, Kauravas and Yadavas</title>
+<meta name="description" content="Interactive family tree of the Mahabharata, from Shantanu to Janamejaya, with the Yadava, Panchala and Gandhara houses and the people who shaped the war.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=9291f70d">
+<style>:root,[data-theme="dark"]{--kuru:#f7b731; --kaurava:#ff6b6b; --pandava:#4a9eff; --yadava:#a55eea; --panchala:#26de81; --other:#a29ac2;} [data-theme="light"]{--kuru:#b7861b; --kaurava:#c43a3a; --pandava:#1a6fc4; --yadava:#7b3fc4; --panchala:#1e9e5c; --other:#6b5c4a;} :root{--primary:var(--kuru); --grad-h:linear-gradient(90deg,var(--kuru),var(--kaurava),var(--pandava),var(--yadava)); --grad-v:linear-gradient(var(--kuru),var(--kaurava),var(--pandava),var(--yadava));}</style>
+<script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
+  (function(){
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
+  })();
+</script>
+</head>
+<body>
+<div class="controls" role="toolbar" aria-label="Page controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
+  <div class="search-wrap">
+    <span aria-hidden="true">🔍</span>
+    <input type="search" id="searchInput" placeholder="Search a name — Karna, Draupadi, Abhimanyu…" aria-label="Search">
+  </div>
+  <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
+    <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">संस्कृतम्</button>
+  </div>
+  <div class="ctrl-group" role="group" aria-label="Text size">
+    <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
+    <span class="size-val" id="sizeVal">100%</span>
+    <button class="ctrl-btn size-btn" id="sizeUp" aria-label="Increase text size">A+</button>
+  </div>
+  <button class="ctrl-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+    <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+    <span id="toggleLabel">Light</span>
+  </button>
+</div>
+<header>
+  <h1>The Mahabharata Family Tree</h1>
+  <p>Seven generations of the Kuru house, from King Shantanu to Janamejaya, who heard the whole story told at his snake sacrifice. Generations run left to right. Choose a house to highlight it, or search a name. Below the tree are the families that married in and the people who drove the story.</p>
+  <div class="legend"><span><i class="dot" style="background:var(--kuru)"></i>Kuru elders</span><span><i class="dot" style="background:var(--kaurava)"></i>Kauravas</span><span><i class="dot" style="background:var(--pandava)"></i>Pandavas</span><span><i class="dot" style="background:var(--yadava)"></i>Yadavas</span><span><i class="dot" style="background:var(--panchala)"></i>Panchalas</span></div>
+</header>
+<div class="counts" aria-label="The epic in numbers"><div><b>18</b><span>Parvas (books)</span></div><div><b>~100,000</b><span>Verses, by tradition</span></div><div><b>18</b><span>Days of war</span></div><div><b>11 + 7</b><span>Armies (akshauhinis)</span></div><div><b>7</b><span>Generations in the tree</span></div></div>
+<div class="callout">🌙 <strong>Before Shantanu.</strong> The Kurus are of the Lunar line. Pururavas → Nahusha → Yayati → Puru → … → Dushyanta and Shakuntala → Bharata, after whom the land is named → … → Hastin, founder of Hastinapura → … → Samvarana and Tapati → Kuru → … → Pratipa → Shantanu. Yayati's son Yadu starts the Yadava line into which Krishna is born.</div>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--kuru)">All houses</button>
+  <button class="filter-chip" data-filter="kuru" aria-pressed="false" style="--fc:var(--kuru)">👑 Kuru elders</button>
+  <button class="filter-chip" data-filter="kaurava" aria-pressed="false" style="--fc:var(--kaurava)">Kauravas</button>
+  <button class="filter-chip" data-filter="pandava" aria-pressed="false" style="--fc:var(--pandava)">Pandavas</button>
+  <button class="filter-chip" data-filter="yadava" aria-pressed="false" style="--fc:var(--yadava)">🦚 Yadavas</button>
+  <button class="filter-chip" data-filter="panchala" aria-pressed="false" style="--fc:var(--panchala)">🔥 Panchalas</button>
+</div>
+<section class="family" data-block>
+  <h2 class="section-title">The Kuru line</h2>
+  <p class="section-intro">⚭ marks a marriage. Dashed boxes are people who enter the line other than by birth from the parent shown: Vyasa, who fathered the next generation for his half-brother, and Karna, Kunti's son before her marriage. Barbarika is included from later tradition.</p>
+  <div class="ftree-wrap"><ul class="ftree"><li><div class="ft-node" data-tags="kuru" style="--accent:var(--kuru)">
+<b>Shantanu</b> <span class="native">शन्तनु</span><span class="ft-with">⚭ Ganga · Satyavati</span><span class="ft-note">King of Hastinapura</span></div><ul><li><div class="ft-node" data-tags="kuru" style="--accent:var(--kuru)">
+<b>Bhishma</b> <span class="native">भीष्म</span><span class="ft-note">Son of Ganga · the vow of celibacy</span></div></li><li><div class="ft-node" data-tags="kuru" style="--accent:var(--kuru)">
+<b>Chitrangada</b><span class="ft-note">Son of Satyavati · died young</span></div></li><li class="side"><div class="ft-node ft-side" data-tags="kuru" style="--accent:var(--kuru)">
+<b>Vyasa</b> <span class="native">व्यास</span><span class="ft-note">Satyavati's son by Parashara · fathered the next generation</span></div></li><li><div class="ft-node" data-tags="kuru" style="--accent:var(--kuru)">
+<b>Vichitravirya</b><span class="ft-with">⚭ Ambika · Ambalika</span><span class="ft-note">Son of Satyavati · died childless</span></div><ul><li><div class="ft-node" data-tags="kaurava" style="--accent:var(--kaurava)">
+<b>Dhritarashtra</b> <span class="native">धृतराष्ट्र</span><span class="ft-with">⚭ Gandhari</span><span class="ft-note">Born blind · son of Ambika</span></div><ul><li><div class="ft-node" data-tags="kaurava" style="--accent:var(--kaurava)">
+<b>Duryodhana</b> <span class="native">दुर्योधन</span><span class="ft-note">Eldest of the hundred</span></div><ul><li><div class="ft-node" data-tags="kaurava" style="--accent:var(--kaurava)">
+<b>Lakshmana Kumara</b><span class="ft-note">Killed by Abhimanyu</span></div></li></ul></li><li><div class="ft-node" data-tags="kaurava" style="--accent:var(--kaurava)">
+<b>Duhshasana</b> <span class="native">दुःशासन</span><span class="ft-note">Dragged Draupadi to the hall</span></div></li><li><div class="ft-node" data-tags="kaurava" style="--accent:var(--kaurava)">
+<b>Vikarna</b><span class="ft-note">Protested at the dice game</span></div></li><li><div class="ft-node" data-tags="kaurava" style="--accent:var(--kaurava)">
+<b>97 more brothers</b><span class="ft-note">The hundred Kauravas</span></div></li><li><div class="ft-node" data-tags="kaurava" style="--accent:var(--kaurava)">
+<b>Duhshala</b><span class="ft-with">⚭ Jayadratha</span><span class="ft-note">The only daughter</span></div></li><li class="side"><div class="ft-node ft-side" data-tags="kaurava" style="--accent:var(--kaurava)">
+<b>Yuyutsu</b><span class="ft-note">Son by a maid · joined the Pandavas</span></div></li></ul></li><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Pandu</b> <span class="native">पाण्डु</span><span class="ft-with">⚭ Kunti · Madri</span><span class="ft-note">Son of Ambalika</span></div><ul><li class="side"><div class="ft-node ft-side" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Karna</b> <span class="native">कर्ण</span><span class="ft-note">Kunti's son by Surya, before her marriage</span></div></li><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Yudhishthira</b> <span class="native">युधिष्ठिर</span><span class="ft-with">⚭ Draupadi</span><span class="ft-note">Kunti's son by Dharma</span></div><ul><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Prativindhya</b><span class="ft-note">Son of Draupadi</span></div></li></ul></li><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Bhima</b> <span class="native">भीम</span><span class="ft-with">⚭ Draupadi · Hidimbi</span><span class="ft-note">Kunti's son by Vayu</span></div><ul><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Sutasoma</b><span class="ft-note">Son of Draupadi</span></div></li><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Ghatotkacha</b><span class="ft-note">Son of Hidimbi</span></div><ul><li class="side"><div class="ft-node ft-side" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Barbarika</b><span class="ft-note">Later tradition · Khatu Shyam</span></div></li></ul></li></ul></li><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Arjuna</b> <span class="native">अर्जुन</span><span class="ft-with">⚭ Draupadi · Ulupi · Chitrangada · Subhadra</span><span class="ft-note">Kunti's son by Indra</span></div><ul><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Shrutakarma</b><span class="ft-note">Son of Draupadi</span></div></li><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Iravan</b><span class="ft-note">Son of Ulupi</span></div></li><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Babruvahana</b><span class="ft-note">Son of Chitrangada of Manipura</span></div></li><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Abhimanyu</b> <span class="native">अभिमन्यु</span><span class="ft-with">⚭ Uttara</span><span class="ft-note">Son of Subhadra</span></div><ul><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Parikshit</b> <span class="native">परीक्षित्</span><span class="ft-note">Revived by Krishna at birth</span></div><ul><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Janamejaya</b> <span class="native">जनमेजय</span><span class="ft-note">Hears the epic at his snake sacrifice</span></div></li></ul></li></ul></li></ul></li><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Nakula</b><span class="ft-note">Madri's son by the Ashvins</span></div><ul><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Shatanika</b><span class="ft-note">Son of Draupadi</span></div></li></ul></li><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Sahadeva</b><span class="ft-note">Madri's son by the Ashvins</span></div><ul><li><div class="ft-node" data-tags="pandava" style="--accent:var(--pandava)">
+<b>Shrutasena</b><span class="ft-note">Son of Draupadi</span></div></li></ul></li></ul></li><li><div class="ft-node" data-tags="kuru" style="--accent:var(--kuru)">
+<b>Vidura</b> <span class="native">विदुर</span><span class="ft-note">Son of a maid · the wise minister</span></div></li></ul></li></ul></li></ul></div><div class="legend ft-key"><span><i class="dot" style="background:var(--kuru)"></i>Kuru elders</span><span><i class="dot" style="background:var(--kaurava)"></i>Kauravas</span><span><i class="dot" style="background:var(--pandava)"></i>Pandavas</span><span><i class="dot ft-dash"></i>dashed: not by birth in this line</span></div>
+</section>
+<section class="family" data-block>
+  <h2 class="section-title">The houses that married in</h2>
+  <h3 class="ft-title">Yadavas — Krishna&#39;s family</h3>
+  <div class="ftree-wrap"><ul class="ftree"><li><div class="ft-node" data-tags="yadava" style="--accent:var(--yadava)">
+<b>Shurasena</b><span class="ft-note">Yadava king</span></div><ul><li><div class="ft-node" data-tags="yadava" style="--accent:var(--yadava)">
+<b>Vasudeva</b><span class="ft-with">⚭ Devaki · Rohini</span></div><ul><li><div class="ft-node" data-tags="yadava" style="--accent:var(--yadava)">
+<b>Balarama</b> <span class="native">बलराम</span><span class="ft-note">Son of Rohini</span></div></li><li><div class="ft-node" data-tags="yadava" style="--accent:var(--yadava)">
+<b>Krishna</b> <span class="native">कृष्ण</span><span class="ft-note">Son of Devaki · raised by Nanda and Yashoda in Gokula</span></div></li><li><div class="ft-node" data-tags="yadava" style="--accent:var(--yadava)">
+<b>Subhadra</b><span class="ft-with">⚭ Arjuna</span><span class="ft-note">Daughter of Rohini · mother of Abhimanyu</span></div></li></ul></li><li><div class="ft-node" data-tags="yadava" style="--accent:var(--yadava)">
+<b>Pritha (Kunti)</b> <span class="native">कुन्ती</span><span class="ft-with">⚭ Pandu</span><span class="ft-note">Given in adoption to King Kuntibhoja · so Krishna and the Pandavas are cousins</span></div></li></ul></li></ul></div><h3 class="ft-title">Panchala — born of the fire</h3>
+  <div class="ftree-wrap"><ul class="ftree"><li><div class="ft-node" data-tags="panchala" style="--accent:var(--panchala)">
+<b>Drupada</b><span class="ft-note">King of Panchala · once Drona's friend, later his enemy</span></div><ul><li><div class="ft-node" data-tags="panchala" style="--accent:var(--panchala)">
+<b>Shikhandi</b><span class="ft-note">Born a daughter · Amba reborn for vengeance on Bhishma</span></div></li><li><div class="ft-node" data-tags="panchala" style="--accent:var(--panchala)">
+<b>Dhrishtadyumna</b> <span class="native">धृष्टद्युम्न</span><span class="ft-note">Born from the sacrificial fire · commander of the Pandava army</span></div></li><li><div class="ft-node" data-tags="panchala" style="--accent:var(--panchala)">
+<b>Draupadi</b> <span class="native">द्रौपदी</span><span class="ft-with">⚭ the five Pandavas</span><span class="ft-note">Born from the same fire · mother of the five Upapandavas</span></div></li></ul></li></ul></div><h3 class="ft-title">Gandhara</h3>
+  <div class="ftree-wrap"><ul class="ftree"><li><div class="ft-node" data-tags="kaurava" style="--accent:var(--kaurava)">
+<b>Subala</b><span class="ft-note">King of Gandhara</span></div><ul><li><div class="ft-node" data-tags="kaurava" style="--accent:var(--kaurava)">
+<b>Gandhari</b><span class="ft-with">⚭ Dhritarashtra</span><span class="ft-note">Blindfolded herself for life · mother of the hundred</span></div></li><li><div class="ft-node" data-tags="kaurava" style="--accent:var(--kaurava)">
+<b>Shakuni</b> <span class="native">शकुनि</span><span class="ft-note">Plays the dice for Duryodhana</span></div></li></ul></li></ul></div><h3 class="ft-title">The teachers</h3>
+  <div class="ftree-wrap"><ul class="ftree"><li><div class="ft-node" data-tags="other" style="--accent:var(--other)">
+<b>Bharadvaja</b><span class="ft-note">Sage</span></div><ul><li><div class="ft-node" data-tags="other" style="--accent:var(--other)">
+<b>Drona</b> <span class="native">द्रोण</span><span class="ft-with">⚭ Kripi</span><span class="ft-note">Teacher of the Kuru princes · Kripi is the twin of Kripa, the other royal teacher</span></div><ul><li><div class="ft-node" data-tags="other" style="--accent:var(--other)">
+<b>Ashwatthama</b> <span class="native">अश्वत्थामा</span><span class="ft-note">Leads the night raid · cursed by Krishna to wander</span></div></li></ul></li></ul></li></ul></div>
+</section>
+<section data-block>
+  <h2 class="section-title">The people who drove the story</h2>
+  <div class="grid v3">
+  <article class="card" data-item data-tags="kuru" style="--accent:var(--kuru)">
+  <h3>Bhishma <span class="native">भीष्म</span></h3><span class="tag">The grandsire</span><p>Born Devavrata, the eighth son of Ganga. He gave up the throne and marriage so that his father could marry Satyavati. For that terrible vow (<em>bhishma</em>) he got his name, and the boon of choosing the hour of his death. He fell on the tenth day of the war. From his bed of arrows he taught Yudhishthira the long lessons of the Shanti and Anushasana Parvas.</p><div class="chips"><span class="chip">Vow of celibacy</span><span class="chip">Bed of arrows</span><span class="chip">Vishnu Sahasranama</span></div>
+</article>
+  <article class="card" data-item data-tags="kuru" style="--accent:var(--kuru)">
+  <h3>Satyavati &amp; Vyasa <span class="native">सत्यवती · व्यास</span></h3><span class="tag">Mother and son</span><p>Satyavati, a fisher chief's daughter, bore Vyasa to the sage Parashara on an island in the Yamuna; hence his name Dvaipayana. When her sons by Shantanu died without heirs, she called Vyasa to father children with the widows. Vyasa is also the epic's author. Tradition says Ganesha wrote it down as he dictated.</p><div class="chips"><span class="chip">Niyoga</span><span class="chip">Author of the epic</span></div>
+</article>
+  <article class="card" data-item data-tags="kaurava" style="--accent:var(--kaurava)">
+  <h3>Dhritarashtra &amp; Gandhari <span class="native">धृतराष्ट्र · गान्धारी</span></h3><span class="tag">The blind king and his queen</span><p>Dhritarashtra, born blind, was passed over for his brother Pandu. When Pandu died he ruled. Gandhari of Gandhara bound her own eyes for life to share her husband's darkness. Her hundred sons and a daughter came from a mass of flesh that Vyasa divided into pots.</p><div class="chips"><span class="chip">A hundred sons</span><span class="chip">Blindfold</span><span class="chip">Sanjaya's narration</span></div>
+</article>
+  <article class="card" data-item data-tags="kaurava" style="--accent:var(--kaurava)">
+  <h3>Duryodhana <span class="native">दुर्योधन</span></h3><span class="tag">Eldest of the Kauravas</span><p>Duryodhana believed the throne was his by right. He feared Bhima's strength and resented the Pandavas' rise. He made Karna a king and his closest friend. With Shakuni's loaded dice he won everything from Yudhishthira. Bhima broke his thigh with a mace on the eighteenth day.</p><div class="chips"><span class="chip">The dice game</span><span class="chip">Friend of Karna</span></div>
+</article>
+  <article class="card" data-item data-tags="pandava yadava" style="--accent:var(--pandava)">
+  <h3>Pandu, Kunti &amp; Madri <span class="native">पाण्डु · कुन्ती · माद्री</span></h3><span class="tag">Parents of the Pandavas</span><p>A sage whom Pandu shot while the sage was in a deer's form cursed him to die if he lay with a wife. Kunti held a mantra from the sage Durvasa that could summon any god. Through it she bore Yudhishthira by Dharma, Bhima by Vayu and Arjuna by Indra. She shared the mantra with Madri, who bore the twins by the Ashvins.</p><div class="chips"><span class="chip">Durvasa's mantra</span><span class="chip">Five sons</span></div>
+</article>
+  <article class="card" data-item data-tags="pandava" style="--accent:var(--pandava)">
+  <h3>The five Pandavas <span class="native">पञ्च पाण्डव</span></h3><span class="tag">Sons of Pandu</span><p>Raised in the forest and brought to Hastinapura as boys, the five shared everything, including their wife. They lost their kingdom at dice and spent twelve years in the forest and a thirteenth in disguise. Then they won the war at Kurukshetra.</p><dl class="facts"><div class="fact"><dt>Yudhishthira</dt><dd>Kunti, by Dharma · the just king · answers the Yaksha's questions</dd></div><div class="fact"><dt>Bhima</dt><dd>Kunti, by Vayu · the strong one · kills Duhshasana and Duryodhana</dd></div><div class="fact"><dt>Arjuna</dt><dd>Kunti, by Indra · the archer · hears the <a href="gita.html">Bhagavad Gita</a></dd></div><div class="fact"><dt>Nakula &amp; Sahadeva</dt><dd>Madri, by the Ashvins · the twins · Sahadeva kills Shakuni</dd></div></dl>
+</article>
+  <article class="card" data-item data-tags="pandava kaurava" style="--accent:var(--pandava)">
+  <h3>Karna <span class="native">कर्ण</span></h3><span class="tag">The first-born no one knew</span><p>Kunti's son by the Sun, born before her marriage and set adrift in a basket. A charioteer's family raised him. Mocked for his birth, he found a friend in Duryodhana and never broke with him. He gave away his divine armour and earrings to Indra, who came disguised as a brahmin. Arjuna killed him on the seventeenth day.</p><div class="chips"><span class="chip">Kavacha & kundala</span><span class="chip">King of Anga</span><span class="chip">Generosity</span></div>
+</article>
+  <article class="card" data-item data-tags="panchala pandava" style="--accent:var(--panchala)">
+  <h3>Draupadi <span class="native">द्रौपदी</span></h3><span class="tag">Born of fire</span><p>Draupadi rose with her brother Dhrishtadyumna from Drupada's sacrificial fire. Arjuna won her by hitting the target at her swayamvara, and Kunti's word made her wife to all five brothers. Dragged into the dice hall, she asked whether a man who had lost himself could still stake her. Her garment was miraculously replenished; later tellings credit Krishna.</p><div class="chips"><span class="chip">Swayamvara</span><span class="chip">The dice hall</span><span class="chip">Panchakanya</span></div>
+</article>
+  <article class="card" data-item data-tags="yadava" style="--accent:var(--yadava)">
+  <h3>Krishna <span class="native">कृष्ण</span></h3><span class="tag">Cousin, counsellor, charioteer</span><p>Krishna was the son of Vasudeva, Kunti's brother, which made him the Pandavas' cousin. Arjuna was also his friend and Subhadra's husband. He went as the Pandavas' envoy to Hastinapura and would not bear arms in the war. As Arjuna's charioteer he spoke the <a href="gita.html">Bhagavad Gita</a>. He is the eighth <a href="dashavatara.html">avatar</a> in most lists.</p><div class="chips"><span class="chip">Envoy of peace</span><span class="chip">Charioteer</span><span class="chip">The Gita</span></div>
+</article>
+  <article class="card" data-item data-tags="pandava yadava" style="--accent:var(--pandava)">
+  <h3>Abhimanyu &amp; Parikshit <span class="native">अभिमन्यु · परीक्षित्</span></h3><span class="tag">The line that survived</span><p>Abhimanyu, Arjuna's son by Subhadra, broke into Drona's wheel formation on the thirteenth day and was killed inside it. In the popular telling he had learned to enter it while still in the womb. His son Parikshit was struck in the womb by Ashwatthama's weapon, and Krishna revived him. Parikshit became the Pandavas' only heir.</p><div class="chips"><span class="chip">Chakravyuha</span><span class="chip">The surviving heir</span></div>
+</article>
+  <article class="card" data-item data-tags="kuru" style="--accent:var(--kuru)">
+  <h3>Vidura <span class="native">विदुर</span></h3><span class="tag">The voice of dharma</span><p>Vidura was the third son by Vyasa, born to a maid. A curse had made Dharma himself take birth as him. As Dhritarashtra's minister he warned against the dice game, and he saved the Pandavas from the house of lac. His counsel to the king is known as the <em>Vidura Niti</em>.</p><div class="chips"><span class="chip">House of lac</span><span class="chip">Vidura Niti</span></div>
+</article>
+  <article class="card" data-item data-tags="kaurava" style="--accent:var(--other)">
+  <h3>Drona &amp; Ashwatthama <span class="native">द्रोण · अश्वत्थामा</span></h3><span class="tag">Teacher and son</span><p>Drona, born from a vessel (<em>drona</em>) of the sage Bharadvaja, taught arms to all the Kuru princes. Arjuna was his favourite, and he demanded Ekalavya's thumb. He fought for the Kauravas. When told falsely that Ashwatthama was dead, he laid down his weapons, and Dhrishtadyumna killed him. In revenge Ashwatthama slaughtered the sleeping Pandava camp, including the five sons of Draupadi.</p><div class="chips"><span class="chip">Ekalavya</span><span class="chip">"Ashwatthama is dead"</span><span class="chip">The night raid</span></div>
+</article>
+  </div>
+</section>
+<p class="no-results">Nothing matches your search. Try another name or clear the filter.</p>
+<section class="sources"><h2>Sources</h2><ul><li><a href="https://www.sacred-texts.com/hin/maha/" target="_blank" rel="noopener">The Mahabharata, tr. K. M. Ganguli (complete, public domain) — sacred-texts.com</a></li><li><a href="https://en.wikipedia.org/wiki/List_of_characters_in_the_Mahabharata" target="_blank" rel="noopener">List of characters in the Mahabharata — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Draupadeyas" target="_blank" rel="noopener">Draupadeyas (Upapandavas) — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Kunti" target="_blank" rel="noopener">Kunti — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Subhadra" target="_blank" rel="noopener">Subhadra — Wikipedia</a></li></ul></section>
+<footer>
+  <p>🏹 A visual family tree of the Mahabharata · Relationships follow the epic; a few figures, such as Barbarika, come from later tradition and are marked</p>
+  <p>Names and details vary between recensions and regional tellings</p>
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
+    <a href="ramayana.html"><span aria-hidden="true">🏹</span>Ramayana Journey</a>
+    <a href="mahabharata.html" aria-current="page"><span aria-hidden="true">⚔️</span>Mahabharata Family Tree</a>
+    <a href="dashavatara.html"><span aria-hidden="true">🐚</span>Dashavatara</a>
+    <a href="carnatic.html"><span aria-hidden="true">🎶</span>Carnatic Music</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
+</footer>
+<script src="assets/site.js?v=9291f70d"></script>
+</body>
+</html>

@@ -34,6 +34,17 @@ def to_js(obj):
     return json.dumps(obj, ensure_ascii=False).replace('</', '<\\/')
 
 
+MELA_PAIRS = [(1, 1), (1, 2), (1, 3), (2, 2), (2, 3), (3, 3)]
+
+
+def mela(n):
+    """Swara positions of melakarta n (1-72): six R-G pairs x six D-N pairs x two Madhyamas."""
+    i = n - 1
+    r, g = MELA_PAIRS[(i % 36) // 6]
+    d, nn = MELA_PAIRS[i % 6]
+    return {'r': r, 'g': g, 'm': 1 if i < 36 else 2, 'd': d, 'n': nn, 'pairs': MELA_PAIRS}
+
+
 def combine(a, b):
     out = dict(a); out.update(b); return out
 
@@ -91,6 +102,18 @@ def check(name, page, blocks):
         for link in (c.get('links') or '').split(','):
             if link.strip() and link.strip() not in ids:
                 problems.append(f'card "{c.get("title")}" links to unknown id "{link.strip()}"')
+    for c in all_cards(blocks):
+        for f in c.get('facts') or []:
+            if len(f) != 2:
+                problems.append(f'card "{c.get("title")}": a fact has {len(f)} parts (put quotes around text with commas)')
+    def walk(bs):
+        for b in bs:
+            if b.get('type') == 'compare':
+                for r in b['rows']:
+                    if len(r['cells']) != len(b['columns']):
+                        problems.append(f'table row "{r["label"]}" has {len(r["cells"])} cells for {len(b["columns"])} columns')
+            walk(b.get('blocks', []))
+    walk(blocks)
     for f in page.get('filters') or []:
         chk(f.get('color'), f'filter "{f.get("label")}"')
     if problems:
@@ -103,6 +126,7 @@ def build(names=None):
                       trim_blocks=False, lstrip_blocks=False, autoescape=True)
     env.filters['color'] = color
     env.filters['combine'] = combine
+    env.globals['mela'] = mela
     tpl = env.get_template('base.html')
     version = hashlib.sha1((ASSETS / 'site.css').read_bytes() + (ASSETS / 'site.js').read_bytes()).hexdigest()[:8]
 
@@ -117,6 +141,9 @@ def build(names=None):
         sites = [{'id': c['id'], 'n': c.get('num') or i + 1, 'name': c['map'].get('name', c['title']), 'sub': c['map']['popup'],
                   'lat': c['map']['lat'], 'lng': c['map']['lng'], 'color': color(c.get('accent') or page.get('primary'))}
                  for i, c in enumerate(c for c in cards if c.get('map'))]
+        route = None
+        if any(b['type'] == 'map' and b.get('route') for b in blocks):
+            route = [c['id'] for c in cards if c.get('map') and c['map'].get('route', True)]
         groups = None
         for b in blocks:
             if b['type'] == 'geo-map':
@@ -124,6 +151,7 @@ def build(names=None):
                            'sites': g['sites']} for g in b['groups']]
         html = tpl.render(site=site, page=page, blocks=group_blocks(blocks), all_cards=cards, palette_css=palette_css(page),
                           uses_map=bool(sites or groups), sites_json=to_js(sites) if sites else None, groups_json=to_js(groups) if groups else None, asset_version=version,
+                          route_json=to_js(route) if route else None,
                           has_empty=any(b.get('type') == 'empty' or b.get('empty') for b in blocks))
         html = '\n'.join(line.rstrip() for line in html.splitlines() if line.strip()) + '\n'
         (ROOT / page['file']).write_text(html, encoding='utf-8')

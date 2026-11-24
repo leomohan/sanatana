@@ -58,7 +58,7 @@
   }
 
   /* ---------- MAP (circuit pages) ---------- */
-  var map = null, markers = {};
+  var map = null, markers = {}, route = null;
   function initMap(){
     var el = $('#map'), data = window.SANATANA_SITES;
     if(!el || !data || el.classList.contains('tall')) return;
@@ -75,6 +75,7 @@
       m.addTo(map); markers[s.id] = m;
     });
     fitMap(Object.keys(markers));
+    drawRoute(Object.keys(markers));
     $$('.map-link').forEach(function(b){
       b.addEventListener('click', function(){
         var m = markers[b.getAttribute('data-id')];
@@ -83,6 +84,16 @@
       });
     });
     setTimeout(function(){ map.invalidateSize(); }, 250);
+  }
+  /* Optional journey line (page sets window.SANATANA_ROUTE = [card ids in order]) */
+  function drawRoute(visibleIds){
+    var order = window.SANATANA_ROUTE; if(!map || !order) return;
+    if(route){ map.removeLayer(route); route = null; }
+    var pts = order.filter(function(id){ return markers[id] && visibleIds.indexOf(id) !== -1; })
+                   .map(function(id){ return markers[id].getLatLng(); });
+    if(pts.length < 2) return;
+    var c = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#e67e22';
+    route = L.polyline(pts, { color: c, weight: 3, opacity: .75, dashArray: '8 8', interactive: false }).addTo(map);
   }
   function fitMap(ids){
     if(!map || !ids.length) return;
@@ -158,8 +169,19 @@
       var st = h.getAttribute('data-stage');
       h.classList.toggle('hidden', !$$('.timeline-item[data-tags="' + st + '"]').some(function(i){ return !i.classList.contains('hidden'); }));
     });
-    $$('.compare [data-col]').forEach(function(cell){
-      cell.classList.toggle('col-hidden', F !== 'all' && cell.getAttribute('data-col') !== F);
+    $$('.compare').forEach(function(table){
+      var keys = $$('thead [data-col]', table).map(function(th){ return th.getAttribute('data-col'); });
+      var byCol = keys.indexOf(F) !== -1;
+      $$('[data-col]', table).forEach(function(cell){
+        cell.classList.toggle('col-hidden', byCol && cell.getAttribute('data-col') !== F);
+      });
+    });
+    /* Family-tree people stay in place (the tree keeps its shape); non-matches fade */
+    $$('.ft-node').forEach(function(n){
+      var tags = tagsOf(n), tagOK = F === 'all' || (tags && tags.indexOf(F) !== -1);
+      var hit = !q || n.textContent.toLowerCase().indexOf(q) !== -1;
+      n.classList.toggle('faded', !(tagOK && hit));
+      n.classList.toggle('match', !!q && hit);
     });
     $$('.journey a').forEach(function(a){
       var t = document.getElementById(a.getAttribute('href').slice(1));
@@ -172,6 +194,7 @@
         if(!show && map.hasLayer(markers[id])) map.removeLayer(markers[id]);
       });
       if(refit) fitMap(visibleIds.filter(function(id){ return markers[id]; }));
+      drawRoute(visibleIds);
     }
     body.classList.toggle('nothing', anyItem && !anyVisible);
     onFilter.forEach(function(fn){ fn(F, q); });

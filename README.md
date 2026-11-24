@@ -42,11 +42,14 @@ Each entry under `blocks:` has a `type`:
 | `filters` | the row of filter chips (defined under `page.filters`) |
 | `cards` | a titled section of cards — the workhorse of every page |
 | `journey` | the jump strip of numbered links (`style: numbers` for Gita-style squares) |
-| `map` | the Leaflet map; markers come from cards that have a `map:` entry |
-| `compare` | side-by-side comparison table; filter chips hide columns |
+| `map` | the Leaflet map; markers come from cards that have a `map:` entry. Add `route: true` to draw the journey line in card order (a card can opt out with `route: false` in its `map:`) |
+| `compare` | side-by-side comparison table; a chip named after a column shows only that column, and rows with `tags` follow the chips |
 | `tree` / `lineage` | Vedic knowledge tree / matha lineage tree |
 | `spectrum`, `glance`, `pairs` | Vedanta spectrum, Shanmata at-a-glance, Darshana pairs |
 | `table`, `numgrid` | Nakshatra table, Samvatsara grid |
+| `family` | left-to-right family tree; each person may have `with` (spouses), `note`, `tags` (house) and `children`; `side: true` draws a dashed box |
+| `lifespans` | horizontal lifetime bars on a year axis (`from`, `to`, `step`); `circa: true` gives a dotted bar |
+| `melakarta` | the 72-melakarta chart; swaras are computed by `build.py`, so only the names are listed |
 | `life-timeline` | Samskaras timeline, grouped by life stage |
 | `story`, `callout`, `counts`, `panel` | text boxes |
 | `sources` | the Sources list at the bottom |

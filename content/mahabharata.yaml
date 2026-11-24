@@ -1,0 +1,331 @@
+page:
+  file: mahabharata.html
+  layout: page
+  title: The Mahabharata Family Tree — Kurus, Pandavas, Kauravas and Yadavas
+  description: Interactive family tree of the Mahabharata, from Shantanu to Janamejaya, with the Yadava, Panchala and
+    Gandhara houses and the people who shaped the war.
+  favicon: ⚔️
+  search: Search a name — Karna, Draupadi, Abhimanyu…
+  native: sa
+  palette:
+    kuru: ['#f7b731', '#b7861b']
+    kaurava: ['#ff6b6b', '#c43a3a']
+    pandava: ['#4a9eff', '#1a6fc4']
+    yadava: ['#a55eea', '#7b3fc4']
+    panchala: ['#26de81', '#1e9e5c']
+    other: ['#a29ac2', '#6b5c4a']
+  gradient: [kuru, kaurava, pandava, yadava]
+  primary: kuru
+  h1: The Mahabharata Family Tree
+  intro: 'Seven generations of the Kuru house, from King Shantanu to Janamejaya, who heard the whole story told at
+    his snake sacrifice. Generations run left to right. Choose a house to highlight it, or search a name. Below the
+    tree are the families that married in and the people who drove the story.'
+  legend:
+  - {label: Kuru elders, color: kuru}
+  - {label: Kauravas, color: kaurava}
+  - {label: Pandavas, color: pandava}
+  - {label: Yadavas, color: yadava}
+  - {label: Panchalas, color: panchala}
+  filters:
+  - {value: all, label: All houses, color: kuru}
+  - {value: kuru, label: 👑 Kuru elders, color: kuru}
+  - {value: kaurava, label: Kauravas, color: kaurava}
+  - {value: pandava, label: Pandavas, color: pandava}
+  - {value: yadava, label: 🦚 Yadavas, color: yadava}
+  - {value: panchala, label: 🔥 Panchalas, color: panchala}
+  footer: ['🏹 A visual family tree of the Mahabharata · Relationships follow the epic; a few figures, such as Barbarika,
+      come from later tradition and are marked', 'Names and details vary between recensions and regional tellings']
+blocks:
+- type: counts
+  label: The epic in numbers
+  items:
+  - {n: '18', label: Parvas (books)}
+  - {n: '~100,000', label: 'Verses, by tradition'}
+  - {n: '18', label: Days of war}
+  - {n: '11 + 7', label: Armies (akshauhinis)}
+  - {n: '7', label: Generations in the tree}
+- type: callout
+  text: '🌙 <strong>Before Shantanu.</strong> The Kurus are of the Lunar line. Pururavas → Nahusha → Yayati → Puru → … →
+    Dushyanta and Shakuntala → Bharata, after whom the land is named → … → Hastin, founder of Hastinapura → … → Samvarana
+    and Tapati → Kuru → … → Pratipa → Shantanu. Yayati''s son Yadu starts the Yadava line into which Krishna is born.'
+- {type: filters}
+- type: family
+  title: The Kuru line
+  intro: '⚭ marks a marriage. Dashed boxes are people who enter the line other than by birth from the parent shown: Vyasa,
+    who fathered the next generation for his half-brother, and Karna, Kunti''s son before her marriage. Barbarika is
+    included from later tradition.'
+  colors: {kuru: kuru, kaurava: kaurava, pandava: pandava, yadava: yadava, panchala: panchala, other: other}
+  key:
+  - {label: Kuru elders, color: kuru}
+  - {label: Kauravas, color: kaurava}
+  - {label: Pandavas, color: pandava}
+  trees:
+  - root:
+      name: Shantanu
+      native: शन्तनु
+      with: Ganga · Satyavati
+      note: King of Hastinapura
+      tags: kuru
+      children:
+      - {name: Bhishma, native: भीष्म, tags: kuru, note: 'Son of Ganga · the vow of celibacy'}
+      - {name: Chitrangada, tags: kuru, note: 'Son of Satyavati · died young'}
+      - {name: Vyasa, native: व्यास, tags: kuru, side: true, note: 'Satyavati''s son by Parashara · fathered the next generation'}
+      - name: Vichitravirya
+        tags: kuru
+        with: Ambika · Ambalika
+        note: Son of Satyavati · died childless
+        children:
+        - name: Dhritarashtra
+          native: धृतराष्ट्र
+          tags: kaurava
+          with: Gandhari
+          note: 'Born blind · son of Ambika'
+          children:
+          - name: Duryodhana
+            native: दुर्योधन
+            tags: kaurava
+            note: Eldest of the hundred
+            children:
+            - {name: Lakshmana Kumara, tags: kaurava, note: Killed by Abhimanyu}
+          - {name: Duhshasana, native: दुःशासन, tags: kaurava, note: 'Dragged Draupadi to the hall'}
+          - {name: Vikarna, tags: kaurava, note: 'Protested at the dice game'}
+          - {name: 97 more brothers, tags: kaurava, note: 'The hundred Kauravas'}
+          - {name: Duhshala, tags: kaurava, with: Jayadratha, note: The only daughter}
+          - {name: Yuyutsu, tags: kaurava, side: true, note: 'Son by a maid · joined the Pandavas'}
+        - name: Pandu
+          native: पाण्डु
+          tags: pandava
+          with: Kunti · Madri
+          note: 'Son of Ambalika'
+          children:
+          - {name: Karna, native: कर्ण, tags: pandava, side: true, note: 'Kunti''s son by Surya, before her marriage'}
+          - name: Yudhishthira
+            native: युधिष्ठिर
+            tags: pandava
+            with: Draupadi
+            note: Kunti's son by Dharma
+            children:
+            - {name: Prativindhya, tags: pandava, note: Son of Draupadi}
+          - name: Bhima
+            native: भीम
+            tags: pandava
+            with: Draupadi · Hidimbi
+            note: Kunti's son by Vayu
+            children:
+            - {name: Sutasoma, tags: pandava, note: Son of Draupadi}
+            - name: Ghatotkacha
+              tags: pandava
+              note: 'Son of Hidimbi'
+              children:
+              - {name: Barbarika, tags: pandava, side: true, note: 'Later tradition · Khatu Shyam'}
+          - name: Arjuna
+            native: अर्जुन
+            tags: pandava
+            with: Draupadi · Ulupi · Chitrangada · Subhadra
+            note: Kunti's son by Indra
+            children:
+            - {name: Shrutakarma, tags: pandava, note: Son of Draupadi}
+            - {name: Iravan, tags: pandava, note: 'Son of Ulupi'}
+            - {name: Babruvahana, tags: pandava, note: Son of Chitrangada of Manipura}
+            - name: Abhimanyu
+              native: अभिमन्यु
+              tags: pandava
+              with: Uttara
+              note: 'Son of Subhadra'
+              children:
+              - name: Parikshit
+                native: परीक्षित्
+                tags: pandava
+                note: 'Revived by Krishna at birth'
+                children:
+                - {name: Janamejaya, native: जनमेजय, tags: pandava, note: 'Hears the epic at his snake sacrifice'}
+          - name: Nakula
+            tags: pandava
+            note: Madri's son by the Ashvins
+            children:
+            - {name: Shatanika, tags: pandava, note: Son of Draupadi}
+          - name: Sahadeva
+            tags: pandava
+            note: Madri's son by the Ashvins
+            children:
+            - {name: Shrutasena, tags: pandava, note: Son of Draupadi}
+        - {name: Vidura, native: विदुर, tags: kuru, note: 'Son of a maid · the wise minister'}
+- type: family
+  title: The houses that married in
+  colors: {kuru: kuru, kaurava: kaurava, pandava: pandava, yadava: yadava, panchala: panchala, other: other}
+  trees:
+  - title: Yadavas — Krishna's family
+    root:
+      name: Shurasena
+      tags: yadava
+      note: Yadava king
+      children:
+      - name: Vasudeva
+        tags: yadava
+        with: Devaki · Rohini
+        children:
+        - {name: Balarama, native: बलराम, tags: yadava, note: Son of Rohini}
+        - {name: Krishna, native: कृष्ण, tags: yadava, note: 'Son of Devaki · raised by Nanda and Yashoda in Gokula'}
+        - {name: Subhadra, tags: yadava, with: Arjuna, note: Daughter of Rohini · mother of Abhimanyu}
+      - {name: Pritha (Kunti), native: कुन्ती, tags: yadava, with: Pandu, note: 'Given in adoption to King Kuntibhoja · so
+          Krishna and the Pandavas are cousins'}
+  - title: Panchala — born of the fire
+    root:
+      name: Drupada
+      tags: panchala
+      note: King of Panchala · once Drona's friend, later his enemy
+      children:
+      - {name: Shikhandi, tags: panchala, note: 'Born a daughter · Amba reborn for vengeance on Bhishma'}
+      - {name: Dhrishtadyumna, native: धृष्टद्युम्न, tags: panchala, note: 'Born from the sacrificial fire · commander of
+          the Pandava army'}
+      - {name: Draupadi, native: द्रौपदी, tags: panchala, with: the five Pandavas, note: Born from the same fire · mother
+          of the five Upapandavas}
+  - title: Gandhara
+    root:
+      name: Subala
+      tags: kaurava
+      note: King of Gandhara
+      children:
+      - {name: Gandhari, tags: kaurava, with: Dhritarashtra, note: 'Blindfolded herself for life · mother of the hundred'}
+      - {name: Shakuni, native: शकुनि, tags: kaurava, note: Plays the dice for Duryodhana}
+  - title: The teachers
+    root:
+      name: Bharadvaja
+      tags: other
+      note: Sage
+      children:
+      - name: Drona
+        native: द्रोण
+        tags: other
+        with: Kripi
+        note: Teacher of the Kuru princes · Kripi is the twin of Kripa, the other royal teacher
+        children:
+        - {name: Ashwatthama, native: अश्वत्थामा, tags: other, note: 'Leads the night raid · cursed by Krishna to wander'}
+- type: cards
+  title: The people who drove the story
+  grid: v3
+  cards:
+  - title: Bhishma
+    native: भीष्म
+    subtitle: The grandsire
+    accent: kuru
+    tags: kuru
+    body: Born Devavrata, the eighth son of Ganga. He gave up the throne and marriage so that his father could marry Satyavati.
+      For that terrible vow (<em>bhishma</em>) he got his name, and the boon of choosing the hour of his death. He fell
+      on the tenth day of the war. From his bed of arrows he taught Yudhishthira the long lessons of the Shanti and Anushasana
+      Parvas.
+    chips: [Vow of celibacy, Bed of arrows, Vishnu Sahasranama]
+  - title: Satyavati & Vyasa
+    native: सत्यवती · व्यास
+    subtitle: Mother and son
+    accent: kuru
+    tags: kuru
+    body: Satyavati, a fisher chief's daughter, bore Vyasa to the sage Parashara on an island in the Yamuna; hence his
+      name Dvaipayana. When her sons by Shantanu died without heirs, she called Vyasa to father children with the widows.
+      Vyasa is also the epic's author. Tradition says Ganesha wrote it down as he dictated.
+    chips: [Niyoga, Author of the epic]
+  - title: Dhritarashtra & Gandhari
+    native: धृतराष्ट्र · गान्धारी
+    subtitle: The blind king and his queen
+    accent: kaurava
+    tags: kaurava
+    body: Dhritarashtra, born blind, was passed over for his brother Pandu. When Pandu died he ruled. Gandhari of Gandhara
+      bound her own eyes for life to share her husband's darkness. Her hundred sons and a daughter came from a mass of
+      flesh that Vyasa divided into pots.
+    chips: [A hundred sons, Blindfold, Sanjaya's narration]
+  - title: Duryodhana
+    native: दुर्योधन
+    subtitle: Eldest of the Kauravas
+    accent: kaurava
+    tags: kaurava
+    body: Duryodhana believed the throne was his by right. He feared Bhima's strength and resented the Pandavas' rise.
+      He made Karna a king and his closest friend. With Shakuni's loaded dice he won everything from Yudhishthira. Bhima
+      broke his thigh with a mace on the eighteenth day.
+    chips: [The dice game, Friend of Karna]
+  - title: Pandu, Kunti & Madri
+    native: पाण्डु · कुन्ती · माद्री
+    subtitle: Parents of the Pandavas
+    accent: pandava
+    tags: pandava yadava
+    body: A sage whom Pandu shot while the sage was in a deer's form cursed him to die if he lay with a wife. Kunti
+      held a mantra from the sage Durvasa that could summon any god. Through it she bore Yudhishthira by Dharma, Bhima
+      by Vayu and Arjuna by Indra. She shared the mantra with Madri, who bore the twins by the Ashvins.
+    chips: [Durvasa's mantra, Five sons]
+  - title: The five Pandavas
+    native: पञ्च पाण्डव
+    subtitle: Sons of Pandu
+    accent: pandava
+    tags: pandava
+    body: 'Raised in the forest and brought to Hastinapura as boys, the five shared everything, including their wife.
+      They lost their kingdom at dice and spent twelve years in the forest and a thirteenth in disguise. Then they won
+      the war at Kurukshetra.'
+    facts:
+    - [Yudhishthira, 'Kunti, by Dharma · the just king · answers the Yaksha''s questions']
+    - [Bhima, 'Kunti, by Vayu · the strong one · kills Duhshasana and Duryodhana']
+    - [Arjuna, 'Kunti, by Indra · the archer · hears the <a href="gita.html">Bhagavad Gita</a>']
+    - [Nakula & Sahadeva, 'Madri, by the Ashvins · the twins · Sahadeva kills Shakuni']
+  - title: Karna
+    native: कर्ण
+    subtitle: The first-born no one knew
+    accent: pandava
+    tags: pandava kaurava
+    body: Kunti's son by the Sun, born before her marriage and set adrift in a basket. A charioteer's family raised him.
+      Mocked for his birth, he found a friend in Duryodhana and never broke with him. He gave away his divine armour and
+      earrings to Indra, who came disguised as a brahmin. Arjuna killed him on the seventeenth day.
+    chips: [Kavacha & kundala, King of Anga, Generosity]
+  - title: Draupadi
+    native: द्रौपदी
+    subtitle: Born of fire
+    accent: panchala
+    tags: panchala pandava
+    body: Draupadi rose with her brother Dhrishtadyumna from Drupada's sacrificial fire. Arjuna won her by hitting the
+      target at her swayamvara, and Kunti's word made her wife to all five brothers. Dragged into the dice hall, she
+      asked whether a man who had lost himself could still stake her. Her garment was miraculously replenished; later
+      tellings credit Krishna.
+    chips: [Swayamvara, The dice hall, Panchakanya]
+  - title: Krishna
+    native: कृष्ण
+    subtitle: Cousin, counsellor, charioteer
+    accent: yadava
+    tags: yadava
+    body: Krishna was the son of Vasudeva, Kunti's brother, which made him the Pandavas' cousin. Arjuna was also his
+      friend and Subhadra's husband. He went as the Pandavas' envoy to Hastinapura and would not bear arms in the war.
+      As Arjuna's charioteer he spoke the <a href="gita.html">Bhagavad Gita</a>. He is the eighth <a href="dashavatara.html">avatar</a>
+      in most lists.
+    chips: [Envoy of peace, Charioteer, The Gita]
+  - title: Abhimanyu & Parikshit
+    native: अभिमन्यु · परीक्षित्
+    subtitle: The line that survived
+    accent: pandava
+    tags: pandava yadava
+    body: Abhimanyu, Arjuna's son by Subhadra, broke into Drona's wheel formation on the thirteenth day and was killed
+      inside it. In the popular telling he had learned to enter it while still in the womb. His son Parikshit was struck
+      in the womb by Ashwatthama's weapon, and Krishna revived him. Parikshit became the Pandavas' only heir.
+    chips: [Chakravyuha, The surviving heir]
+  - title: Vidura
+    native: विदुर
+    subtitle: The voice of dharma
+    accent: kuru
+    tags: kuru
+    body: Vidura was the third son by Vyasa, born to a maid. A curse had made Dharma himself take birth as him. As Dhritarashtra's
+      minister he warned against the dice game, and he saved the Pandavas from the house of lac. His counsel to the king
+      is known as the <em>Vidura Niti</em>.
+    chips: [House of lac, Vidura Niti]
+  - title: Drona & Ashwatthama
+    native: द्रोण · अश्वत्थामा
+    subtitle: Teacher and son
+    accent: other
+    tags: kaurava
+    body: Drona, born from a vessel (<em>drona</em>) of the sage Bharadvaja, taught arms to all the Kuru princes. Arjuna
+      was his favourite, and he demanded Ekalavya's thumb. He fought for the Kauravas. When told falsely that Ashwatthama
+      was dead, he laid down his weapons, and Dhrishtadyumna killed him. In revenge Ashwatthama slaughtered the sleeping
+      Pandava camp, including the five sons of Draupadi.
+    chips: [Ekalavya, '"Ashwatthama is dead"', The night raid]
+  empty: Nothing matches your search. Try another name or clear the filter.
+- type: sources
+  items:
+  - {label: 'The Mahabharata, tr. K. M. Ganguli (complete, public domain) — sacred-texts.com', url: 'https://www.sacred-texts.com/hin/maha/'}
+  - {label: List of characters in the Mahabharata — Wikipedia, url: 'https://en.wikipedia.org/wiki/List_of_characters_in_the_Mahabharata'}
+  - {label: Draupadeyas (Upapandavas) — Wikipedia, url: 'https://en.wikipedia.org/wiki/Draupadeyas'}
+  - {label: Kunti — Wikipedia, url: 'https://en.wikipedia.org/wiki/Kunti'}
+  - {label: Subhadra — Wikipedia, url: 'https://en.wikipedia.org/wiki/Subhadra'}

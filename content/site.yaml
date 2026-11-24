@@ -19,3 +19,7 @@ nav:
   - {file: navagraha.html, emoji: 🪐, label: Navagraha Temples}
   - {file: pancha-bhoota.html, emoji: 🔥, label: Pancha Bhoota Sthalams}
   - {file: shakti-peethas.html, emoji: 🌺, label: Shakti Peethas}
+  - {file: ramayana.html, emoji: 🏹, label: Ramayana Journey}
+  - {file: mahabharata.html, emoji: ⚔️, label: Mahabharata Family Tree}
+  - {file: dashavatara.html, emoji: 🐚, label: Dashavatara}
+  - {file: carnatic.html, emoji: 🎶, label: Carnatic Music}

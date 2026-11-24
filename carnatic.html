@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carnatic Music — The Trinity, the Composers and the 72 Melakartas</title>
+<meta name="description" content="Carnatic music&#39;s composers on one timeline, the Trinity of Tiruvarur, and all 72 melakarta ragas laid out by their swaras.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎶</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=9291f70d">
+<style>:root,[data-theme="dark"]{--music:#ff9f43; --pioneer:#26de81; --trinity:#f7b731; --later:#4a9eff; --mela:#a55eea;} [data-theme="light"]{--music:#d9771a; --pioneer:#1e9e5c; --trinity:#b7861b; --later:#1a6fc4; --mela:#7b3fc4;} :root{--primary:var(--music); --grad-h:linear-gradient(90deg,var(--pioneer),var(--trinity),var(--later),var(--mela)); --grad-v:linear-gradient(var(--pioneer),var(--trinity),var(--later),var(--mela));}</style>
+<script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
+  (function(){
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
+  })();
+</script>
+</head>
+<body>
+<div class="controls" role="toolbar" aria-label="Page controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
+  <div class="search-wrap">
+    <span aria-hidden="true">🔍</span>
+    <input type="search" id="searchInput" placeholder="Search composers or ragas — Kalyani, Tyagaraja…" aria-label="Search">
+  </div>
+  <div class="ctrl-group" role="group" aria-label="Text size">
+    <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
+    <span class="size-val" id="sizeVal">100%</span>
+    <button class="ctrl-btn size-btn" id="sizeUp" aria-label="Increase text size">A+</button>
+  </div>
+  <button class="ctrl-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+    <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+    <span id="toggleLabel">Light</span>
+  </button>
+</div>
+<header>
+  <h1>Carnatic Music</h1>
+  <p>South India's classical music, from the temple singers of the 15th century to the concert hall. Here are its composers on one timeline, the three born in one town who define its repertoire, and the 72 parent scales from which its ragas are drawn.</p>
+  <div class="legend"><span><i class="dot" style="background:var(--pioneer)"></i>Pioneers</span><span><i class="dot" style="background:var(--trinity)"></i>The Trinity</span><span><i class="dot" style="background:var(--later)"></i>After the Trinity</span></div>
+</header>
+<div class="counts"><div><b>3</b><span>Trinity, all born in Tiruvarur</span></div><div><b>72</b><span>Melakarta parent scales</span></div><div><b>12</b><span>Chakras, six scales each</span></div><div><b>12</b><span>Notes to the octave</span></div></div>
+<div class="callout">🎡 <strong>Hear the scales.</strong> <a href="https://leomohan.github.io/Carnatic/" target="_blank" rel="noopener">Raga Geometry</a> draws a raga's ascent and descent on a twelve-note wheel and plays them. Try Shankarabharanam (No. 29) after reading the chart below.</div>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--music)">All composers</button>
+  <button class="filter-chip" data-filter="pioneer" aria-pressed="false" style="--fc:var(--pioneer)">🌱 Pioneers</button>
+  <button class="filter-chip" data-filter="trinity" aria-pressed="false" style="--fc:var(--trinity)">🎼 The Trinity</button>
+  <button class="filter-chip" data-filter="later" aria-pressed="false" style="--fc:var(--later)">🎙️ After the Trinity</button>
+</div>
+<section class="lifespans-block" data-block>
+  <h2 class="section-title">Five centuries of composers</h2>
+  <p class="section-intro">Each bar is a lifetime. Dotted bars are uncertain dates. Click a name to jump to the composer.</p>
+  <div class="lifespans">
+    <div class="ls-axis" aria-hidden="true"><span style="left:0.0%">1400</span><span style="left:16.13%">1500</span><span style="left:32.26%">1600</span><span style="left:48.39%">1700</span><span style="left:64.52%">1800</span><span style="left:80.65%">1900</span><span style="left:96.77%">2000</span></div>
+    <div class="ls-row" data-item data-tags="pioneer" style="--accent:var(--pioneer)">
+      <span class="ls-name"><a href="#annamacharya">Annamacharya</a></span>
+      <span class="ls-track"><span class="ls-bar" style="left:1.29%;width:15.32%" title="Annamacharya · 1408–1503"></span><span class="ls-years" style="left:16.61%">1408–1503</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="pioneer" style="--accent:var(--pioneer)">
+      <span class="ls-name"><a href="#purandara">Purandara Dasa</a></span>
+      <span class="ls-track"><span class="ls-bar" style="left:13.55%;width:12.9%" title="Purandara Dasa · 1484–1564"></span><span class="ls-years" style="left:26.45%">1484–1564</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="pioneer" style="--accent:var(--pioneer)">
+      <span class="ls-name">Muthu Thandavar</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:20.16%;width:16.13%" title="Muthu Thandavar · c. 1525–1625"></span><span class="ls-years" style="left:36.29%">c. 1525–1625</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="pioneer" style="--accent:var(--pioneer)">
+      <span class="ls-name"><a href="#kshetrayya">Kshetrayya</a></span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:32.26%;width:12.9%" title="Kshetrayya · c. 1600–1680"></span><span class="ls-years" style="left:45.16%">c. 1600–1680</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="pioneer" style="--accent:var(--pioneer)">
+      <span class="ls-name">Bhadrachala Ramadasu</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:35.48%;width:10.97%" title="Bhadrachala Ramadasu · c. 1620–1688"></span><span class="ls-years" style="left:46.45%">c. 1620–1688</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="pioneer" style="--accent:var(--pioneer)">
+      <span class="ls-name">Oothukkadu Venkata Kavi</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:48.39%;width:10.48%" title="Oothukkadu Venkata Kavi · c. 1700–1765"></span><span class="ls-years" style="left:58.87%">c. 1700–1765</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="pioneer" style="--accent:var(--pioneer)">
+      <span class="ls-name"><a href="#arunachala">Arunachala Kavi</a></span>
+      <span class="ls-track"><span class="ls-bar" style="left:50.16%;width:10.97%" title="Arunachala Kavi · 1711–1779"></span><span class="ls-years" style="left:61.13%">1711–1779</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="pioneer" style="--accent:var(--pioneer)">
+      <span class="ls-name">Marimutthu Pillai</span>
+      <span class="ls-track"><span class="ls-bar circa" style="left:50.32%;width:12.1%" title="Marimutthu Pillai · c. 1712–1787"></span><span class="ls-years" style="left:62.42%">c. 1712–1787</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="trinity" style="--accent:var(--trinity)">
+      <span class="ls-name"><a href="#syama-sastri">Syama Sastri</a></span>
+      <span class="ls-track"><span class="ls-bar" style="left:58.39%;width:10.48%" title="Syama Sastri · 1762–1827"></span><span class="ls-years" style="left:68.87%">1762–1827</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="trinity" style="--accent:var(--trinity)">
+      <span class="ls-name"><a href="#tyagaraja">Tyagaraja</a></span>
+      <span class="ls-track"><span class="ls-bar" style="left:59.19%;width:12.9%" title="Tyagaraja · 1767–1847"></span><span class="ls-years" style="left:72.1%">1767–1847</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="trinity" style="--accent:var(--trinity)">
+      <span class="ls-name"><a href="#dikshitar">Muthuswami Dikshitar</a></span>
+      <span class="ls-track"><span class="ls-bar" style="left:60.48%;width:9.68%" title="Muthuswami Dikshitar · 1775–1835"></span><span class="ls-years" style="left:70.16%">1775–1835</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="later" style="--accent:var(--later)">
+      <span class="ls-name"><a href="#gk-bharati">Gopalakrishna Bharati</a></span>
+      <span class="ls-track"><span class="ls-bar" style="left:66.29%;width:13.71%" title="Gopalakrishna Bharati · 1811–1896"></span><span class="ls-years" style="left:80.0%">1811–1896</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="later" style="--accent:var(--later)">
+      <span class="ls-name"><a href="#swathi">Swathi Thirunal</a></span>
+      <span class="ls-track"><span class="ls-bar" style="left:66.61%;width:5.32%" title="Swathi Thirunal · 1813–1846"></span><span class="ls-years" style="left:71.94%">1813–1846</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="later" style="--accent:var(--later)">
+      <span class="ls-name">Patnam Subramania Iyer</span>
+      <span class="ls-track"><span class="ls-bar" style="left:71.77%;width:9.19%" title="Patnam Subramania Iyer · 1845–1902"></span><span class="ls-years" style="left:80.97%">1845–1902</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="later" style="--accent:var(--later)">
+      <span class="ls-name">Mysore Vasudevachar</span>
+      <span class="ls-track"><span class="ls-bar" style="left:75.0%;width:15.48%" title="Mysore Vasudevachar · 1865–1961"></span><span class="ls-years" style="left:90.48%">1865–1961</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="later" style="--accent:var(--later)">
+      <span class="ls-name">Muthiah Bhagavatar</span>
+      <span class="ls-track"><span class="ls-bar" style="left:76.94%;width:10.97%" title="Muthiah Bhagavatar · 1877–1945"></span><span class="ls-years" style="left:87.9%">1877–1945</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="later" style="--accent:var(--later)">
+      <span class="ls-name"><a href="#papanasam">Papanasam Sivan</a></span>
+      <span class="ls-track"><span class="ls-bar" style="left:79.03%;width:13.39%" title="Papanasam Sivan · 1890–1973"></span><span class="ls-years" style="left:92.42%">1890–1973</span></span>
+    </div>
+    <div class="ls-row" data-item data-tags="later" style="--accent:var(--later)">
+      <span class="ls-name"><a href="#balamurali">M. Balamuralikrishna</a></span>
+      <span class="ls-track"><span class="ls-bar" style="left:85.48%;width:13.87%" title="M. Balamuralikrishna · 1930–2016"></span><span class="ls-years" style="left:99.35%">1930–2016</span></span>
+    </div>
+  </div>
+</section>
+<section data-block>
+  <h2 class="section-title">The Trinity of Tiruvarur</h2>
+  <p class="section-intro">Three composers born within thirteen years of each other in the same temple town. Their songs are still the core of every concert.</p>
+  <div class="grid v3">
+  <article class="card" id="tyagaraja" data-item data-id="tyagaraja" data-tags="trinity" style="--accent:var(--trinity)">
+  <h3>Tyagaraja</h3><span class="tag">1767–1847 · the singer of Rama</span><p>Born Kakarla Tyagabrahmam into a Telugu family, he spent most of his life in Thiruvaiyaru on the Kaveri, singing to Rama. Tradition says he turned down a court appointment rather than sing for a king. His songs speak directly to God, often in the first person, and gave many ragas their lasting shape.</p><dl class="facts"><div class="fact"><dt>Language</dt><dd>Telugu, some Sanskrit</dd></div><div class="fact"><dt>Signature</dt><dd>Tyagaraja</dd></div><div class="fact"><dt>Known for</dt><dd>The five Pancharatna kritis · the musical plays Prahlada Bhakti Vijayam and Nauka Charitram</dd></div><div class="fact"><dt>Today</dt><dd>Every January, at the Aradhana at his samadhi in Thiruvaiyaru, musicians sing the Pancharatnas together</dd></div></dl><div class="chips"><span class="chip">Rama bhakti</span><span class="chip">Pancharatna</span><span class="chip">Thiruvaiyaru</span></div>
+</article>
+  <article class="card" id="dikshitar" data-item data-id="dikshitar" data-tags="trinity" style="--accent:var(--trinity)">
+  <h3>Muthuswami Dikshitar</h3><span class="tag">1775–1835 · the scholar-poet</span><p>A veena player who studied for years in Varanasi, Dikshitar travelled from shrine to shrine and composed in Sanskrit for the deity of each. His kritis are slow and stately, dense with temple lore. He named ragas by the older scheme of Venkatamakhin. He even set Sanskrit words to Western tunes he heard from military bands.</p><dl class="facts"><div class="fact"><dt>Language</dt><dd>Sanskrit, some Manipravalam</dd></div><div class="fact"><dt>Signature</dt><dd>Guruguha</dd></div><div class="fact"><dt>Known for</dt><dd>The Kamalamba Navavarana kritis · the <a href="navagraha.html">Navagraha kritis</a>, one for each planet · the nottuswara songs</dd></div><div class="fact"><dt>Born</dt><dd>Tiruvarur, 1775 (some sources say 1776) · died at Ettayapuram</dd></div></dl><div class="chips"><span class="chip">Sanskrit</span><span class="chip">Navagraha kritis</span><span class="chip">Veena</span></div>
+</article>
+  <article class="card" id="syama-sastri" data-item data-id="syama-sastri" data-tags="trinity" style="--accent:var(--trinity)">
+  <h3>Syama Sastri</h3><span class="tag">1762–1827 · the poet of Kamakshi</span><p>The eldest of the three, born Venkata Subrahmanya into a family of priests who served the goddess Bangaru Kamakshi and had carried her image south from Kanchi. He settled with her in Thanjavur. He composed fewer songs than the other two, about three hundred, but his rhythmic craft is unmatched.</p><dl class="facts"><div class="fact"><dt>Language</dt><dd>Telugu, also Sanskrit and Tamil</dd></div><div class="fact"><dt>Signature</dt><dd>Syama Krishna</dd></div><div class="fact"><dt>Known for</dt><dd>Three great swarajatis in Bhairavi, Todi and Yadukulakambhoji · intricate talas such as Misra Chapu</dd></div></dl><div class="chips"><span class="chip">Kamakshi</span><span class="chip">Swarajati</span><span class="chip">Tala</span></div>
+</article>
+  </div>
+</section>
+<section data-block>
+  <h2 class="section-title">Before the Trinity</h2>
+  <div class="grid v2">
+  <article class="card" id="annamacharya" data-item data-id="annamacharya" data-tags="pioneer" style="--accent:var(--pioneer)">
+  <h3>Annamacharya</h3><span class="tag">1408–1503 · Tirumala</span><p>The earliest major composer in the tradition, a singer of Lord Venkateswara at Tirumala. By tradition he composed 32,000 songs (<em>sankirtanas</em>) in Telugu. Thousands survive, engraved on copper plates kept at the temple.</p><div class="chips"><span class="chip">Telugu</span><span class="chip">Venkateswara</span><span class="chip">Copper plates</span></div>
+</article>
+  <article class="card" id="purandara" data-item data-id="purandara" data-tags="pioneer" style="--accent:var(--pioneer)">
+  <h3>Purandara Dasa</h3><span class="tag">1484–1564 · the grandfather of Carnatic music</span><p>A wealthy merchant who gave everything away to become a wandering Haridasa singer. He wrote in Kannada with the signature <em>Purandara Vittala</em>. He also laid out the graded exercises that every student still begins with, set in Mayamalavagowla (No. 15 below). For this he is called the <em>Pitamaha</em>, the grandfather.</p><div class="chips"><span class="chip">Kannada</span><span class="chip">Haridasa</span><span class="chip">First lessons</span></div>
+</article>
+  <article class="card" id="kshetrayya" data-item data-id="kshetrayya" data-tags="pioneer" style="--accent:var(--pioneer)">
+  <h3>Kshetrayya</h3><span class="tag">c. 17th century · the padam</span><p>A master of the <em>padam</em>, a slow love song in Telugu addressed to Krishna as Muvva Gopala. Dancers still use his padams for expressive dance (<em>abhinaya</em>).</p><div class="chips"><span class="chip">Telugu</span><span class="chip">Padam</span><span class="chip">Dance</span></div>
+</article>
+  <article class="card" id="arunachala" data-item data-id="arunachala" data-tags="pioneer" style="--accent:var(--pioneer)">
+  <h3>Arunachala Kavi</h3><span class="tag">1711–1779 · the Rama Natakam</span><p>One of the Tamil Trinity, with Muthu Thandavar and Marimutthu Pillai, who composed in Tamil before the great three. His <em>Rama Natakam</em> tells the whole Ramayana in songs, drawing on Kamban. It is still sung in concerts. See the <a href="ramayana.html">Ramayana journey</a>.</p><div class="chips"><span class="chip">Tamil</span><span class="chip">Rama Natakam</span><span class="chip">Kamban</span></div>
+</article>
+  </div>
+</section>
+<section data-block>
+  <h2 class="section-title">After the Trinity</h2>
+  <div class="grid v2">
+  <article class="card" id="swathi" data-item data-id="swathi" data-tags="later" style="--accent:var(--later)">
+  <h3>Swathi Thirunal</h3><span class="tag">1813–1846 · the composer-king</span><p>Maharaja of Travancore, who in a short life composed in Sanskrit, Malayalam, Telugu, Kannada and Hindustani. His court drew musicians from across the south.</p><div class="chips"><span class="chip">Travancore</span><span class="chip">Many languages</span></div>
+</article>
+  <article class="card" id="gk-bharati" data-item data-id="gk-bharati" data-tags="later" style="--accent:var(--later)">
+  <h3>Gopalakrishna Bharati</h3><span class="tag">1811–1896 · Nandanar Charitram</span><p>His <em>Nandanar Charitram</em> tells in Tamil songs the life of Nandanar, one of the sixty-three <a href="an.html">Nayanmars</a>. Nandanar was born outcaste and longed to see the dancing Shiva of Chidambaram.</p><div class="chips"><span class="chip">Tamil</span><span class="chip">Nandanar</span><span class="chip">Musical drama</span></div>
+</article>
+  <article class="card" id="papanasam" data-item data-id="papanasam" data-tags="later" style="--accent:var(--later)">
+  <h3>Papanasam Sivan</h3><span class="tag">1890–1973 · the Tamil Tyagaraja</span><p>He wrote hundreds of Tamil kritis that now stand beside the Telugu classics in every concert, and he also composed for early Tamil cinema. Admirers called him the Tamil Tyagaraja.</p><div class="chips"><span class="chip">Tamil kritis</span><span class="chip">Film music</span></div>
+</article>
+  <article class="card" id="balamurali" data-item data-id="balamurali" data-tags="later" style="--accent:var(--later)">
+  <h3>M. Balamuralikrishna</h3><span class="tag">1930–2016 · composer in all 72</span><p>A child prodigy who had composed in all 72 melakartas by the age of fifteen. He went on to invent new ragas of only three or four notes, such as Lavangi and Mahati, and to bring the viola into Carnatic music.</p><div class="chips"><span class="chip">72 melakartas</span><span class="chip">New ragas</span><span class="chip">Viola</span></div>
+</article>
+  </div>
+</section>
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
+<section>
+  <h2 class="section-title">Where 72 scales come from</h2>
+  <p class="section-intro">A melakarta is a parent scale that uses all seven swaras once each, going up and coming down. There are only so many ways to choose them.</p>
+  <div class="pairs"><div class="pair" style="--a:var(--mela)"><h4>Sa and Pa are fixed</h4><p>The tonic Sa and the fifth Pa never change. Every scale keeps both.</p></div><div class="pair" style="--a:var(--mela)"><h4>Ri and Ga: six pairs</h4><p>Ri and Ga have three positions each but share pitches, so they can be paired six ways: R1 G1, R1 G2, R1 G3, R2 G2, R2 G3, R3 G3. These are the six rows of each half below.</p></div><div class="pair" style="--a:var(--mela)"><h4>Da and Ni: six pairs</h4><p>Da and Ni pair up the same six ways. These are the six columns.</p></div><div class="pair" style="--a:var(--mela)"><h4>Ma: two choices</h4><p>Shuddha Ma (M1) gives scales 1–36 and Prati Ma (M2) gives 37–72. So 6 × 6 × 2 = 72.</p></div></div>
+</section>
+<div class="callout">🔢 <strong>The number is in the name.</strong> Each name encodes its own number by the <em>katapayadi</em> system, which gives every consonant a digit. Take the first two syllables, read the digits, and reverse them. <em>Ha-ri</em>kambhoji gives 8 and 2, so 28. <em>Me-cha</em>kalyani gives 5 and 6, so 65. The scheme of 72 was worked out by Venkatamakhin in the 17th century. The names used today, with complete scales, were standardised after him and are associated with Govindacharya.</div>
+<section class="mela" data-block style="--accent:var(--mela)">
+  <h2 class="section-title" style="color:var(--mela)">The 72 Melakartas</h2>
+  <p class="section-intro">Rows are the twelve chakras and columns the Da–Ni pairs. Every scale in a row shares Ri, Ga and Ma; every scale in a column shares Da and Ni. ★ marks a few you will hear often. Hover over one to see why.</p>
+  <h3 class="mela-half">Shuddha Madhyama (M1) · Melakartas 1–36</h3>
+  <div class="mela-grid">
+    <div class="mela-corner" aria-hidden="true">R · G ↓ &nbsp; D · N →</div><div class="mela-head" aria-hidden="true">D1 N1</div><div class="mela-head" aria-hidden="true">D1 N2</div><div class="mela-head" aria-hidden="true">D1 N3</div><div class="mela-head" aria-hidden="true">D2 N2</div><div class="mela-head" aria-hidden="true">D2 N3</div><div class="mela-head" aria-hidden="true">D3 N3</div>
+    <div class="mela-chakra"><b>1. Indu</b><span>R1 G1</span></div>
+    <div class="mela-cell" data-item><span class="num">1</span><span class="name">Kanakangi</span><span class="sig">R1 G1 M1 D1 N1</span></div>
+    <div class="mela-cell" data-item><span class="num">2</span><span class="name">Ratnangi</span><span class="sig">R1 G1 M1 D1 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">3</span><span class="name">Ganamurti</span><span class="sig">R1 G1 M1 D1 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">4</span><span class="name">Vanaspati</span><span class="sig">R1 G1 M1 D2 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">5</span><span class="name">Manavati</span><span class="sig">R1 G1 M1 D2 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">6</span><span class="name">Tanarupi</span><span class="sig">R1 G1 M1 D3 N3</span></div>
+    <div class="mela-chakra"><b>2. Netra</b><span>R1 G2</span></div>
+    <div class="mela-cell" data-item><span class="num">7</span><span class="name">Senavati</span><span class="sig">R1 G2 M1 D1 N1</span></div>
+    <div class="mela-cell famous" data-item title="Todi — a vast, grave concert raga"><span class="num">8</span><span class="name">Hanumatodi</span><span class="sig">R1 G2 M1 D1 N2</span><span class="note">Todi — a vast, grave concert raga</span></div>
+    <div class="mela-cell" data-item><span class="num">9</span><span class="name">Dhenuka</span><span class="sig">R1 G2 M1 D1 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">10</span><span class="name">Natakapriya</span><span class="sig">R1 G2 M1 D2 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">11</span><span class="name">Kokilapriya</span><span class="sig">R1 G2 M1 D2 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">12</span><span class="name">Rupavati</span><span class="sig">R1 G2 M1 D3 N3</span></div>
+    <div class="mela-chakra"><b>3. Agni</b><span>R1 G3</span></div>
+    <div class="mela-cell" data-item><span class="num">13</span><span class="name">Gayakapriya</span><span class="sig">R1 G3 M1 D1 N1</span></div>
+    <div class="mela-cell" data-item><span class="num">14</span><span class="name">Vakulabharanam</span><span class="sig">R1 G3 M1 D1 N2</span></div>
+    <div class="mela-cell famous" data-item title="The scale of Purandara Dasa&#39;s first lessons"><span class="num">15</span><span class="name">Mayamalavagowla</span><span class="sig">R1 G3 M1 D1 N3</span><span class="note">The scale of Purandara Dasa&#39;s first lessons</span></div>
+    <div class="mela-cell" data-item><span class="num">16</span><span class="name">Chakravakam</span><span class="sig">R1 G3 M1 D2 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">17</span><span class="name">Suryakantam</span><span class="sig">R1 G3 M1 D2 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">18</span><span class="name">Hatakambari</span><span class="sig">R1 G3 M1 D3 N3</span></div>
+    <div class="mela-chakra"><b>4. Veda</b><span>R2 G2</span></div>
+    <div class="mela-cell" data-item><span class="num">19</span><span class="name">Jhankaradhvani</span><span class="sig">R2 G2 M1 D1 N1</span></div>
+    <div class="mela-cell" data-item><span class="num">20</span><span class="name">Natabhairavi</span><span class="sig">R2 G2 M1 D1 N2</span></div>
+    <div class="mela-cell famous" data-item title="Keeravani — the harmonic minor"><span class="num">21</span><span class="name">Keeravani</span><span class="sig">R2 G2 M1 D1 N3</span><span class="note">Keeravani — the harmonic minor</span></div>
+    <div class="mela-cell famous" data-item title="Kharaharapriya — Tyagaraja made it a concert mainstay"><span class="num">22</span><span class="name">Kharaharapriya</span><span class="sig">R2 G2 M1 D2 N2</span><span class="note">Kharaharapriya — Tyagaraja made it a concert mainstay</span></div>
+    <div class="mela-cell" data-item><span class="num">23</span><span class="name">Gourimanohari</span><span class="sig">R2 G2 M1 D2 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">24</span><span class="name">Varunapriya</span><span class="sig">R2 G2 M1 D3 N3</span></div>
+    <div class="mela-chakra"><b>5. Bana</b><span>R2 G3</span></div>
+    <div class="mela-cell" data-item><span class="num">25</span><span class="name">Mararanjani</span><span class="sig">R2 G3 M1 D1 N1</span></div>
+    <div class="mela-cell" data-item><span class="num">26</span><span class="name">Charukesi</span><span class="sig">R2 G3 M1 D1 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">27</span><span class="name">Sarasangi</span><span class="sig">R2 G3 M1 D1 N3</span></div>
+    <div class="mela-cell famous" data-item title="Harikambhoji — parent of Mohanam and Kambhoji"><span class="num">28</span><span class="name">Harikambhoji</span><span class="sig">R2 G3 M1 D2 N2</span><span class="note">Harikambhoji — parent of Mohanam and Kambhoji</span></div>
+    <div class="mela-cell famous" data-item title="Shankarabharanam — same notes as the Western major scale"><span class="num">29</span><span class="name long">Dheerashankarabharanam</span><span class="sig">R2 G3 M1 D2 N3</span><span class="note">Shankarabharanam — same notes as the Western major scale</span></div>
+    <div class="mela-cell" data-item><span class="num">30</span><span class="name">Naganandini</span><span class="sig">R2 G3 M1 D3 N3</span></div>
+    <div class="mela-chakra"><b>6. Rutu</b><span>R3 G3</span></div>
+    <div class="mela-cell" data-item><span class="num">31</span><span class="name">Yagapriya</span><span class="sig">R3 G3 M1 D1 N1</span></div>
+    <div class="mela-cell" data-item><span class="num">32</span><span class="name">Ragavardhini</span><span class="sig">R3 G3 M1 D1 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">33</span><span class="name">Gangeyabhushani</span><span class="sig">R3 G3 M1 D1 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">34</span><span class="name">Vagadheeswari</span><span class="sig">R3 G3 M1 D2 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">35</span><span class="name">Shulini</span><span class="sig">R3 G3 M1 D2 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">36</span><span class="name">Chalanata</span><span class="sig">R3 G3 M1 D3 N3</span></div>
+  </div>
+  <h3 class="mela-half">Prati Madhyama (M2) · Melakartas 37–72</h3>
+  <div class="mela-grid">
+    <div class="mela-corner" aria-hidden="true">R · G ↓ &nbsp; D · N →</div><div class="mela-head" aria-hidden="true">D1 N1</div><div class="mela-head" aria-hidden="true">D1 N2</div><div class="mela-head" aria-hidden="true">D1 N3</div><div class="mela-head" aria-hidden="true">D2 N2</div><div class="mela-head" aria-hidden="true">D2 N3</div><div class="mela-head" aria-hidden="true">D3 N3</div>
+    <div class="mela-chakra"><b>7. Rishi</b><span>R1 G1</span></div>
+    <div class="mela-cell" data-item><span class="num">37</span><span class="name">Salagam</span><span class="sig">R1 G1 M2 D1 N1</span></div>
+    <div class="mela-cell" data-item><span class="num">38</span><span class="name">Jalarnavam</span><span class="sig">R1 G1 M2 D1 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">39</span><span class="name">Jhalavarali</span><span class="sig">R1 G1 M2 D1 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">40</span><span class="name">Navaneetam</span><span class="sig">R1 G1 M2 D2 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">41</span><span class="name">Pavani</span><span class="sig">R1 G1 M2 D2 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">42</span><span class="name">Raghupriya</span><span class="sig">R1 G1 M2 D3 N3</span></div>
+    <div class="mela-chakra"><b>8. Vasu</b><span>R1 G2</span></div>
+    <div class="mela-cell" data-item><span class="num">43</span><span class="name">Gavambhodi</span><span class="sig">R1 G2 M2 D1 N1</span></div>
+    <div class="mela-cell" data-item><span class="num">44</span><span class="name">Bhavapriya</span><span class="sig">R1 G2 M2 D1 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">45</span><span class="name">Shubhapantuvarali</span><span class="sig">R1 G2 M2 D1 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">46</span><span class="name">Shadvidhamargini</span><span class="sig">R1 G2 M2 D2 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">47</span><span class="name">Suvarnangi</span><span class="sig">R1 G2 M2 D2 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">48</span><span class="name">Divyamani</span><span class="sig">R1 G2 M2 D3 N3</span></div>
+    <div class="mela-chakra"><b>9. Brahma</b><span>R1 G3</span></div>
+    <div class="mela-cell" data-item><span class="num">49</span><span class="name">Dhavalambari</span><span class="sig">R1 G3 M2 D1 N1</span></div>
+    <div class="mela-cell" data-item><span class="num">50</span><span class="name">Namanarayani</span><span class="sig">R1 G3 M2 D1 N2</span></div>
+    <div class="mela-cell famous" data-item title="Kamavardhini — better known as Pantuvarali"><span class="num">51</span><span class="name">Kamavardhini</span><span class="sig">R1 G3 M2 D1 N3</span><span class="note">Kamavardhini — better known as Pantuvarali</span></div>
+    <div class="mela-cell" data-item><span class="num">52</span><span class="name">Ramapriya</span><span class="sig">R1 G3 M2 D2 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">53</span><span class="name">Gamanashrama</span><span class="sig">R1 G3 M2 D2 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">54</span><span class="name">Vishwambari</span><span class="sig">R1 G3 M2 D3 N3</span></div>
+    <div class="mela-chakra"><b>10. Disi</b><span>R2 G2</span></div>
+    <div class="mela-cell" data-item><span class="num">55</span><span class="name">Shamalangi</span><span class="sig">R2 G2 M2 D1 N1</span></div>
+    <div class="mela-cell famous" data-item title="Shanmukhapriya — a favourite for lively kritis"><span class="num">56</span><span class="name">Shanmukhapriya</span><span class="sig">R2 G2 M2 D1 N2</span><span class="note">Shanmukhapriya — a favourite for lively kritis</span></div>
+    <div class="mela-cell" data-item><span class="num">57</span><span class="name long">Simhendramadhyamam</span><span class="sig">R2 G2 M2 D1 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">58</span><span class="name">Hemavati</span><span class="sig">R2 G2 M2 D2 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">59</span><span class="name">Dharmavati</span><span class="sig">R2 G2 M2 D2 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">60</span><span class="name">Neetimati</span><span class="sig">R2 G2 M2 D3 N3</span></div>
+    <div class="mela-chakra"><b>11. Rudra</b><span>R2 G3</span></div>
+    <div class="mela-cell" data-item><span class="num">61</span><span class="name">Kantamani</span><span class="sig">R2 G3 M2 D1 N1</span></div>
+    <div class="mela-cell" data-item><span class="num">62</span><span class="name">Rishabhapriya</span><span class="sig">R2 G3 M2 D1 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">63</span><span class="name">Latangi</span><span class="sig">R2 G3 M2 D1 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">64</span><span class="name">Vachaspati</span><span class="sig">R2 G3 M2 D2 N2</span></div>
+    <div class="mela-cell famous" data-item title="Mechakalyani — Kalyani, among the most loved ragas"><span class="num">65</span><span class="name">Mechakalyani</span><span class="sig">R2 G3 M2 D2 N3</span><span class="note">Mechakalyani — Kalyani, among the most loved ragas</span></div>
+    <div class="mela-cell" data-item><span class="num">66</span><span class="name">Chitrambari</span><span class="sig">R2 G3 M2 D3 N3</span></div>
+    <div class="mela-chakra"><b>12. Aditya</b><span>R3 G3</span></div>
+    <div class="mela-cell" data-item><span class="num">67</span><span class="name">Sucharitra</span><span class="sig">R3 G3 M2 D1 N1</span></div>
+    <div class="mela-cell" data-item><span class="num">68</span><span class="name">Jyotiswarupini</span><span class="sig">R3 G3 M2 D1 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">69</span><span class="name">Dhatuvardhani</span><span class="sig">R3 G3 M2 D1 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">70</span><span class="name">Nasikabhushani</span><span class="sig">R3 G3 M2 D2 N2</span></div>
+    <div class="mela-cell" data-item><span class="num">71</span><span class="name">Kosalam</span><span class="sig">R3 G3 M2 D2 N3</span></div>
+    <div class="mela-cell" data-item><span class="num">72</span><span class="name">Rasikapriya</span><span class="sig">R3 G3 M2 D3 N3</span></div>
+  </div>
+</section>
+<section class="sources"><h2>Sources</h2><ul><li><a href="https://en.wikipedia.org/wiki/Melakarta" target="_blank" rel="noopener">Melakarta — Wikipedia (full list of 72 with scales)</a></li><li><a href="https://en.wikipedia.org/wiki/Trinity_of_Carnatic_music" target="_blank" rel="noopener">Trinity of Carnatic music — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/List_of_Carnatic_composers" target="_blank" rel="noopener">List of Carnatic composers — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Tyagaraja" target="_blank" rel="noopener">Tyagaraja — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Muthuswami_Dikshitar" target="_blank" rel="noopener">Muthuswami Dikshitar — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Syama_Sastri" target="_blank" rel="noopener">Syama Sastri — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Arunachala_Kavi" target="_blank" rel="noopener">Arunachala Kavi — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/M._Balamuralikrishna" target="_blank" rel="noopener">M. Balamuralikrishna — Wikipedia</a></li><li><a href="https://leomohan.github.io/Carnatic/" target="_blank" rel="noopener">Raga Geometry — interactive raga and tala wheel</a></li></ul></section>
+<footer>
+  <p>🎶 A visual map of Carnatic music · Composers' dates follow standard references; dotted bars mark uncertain dates</p>
+  <p>The filters apply to composers. The melakarta chart stays in full view, and search works on it too.</p>
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
+    <a href="ramayana.html"><span aria-hidden="true">🏹</span>Ramayana Journey</a>
+    <a href="mahabharata.html"><span aria-hidden="true">⚔️</span>Mahabharata Family Tree</a>
+    <a href="dashavatara.html"><span aria-hidden="true">🐚</span>Dashavatara</a>
+    <a href="carnatic.html" aria-current="page"><span aria-hidden="true">🎶</span>Carnatic Music</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
+</footer>
+<script src="assets/site.js?v=9291f70d"></script>
+</body>
+</html>

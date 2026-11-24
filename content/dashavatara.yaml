@@ -1,0 +1,236 @@
+page:
+  file: dashavatara.html
+  layout: page
+  title: Dashavatara — The Ten Avatars of Vishnu
+  description: The ten avatars of Vishnu, from Matsya to Kalki, across the four yugas, with how the lists differ
+    between traditions.
+  favicon: 🐚
+  search: Search avatars, stories, temples…
+  native: sa
+  palette:
+    vishnu: ['#4a9eff', '#1a6fc4']
+    satya: ['#2bcbba', '#1a9488']
+    treta: ['#f7b731', '#b7861b']
+    dvapara: ['#a55eea', '#7b3fc4']
+    kali: ['#ff6b6b', '#c43a3a']
+  gradient: [satya, treta, dvapara, kali]
+  primary: vishnu
+  h1: Dashavatara
+  intro: Whenever dharma declines, says the Gita, the Lord takes form. The ten best-known forms of Vishnu go from a
+    fish in the flood to a rider still to come. Here they are in order, across the four ages of the world.
+  legend:
+  - {label: Satya Yuga, color: satya}
+  - {label: Treta Yuga, color: treta}
+  - {label: Dvapara Yuga, color: dvapara}
+  - {label: Kali Yuga, color: kali}
+  filters:
+  - {value: all, label: All Ten, color: vishnu}
+  - {value: satya, label: Satya Yuga, color: satya}
+  - {value: treta, label: Treta Yuga, color: treta}
+  - {value: dvapara, label: Dvapara Yuga, color: dvapara}
+  - {value: kali, label: Kali Yuga, color: kali}
+  footer: ['🐚 A visual map of the ten avatars of Vishnu · The yuga of each avatar follows the usual Puranic placement',
+    The list itself varies between texts and regions — see the table near the end]
+blocks:
+- type: glance
+  items:
+  - {emoji: 🐟, name: Matsya, sub: Fish, color: satya}
+  - {emoji: 🐢, name: Kurma, sub: Tortoise, color: satya}
+  - {emoji: 🐗, name: Varaha, sub: Boar, color: satya}
+  - {emoji: 🦁, name: Narasimha, sub: Man-lion, color: satya}
+  - {emoji: ☂️, name: Vamana, sub: Dwarf, color: treta}
+  - {emoji: 🪓, name: Parashurama, sub: Rama of the axe, color: treta}
+  - {emoji: 🏹, name: Rama, sub: Prince of Ayodhya, color: treta}
+  - {emoji: 🪈, name: Krishna, sub: Cowherd & charioteer, color: dvapara}
+  - {emoji: ☸️, name: Buddha, sub: The awakened one, color: kali}
+  - {emoji: 🐎, name: Kalki, sub: Rider to come, color: kali}
+- type: callout
+  text: '📿 <strong>Ten of many.</strong> The Bhagavata Purana (1.3) names twenty-two avatars and then says they are countless,
+    like streams flowing from an inexhaustible lake. The ten below are the list that temple art, poetry and daily prayer
+    settled on.'
+- {type: filters}
+- {type: journey, style: numbers}
+- type: life-timeline
+  stages:
+  - tag: satya
+    title: Satya Yuga
+    color: satya
+    cards:
+    - id: matsya
+      anchor: true
+      num: '1'
+      accent: satya
+      title: Matsya
+      native: मत्स्य
+      subtitle: The fish · saving life from the flood
+      body: A tiny fish begs Manu, the first man of this age, for protection, and grows until only the ocean can hold
+        it. It warns of the coming flood. Manu builds a boat and ties it to the fish's horn, and the fish carries the
+        sages and the seeds of all life to safety. Some Puranas add that Matsya recovered the Vedas, stolen by the demon
+        Hayagriva.
+      facts:
+      - [Oldest form, The story of Manu and the fish is already told in the Shatapatha Brahmana.]
+      - [Shrine, 'Vedanarayana temple, Nagalapuram, Andhra Pradesh']
+      chips: [The flood, Manu, The Vedas recovered]
+    - id: kurma
+      anchor: true
+      num: '2'
+      accent: satya
+      title: Kurma
+      native: कूर्म
+      subtitle: The tortoise · the churning of the ocean
+      body: Gods and demons churn the ocean of milk for the nectar of immortality. Mount Mandara is the churning rod and
+        the serpent Vasuki the rope. When the mountain begins to sink, Vishnu becomes a vast tortoise and bears it on
+        his back. The churning brings up poison, which Shiva drinks, and then Lakshmi, the wish-granting cow and at last
+        the amrita.
+      facts:
+      - [Shrine, 'Srikurmam, Srikakulam district, Andhra Pradesh — one of very few temples to Kurma']
+      chips: [Samudra Manthana, Mount Mandara, Amrita]
+    - id: varaha
+      anchor: true
+      num: '3'
+      accent: satya
+      title: Varaha
+      native: वराह
+      subtitle: The boar · raising the earth
+      body: The demon Hiranyaksha drags the earth down into the cosmic waters. Vishnu takes the form of a boar, dives
+        to the bottom, kills the demon and lifts the earth goddess Bhudevi on his tusks.
+      facts:
+      - [Oldest form, 'A boar that lifts the earth from the waters already appears in Vedic prose texts.']
+      - [In stone, 'The colossal Varaha at the Udayagiri caves, Madhya Pradesh — early 5th century, Gupta period']
+      - [Shrine, 'Bhuvarahaswamy temple, Srimushnam, Tamil Nadu']
+      chips: [Hiranyaksha, Bhudevi]
+    - id: narasimha
+      anchor: true
+      num: '4'
+      accent: satya
+      title: Narasimha
+      native: नरसिंह
+      subtitle: The man-lion · protector of Prahlada
+      body: Hiranyakashipu, brother of Hiranyaksha, has a boon. He cannot be killed by man or beast, by day or by night,
+        indoors or outdoors, on the ground or in the sky, by any weapon. He torments his son Prahlada for worshipping
+        Vishnu. Vishnu bursts from a pillar as a being neither man nor beast. At dusk, on the threshold, he places the
+        king on his lap and tears him apart with his claws.
+      facts:
+      - [Shrines, 'Ahobilam, Andhra Pradesh, with nine Narasimha shrines · Simhachalam, near Visakhapatnam']
+      chips: [Prahlada, The pillar, Every condition kept]
+  - tag: treta
+    title: Treta Yuga
+    color: treta
+    cards:
+    - id: vamana
+      anchor: true
+      num: '5'
+      accent: treta
+      title: Vamana
+      native: वामन
+      subtitle: The dwarf · three steps
+      body: Bali, a generous asura king, has come to rule all three worlds. A dwarf brahmin boy asks him for as much land
+        as three of his steps can cover. Bali agrees. The boy grows into Trivikrama, the giant of three strides, and covers
+        earth and heaven in two steps. Bali offers his own head for the third, and is sent to rule the netherworld.
+      facts:
+      - [Oldest form, Vishnu who measures out the worlds in three strides is praised in the Rig Veda (1.154).]
+      - [Festival, 'Onam in Kerala welcomes Mahabali on his yearly visit to his people']
+      - [Shrines, 'Thrikkakara, Kerala · Ulagalantha Perumal temples at Kanchipuram and Thirukkoyilur']
+      chips: [Mahabali, Trivikrama, Onam]
+    - id: parashurama
+      anchor: true
+      num: '6'
+      accent: treta
+      title: Parashurama
+      native: परशुराम
+      subtitle: Rama with the axe
+      body: The son of the sage Jamadagni and Renuka. He carries an axe (<em>parashu</em>) that Shiva gave him. When
+        King Kartavirya Arjuna seized his father's cow, Parashurama killed the king. When the king's sons killed Jamadagni,
+        he cleared the earth of kshatriyas twenty-one times. He is counted among the <em>chiranjivis</em>, the deathless ones, and he appears in both epics. He meets Rama
+        in the Ramayana and teaches Bhishma, Drona and Karna in the Mahabharata.
+      facts:
+      - [Legend, 'Throwing his axe into the sea, he raised the land of the western coast — Kerala and the Konkan']
+      chips: [Jamadagni, Kartavirya, Chiranjivi]
+    - id: rama
+      anchor: true
+      num: '7'
+      accent: treta
+      title: Rama
+      native: राम
+      subtitle: The prince of Ayodhya
+      body: The son of Dasharatha who keeps his father's word and spends fourteen years in exile. When Ravana carries
+        off his wife Sita, he crosses to Lanka with an army of monkeys to bring her back. His reign became the measure
+        of a just kingdom, <em>Ram Rajya</em>. Follow his route on the <a href="ramayana.html">Ramayana journey map</a>.
+      chips: [Maryada Purushottama, Ramayana, Ram Rajya]
+  - tag: dvapara
+    title: Dvapara Yuga
+    color: dvapara
+    cards:
+    - id: krishna
+      anchor: true
+      num: '8'
+      accent: dvapara
+      title: Krishna
+      native: कृष्ण
+      subtitle: Cowherd, king, charioteer
+      body: Born in a prison in Mathura and raised among the cowherds of Gokula. He kills his tyrant uncle Kamsa and builds
+        Dvaraka by the sea. In the war of the <a href="mahabharata.html">Mahabharata</a> he drives Arjuna's chariot and
+        speaks the <a href="gita.html">Bhagavad Gita</a>. Many traditions see him as the source of all avatars rather
+        than one of them.
+      facts:
+      - [In some lists, 'His elder brother Balarama, the plough-bearer, takes the eighth place. Krishna is then ninth,
+          or stands above the list as its source.']
+      chips: [Gokula, Dvaraka, The Gita]
+  - tag: kali
+    title: Kali Yuga · the present age
+    color: kali
+    cards:
+    - id: buddha
+      anchor: true
+      num: '9'
+      accent: kali
+      title: Buddha
+      native: बुद्ध
+      subtitle: The awakened one
+      body: Several Puranas include the Buddha. The Bhagavata Purana foretells his birth in Kikata (Magadha) as the son
+        of Anjana. In Jayadeva's hymn he is praised for his compassion in condemning animal sacrifice. Other traditions
+        leave him out and give the place to Balarama. Why he was included, and what it means, has long been debated.
+      facts:
+      - [Who keeps him, Most North Indian and many temple lists; Jayadeva's Gita Govinda]
+      - [Who omits him, Sri Vaishnava and many South Indian lists]
+      chips: [Compassion, Disputed place]
+    - id: kalki
+      anchor: true
+      num: '10'
+      accent: kali
+      title: Kalki
+      native: कल्कि
+      subtitle: The rider to come
+      body: The only avatar still to come. At the end of the Kali Yuga, when dharma is all but lost, Kalki will ride out
+        on a white horse with a blazing sword. He will end the age of strife and bring back an age of truth, and the cycle
+        begins again. The Vishnu Purana names his birthplace as the village of Shambhala.
+      chips: [White horse, End of the age, Shambhala]
+- type: compare
+  title: Whose list? The eighth and ninth places
+  intro: Positions one to seven and the tenth are nearly universal. The places after Rama are where traditions
+    differ.
+  corner: Position
+  min_width: 820
+  columns:
+  - {key: common, label: Most common today, color: vishnu}
+  - {key: jayadeva, label: 'Jayadeva, Gita Govinda', color: dvapara}
+  - {key: south, label: Sri Vaishnava & South, color: treta}
+  - {key: regional, label: Some regional lists, color: kali}
+  rows:
+  - label: 8th
+    cells: [Krishna, Balarama, Balarama, Krishna or Balarama]
+  - label: 9th
+    cells: [Buddha, Buddha, Krishna, Vithoba (Maharashtra) or Jagannath (Odisha)]
+  - label: Krishna
+    cells: [One of the ten, The source of all ten, One of the ten, Varies]
+- type: callout
+  text: '🧬 Since the late 19th century some writers have read the sequence as a parable of evolution: fish, amphibian,
+    mammal, half-human, small human, then full humans. It is a modern reading. The Puranas present the avatars as
+    rescues of dharma at moments of crisis, not as stages of biology.'
+- type: sources
+  items:
+  - {label: Dashavatara — Wikipedia, url: 'https://en.wikipedia.org/wiki/Dashavatara'}
+  - {label: Dashavatara — Encyclopaedia Britannica, url: 'https://www.britannica.com/topic/dashavatara'}
+  - {label: 'Bhagavata Purana 1.3 — the list of avatars (vedabase.io)', url: 'https://vedabase.io/en/library/sb/1/3/'}
+  - {label: Works of Jayadeva (Gita Govinda's Dashavatara hymn) — Wikipedia, url: 'https://en.wikipedia.org/wiki/Works_of_Jayadeva'}
+  - {label: Udayagiri Caves — Wikipedia, url: 'https://en.wikipedia.org/wiki/Udayagiri_Caves'}

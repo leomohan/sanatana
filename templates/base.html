@@ -122,6 +122,9 @@
 {%- if sites_json %}
 <script>window.SANATANA_SITES = {{ sites_json|safe }};</script>
 {%- endif %}
+{%- if route_json %}
+<script>window.SANATANA_ROUTE = {{ route_json|safe }};</script>
+{%- endif %}
 {%- if groups_json %}
 <script>window.SANATANA_GROUPS = {{ groups_json|safe }};</script>
 {%- endif %}

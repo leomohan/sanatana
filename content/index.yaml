@@ -134,3 +134,31 @@ blocks:
     text: Where the body of Sati fell — the 18 Maha Shakti Peethas from Sri Lanka to Kashmir, the four Adi Peethas,
       and the legend of Daksha's sacrifice.
     meta: [18 + 4 peethas, Interactive map, Sati legend]
+  - title: The Ramayana Journey
+    accent: '#4a9eff'
+    href: ramayana.html
+    emoji: 🏹
+    text: Rama's route from Ayodhya to Lanka and home, mapped stop by stop. At each stop, how Valmiki, Kamban
+      and Tulsidas tell what happened there.
+    meta: [13 stops, Route map, Three poets compared]
+  - title: The Mahabharata Family Tree
+    accent: '#ff6b6b'
+    href: mahabharata.html
+    emoji: ⚔️
+    text: Seven generations from Shantanu to Janamejaya, with the Yadava, Panchala and Gandhara houses that married
+      in and the people who drove the war.
+    meta: [7 generations, 5 houses, Search any name]
+  - title: Dashavatara
+    accent: '#2bcbba'
+    href: dashavatara.html
+    emoji: 🐚
+    text: The ten avatars of Vishnu across the four yugas, from Matsya in the flood to Kalki still to come, and where
+      the lists disagree.
+    meta: [10 avatars, 4 yugas, Lists compared]
+  - title: Carnatic Music
+    accent: '#ff9f43'
+    href: carnatic.html
+    emoji: 🎶
+    text: Five centuries of composers on one timeline, the Trinity of Tiruvarur, and all 72 melakarta ragas laid out
+      by their swaras.
+    meta: [18 composers, 72 melakartas, Linked to Raga Geometry]

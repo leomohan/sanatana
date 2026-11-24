@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashavatara — The Ten Avatars of Vishnu</title>
+<meta name="description" content="The ten avatars of Vishnu, from Matsya to Kalki, across the four yugas, with how the lists differ between traditions.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐚</text></svg>">
+<link rel="stylesheet" href="assets/site.css?v=9291f70d">
+<style>:root,[data-theme="dark"]{--vishnu:#4a9eff; --satya:#2bcbba; --treta:#f7b731; --dvapara:#a55eea; --kali:#ff6b6b;} [data-theme="light"]{--vishnu:#1a6fc4; --satya:#1a9488; --treta:#b7861b; --dvapara:#7b3fc4; --kali:#c43a3a;} :root{--primary:var(--vishnu); --grad-h:linear-gradient(90deg,var(--satya),var(--treta),var(--dvapara),var(--kali)); --grad-v:linear-gradient(var(--satya),var(--treta),var(--dvapara),var(--kali));}</style>
+<script>
+  /* Apply saved theme and text size before the page paints (shared across the whole site). */
+  (function(){
+    var t = null, s = null; try{ t = localStorage.getItem('sanatana-theme'); s = localStorage.getItem('sanatana-size-idx'); }catch(e){}
+    document.documentElement.setAttribute('data-theme', t || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    var sizes = [0.85, 1, 1.15, 1.3, 1.5]; if(s !== null && sizes[+s]) document.documentElement.style.setProperty('--scale', sizes[+s]);
+  })();
+</script>
+</head>
+<body>
+<div class="controls" role="toolbar" aria-label="Page controls">
+  <a class="home-btn" href="index.html" aria-label="Back to the Sanatana home page"><span aria-hidden="true">🏠</span><span class="home-label">Home</span></a>
+  <div class="search-wrap">
+    <span aria-hidden="true">🔍</span>
+    <input type="search" id="searchInput" placeholder="Search avatars, stories, temples…" aria-label="Search">
+  </div>
+  <div class="ctrl-group lang-toggle" role="group" aria-label="Language display">
+    <button class="ctrl-btn active" id="langEn" aria-pressed="true">EN</button>
+    <button class="ctrl-btn" id="langNative" aria-pressed="false">संस्कृतम्</button>
+  </div>
+  <div class="ctrl-group" role="group" aria-label="Text size">
+    <button class="ctrl-btn size-btn" id="sizeDown" aria-label="Decrease text size">A−</button>
+    <span class="size-val" id="sizeVal">100%</span>
+    <button class="ctrl-btn size-btn" id="sizeUp" aria-label="Increase text size">A+</button>
+  </div>
+  <button class="ctrl-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+    <span class="toggle-track"><span class="toggle-knob" id="knob">🌙</span></span>
+    <span id="toggleLabel">Light</span>
+  </button>
+</div>
+<header>
+  <h1>Dashavatara</h1>
+  <p>Whenever dharma declines, says the Gita, the Lord takes form. The ten best-known forms of Vishnu go from a fish in the flood to a rider still to come. Here they are in order, across the four ages of the world.</p>
+  <div class="legend"><span><i class="dot" style="background:var(--satya)"></i>Satya Yuga</span><span><i class="dot" style="background:var(--treta)"></i>Treta Yuga</span><span><i class="dot" style="background:var(--dvapara)"></i>Dvapara Yuga</span><span><i class="dot" style="background:var(--kali)"></i>Kali Yuga</span></div>
+</header>
+<section>
+  <div class="glance"><div class="glance-cell" style="--c:var(--satya)"><div class="g-emoji">🐟</div><div class="g-name">Matsya</div><div class="g-sub">Fish</div></div><div class="glance-cell" style="--c:var(--satya)"><div class="g-emoji">🐢</div><div class="g-name">Kurma</div><div class="g-sub">Tortoise</div></div><div class="glance-cell" style="--c:var(--satya)"><div class="g-emoji">🐗</div><div class="g-name">Varaha</div><div class="g-sub">Boar</div></div><div class="glance-cell" style="--c:var(--satya)"><div class="g-emoji">🦁</div><div class="g-name">Narasimha</div><div class="g-sub">Man-lion</div></div><div class="glance-cell" style="--c:var(--treta)"><div class="g-emoji">☂️</div><div class="g-name">Vamana</div><div class="g-sub">Dwarf</div></div><div class="glance-cell" style="--c:var(--treta)"><div class="g-emoji">🪓</div><div class="g-name">Parashurama</div><div class="g-sub">Rama of the axe</div></div><div class="glance-cell" style="--c:var(--treta)"><div class="g-emoji">🏹</div><div class="g-name">Rama</div><div class="g-sub">Prince of Ayodhya</div></div><div class="glance-cell" style="--c:var(--dvapara)"><div class="g-emoji">🪈</div><div class="g-name">Krishna</div><div class="g-sub">Cowherd &amp; charioteer</div></div><div class="glance-cell" style="--c:var(--kali)"><div class="g-emoji">☸️</div><div class="g-name">Buddha</div><div class="g-sub">The awakened one</div></div><div class="glance-cell" style="--c:var(--kali)"><div class="g-emoji">🐎</div><div class="g-name">Kalki</div><div class="g-sub">Rider to come</div></div></div>
+</section>
+<div class="callout">📿 <strong>Ten of many.</strong> The Bhagavata Purana (1.3) names twenty-two avatars and then says they are countless, like streams flowing from an inexhaustible lake. The ten below are the list that temple art, poetry and daily prayer settled on.</div>
+<div class="filters" role="group" aria-label="Filter">
+  <button class="filter-chip active" data-filter="all" aria-pressed="true" style="--fc:var(--vishnu)">All Ten</button>
+  <button class="filter-chip" data-filter="satya" aria-pressed="false" style="--fc:var(--satya)">Satya Yuga</button>
+  <button class="filter-chip" data-filter="treta" aria-pressed="false" style="--fc:var(--treta)">Treta Yuga</button>
+  <button class="filter-chip" data-filter="dvapara" aria-pressed="false" style="--fc:var(--dvapara)">Dvapara Yuga</button>
+  <button class="filter-chip" data-filter="kali" aria-pressed="false" style="--fc:var(--kali)">Kali Yuga</button>
+</div>
+<nav class="journey numbers" aria-label="Jump to"><a href="#matsya" style="background:var(--satya)" aria-label="Jump to 1">1</a><a href="#kurma" style="background:var(--satya)" aria-label="Jump to 2">2</a><a href="#varaha" style="background:var(--satya)" aria-label="Jump to 3">3</a><a href="#narasimha" style="background:var(--satya)" aria-label="Jump to 4">4</a><a href="#vamana" style="background:var(--treta)" aria-label="Jump to 5">5</a><a href="#parashurama" style="background:var(--treta)" aria-label="Jump to 6">6</a><a href="#rama" style="background:var(--treta)" aria-label="Jump to 7">7</a><a href="#krishna" style="background:var(--dvapara)" aria-label="Jump to 8">8</a><a href="#buddha" style="background:var(--kali)" aria-label="Jump to 9">9</a><a href="#kalki" style="background:var(--kali)" aria-label="Jump to 10">10</a>
+</nav>
+<div class="life-timeline" data-block>
+  <div class="stage-header" data-stage="satya" style="--accent:var(--satya)"><span>Satya Yuga</span></div>
+  <div class="timeline-item" data-item data-tags="satya" style="--accent:var(--satya)">
+    <div class="timeline-dot"></div>
+    <article class="card has-corner" id="matsya" data-id="matsya"><span class="ch-num">1</span>
+  <h3>Matsya <span class="native">मत्स्य</span></h3><span class="tag">The fish · saving life from the flood</span><p>A tiny fish begs Manu, the first man of this age, for protection, and grows until only the ocean can hold it. It warns of the coming flood. Manu builds a boat and ties it to the fish's horn, and the fish carries the sages and the seeds of all life to safety. Some Puranas add that Matsya recovered the Vedas, stolen by the demon Hayagriva.</p><dl class="facts"><div class="fact"><dt>Oldest form</dt><dd>The story of Manu and the fish is already told in the Shatapatha Brahmana.</dd></div><div class="fact"><dt>Shrine</dt><dd>Vedanarayana temple, Nagalapuram, Andhra Pradesh</dd></div></dl><div class="chips"><span class="chip">The flood</span><span class="chip">Manu</span><span class="chip">The Vedas recovered</span></div>
+</article>
+  </div>
+  <div class="timeline-item" data-item data-tags="satya" style="--accent:var(--satya)">
+    <div class="timeline-dot"></div>
+    <article class="card has-corner" id="kurma" data-id="kurma"><span class="ch-num">2</span>
+  <h3>Kurma <span class="native">कूर्म</span></h3><span class="tag">The tortoise · the churning of the ocean</span><p>Gods and demons churn the ocean of milk for the nectar of immortality. Mount Mandara is the churning rod and the serpent Vasuki the rope. When the mountain begins to sink, Vishnu becomes a vast tortoise and bears it on his back. The churning brings up poison, which Shiva drinks, and then Lakshmi, the wish-granting cow and at last the amrita.</p><dl class="facts"><div class="fact"><dt>Shrine</dt><dd>Srikurmam, Srikakulam district, Andhra Pradesh — one of very few temples to Kurma</dd></div></dl><div class="chips"><span class="chip">Samudra Manthana</span><span class="chip">Mount Mandara</span><span class="chip">Amrita</span></div>
+</article>
+  </div>
+  <div class="timeline-item" data-item data-tags="satya" style="--accent:var(--satya)">
+    <div class="timeline-dot"></div>
+    <article class="card has-corner" id="varaha" data-id="varaha"><span class="ch-num">3</span>
+  <h3>Varaha <span class="native">वराह</span></h3><span class="tag">The boar · raising the earth</span><p>The demon Hiranyaksha drags the earth down into the cosmic waters. Vishnu takes the form of a boar, dives to the bottom, kills the demon and lifts the earth goddess Bhudevi on his tusks.</p><dl class="facts"><div class="fact"><dt>Oldest form</dt><dd>A boar that lifts the earth from the waters already appears in Vedic prose texts.</dd></div><div class="fact"><dt>In stone</dt><dd>The colossal Varaha at the Udayagiri caves, Madhya Pradesh — early 5th century, Gupta period</dd></div><div class="fact"><dt>Shrine</dt><dd>Bhuvarahaswamy temple, Srimushnam, Tamil Nadu</dd></div></dl><div class="chips"><span class="chip">Hiranyaksha</span><span class="chip">Bhudevi</span></div>
+</article>
+  </div>
+  <div class="timeline-item" data-item data-tags="satya" style="--accent:var(--satya)">
+    <div class="timeline-dot"></div>
+    <article class="card has-corner" id="narasimha" data-id="narasimha"><span class="ch-num">4</span>
+  <h3>Narasimha <span class="native">नरसिंह</span></h3><span class="tag">The man-lion · protector of Prahlada</span><p>Hiranyakashipu, brother of Hiranyaksha, has a boon. He cannot be killed by man or beast, by day or by night, indoors or outdoors, on the ground or in the sky, by any weapon. He torments his son Prahlada for worshipping Vishnu. Vishnu bursts from a pillar as a being neither man nor beast. At dusk, on the threshold, he places the king on his lap and tears him apart with his claws.</p><dl class="facts"><div class="fact"><dt>Shrines</dt><dd>Ahobilam, Andhra Pradesh, with nine Narasimha shrines · Simhachalam, near Visakhapatnam</dd></div></dl><div class="chips"><span class="chip">Prahlada</span><span class="chip">The pillar</span><span class="chip">Every condition kept</span></div>
+</article>
+  </div>
+  <div class="stage-header" data-stage="treta" style="--accent:var(--treta)"><span>Treta Yuga</span></div>
+  <div class="timeline-item" data-item data-tags="treta" style="--accent:var(--treta)">
+    <div class="timeline-dot"></div>
+    <article class="card has-corner" id="vamana" data-id="vamana"><span class="ch-num">5</span>
+  <h3>Vamana <span class="native">वामन</span></h3><span class="tag">The dwarf · three steps</span><p>Bali, a generous asura king, has come to rule all three worlds. A dwarf brahmin boy asks him for as much land as three of his steps can cover. Bali agrees. The boy grows into Trivikrama, the giant of three strides, and covers earth and heaven in two steps. Bali offers his own head for the third, and is sent to rule the netherworld.</p><dl class="facts"><div class="fact"><dt>Oldest form</dt><dd>Vishnu who measures out the worlds in three strides is praised in the Rig Veda (1.154).</dd></div><div class="fact"><dt>Festival</dt><dd>Onam in Kerala welcomes Mahabali on his yearly visit to his people</dd></div><div class="fact"><dt>Shrines</dt><dd>Thrikkakara, Kerala · Ulagalantha Perumal temples at Kanchipuram and Thirukkoyilur</dd></div></dl><div class="chips"><span class="chip">Mahabali</span><span class="chip">Trivikrama</span><span class="chip">Onam</span></div>
+</article>
+  </div>
+  <div class="timeline-item" data-item data-tags="treta" style="--accent:var(--treta)">
+    <div class="timeline-dot"></div>
+    <article class="card has-corner" id="parashurama" data-id="parashurama"><span class="ch-num">6</span>
+  <h3>Parashurama <span class="native">परशुराम</span></h3><span class="tag">Rama with the axe</span><p>The son of the sage Jamadagni and Renuka. He carries an axe (<em>parashu</em>) that Shiva gave him. When King Kartavirya Arjuna seized his father's cow, Parashurama killed the king. When the king's sons killed Jamadagni, he cleared the earth of kshatriyas twenty-one times. He is counted among the <em>chiranjivis</em>, the deathless ones, and he appears in both epics. He meets Rama in the Ramayana and teaches Bhishma, Drona and Karna in the Mahabharata.</p><dl class="facts"><div class="fact"><dt>Legend</dt><dd>Throwing his axe into the sea, he raised the land of the western coast — Kerala and the Konkan</dd></div></dl><div class="chips"><span class="chip">Jamadagni</span><span class="chip">Kartavirya</span><span class="chip">Chiranjivi</span></div>
+</article>
+  </div>
+  <div class="timeline-item" data-item data-tags="treta" style="--accent:var(--treta)">
+    <div class="timeline-dot"></div>
+    <article class="card has-corner" id="rama" data-id="rama"><span class="ch-num">7</span>
+  <h3>Rama <span class="native">राम</span></h3><span class="tag">The prince of Ayodhya</span><p>The son of Dasharatha who keeps his father's word and spends fourteen years in exile. When Ravana carries off his wife Sita, he crosses to Lanka with an army of monkeys to bring her back. His reign became the measure of a just kingdom, <em>Ram Rajya</em>. Follow his route on the <a href="ramayana.html">Ramayana journey map</a>.</p><div class="chips"><span class="chip">Maryada Purushottama</span><span class="chip">Ramayana</span><span class="chip">Ram Rajya</span></div>
+</article>
+  </div>
+  <div class="stage-header" data-stage="dvapara" style="--accent:var(--dvapara)"><span>Dvapara Yuga</span></div>
+  <div class="timeline-item" data-item data-tags="dvapara" style="--accent:var(--dvapara)">
+    <div class="timeline-dot"></div>
+    <article class="card has-corner" id="krishna" data-id="krishna"><span class="ch-num">8</span>
+  <h3>Krishna <span class="native">कृष्ण</span></h3><span class="tag">Cowherd, king, charioteer</span><p>Born in a prison in Mathura and raised among the cowherds of Gokula. He kills his tyrant uncle Kamsa and builds Dvaraka by the sea. In the war of the <a href="mahabharata.html">Mahabharata</a> he drives Arjuna's chariot and speaks the <a href="gita.html">Bhagavad Gita</a>. Many traditions see him as the source of all avatars rather than one of them.</p><dl class="facts"><div class="fact"><dt>In some lists</dt><dd>His elder brother Balarama, the plough-bearer, takes the eighth place. Krishna is then ninth, or stands above the list as its source.</dd></div></dl><div class="chips"><span class="chip">Gokula</span><span class="chip">Dvaraka</span><span class="chip">The Gita</span></div>
+</article>
+  </div>
+  <div class="stage-header" data-stage="kali" style="--accent:var(--kali)"><span>Kali Yuga · the present age</span></div>
+  <div class="timeline-item" data-item data-tags="kali" style="--accent:var(--kali)">
+    <div class="timeline-dot"></div>
+    <article class="card has-corner" id="buddha" data-id="buddha"><span class="ch-num">9</span>
+  <h3>Buddha <span class="native">बुद्ध</span></h3><span class="tag">The awakened one</span><p>Several Puranas include the Buddha. The Bhagavata Purana foretells his birth in Kikata (Magadha) as the son of Anjana. In Jayadeva's hymn he is praised for his compassion in condemning animal sacrifice. Other traditions leave him out and give the place to Balarama. Why he was included, and what it means, has long been debated.</p><dl class="facts"><div class="fact"><dt>Who keeps him</dt><dd>Most North Indian and many temple lists; Jayadeva's Gita Govinda</dd></div><div class="fact"><dt>Who omits him</dt><dd>Sri Vaishnava and many South Indian lists</dd></div></dl><div class="chips"><span class="chip">Compassion</span><span class="chip">Disputed place</span></div>
+</article>
+  </div>
+  <div class="timeline-item" data-item data-tags="kali" style="--accent:var(--kali)">
+    <div class="timeline-dot"></div>
+    <article class="card has-corner" id="kalki" data-id="kalki"><span class="ch-num">10</span>
+  <h3>Kalki <span class="native">कल्कि</span></h3><span class="tag">The rider to come</span><p>The only avatar still to come. At the end of the Kali Yuga, when dharma is all but lost, Kalki will ride out on a white horse with a blazing sword. He will end the age of strife and bring back an age of truth, and the cycle begins again. The Vishnu Purana names his birthplace as the village of Shambhala.</p><div class="chips"><span class="chip">White horse</span><span class="chip">End of the age</span><span class="chip">Shambhala</span></div>
+</article>
+  </div>
+</div>
+<section>
+  <h2 class="section-title">Whose list? The eighth and ninth places</h2>
+  <p class="section-intro">Positions one to seven and the tenth are nearly universal. The places after Rama are where traditions differ.</p>
+  <div class="compare-scroll">
+    <table class="compare" style="min-width:820px">
+      <thead><tr><th scope="col">Position</th><th scope="col" data-col="common" style="--accent:var(--vishnu)">Most common today</th><th scope="col" data-col="jayadeva" style="--accent:var(--dvapara)">Jayadeva, Gita Govinda</th><th scope="col" data-col="south" style="--accent:var(--treta)">Sri Vaishnava &amp; South</th><th scope="col" data-col="regional" style="--accent:var(--kali)">Some regional lists</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">8th</th><td data-col="common">Krishna</td><td data-col="jayadeva">Balarama</td><td data-col="south">Balarama</td><td data-col="regional">Krishna or Balarama</td></tr>
+        <tr><th scope="row">9th</th><td data-col="common">Buddha</td><td data-col="jayadeva">Buddha</td><td data-col="south">Krishna</td><td data-col="regional">Vithoba (Maharashtra) or Jagannath (Odisha)</td></tr>
+        <tr><th scope="row">Krishna</th><td data-col="common">One of the ten</td><td data-col="jayadeva">The source of all ten</td><td data-col="south">One of the ten</td><td data-col="regional">Varies</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<div class="callout">🧬 Since the late 19th century some writers have read the sequence as a parable of evolution: fish, amphibian, mammal, half-human, small human, then full humans. It is a modern reading. The Puranas present the avatars as rescues of dharma at moments of crisis, not as stages of biology.</div>
+<section class="sources"><h2>Sources</h2><ul><li><a href="https://en.wikipedia.org/wiki/Dashavatara" target="_blank" rel="noopener">Dashavatara — Wikipedia</a></li><li><a href="https://www.britannica.com/topic/dashavatara" target="_blank" rel="noopener">Dashavatara — Encyclopaedia Britannica</a></li><li><a href="https://vedabase.io/en/library/sb/1/3/" target="_blank" rel="noopener">Bhagavata Purana 1.3 — the list of avatars (vedabase.io)</a></li><li><a href="https://en.wikipedia.org/wiki/Works_of_Jayadeva" target="_blank" rel="noopener">Works of Jayadeva (Gita Govinda&#39;s Dashavatara hymn) — Wikipedia</a></li><li><a href="https://en.wikipedia.org/wiki/Udayagiri_Caves" target="_blank" rel="noopener">Udayagiri Caves — Wikipedia</a></li></ul></section>
+<p class="no-results">Nothing matches your search. Try another word or clear the filter.</p>
+<footer>
+  <p>🐚 A visual map of the ten avatars of Vishnu · The yuga of each avatar follows the usual Puranic placement</p>
+  <p>The list itself varies between texts and regions — see the table near the end</p>
+  <nav class="site-nav" aria-label="All Sanatana maps">
+    <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+    <a href="veda.html"><span aria-hidden="true">📜</span>Vedic Literature</a>
+    <a href="an.html"><span aria-hidden="true">🪔</span>Azhwars &amp; Nayanmars</a>
+    <a href="darshanas.html"><span aria-hidden="true">⚖️</span>Six Darshanas</a>
+    <a href="geography.html"><span aria-hidden="true">🗺️</span>Sacred Geography</a>
+    <a href="gita.html"><span aria-hidden="true">🪷</span>Bhagavad Gita</a>
+    <a href="vedanta.html"><span aria-hidden="true">🪷</span>Three Vedantas</a>
+    <a href="muruga.html"><span aria-hidden="true">🦚</span>Arupadai Veedu</a>
+    <a href="shanmata.html"><span aria-hidden="true">🕉️</span>Shanmata</a>
+    <a href="mathas.html"><span aria-hidden="true">🛕</span>Mathas</a>
+    <a href="jyotisha.html"><span aria-hidden="true">🌌</span>Jyotisha</a>
+    <a href="samskaras.html"><span aria-hidden="true">🕯️</span>Cradle to Pyre</a>
+    <a href="shiva-muruga.html"><span aria-hidden="true">🔱</span>Shiva &amp; Muruga</a>
+    <a href="navagraha.html"><span aria-hidden="true">🪐</span>Navagraha Temples</a>
+    <a href="pancha-bhoota.html"><span aria-hidden="true">🔥</span>Pancha Bhoota Sthalams</a>
+    <a href="shakti-peethas.html"><span aria-hidden="true">🌺</span>Shakti Peethas</a>
+    <a href="ramayana.html"><span aria-hidden="true">🏹</span>Ramayana Journey</a>
+    <a href="mahabharata.html"><span aria-hidden="true">⚔️</span>Mahabharata Family Tree</a>
+    <a href="dashavatara.html" aria-current="page"><span aria-hidden="true">🐚</span>Dashavatara</a>
+    <a href="carnatic.html"><span aria-hidden="true">🎶</span>Carnatic Music</a>
+  </nav>
+  <p class="site-copy">🕉️ Sanatana — visual maps of Hindu literature, philosophy and saints</p>
+</footer>
+<script src="assets/site.js?v=9291f70d"></script>
+</body>
+</html>

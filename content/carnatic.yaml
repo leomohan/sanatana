@@ -1,0 +1,255 @@
+page:
+  file: carnatic.html
+  layout: page
+  title: Carnatic Music — The Trinity, the Composers and the 72 Melakartas
+  description: Carnatic music's composers on one timeline, the Trinity of Tiruvarur, and all 72 melakarta ragas laid
+    out by their swaras.
+  favicon: 🎶
+  search: Search composers or ragas — Kalyani, Tyagaraja…
+  palette:
+    music: ['#ff9f43', '#d9771a']
+    pioneer: ['#26de81', '#1e9e5c']
+    trinity: ['#f7b731', '#b7861b']
+    later: ['#4a9eff', '#1a6fc4']
+    mela: ['#a55eea', '#7b3fc4']
+  gradient: [pioneer, trinity, later, mela]
+  primary: music
+  h1: Carnatic Music
+  intro: South India's classical music, from the temple singers of the 15th century to the concert hall. Here are
+    its composers on one timeline, the three born in one town who define its repertoire, and the 72 parent scales
+    from which its ragas are drawn.
+  legend:
+  - {label: Pioneers, color: pioneer}
+  - {label: The Trinity, color: trinity}
+  - {label: After the Trinity, color: later}
+  filters:
+  - {value: all, label: All composers, color: music}
+  - {value: pioneer, label: 🌱 Pioneers, color: pioneer}
+  - {value: trinity, label: 🎼 The Trinity, color: trinity}
+  - {value: later, label: 🎙️ After the Trinity, color: later}
+  footer: ['🎶 A visual map of Carnatic music · Composers'' dates follow standard references; dotted bars mark uncertain
+      dates', 'The filters apply to composers. The melakarta chart stays in full view, and search works on it too.']
+blocks:
+- type: counts
+  items:
+  - {n: '3', label: 'Trinity, all born in Tiruvarur'}
+  - {n: '72', label: Melakarta parent scales}
+  - {n: '12', label: 'Chakras, six scales each'}
+  - {n: '12', label: Notes to the octave}
+- type: callout
+  text: '🎡 <strong>Hear the scales.</strong> <a href="https://leomohan.github.io/Carnatic/" target="_blank" rel="noopener">Raga
+    Geometry</a> draws a raga''s ascent and descent on a twelve-note wheel and plays them. Try Shankarabharanam (No. 29)
+    after reading the chart below.'
+- {type: filters}
+- type: lifespans
+  title: Five centuries of composers
+  intro: Each bar is a lifetime. Dotted bars are uncertain dates. Click a name to jump to the composer.
+  from: 1400
+  to: 2020
+  step: 100
+  rows:
+  - {name: Annamacharya, born: 1408, died: 1503, tags: pioneer, color: pioneer, href: '#annamacharya'}
+  - {name: Purandara Dasa, born: 1484, died: 1564, tags: pioneer, color: pioneer, href: '#purandara'}
+  - {name: Muthu Thandavar, born: 1525, died: 1625, circa: true, tags: pioneer, color: pioneer}
+  - {name: Kshetrayya, born: 1600, died: 1680, circa: true, tags: pioneer, color: pioneer, href: '#kshetrayya'}
+  - {name: Bhadrachala Ramadasu, born: 1620, died: 1688, circa: true, tags: pioneer, color: pioneer}
+  - {name: Oothukkadu Venkata Kavi, born: 1700, died: 1765, circa: true, tags: pioneer, color: pioneer}
+  - {name: Arunachala Kavi, born: 1711, died: 1779, tags: pioneer, color: pioneer, href: '#arunachala'}
+  - {name: Marimutthu Pillai, born: 1712, died: 1787, circa: true, tags: pioneer, color: pioneer}
+  - {name: Syama Sastri, born: 1762, died: 1827, tags: trinity, color: trinity, href: '#syama-sastri'}
+  - {name: Tyagaraja, born: 1767, died: 1847, tags: trinity, color: trinity, href: '#tyagaraja'}
+  - {name: Muthuswami Dikshitar, born: 1775, died: 1835, tags: trinity, color: trinity, href: '#dikshitar'}
+  - {name: Gopalakrishna Bharati, born: 1811, died: 1896, tags: later, color: later, href: '#gk-bharati'}
+  - {name: Swathi Thirunal, born: 1813, died: 1846, tags: later, color: later, href: '#swathi'}
+  - {name: Patnam Subramania Iyer, born: 1845, died: 1902, tags: later, color: later}
+  - {name: Mysore Vasudevachar, born: 1865, died: 1961, tags: later, color: later}
+  - {name: Muthiah Bhagavatar, born: 1877, died: 1945, tags: later, color: later}
+  - {name: Papanasam Sivan, born: 1890, died: 1973, tags: later, color: later, href: '#papanasam'}
+  - {name: M. Balamuralikrishna, born: 1930, died: 2016, tags: later, color: later, href: '#balamurali'}
+- type: cards
+  title: The Trinity of Tiruvarur
+  intro: 'Three composers born within thirteen years of each other in the same temple town. Their songs are still the
+    core of every concert.'
+  grid: v3
+  cards:
+  - id: tyagaraja
+    anchor: tyagaraja
+    title: Tyagaraja
+    subtitle: 1767–1847 · the singer of Rama
+    accent: trinity
+    tags: trinity
+    body: Born Kakarla Tyagabrahmam into a Telugu family, he spent most of his life in Thiruvaiyaru on the Kaveri, singing
+      to Rama. Tradition says he turned down a court appointment rather than sing for a king. His songs speak directly
+      to God, often in the first person, and gave many ragas their lasting shape.
+    facts:
+    - [Language, 'Telugu, some Sanskrit']
+    - [Signature, Tyagaraja]
+    - [Known for, 'The five Pancharatna kritis · the musical plays Prahlada Bhakti Vijayam and Nauka Charitram']
+    - [Today, 'Every January, at the Aradhana at his samadhi in Thiruvaiyaru, musicians sing the Pancharatnas together']
+    chips: [Rama bhakti, Pancharatna, Thiruvaiyaru]
+  - id: dikshitar
+    anchor: dikshitar
+    title: Muthuswami Dikshitar
+    subtitle: 1775–1835 · the scholar-poet
+    accent: trinity
+    tags: trinity
+    body: A veena player who studied for years in Varanasi, Dikshitar travelled from shrine to shrine and composed in
+      Sanskrit for the deity of each. His kritis are slow and stately, dense with temple lore. He named ragas by the
+      older scheme of Venkatamakhin. He even set Sanskrit words to Western tunes he heard from military bands.
+    facts:
+    - [Language, 'Sanskrit, some Manipravalam']
+    - [Signature, Guruguha]
+    - [Known for, 'The Kamalamba Navavarana kritis · the <a href="navagraha.html">Navagraha kritis</a>, one for each planet
+        · the nottuswara songs']
+    - [Born, 'Tiruvarur, 1775 (some sources say 1776) · died at Ettayapuram']
+    chips: [Sanskrit, Navagraha kritis, Veena]
+  - id: syama-sastri
+    anchor: syama-sastri
+    title: Syama Sastri
+    subtitle: 1762–1827 · the poet of Kamakshi
+    accent: trinity
+    tags: trinity
+    body: The eldest of the three, born Venkata Subrahmanya into a family of priests who served the goddess Bangaru Kamakshi
+      and had carried her image south from Kanchi. He settled with her in Thanjavur. He composed fewer songs than the
+      other two, about three hundred, but his rhythmic craft is unmatched.
+    facts:
+    - [Language, 'Telugu, also Sanskrit and Tamil']
+    - [Signature, Syama Krishna]
+    - [Known for, 'Three great swarajatis in Bhairavi, Todi and Yadukulakambhoji · intricate talas such as Misra Chapu']
+    chips: [Kamakshi, Swarajati, Tala]
+- type: cards
+  title: Before the Trinity
+  grid: v2
+  cards:
+  - id: annamacharya
+    anchor: annamacharya
+    title: Annamacharya
+    subtitle: 1408–1503 · Tirumala
+    accent: pioneer
+    tags: pioneer
+    body: The earliest major composer in the tradition, a singer of Lord Venkateswara at Tirumala. By tradition he composed
+      32,000 songs (<em>sankirtanas</em>) in Telugu. Thousands survive, engraved on copper plates kept at the temple.
+    chips: [Telugu, Venkateswara, Copper plates]
+  - id: purandara
+    anchor: purandara
+    title: Purandara Dasa
+    subtitle: 1484–1564 · the grandfather of Carnatic music
+    accent: pioneer
+    tags: pioneer
+    body: A wealthy merchant who gave everything away to become a wandering Haridasa singer. He wrote in Kannada with
+      the signature <em>Purandara Vittala</em>. He also laid out the graded exercises that every student still begins
+      with, set in Mayamalavagowla (No. 15 below). For this he is called the <em>Pitamaha</em>, the grandfather.
+    chips: [Kannada, Haridasa, First lessons]
+  - id: kshetrayya
+    anchor: kshetrayya
+    title: Kshetrayya
+    subtitle: c. 17th century · the padam
+    accent: pioneer
+    tags: pioneer
+    body: A master of the <em>padam</em>, a slow love song in Telugu addressed to Krishna as Muvva Gopala. Dancers still
+      use his padams for expressive dance (<em>abhinaya</em>).
+    chips: [Telugu, Padam, Dance]
+  - id: arunachala
+    anchor: arunachala
+    title: Arunachala Kavi
+    subtitle: 1711–1779 · the Rama Natakam
+    accent: pioneer
+    tags: pioneer
+    body: One of the Tamil Trinity, with Muthu Thandavar and Marimutthu Pillai, who composed in Tamil before the
+      great three. His <em>Rama Natakam</em> tells the whole Ramayana in songs, drawing on Kamban. It is still sung in
+      concerts. See the <a href="ramayana.html">Ramayana journey</a>.
+    chips: [Tamil, Rama Natakam, Kamban]
+- type: cards
+  title: After the Trinity
+  grid: v2
+  cards:
+  - id: swathi
+    anchor: swathi
+    title: Swathi Thirunal
+    subtitle: 1813–1846 · the composer-king
+    accent: later
+    tags: later
+    body: Maharaja of Travancore, who in a short life composed in Sanskrit, Malayalam, Telugu, Kannada and Hindustani.
+      His court drew musicians from across the south.
+    chips: [Travancore, Many languages]
+  - id: gk-bharati
+    anchor: gk-bharati
+    title: Gopalakrishna Bharati
+    subtitle: 1811–1896 · Nandanar Charitram
+    accent: later
+    tags: later
+    body: His <em>Nandanar Charitram</em> tells in Tamil songs the life of Nandanar, one of the sixty-three <a href="an.html">Nayanmars</a>.
+      Nandanar was born outcaste and longed to see the dancing Shiva of Chidambaram.
+    chips: [Tamil, Nandanar, Musical drama]
+  - id: papanasam
+    anchor: papanasam
+    title: Papanasam Sivan
+    subtitle: 1890–1973 · the Tamil Tyagaraja
+    accent: later
+    tags: later
+    body: He wrote hundreds of Tamil kritis that now stand beside the Telugu classics in every concert, and he also composed
+      for early Tamil cinema. Admirers called him the Tamil Tyagaraja.
+    chips: [Tamil kritis, Film music]
+  - id: balamurali
+    anchor: balamurali
+    title: M. Balamuralikrishna
+    subtitle: 1930–2016 · composer in all 72
+    accent: later
+    tags: later
+    body: A child prodigy who had composed in all 72 melakartas by the age of fifteen. He went on to invent new ragas
+      of only three or four notes, such as Lavangi and Mahati, and to bring the viola into Carnatic music.
+    chips: [72 melakartas, New ragas, Viola]
+  empty: Nothing matches your search. Try another word or clear the filter.
+- type: pairs
+  title: Where 72 scales come from
+  intro: A melakarta is a parent scale that uses all seven swaras once each, going up and coming down. There are only
+    so many ways to choose them.
+  items:
+  - {title: Sa and Pa are fixed, color: mela, text: 'The tonic Sa and the fifth Pa never change. Every scale keeps both.'}
+  - {title: 'Ri and Ga: six pairs', color: mela, text: 'Ri and Ga have three positions each but share pitches, so they
+      can be paired six ways: R1 G1, R1 G2, R1 G3, R2 G2, R2 G3, R3 G3. These are the six rows of each half below.'}
+  - {title: 'Da and Ni: six pairs', color: mela, text: 'Da and Ni pair up the same six ways. These are the six columns.'}
+  - {title: 'Ma: two choices', color: mela, text: 'Shuddha Ma (M1) gives scales 1–36 and Prati Ma (M2) gives 37–72.
+      So 6 × 6 × 2 = 72.'}
+- type: callout
+  text: '🔢 <strong>The number is in the name.</strong> Each name encodes its own number by the <em>katapayadi</em> system,
+    which gives every consonant a digit. Take the first two syllables, read the digits, and reverse them. <em>Ha-ri</em>kambhoji
+    gives 8 and 2, so 28. <em>Me-cha</em>kalyani gives 5 and 6, so 65. The scheme of 72 was worked out by Venkatamakhin
+    in the 17th century. The names used today, with complete scales, were standardised after him and are associated
+    with Govindacharya.'
+- type: melakarta
+  title: The 72 Melakartas
+  intro: Rows are the twelve chakras and columns the Da–Ni pairs. Every scale in a row shares Ri, Ga and Ma; every
+    scale in a column shares Da and Ni. ★ marks a few you will hear often. Hover over one to see why.
+  color: mela
+  halves: ['Shuddha Madhyama (M1) · Melakartas 1–36', 'Prati Madhyama (M2) · Melakartas 37–72']
+  chakras: [Indu, Netra, Agni, Veda, Bana, Rutu, Rishi, Vasu, Brahma, Disi, Rudra, Aditya]
+  names: [Kanakangi, Ratnangi, Ganamurti, Vanaspati, Manavati, Tanarupi, Senavati, Hanumatodi, Dhenuka, Natakapriya,
+    Kokilapriya, Rupavati, Gayakapriya, Vakulabharanam, Mayamalavagowla, Chakravakam, Suryakantam, Hatakambari, Jhankaradhvani,
+    Natabhairavi, Keeravani, Kharaharapriya, Gourimanohari, Varunapriya, Mararanjani, Charukesi, Sarasangi, Harikambhoji,
+    Dheerashankarabharanam, Naganandini, Yagapriya, Ragavardhini, Gangeyabhushani, Vagadheeswari, Shulini, Chalanata,
+    Salagam, Jalarnavam, Jhalavarali, Navaneetam, Pavani, Raghupriya, Gavambhodi, Bhavapriya, Shubhapantuvarali, Shadvidhamargini,
+    Suvarnangi, Divyamani, Dhavalambari, Namanarayani, Kamavardhini, Ramapriya, Gamanashrama, Vishwambari, Shamalangi,
+    Shanmukhapriya, Simhendramadhyamam, Hemavati, Dharmavati, Neetimati, Kantamani, Rishabhapriya, Latangi, Vachaspati,
+    Mechakalyani, Chitrambari, Sucharitra, Jyotiswarupini, Dhatuvardhani, Nasikabhushani, Kosalam, Rasikapriya]
+  famous:
+    8: Todi — a vast, grave concert raga
+    15: The scale of Purandara Dasa's first lessons
+    21: Keeravani — the harmonic minor
+    22: Kharaharapriya — Tyagaraja made it a concert mainstay
+    28: Harikambhoji — parent of Mohanam and Kambhoji
+    29: Shankarabharanam — same notes as the Western major scale
+    51: Kamavardhini — better known as Pantuvarali
+    56: Shanmukhapriya — a favourite for lively kritis
+    65: Mechakalyani — Kalyani, among the most loved ragas
+- type: sources
+  items:
+  - {label: Melakarta — Wikipedia (full list of 72 with scales), url: 'https://en.wikipedia.org/wiki/Melakarta'}
+  - {label: Trinity of Carnatic music — Wikipedia, url: 'https://en.wikipedia.org/wiki/Trinity_of_Carnatic_music'}
+  - {label: List of Carnatic composers — Wikipedia, url: 'https://en.wikipedia.org/wiki/List_of_Carnatic_composers'}
+  - {label: Tyagaraja — Wikipedia, url: 'https://en.wikipedia.org/wiki/Tyagaraja'}
+  - {label: Muthuswami Dikshitar — Wikipedia, url: 'https://en.wikipedia.org/wiki/Muthuswami_Dikshitar'}
+  - {label: Syama Sastri — Wikipedia, url: 'https://en.wikipedia.org/wiki/Syama_Sastri'}
+  - {label: Arunachala Kavi — Wikipedia, url: 'https://en.wikipedia.org/wiki/Arunachala_Kavi'}
+  - {label: M. Balamuralikrishna — Wikipedia, url: 'https://en.wikipedia.org/wiki/M._Balamuralikrishna'}
+  - {label: Raga Geometry — interactive raga and tala wheel, url: 'https://leomohan.github.io/Carnatic/'}

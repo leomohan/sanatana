@@ -50,6 +50,14 @@
 
 {% macro sect(b) %}{% if b.section %} data-section="{{ b.section }}"{% endif %}{% endmacro %}
 
+{% macro fnode(n, b) -%}
+<li{% if n.side %} class="side"{% endif %}><div class="ft-node{{ ' ft-side' if n.side }}"{% if n.tags %} data-tags="{{ n.tags }}"{% endif %} style="--accent:{{ (b.colors[n.tags.split()[0]] if n.tags and b.colors else 'muted')|color }}"{% if n.anchor %} id="{{ n.anchor }}"{% endif %}>
+<b>{{ n.name }}</b>{% if n.native %} <span class="native">{{ n.native }}</span>{% endif %}
+{%- if n.with %}<span class="ft-with">⚭ {{ n.with }}</span>{% endif %}
+{%- if n.note %}<span class="ft-note">{{ n.note|safe }}</span>{% endif %}</div>
+{%- if n.children %}<ul>{% for c in n.children %}{{ fnode(c, b) }}{% endfor %}</ul>{% endif %}</li>
+{%- endmacro %}
+
 {# ---------------------------------------------------------------- block types #}
 {% macro render(b, page, all_cards) %}
 {%- if b.type == 'group' %}
@@ -137,7 +145,8 @@
 </section>
 
 {%- elif b.type == 'compare' %}
-<section>
+{%- set tagged = b.rows | selectattr('tags') | list %}
+<section{% if tagged %} data-block{% endif %}>
   {{ title(b) }}
   {{ intro(b) }}
   <div class="compare-scroll">
@@ -145,7 +154,7 @@
       <thead><tr><th scope="col">{{ b.corner or 'Criterion' }}</th>{% for col in b.columns %}<th scope="col" data-col="{{ col.key }}" style="--accent:{{ col.color|color }}">{{ col.label }}</th>{% endfor %}</tr></thead>
       <tbody>
       {%- for row in b.rows %}
-        <tr><th scope="row">{{ row.label }}</th>{% for cell in row.cells %}<td data-col="{{ b.columns[loop.index0].key }}">{{ cell|safe }}</td>{% endfor %}</tr>
+        <tr{% if row.tags %} data-item data-tags="{{ row.tags }}"{% elif tagged %} data-item{% endif %}><th scope="row">{{ row.label }}</th>{% for cell in row.cells %}<td data-col="{{ b.columns[loop.index0].key }}">{{ cell|safe }}</td>{% endfor %}</tr>
       {%- endfor %}
       </tbody>
     </table>
@@ -226,5 +235,53 @@
   {%- endfor %}
   </div>
 </main>
+{%- elif b.type == 'family' %}
+<section class="family" data-block{{ sect(b) }}>
+  {{ title(b) }}
+  {{ intro(b) }}
+  {%- for t in b.trees %}
+  {%- if t.title %}<h3 class="ft-title">{{ t.title }}</h3>{% endif %}
+  <div class="ftree-wrap"><ul class="ftree">{{ fnode(t.root, b) }}</ul></div>
+  {%- endfor %}
+  {%- if b.key %}<div class="legend ft-key">{% for k in b.key %}<span><i class="dot" style="background:{{ k.color|color }}"></i>{{ k.label }}</span>{% endfor %}<span><i class="dot ft-dash"></i>dashed: not by birth in this line</span></div>{% endif %}
+</section>
+
+{%- elif b.type == 'lifespans' %}
+{%- set span = b.to - b['from'] %}
+<section class="lifespans-block" data-block{{ sect(b) }}>
+  {{ title(b) }}
+  {{ intro(b) }}
+  <div class="lifespans">
+    <div class="ls-axis" aria-hidden="true">{% for y in range(b['from'], b.to + 1, b.step or 100) %}<span style="left:{{ ((y - b['from']) / span * 100)|round(2) }}%">{{ y }}</span>{% endfor %}</div>
+    {%- for r in b.rows %}
+    <div class="ls-row" data-item{% if r.tags %} data-tags="{{ r.tags }}"{% endif %} style="--accent:{{ r.color|color }}">
+      <span class="ls-name">{% if r.href %}<a href="{{ r.href }}">{{ r.name }}</a>{% else %}{{ r.name }}{% endif %}</span>
+      <span class="ls-track"><span class="ls-bar{{ ' circa' if r.circa }}" style="left:{{ ((r.born - b['from']) / span * 100)|round(2) }}%;width:{{ ((r.died - r.born) / span * 100)|round(2) }}%" title="{{ r.name }} · {{ 'c. ' if r.circa }}{{ r.born }}–{{ r.died }}"></span><span class="ls-years" style="left:{{ ((r.died - b['from']) / span * 100)|round(2) }}%">{{ 'c. ' if r.circa }}{{ r.born }}–{{ r.died }}</span></span>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+{%- elif b.type == 'melakarta' %}
+<section class="mela" data-block style="--accent:{{ b.color|color }}">
+  {{ title(b) }}
+  {{ intro(b) }}
+  {%- for half in [0, 1] %}
+  <h3 class="mela-half">{{ b.halves[half] }}</h3>
+  <div class="mela-grid">
+    <div class="mela-corner" aria-hidden="true">R · G ↓ &nbsp; D · N →</div>
+    {%- for dn in mela(1).pairs %}<div class="mela-head" aria-hidden="true">D{{ dn[0] }} N{{ dn[1] }}</div>{% endfor %}
+    {%- for row in range(6) %}
+    {%- set ck = half * 6 + row %}
+    <div class="mela-chakra"><b>{{ ck + 1 }}. {{ b.chakras[ck] }}</b><span>R{{ mela(ck * 6 + 1).r }} G{{ mela(ck * 6 + 1).g }}</span></div>
+    {%- for col in range(6) %}
+    {%- set n = ck * 6 + col + 1 %}{% set m = mela(n) %}{% set note = b.famous[n] %}
+    <div class="mela-cell{{ ' famous' if note }}" data-item{% if note %} title="{{ note }}"{% endif %}><span class="num">{{ n }}</span><span class="name{{ ' long' if b.names[n - 1]|length > 17 }}">{{ b.names[n - 1] }}</span><span class="sig">R{{ m.r }} G{{ m.g }} M{{ m.m }} D{{ m.d }} N{{ m.n }}</span>{% if note %}<span class="note">{{ note }}</span>{% endif %}</div>
+    {%- endfor %}
+    {%- endfor %}
+  </div>
+  {%- endfor %}
+</section>
+
 {%- endif %}
 {% endmacro %}
