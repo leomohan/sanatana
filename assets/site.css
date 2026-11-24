@@ -255,7 +255,7 @@ body.nothing .no-results, body.nothing .empty-state{display:block;}
 
 /* ---------- SPECTRUM (Vedanta) ---------- */
 .spectrum{display:flex;align-items:center;max-width:900px;margin:0 auto 40px;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow-x:auto;}
-.spectrum-point{flex:1;text-align:center;min-width:140px;position:relative;padding:10px 8px;}
+.spectrum-point{flex:1;text-align:center;min-width:108px;position:relative;padding:10px 8px;}
 .spectrum-point::before{content:"";position:absolute;top:30px;left:0;right:0;height:2px;background:var(--border-strong);z-index:0;}
 .spectrum-point:first-child::before{left:50%;}
 .spectrum-point:last-child::before{right:50%;}

@@ -1,0 +1,170 @@
+page:
+  file: ram.html
+  layout: page
+  title: When India Says “Ram” — Twelve Everyday Expressions
+  description: The name Ram in everyday Indian speech, from Ram Ram to Ram Naam Satya Hai. Twelve expressions and
+    what each one says about the person speaking.
+  favicon: 🙏
+  search: Search expressions — Ram Bharose, Rambaan…
+  native: hi
+  palette:
+    inner: ['#dc9163', '#bd6734']
+    moral: ['#e0826a', '#a34f37']
+    faith: ['#9aa87a', '#66805b']
+    society: ['#8eafc1', '#587487']
+    gold: ['#e5ad43', '#c8860a']
+  gradient: [inner, moral, faith, society]
+  primary: gold
+  h1: When India Says “Ram”
+  intro: 'One familiar name runs through twelve everyday expressions. They carry greeting, grief, instinct, conscience,
+    moral shock, uncertainty, faith, justice, precision, governance, resilience and mortality. People say them without
+    thinking, and each one holds a whole attitude to life.'
+  legend:
+  - {label: The inner human, color: inner}
+  - {label: The moral human, color: moral}
+  - {label: Faith and action, color: faith}
+  - {label: Society and existence, color: society}
+  filters:
+  - {value: all, label: All Twelve, color: gold}
+  - {value: inner, label: The inner human, color: inner}
+  - {value: moral, label: The moral human, color: moral}
+  - {value: faith, label: Faith and action, color: faith}
+  - {value: society, label: Society and existence, color: society}
+  footer: ['🙏 A visual map of the name Ram in everyday Indian speech', 'Usage and shades of meaning vary from region
+      to region and from speaker to speaker']
+blocks:
+- type: tree
+  title: One name, four kinds of moment
+  root: RAM · one name · twelve expressions
+  rows:
+  - - {title: The inner human, sub: 'Greeting · sorrow · instinct · conscience', color: inner}
+    - {title: The moral human, sub: 'Moral shock · uncertainty', color: moral}
+    - {title: Faith and action, sub: 'Trust · justice · precise action', color: faith}
+    - {title: Society and existence, sub: 'Governance · resilience · mortality', color: society}
+- {type: filters}
+- type: cards
+  title: The twelve expressions
+  grid: v3
+  cards:
+  - title: Ram Ram
+    native: राम राम
+    num: '1'
+    accent: inner
+    tags: inner
+    tagline: A greeting can carry a civilization.
+    body: A simple exchange between neighbours or strangers that carries blessing, recognition and equality. Every time
+      it is said, the name is remembered.
+    chips: [{text: Belonging & remembrance, style: theme}]
+  - title: Hey Ram
+    native: हे राम
+    num: '2'
+    accent: inner
+    tags: inner
+    tagline: When words fail, the heart calls upward.
+    body: The cry of sorrow and helplessness. When control reaches its limit, people search for meaning beyond it.
+    chips: [{text: Suffering & surrender, style: theme}]
+  - title: Arey Ram
+    native: अरे राम
+    num: '3'
+    accent: inner
+    tags: inner
+    tagline: The subconscious speaks before the mind has time to think.
+    body: An instinctive response to surprise, pain or disruption. It shows the vocabulary we carry inside without
+      knowing it.
+    chips: [{text: Instinct & vulnerability, style: theme}]
+  - title: Hay Ram
+    native: हाय राम
+    num: '4'
+    accent: inner
+    tags: inner
+    tagline: The hardest witness to face is the one within.
+    body: A moment of regret and moral discomfort, when the inner witness makes itself heard.
+    chips: [{text: Conscience & regret, style: theme}]
+  - title: Ram Ram!
+    native: राम राम!
+    num: '5'
+    accent: moral
+    tags: moral
+    tagline: Some things should still shock the human conscience.
+    body: The language of moral shock, spoken on hearing of something wrong. It is an instinctive refusal to grow indifferent
+      to wrongdoing.
+    chips: [{text: Moral sensitivity, style: theme}]
+  - title: Ram Jaane
+    native: राम जाने
+    num: '6'
+    accent: moral
+    tags: moral
+    tagline: Wisdom begins where certainty ends.
+    body: '"Ram knows." It admits the limits of what we know, a kind of intellectual humility, and learns to live with
+      not knowing.'
+    chips: [{text: Uncertainty & humility, style: theme}]
+  - title: Ram Bharose
+    native: राम भरोसे
+    num: '7'
+    accent: faith
+    tags: faith
+    tagline: Do your part, then trust what lies beyond your hands.
+    body: '"In Ram''s trust." Faith after effort: doing one''s duty without pretending to control every outcome. Said
+      wryly, it also describes something left entirely to chance.'
+    chips: [{text: Duty & trust, style: theme}]
+  - title: Ram Duhai
+    native: राम दुहाई
+    num: '8'
+    accent: faith
+    tags: faith
+    tagline: When human justice falls short, the search for a higher witness begins.
+    body: An appeal to moral authority, made when the truth is denied and ordinary justice seems not enough.
+    chips: [{text: Justice & truth, style: theme}]
+  - title: Rambaan
+    native: रामबाण
+    num: '9'
+    accent: faith
+    tags: faith
+    tagline: The best solution is not the strongest. It is the most precise.
+    body: Rama's arrow never missed, so a sure remedy is called <em>rambaan</em>. The word stands for a clear aim, proportionate
+      action and a result that works.
+    chips: [{text: Precision & action, style: theme}]
+  - title: Ram Rajya
+    native: राम राज्य
+    num: '10'
+    accent: society
+    tags: society
+    tagline: Good governance begins when power becomes responsibility.
+    body: The lasting ideal of ethical rule, in which justice and duty restrain authority. It is named after Rama's reign
+      at the end of the <a href="ramayana.html">Ramayana journey</a>.
+    chips: [{text: Governance & dharma, style: theme}]
+  - title: Nirbal Ke Bal Ram
+    native: निर्बल के बल राम
+    num: '11'
+    accent: society
+    tags: society
+    tagline: The greatest strength is sometimes the strength no one can see.
+    body: '"Ram is the strength of the weak." The resilience of the powerless: inner courage, hope and the strength to
+      keep going.'
+    chips: [{text: Resilience & hope, style: theme}]
+  - title: Ram Naam Satya Hai
+    native: राम नाम सत्य है
+    num: '12'
+    accent: society
+    tags: society
+    tagline: The last words spoken over the dead are meant for the living.
+    body: '"The name of Ram is truth," chanted as a body is carried to the cremation ground. It is a last encounter with
+      mortality and impermanence, and with what remains after a life ends.'
+    chips: [{text: Mortality & remembrance, style: theme}]
+  empty: Nothing matches your search. Try another word or clear the filter.
+- type: spectrum
+  title: A journey through human experience
+  points:
+  - {label: Remember, sub: Greeting, color: gold}
+  - {label: Feel, sub: Sorrow · surprise, color: inner}
+  - {label: Reflect, sub: Conscience · moral shock, color: moral}
+  - {label: Accept, sub: Uncertainty · trust, color: faith}
+  - {label: Act, sub: Justice · precision, color: faith}
+  - {label: Aspire, sub: Governance · resilience, color: society}
+  - {label: Remember, sub: Mortality · truth, color: gold}
+- type: story
+  title: Where the journey returns
+  paragraphs:
+  - Twelve expressions bring us back to one word. The name stays the same; only the human situation changes. Taken
+    together, they show language working as cultural memory. A civilization lives in what it says without thinking,
+    and countless lives have given these familiar words their meaning.

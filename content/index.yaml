@@ -176,3 +176,10 @@ blocks:
     text: Bhasa, Kalidasa, Bhavabhuti and Banabhatta, the four great writers of classical Sanskrit, with their plays,
       poems and prose romances.
     meta: [4 poets, 16 works, Drama · Kavya · Prose]
+  - title: When India Says “Ram”
+    accent: '#c8860a'
+    href: ram.html
+    emoji: 🙏
+    text: One name in twelve everyday expressions, from the greeting Ram Ram to Ram Naam Satya Hai, and what each says
+      about grief, conscience, faith, justice and mortality.
+    meta: [12 expressions, 4 themes, Hindi & English]
