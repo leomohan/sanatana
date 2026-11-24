@@ -162,3 +162,10 @@ blocks:
     text: Five centuries of composers on one timeline, the Trinity of Tiruvarur, and all 72 melakarta ragas laid out
       by their swaras.
     meta: [18 composers, 72 melakartas, Linked to Raga Geometry]
+  - title: Sanskrit Poets & Dramatists
+    accent: '#a55eea'
+    href: sanskrit-poets.html
+    emoji: ✒️
+    text: Bhasa, Kalidasa, Bhavabhuti and Banabhatta, the four great writers of classical Sanskrit, with their plays,
+      poems and prose romances.
+    meta: [4 poets, 16 works, Drama · Kavya · Prose]

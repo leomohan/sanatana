@@ -1,0 +1,224 @@
+page:
+  file: sanskrit-poets.html
+  layout: page
+  title: Sanskrit Poets & Dramatists — Kalidasa, Bhasa, Bhavabhuti, Banabhatta
+  description: Four great writers of classical Sanskrit, Bhasa, Kalidasa, Bhavabhuti and Banabhatta, with their
+    major plays, poems and prose works.
+  favicon: ✒️
+  search: Search poets, works, genres…
+  native: sa
+  palette:
+    kalidasa: ['#f7b731', '#c98a00']
+    bhasa: ['#45aaf2', '#1f7fc4']
+    bhavabhuti: ['#a55eea', '#8b45d6']
+    bana: ['#fc5c65', '#d63c46']
+  gradient: [kalidasa, bhasa, bhavabhuti, bana]
+  primary: bhavabhuti
+  h1: Sanskrit Poets & Dramatists
+  intro: 'Four great writers of classical Sanskrit: Bhasa, the pioneer of the stage; Kalidasa, the poet of nature and
+    love; Bhavabhuti, the master of pathos; and Banabhatta, the architect of prose. Their works define the golden age
+    of Indian literary art.'
+  legend:
+  - {label: Bhasa, color: bhasa}
+  - {label: Kalidasa, color: kalidasa}
+  - {label: Bhavabhuti, color: bhavabhuti}
+  - {label: Banabhatta, color: bana}
+  filters:
+  - {value: all, label: All Four, color: kalidasa}
+  - {value: bhasa, label: Bhasa, color: bhasa}
+  - {value: kalidasa, label: Kalidasa, color: kalidasa}
+  - {value: bhavabhuti, label: Bhavabhuti, color: bhavabhuti}
+  - {value: bana, label: Banabhatta, color: bana}
+  footer: [📜 A literary map of Sanskrit poets and dramatists · Dates are approximate and debated among scholars,
+    This map is for study and orientation. Traditions vary in attribution and chronology.]
+blocks:
+- {type: filters}
+- type: cards
+  title: ✒️ The Four Luminaries
+  color: kalidasa
+  grid: pair
+  cards:
+  - id: bhasa
+    anchor: bhasa
+    title: Bhasa
+    native: भास
+    subtitle: The pioneer of Sanskrit drama · c. 1st–4th century CE (debated)
+    corner_icon: 🎭
+    accent: bhasa
+    tags: bhasa
+    body: The earliest Sanskrit dramatist whose plays we may still have. Kalidasa names him with respect in the prologue
+      to his first play. Bhasa's work was known only by name until 1912, when T. Ganapati Sastri published thirteen anonymous
+      plays from palm-leaf manuscripts found in Kerala. Most scholars now accept them as Bhasa's, though some still dispute
+      it. The plays are direct and energetic. The <em>Urubhanga</em> even shows its hero dying on stage, against later
+      convention.
+    key_teaching: {label: Key contribution, text: 'Laid the foundations of the Sanskrit stage. He drew freely on the epics and the Udayana legends, before later convention hardened the form.'}
+    facts:
+    - [Rediscovered, 'Manuscripts found from 1909 near Trivandrum · published 1912 by T. Ganapati Sastri']
+    - [Plays, 'Thirteen, known together as the "Trivandrum plays"']
+    - [Style, 'Bold, direct, little ornament']
+    chips: [{text: 🎭 Drama, style: theme}, Pioneer, Rediscovered]
+  - id: kalidasa
+    anchor: kalidasa
+    title: Kalidasa
+    native: कालिदास
+    subtitle: The poet of nature and love · c. 4th–5th century CE, Gupta era
+    corner_icon: 🪷
+    accent: kalidasa
+    tags: kalidasa
+    body: The greatest poet of classical Sanskrit, loved for his similes and his tender feeling for nature and the human
+      heart. He mastered every form, from drama to court epic to lyric. His <em>Abhijnanashakuntalam</em> is held to be
+      the summit of Sanskrit drama. William Jones's English translation of 1789 carried it to Europe, where Goethe praised
+      it.
+    key_teaching: {label: Key contribution, text: 'Brought Sanskrit poetry to its height in all three forms, drama, mahakavya and lyric, with unmatched grace.'}
+    facts:
+    - [Patron, 'Traditionally King Vikramaditya; often linked with the Gupta court']
+    - [Genre, 'Drama, mahakavya, lyric']
+    - [Best known, 'Shakuntala on the stage, the Meghaduta in lyric']
+    chips: [{text: 🪷 Shakuntala, style: theme}, Nature, Love]
+  - id: bhavabhuti
+    anchor: bhavabhuti
+    title: Bhavabhuti
+    native: भवभूति
+    subtitle: The master of pathos · c. 700–760 CE
+    corner_icon: 💔
+    accent: bhavabhuti
+    tags: bhavabhuti
+    body: A brahmin from Vidarbha who lived chiefly at the court of King Yashovarman of Kannauj. Three of his plays survive.
+      Critics rank him beside Kalidasa, and above him in pathos (<em>karuna</em>). In the <em>Uttararamacharita</em> he
+      declares that there is really only one rasa, compassion, and that all the others are its forms.
+    key_teaching: {label: Key contribution, text: 'Gave Sanskrit drama a new emotional depth. His characters grieve and reflect, and the stage can bring even stones to tears.'}
+    facts:
+    - [Patron, Yashovarman of Kannauj]
+    - [Genre, Drama (nataka and prakarana)]
+    - [Masterpiece, Uttararamacharita]
+    chips: [{text: 💔 Karuna rasa, style: theme}, Character, Reunion]
+  - id: bana
+    anchor: bana
+    title: Banabhatta
+    native: बाणभट्ट
+    subtitle: The architect of Sanskrit prose · 7th century CE
+    corner_icon: 📖
+    accent: bana
+    tags: bana
+    body: Court poet of King Harshavardhana of Kannauj and the greatest master of Sanskrit prose. His long sentences,
+      layered compounds and chains of images set the standard for ornate prose (<em>gadya</em>). His two works stand
+      for its two classical kinds. The <em>akhyayika</em> is based on real events; the <em>katha</em> is invented.
+    key_teaching: {label: Key contribution, text: 'Perfected Sanskrit prose. His romance gave Kannada and Marathi their word for the novel.'}
+    facts:
+    - [Patron, 'King Harsha (r. 606–647 CE)']
+    - [Genre, 'Prose — akhyayika and katha']
+    - [Style, 'Ornate, elaborate, poetic']
+    chips: [{text: 📖 Prose, style: theme}, Harsha, Romance]
+- type: cards
+  title: 🎭 Bhasa — major works
+  color: bhasa
+  section: bhasa
+  grid: v3
+  cards:
+  - title: Svapnavasavadatta
+    subtitle: Drama · 6 acts
+    accent: bhasa
+    body: '"The Dream of Vasavadatta." To win his kingdom an ally, King Udayana is led to believe that his queen died
+      in a fire. In a dream half-awake he meets her again. It is his best-loved play and the one that convinced scholars
+      the Trivandrum plays were his.'
+  - title: Pratijna Yaugandharayana
+    subtitle: Drama · 4 acts
+    accent: bhasa
+    body: '"Yaugandharayana''s Vow." The minister''s scheme to free King Udayana and win him Vasavadatta. It is the prequel
+      to the <em>Svapnavasavadatta</em>.'
+  - title: Charudatta
+    subtitle: Drama · unfinished
+    accent: bhasa
+    body: The poor but noble merchant Charudatta and the courtesan Vasantasena. Shudraka later expanded it into the <em>Mricchakatika</em>
+      (The Little Clay Cart).
+  - title: Urubhanga
+    subtitle: Drama · one act
+    accent: bhasa
+    body: '"The Broken Thighs." Duryodhana dies on stage after his duel with Bhima, as a tragic, even noble figure. That
+      is rare in Sanskrit drama. See the <a href="mahabharata.html">Mahabharata family tree</a>.'
+  - title: Karnabhara
+    subtitle: Drama · one act
+    accent: bhasa
+    body: '"Karna''s Burden." On the eve of his last battle, Karna gives his divine armour and earrings to Indra, who
+      has come disguised as a brahmin.'
+- type: cards
+  title: 🪷 Kalidasa — major works
+  color: kalidasa
+  section: kalidasa
+  grid: v3
+  cards:
+  - title: Abhijnanashakuntalam
+    subtitle: Drama · 7 acts
+    accent: kalidasa
+    body: King Dushyanta marries Shakuntala in the forest. Under a curse he forgets her, and he knows her again only by
+      his ring. Their son Bharata gives his name to the land and to the <a href="mahabharata.html">Kuru line</a>.
+  - title: Vikramorvashiyam
+    subtitle: Drama · 5 acts
+    accent: kalidasa
+    body: The love of King Pururavas for the celestial nymph Urvashi, a drama of longing, loss and reunion.
+  - title: Malavikagnimitram
+    subtitle: Drama · 5 acts
+    accent: kalidasa
+    body: A palace comedy of King Agnimitra and the maid Malavika, who turns out to be a princess. Its prologue names
+      Bhasa as an honoured predecessor.
+  - title: Meghaduta
+    subtitle: Lyric poem
+    accent: kalidasa
+    body: '"The Cloud Messenger." An exiled yaksha asks a passing cloud to carry his message to his wife. The poem traces
+      the cloud''s path across India and began a whole genre of messenger poems (<em>sandesha kavya</em>).'
+  - title: Raghuvamsha
+    subtitle: Mahakavya · 19 cantos
+    accent: kalidasa
+    body: The kings of Raghu's line, with the story of Rama at its centre. It became the model of the Sanskrit court epic.
+      Follow Rama's road on the <a href="ramayana.html">Ramayana journey</a>.
+  - title: Kumarasambhava
+    subtitle: Mahakavya
+    accent: kalidasa
+    body: '"The Birth of Kumara." Parvati''s penance, her marriage to Shiva and the coming of their son, the war god Kumara
+      (Skanda). See <a href="shiva-muruga.html">Shiva & Muruga</a>.'
+- type: cards
+  title: 💔 Bhavabhuti — major works
+  color: bhavabhuti
+  section: bhavabhuti
+  grid: v3
+  cards:
+  - title: Mahaviracharita
+    subtitle: Drama · 7 acts
+    accent: bhavabhuti
+    body: '"The Deeds of the Great Hero." Rama''s story from Vishwamitra''s hermitage to the war in Lanka and his return.
+      Here Ravana''s minister schemes against him at every turn.'
+  - title: Malatimadhava
+    subtitle: Prakarana · 10 acts
+    accent: bhavabhuti
+    body: An invented love story of Malati and Madhava. A Buddhist nun helps the lovers, and a cremation ground holds
+      a near-sacrifice and a rescue. The scholar Daniel Ingalls said it joins love and horror as no later Sanskrit work did.
+  - title: Uttararamacharita
+    subtitle: Drama · 7 acts
+    accent: bhavabhuti
+    body: '"The Later Story of Rama." Rama banishes Sita, grieves for her, and meets his sons Lava and Kusha. Unlike the
+      Uttara Kanda, the play ends in reunion. Its pathos is the most celebrated in Sanskrit drama.'
+- type: cards
+  title: 📖 Banabhatta — major works
+  color: bana
+  section: bana
+  grid: two
+  cards:
+  - title: Harshacharita
+    subtitle: Prose · akhyayika
+    accent: bana
+    body: The life of King Harsha, Bana's patron, opening with Bana's own family and youth. It is often called the first
+      biography in Sanskrit and is a valuable source for 7th-century India.
+  - title: Kadambari
+    subtitle: Prose · katha
+    accent: bana
+    body: A romance of love across several births. Bana died before finishing it, and his son Bhushanabhatta completed
+      it. Its title became the ordinary word for "novel" in Kannada and Marathi.
+  empty: Nothing matches your search. Try another word or clear the filter.
+- type: sources
+  items:
+  - {label: Bhasa — Wikipedia, url: 'https://en.wikipedia.org/wiki/Bhasa'}
+  - {label: T. Ganapati Sastri — Wikipedia, url: 'https://en.wikipedia.org/wiki/T._Ganapati_Sastri'}
+  - {label: Bhavabhuti — Wikipedia, url: 'https://en.wikipedia.org/wiki/Bhavabhuti'}
+  - {label: Bhavabhuti — Encyclopaedia Britannica, url: 'https://www.britannica.com/biography/Bhavabhuti'}
+  - {label: Kalidasa — Wikipedia, url: 'https://en.wikipedia.org/wiki/Kalidasa'}
+  - {label: Banabhatta — Wikipedia, url: 'https://en.wikipedia.org/wiki/Banabhatta'}

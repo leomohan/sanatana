@@ -137,6 +137,7 @@ section{margin:50px auto;max-width:1240px;}
 .grid.v3{grid-template-columns:repeat(auto-fit,minmax(270px,1fr));}
 .grid.v4{grid-template-columns:repeat(auto-fit,minmax(225px,1fr));}
 .grid.two{grid-template-columns:repeat(auto-fit,minmax(340px,1fr));}
+.grid.pair{grid-template-columns:repeat(2,minmax(0,1fr));}
 
 .card{
   position:relative;
@@ -520,6 +521,7 @@ body.show-native .ft-node .native{display:block;}
   .lifespans{padding-right:16px;}
   .ls-axis span:nth-child(even){display:none;}
   .mela-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .grid.pair{grid-template-columns:1fr;}
   .mela-corner,.mela-head{display:none;}
   .mela-chakra{grid-column:1 / -1;flex-direction:row;gap:10px;align-items:baseline;}
   .ft-node{width:140px;}
