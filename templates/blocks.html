@@ -230,19 +230,46 @@
 </section>
 
 {%- elif b.type == 'home-cards' %}
-<main>
-  <div class="home-cards">
-  {%- for c in b.cards %}
+{%- macro home_card(c, h) -%}
     <a class="map-card" href="{{ c.href }}" style="--accent:{{ c.accent|color }}">
       <span class="emoji" aria-hidden="true">{{ c.emoji }}</span>
-      <h2>{{ c.title }}</h2>
+      <{{ h }}>{{ c.title }}</{{ h }}>
       <p>{{ c.text|safe }}</p>
       <div class="meta">{% for m in c.meta %}<span>{{ m }}</span>{% endfor %}</div>
       <span class="cta">Explore the map <span class="arrow" aria-hidden="true">→</span></span>
     </a>
+{%- endmacro %}
+{%- if b.groups %}
+<nav class="topic-menu" aria-label="Browse by topic">
+  {%- for g in b.groups %}
+  <div class="tm-row">
+    <a class="tm-label" href="#{{ g.key }}"><span aria-hidden="true">{{ g.emoji }}</span> {{ g.label }}</a>
+    <div class="tm-pills">{% for n in g.links %}<a href="{{ n.file }}"><span aria-hidden="true">{{ n.emoji }}</span> {{ n.label }}</a>{% endfor %}</div>
+  </div>
+  {%- endfor %}
+</nav>
+<main>
+  {%- for g in b.groups %}
+  <section class="home-group" id="{{ g.key }}" aria-labelledby="hg-{{ g.key }}">
+    <h2 id="hg-{{ g.key }}"><span aria-hidden="true">{{ g.emoji }}</span> {{ g.label }}</h2>
+    {%- if g.intro %}<p class="hg-intro">{{ g.intro }}</p>{% endif %}
+    <div class="home-cards">
+    {%- for c in g.cards %}
+    {{ home_card(c, 'h3') }}
+    {%- endfor %}
+    </div>
+  </section>
+  {%- endfor %}
+</main>
+{%- else %}
+<main>
+  <div class="home-cards">
+  {%- for c in b.cards %}
+  {{ home_card(c, 'h2') }}
   {%- endfor %}
   </div>
 </main>
+{%- endif %}
 {%- elif b.type == 'family' %}
 <section class="family" data-block{{ sect(b) }}>
   {{ title(b) }}

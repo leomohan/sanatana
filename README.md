@@ -28,6 +28,7 @@ First time only: `pip install -r requirements.txt` (PyYAML and Jinja2).
 
 1. Copy `content/_template.yaml` to `content/<name>.yaml` and fill it in.
 2. Add the page to the `nav` list in `content/site.yaml` (it then appears in every footer).
+   Add it to one of the `groups` there too. Groups are the topic menu at the top of the home page and its card sections. The build stops if a page is in no group or in two.
 3. Add a card for it to `content/index.yaml` so it shows on the home page.
 4. Give it a `description:` of about 150 characters. Search results and link previews show it.
 5. Run `python3 build.py`. The new page goes into `sitemap.xml` and `llms.txt` automatically.

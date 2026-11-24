@@ -279,6 +279,24 @@ def write_search_files(site, pages):
     print(f'wrote sitemap.xml ({len(pages)} pages), robots.txt, llms.txt')
 
 
+def home_groups(site, block):
+    """Arrange the home cards under the topic groups in site.yaml, checking nothing is missing or doubled."""
+    groups = site.get('groups')
+    if not groups:
+        return None
+    nav = {n['file']: n for n in site.get('nav', [])}
+    cards = {c['href']: c for c in block['cards']}
+    listed = [f for g in groups for f in g['pages']]
+    problems = [f'{f} is listed in {listed.count(f)} groups in site.yaml (it needs exactly one)'
+                for f in nav if f != 'index.html' and listed.count(f) != 1]
+    problems += [f'group page {f} is not in the nav list in site.yaml' for f in listed if f not in nav]
+    problems += [f'group page {f} has no home card in index.yaml' for f in listed if f not in cards]
+    problems += [f'home card {f} is not in any group in site.yaml' for f in cards if f not in listed]
+    if problems:
+        raise SystemExit('\nhome page groups: please fix\n  - ' + '\n  - '.join(dict.fromkeys(problems)))
+    return [dict(g, cards=[cards[f] for f in g['pages']], links=[nav[f] for f in g['pages']]) for g in groups]
+
+
 def build(names=None):
     site = yaml.safe_load((CONTENT / 'site.yaml').read_text(encoding='utf-8'))
     env = Environment(loader=FileSystemLoader(TEMPLATES), undefined=ChainableUndefined,
@@ -308,6 +326,9 @@ def build(names=None):
         for b in blocks:
             if b['type'] == 'raga-geometry':
                 data['ragas'] = b['ragas']
+        for b in blocks:
+            if b['type'] == 'home-cards':
+                b['groups'] = home_groups(site, b)
         groups = None
         for b in blocks:
             if b['type'] == 'geo-map':

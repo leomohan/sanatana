@@ -12,6 +12,34 @@ og_image: assets/og/index.jpg
 # Paste the codes from Google Search Console and Bing Webmaster Tools (the content="..." part of their meta tag).
 verify_google: ''
 verify_bing: ''
+# Home page topic groups: the menu at the top of the home page and the card sections below it.
+# Every page in nav (except Home) must be listed in exactly one group; the build stops otherwise.
+groups:
+  - key: texts
+    emoji: 📜
+    label: Texts & philosophy
+    intro: The scriptures, the epics and the schools of thought built on them.
+    pages: [veda.html, gita.html, darshanas.html, vedanta.html, shanmata.html, ramayana.html, mahabharata.html, dashavatara.html]
+  - key: saints
+    emoji: 🪔
+    label: Saints & lineages
+    intro: Poet-saints, teachers and the lines that carried their teaching down the centuries.
+    pages: [an.html, bhakti.html, parampara.html, mathas.html, sanskrit-poets.html, tamil-literature.html]
+  - key: places
+    emoji: 🛕
+    label: Sacred places
+    intro: Temples, pilgrim circuits and how the temples were built.
+    pages: [geography.html, muruga.html, navagraha.html, pancha-bhoota.html, shakti-peethas.html, temples.html, shiva-muruga.html]
+  - key: time
+    emoji: 🌌
+    label: Time, sky & ritual
+    intro: The stars, the calendar and the rites that mark a life.
+    pages: [jyotisha.html, festivals.html, samskaras.html]
+  - key: music
+    emoji: 🎶
+    label: Music & language
+    intro: Raga, song and the name of Ram in everyday speech.
+    pages: [carnatic.html, raga-geometry.html, ram.html]
 nav:
   - {file: index.html, emoji: 🏠, label: Home}
   - {file: veda.html, emoji: 📜, label: Vedic Literature}
